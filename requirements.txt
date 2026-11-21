@@ -8,6 +8,10 @@ numpy>=2.0
 matplotlib>=3.9
 pytest>=8.3
 psycopg[binary]>=3.2   # PostgreSQL driver (Phase 2)
+# Phase 3 (no model download needed for these)
+scipy>=1.13
+scikit-learn>=1.5
+rank-bm25==0.2.2      # exact: the verifier re-implements its BM25 formula
 # notebooks (built and executed with nbclient)
 nbformat>=5.10
 nbclient>=0.10

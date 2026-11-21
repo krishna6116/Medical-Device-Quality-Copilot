@@ -1,6 +1,6 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phases 0-2 done; 7 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+> Work in progress (Phases 0-3 done; 6 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
 
 ## The problem
 
@@ -20,8 +20,9 @@ When a device starts failing in the field, a quality engineer has to answer ques
 | 0 Setup | done |
 | 1 Data + EDA | done: 154,194 reports + 1,626 recalls for 5 device types; [findings](docs/EDA_FINDINGS.md), [data card](docs/DATA_CARD.md), verifier 8/8 |
 | 2 Pipeline (PostgreSQL) | done: star schema, 1 record quarantined, 305 maker names -> 101 companies, report-recall links; [pipeline](docs/PIPELINE.md), verifier 10/10 |
-| 3 Failure modes | next |
-| 4-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
+| 3 Failure modes | done: FDA terms mapped by a codebook beat text methods (70% on test); 214 early-warning signals, 15/38 recalls preceded by one; [failure modes](docs/FAILURE_MODES.md), scorecard 5/5 |
+| 4 Assistant | next |
+| 5-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 
 ## Run locally
 

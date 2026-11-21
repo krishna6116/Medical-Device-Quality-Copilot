@@ -1,0 +1,116 @@
+{
+  "model": "BAAI/bge-small-en-v1.5",
+  "model_revision": "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a",
+  "validation_accuracy": {
+    "M1": 0.75,
+    "M2": 0.75,
+    "M3": 0.39,
+    "M4": 0.73,
+    "M5": 0.51
+  },
+  "validation_accuracy_all_settings": {
+    "M1": 0.75,
+    "M2:earliest": 0.75,
+    "M2:priority": 0.67,
+    "M3:None": 0.39,
+    "M3:0.55": 0.39,
+    "M3:0.6": 0.39,
+    "M3:0.65": 0.39,
+    "M5": 0.51,
+    "M4:earliest+None": 0.73
+  },
+  "chosen_settings": {
+    "M1": "M1",
+    "M2": "M2:earliest",
+    "M3": "M3:None",
+    "M4": "M4:earliest+None",
+    "M5": "M5"
+  },
+  "chosen": "M1",
+  "test": {
+    "M1": {
+      "setting": "M1",
+      "accuracy": 0.7,
+      "accuracy_ci95": [
+        0.61,
+        0.79
+      ],
+      "macro_f1": 0.6843,
+      "accuracy_by_family": {
+        "orthopedic": 0.65,
+        "cardiac": 0.65,
+        "diabetes": 0.9
+      }
+    },
+    "M2": {
+      "setting": "M2:earliest",
+      "accuracy": 0.6,
+      "accuracy_ci95": [
+        0.51,
+        0.69
+      ],
+      "macro_f1": 0.6036,
+      "accuracy_by_family": {
+        "orthopedic": 0.45,
+        "cardiac": 0.8,
+        "diabetes": 0.85
+      }
+    },
+    "M3": {
+      "setting": "M3:None",
+      "accuracy": 0.32,
+      "accuracy_ci95": [
+        0.2398,
+        0.41
+      ],
+      "macro_f1": 0.3008,
+      "accuracy_by_family": {
+        "orthopedic": 0.1833,
+        "cardiac": 0.55,
+        "diabetes": 0.5
+      }
+    },
+    "M4": {
+      "setting": "M4:earliest+None",
+      "accuracy": 0.59,
+      "accuracy_ci95": [
+        0.5,
+        0.68
+      ],
+      "macro_f1": 0.5679,
+      "accuracy_by_family": {
+        "orthopedic": 0.4333,
+        "cardiac": 0.8,
+        "diabetes": 0.85
+      }
+    },
+    "M5": {
+      "setting": "M5",
+      "accuracy": 0.35,
+      "accuracy_ci95": [
+        0.26,
+        0.45
+      ],
+      "macro_f1": 0.2461,
+      "accuracy_by_family": {
+        "orthopedic": 0.2333,
+        "cardiac": 0.45,
+        "diabetes": 0.6
+      }
+    }
+  },
+  "chosen_vs_m1_test": {
+    "chosen": "M1",
+    "baseline": "M1",
+    "difference": 0.0,
+    "difference_ci95": [
+      0.0,
+      0.0
+    ],
+    "chosen_better": false
+  },
+  "n": {
+    "validation": 100,
+    "test": 100
+  }
+}

@@ -59,3 +59,19 @@
 **Next:** Phase 3, failure-mode grouping with non-LLM baselines and a per-manufacturer signal rule.
 
 **Phase 2 re-check (same evening):** everything passed again (CI ran every database test, none skipped). Following the Phase 1 lesson, the database was also compared directly with openFDA's own server counts. Two apparent differences were explained, not data errors: recall status has no exact-count field on the server (my query asked for one), and one Boston Scientific report is the quarantined one. That comparison is now permanent criterion P11 (post hoc, `--network`), shown to fail on a planted change. Health checks found 3 insulin-pump narratives with a stray control character that is in FDA's own text; it is kept as received and will be normalised before search in Phase 3. *Concept:* when a check disagrees, first check the check (here the query), then the data.
+
+## 2026-11-21 (night): Phase 3 failure modes, similar reports, early-warning signals
+
+**Decided:** reference labels written by Claude from a codebook, spot-checked (the user delegated the review; 18/20 on a second full-text pass); embedding model bge-small-en-v1.5 on CPU; no paid model in this phase; a 5-item scorecard (no performance target) committed before any result.
+
+**Result:** FDA's own coded problem terms, mapped through the codebook, beat every text method (70% test accuracy vs 60% for keyword rules and 32% for zero-shot embeddings). Embedding search was chosen on validation, but BM25 did as well on test. The alert rule flagged 214 company-mode-months; 15 of 38 recall events had a signal in the 6 months before, against a 14% base rate.
+
+**Concepts:**
+- *Codebook and reference labels:* write definitions first, then label, then run methods; commit each step so the order is provable.
+- *Validation vs test:* choose on one half, score the other once. The FDA baseline won by a pre-registered tie-break (simpler wins) and then also won on test.
+- *Negative results are results:* Phase 1 expected the narrative to be necessary; Phase 3 showed the coded terms already carry most of the signal. Reported, not tuned away.
+- *Embeddings:* meaning-based numbers; great for "find reports like this", poor at matching a long, boilerplate-heavy narrative to a one-sentence definition.
+- *Poisson signal:* is this month's count surprisingly high compared with the last year's average? A prompt to look, not proof.
+- *Templates:* many reports share identical text, so similarity search needs duplicate collapsing.
+
+**Next:** Phase 4, the assistant with tools on Claude Haiku 5.5.

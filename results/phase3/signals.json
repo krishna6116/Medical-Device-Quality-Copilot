@@ -1,0 +1,2253 @@
+{
+  "signals": 214,
+  "signals_per_year": 107.0,
+  "series": 475,
+  "series_with_signal": 91,
+  "by_code": {
+    "LPH": 41,
+    "JWH": 96,
+    "MBH": 13,
+    "LWP": 34,
+    "LZG": 30
+  },
+  "recall_events": 38,
+  "hits": 15,
+  "hit_rate": 0.3947,
+  "windows": 2322,
+  "windows_with_signal": 326,
+  "base_rate": 0.1404,
+  "events": [
+    {
+      "event": "91842",
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "initiated": "2023-02-27",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "91866",
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "initiated": "2023-02-06",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "91906",
+      "code": "MBH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2023-02-28",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "92257",
+      "code": "MBH",
+      "parent": "STRYKER",
+      "initiated": "2023-04-13",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "92294",
+      "code": "JWH",
+      "parent": "LINKBIO",
+      "initiated": "2023-04-25",
+      "hit": false,
+      "pair_has_reports": false
+    },
+    {
+      "event": "92531",
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "initiated": "2023-05-19",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "92621",
+      "code": "JWH",
+      "parent": "MATERIALISE N V",
+      "initiated": "2023-04-26",
+      "hit": false,
+      "pair_has_reports": false
+    },
+    {
+      "event": "92807",
+      "code": "LPH",
+      "parent": "WALDEMAR LINK GMBH & CO KG MFG SITE",
+      "initiated": "2023-07-14",
+      "hit": false,
+      "pair_has_reports": false
+    },
+    {
+      "event": "92969",
+      "code": "JWH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2023-08-04",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "92976",
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "initiated": "2023-08-31",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93098",
+      "code": "JWH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2023-08-22",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93098",
+      "code": "LPH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2023-08-22",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93144",
+      "code": "JWH",
+      "parent": "CORIN",
+      "initiated": "2023-10-13",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93156",
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "initiated": "2023-09-27",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93214",
+      "code": "MBH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2023-09-29",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93329",
+      "code": "JWH",
+      "parent": "LIMACORPORATE S P A",
+      "initiated": "2023-10-27",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93465",
+      "code": "MBH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2023-11-10",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93507",
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "initiated": "2023-11-21",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93507",
+      "code": "LPH",
+      "parent": "EXACTECH",
+      "initiated": "2023-11-21",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "93687",
+      "code": "JWH",
+      "parent": "STRYKER",
+      "initiated": "2023-12-01",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94026",
+      "code": "MBH",
+      "parent": "STRYKER",
+      "initiated": "2024-02-06",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94215",
+      "code": "LPH",
+      "parent": "STRYKER",
+      "initiated": "2024-02-27",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94222",
+      "code": "MBH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "initiated": "2024-03-12",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94288",
+      "code": "JWH",
+      "parent": "CONFORMIS",
+      "initiated": "2024-03-11",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94310",
+      "code": "MBH",
+      "parent": "ZIMMER BIOMET",
+      "initiated": "2024-03-13",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94327",
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "initiated": "2024-03-28",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94380",
+      "code": "JWH",
+      "parent": "CORENTEC",
+      "initiated": "2024-03-29",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94409",
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "initiated": "2024-04-18",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "94814",
+      "code": "JWH",
+      "parent": "WALDEMAR LINK GMBH & CO KG MFG SITE",
+      "initiated": "2024-05-22",
+      "hit": false,
+      "pair_has_reports": false
+    },
+    {
+      "event": "95315",
+      "code": "JWH",
+      "parent": "STRYKER",
+      "initiated": "2024-09-04",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "95493",
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "initiated": "2024-10-02",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "95494",
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "initiated": "2024-10-02",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "95598",
+      "code": "LPH",
+      "parent": "NOVOSOURCE",
+      "initiated": "2024-09-19",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "95672",
+      "code": "MBH",
+      "parent": "MICROPORT",
+      "initiated": "2024-10-29",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "95882",
+      "code": "JWH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2024-12-10",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "95969",
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "initiated": "2024-12-12",
+      "hit": true,
+      "pair_has_reports": true
+    },
+    {
+      "event": "96019",
+      "code": "JWH",
+      "parent": "ENCORE MEDICAL",
+      "initiated": "2024-12-18",
+      "hit": false,
+      "pair_has_reports": true
+    },
+    {
+      "event": "96102",
+      "code": "LPH",
+      "parent": "EXACTECH",
+      "initiated": "2024-12-31",
+      "hit": false,
+      "pair_has_reports": true
+    }
+  ],
+  "signal_list": [
+    {
+      "code": "JWH",
+      "parent": "(BLANK)",
+      "mode": "O_INFECTION",
+      "month": "2024-05",
+      "count": 6,
+      "expected": 0.5,
+      "p_value": 1.4164937322342495e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "AESCULAP",
+      "mode": "O_INFECTION",
+      "month": "2024-10",
+      "count": 11,
+      "expected": 0.5,
+      "p_value": 7.740840739228265e-12
+    },
+    {
+      "code": "JWH",
+      "parent": "AESCULAP",
+      "mode": "O_LOOSENING",
+      "month": "2023-01",
+      "count": 21,
+      "expected": 2.333,
+      "p_value": 1.1330429461731427e-13
+    },
+    {
+      "code": "JWH",
+      "parent": "AESCULAP",
+      "mode": "O_OTHER",
+      "month": "2023-05",
+      "count": 5,
+      "expected": 0.5,
+      "p_value": 0.00017211562995584072
+    },
+    {
+      "code": "JWH",
+      "parent": "AESCULAP",
+      "mode": "O_OTHER",
+      "month": "2024-06",
+      "count": 5,
+      "expected": 0.5,
+      "p_value": 0.00017211562995584072
+    },
+    {
+      "code": "JWH",
+      "parent": "AESCULAP",
+      "mode": "O_OTHER",
+      "month": "2024-10",
+      "count": 8,
+      "expected": 0.667,
+      "p_value": 5.36257845306054e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "AESCULAP",
+      "mode": "O_OTHER",
+      "month": "2024-11",
+      "count": 9,
+      "expected": 1.333,
+      "p_value": 1.1140072205615319e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "AESCULAP",
+      "mode": "O_OTHER",
+      "month": "2024-12",
+      "count": 14,
+      "expected": 2.083,
+      "p_value": 4.805034167135128e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "ARTHREX",
+      "mode": "O_INFECTION",
+      "month": "2023-01",
+      "count": 9,
+      "expected": 0.5,
+      "p_value": 3.4354902468481273e-09
+    },
+    {
+      "code": "JWH",
+      "parent": "ARTHREX",
+      "mode": "O_INSTABILITY",
+      "month": "2023-01",
+      "count": 12,
+      "expected": 0.5,
+      "p_value": 3.214697303345178e-13
+    },
+    {
+      "code": "JWH",
+      "parent": "ARTHREX",
+      "mode": "O_LOOSENING",
+      "month": "2023-01",
+      "count": 9,
+      "expected": 0.5,
+      "p_value": 3.4354902468481273e-09
+    },
+    {
+      "code": "JWH",
+      "parent": "ARTHREX",
+      "mode": "O_OTHER",
+      "month": "2023-01",
+      "count": 8,
+      "expected": 0.5,
+      "p_value": 6.219690863728644e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "CONFORMIS",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-10",
+      "count": 5,
+      "expected": 0.5,
+      "p_value": 0.00017211562995584072
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2023-02",
+      "count": 13,
+      "expected": 4.417,
+      "p_value": 0.0006807991902009237
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INFECTION",
+      "month": "2023-01",
+      "count": 103,
+      "expected": 61.667,
+      "p_value": 9.55652785373481e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INFECTION",
+      "month": "2023-06",
+      "count": 91,
+      "expected": 63.5,
+      "p_value": 0.0006812895618389125
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INFECTION",
+      "month": "2023-10",
+      "count": 92,
+      "expected": 63.417,
+      "p_value": 0.00044256482120265243
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INFECTION",
+      "month": "2024-02",
+      "count": 96,
+      "expected": 68.0,
+      "p_value": 0.0007881166658430354
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INFECTION",
+      "month": "2024-04",
+      "count": 110,
+      "expected": 71.667,
+      "p_value": 1.5800401890356675e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INSTABILITY",
+      "month": "2023-06",
+      "count": 69,
+      "expected": 36.333,
+      "p_value": 9.115376484641274e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INSTABILITY",
+      "month": "2024-03",
+      "count": 68,
+      "expected": 43.0,
+      "p_value": 0.00026067273726386073
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INSTABILITY",
+      "month": "2024-04",
+      "count": 77,
+      "expected": 45.833,
+      "p_value": 1.6544237615538475e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_LOOSENING",
+      "month": "2023-02",
+      "count": 72,
+      "expected": 28.25,
+      "p_value": 4.244301513984954e-12
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_LOOSENING",
+      "month": "2024-03",
+      "count": 50,
+      "expected": 26.917,
+      "p_value": 4.414286754256373e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_OTHER",
+      "month": "2023-08",
+      "count": 51,
+      "expected": 31.25,
+      "p_value": 0.0007217519046764234
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_OTHER",
+      "month": "2023-11",
+      "count": 56,
+      "expected": 32.917,
+      "p_value": 0.00015486002665785246
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_OTHER",
+      "month": "2024-10",
+      "count": 65,
+      "expected": 38.5,
+      "p_value": 6.128441462323023e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_WEAR",
+      "month": "2023-04",
+      "count": 18,
+      "expected": 5.417,
+      "p_value": 1.5523410276223894e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2024-08",
+      "count": 13,
+      "expected": 1.833,
+      "p_value": 7.79787422533918e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_DEVICE_FRACTURE",
+      "month": "2024-12",
+      "count": 15,
+      "expected": 5.667,
+      "p_value": 0.0008046585685132967
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INFECTION",
+      "month": "2023-03",
+      "count": 24,
+      "expected": 3.25,
+      "p_value": 1.3840583430980844e-13
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2023-02",
+      "count": 57,
+      "expected": 13.083,
+      "p_value": 2.9757458700629577e-19
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2023-03",
+      "count": 65,
+      "expected": 17.417,
+      "p_value": 2.0638556168915535e-18
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2023-04",
+      "count": 66,
+      "expected": 22.667,
+      "p_value": 1.1309388306464412e-13
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2023-06",
+      "count": 56,
+      "expected": 31.167,
+      "p_value": 3.92049193234346e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2024-05",
+      "count": 95,
+      "expected": 34.083,
+      "p_value": 9.211679143733202e-18
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2024-06",
+      "count": 112,
+      "expected": 38.583,
+      "p_value": 6.385452188881952e-22
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2024-07",
+      "count": 70,
+      "expected": 43.25,
+      "p_value": 0.00011289215167369187
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2024-08",
+      "count": 135,
+      "expected": 44.667,
+      "p_value": 1.2348891108927177e-27
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2024-09",
+      "count": 99,
+      "expected": 53.583,
+      "p_value": 1.8238258849038427e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2024-10",
+      "count": 93,
+      "expected": 57.917,
+      "p_value": 1.3487354975166662e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_INSTABILITY",
+      "month": "2024-12",
+      "count": 139,
+      "expected": 66.25,
+      "p_value": 4.6325353110277e-15
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2023-04",
+      "count": 40,
+      "expected": 11.083,
+      "p_value": 1.5748815717821246e-11
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2024-05",
+      "count": 32,
+      "expected": 15.583,
+      "p_value": 0.0001761265242053881
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2024-06",
+      "count": 43,
+      "expected": 16.583,
+      "p_value": 4.6219728129514156e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2024-08",
+      "count": 57,
+      "expected": 19.417,
+      "p_value": 3.638331755227551e-12
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2024-09",
+      "count": 65,
+      "expected": 22.583,
+      "p_value": 2.833190842265373e-13
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2024-10",
+      "count": 59,
+      "expected": 26.667,
+      "p_value": 4.570604179502635e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2024-11",
+      "count": 60,
+      "expected": 29.0,
+      "p_value": 3.1918506788800445e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_LOOSENING",
+      "month": "2024-12",
+      "count": 118,
+      "expected": 33.167,
+      "p_value": 3.23153203163621e-30
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_OTHER",
+      "month": "2023-04",
+      "count": 31,
+      "expected": 12.5,
+      "p_value": 7.425102874541104e-06
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-12",
+      "count": 16,
+      "expected": 4.0,
+      "p_value": 4.892610719877837e-06
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2023-02",
+      "count": 60,
+      "expected": 28.167,
+      "p_value": 1.246127831629711e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2023-03",
+      "count": 77,
+      "expected": 31.417,
+      "p_value": 4.975095542946592e-12
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2023-05",
+      "count": 144,
+      "expected": 40.5,
+      "p_value": 1.9146592329421886e-36
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2023-06",
+      "count": 91,
+      "expected": 51.0,
+      "p_value": 2.8395866471317504e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2024-03",
+      "count": 128,
+      "expected": 78.917,
+      "p_value": 2.407952574551429e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2024-05",
+      "count": 285,
+      "expected": 87.083,
+      "p_value": 5.439844248893593e-63
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2024-06",
+      "count": 198,
+      "expected": 98.833,
+      "p_value": 1.1673047098567097e-18
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2024-07",
+      "count": 170,
+      "expected": 107.75,
+      "p_value": 1.9057039794071387e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2024-08",
+      "count": 195,
+      "expected": 115.25,
+      "p_value": 8.605410086338178e-12
+    },
+    {
+      "code": "JWH",
+      "parent": "EXACTECH",
+      "mode": "O_WEAR",
+      "month": "2024-09",
+      "count": 172,
+      "expected": 124.583,
+      "p_value": 3.330341251566362e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "MEDACTA INTERNATIONAL",
+      "mode": "O_INSTABILITY",
+      "month": "2023-07",
+      "count": 20,
+      "expected": 8.917,
+      "p_value": 0.0009469064460714343
+    },
+    {
+      "code": "JWH",
+      "parent": "MEDACTA INTERNATIONAL",
+      "mode": "O_INSTABILITY",
+      "month": "2023-12",
+      "count": 23,
+      "expected": 10.167,
+      "p_value": 0.0003701808309341789
+    },
+    {
+      "code": "JWH",
+      "parent": "MEDACTA INTERNATIONAL",
+      "mode": "O_WEAR",
+      "month": "2023-01",
+      "count": 7,
+      "expected": 1.0,
+      "p_value": 8.32411492880231e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "MEDACTA INTERNATIONAL",
+      "mode": "O_WEAR",
+      "month": "2023-07",
+      "count": 14,
+      "expected": 3.333,
+      "p_value": 1.0947889494304635e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "MEDACTA INTERNATIONAL",
+      "mode": "O_WEAR",
+      "month": "2024-06",
+      "count": 15,
+      "expected": 5.25,
+      "p_value": 0.0003742557601242943
+    },
+    {
+      "code": "JWH",
+      "parent": "MEDACTA INTERNATIONAL",
+      "mode": "O_WEAR",
+      "month": "2024-12",
+      "count": 21,
+      "expected": 6.25,
+      "p_value": 2.711322520513806e-06
+    },
+    {
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2023-12",
+      "count": 14,
+      "expected": 0.583,
+      "p_value": 3.5177964418042696e-15
+    },
+    {
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_INSTABILITY",
+      "month": "2023-01",
+      "count": 17,
+      "expected": 6.25,
+      "p_value": 0.0002780147950725725
+    },
+    {
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_OTHER",
+      "month": "2023-03",
+      "count": 29,
+      "expected": 14.917,
+      "p_value": 0.0007919896121194356
+    },
+    {
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_OTHER",
+      "month": "2023-12",
+      "count": 29,
+      "expected": 12.083,
+      "p_value": 2.554368365777965e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_OTHER",
+      "month": "2024-09",
+      "count": 29,
+      "expected": 13.75,
+      "p_value": 0.00022398343031143975
+    },
+    {
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_OTHER",
+      "month": "2024-10",
+      "count": 51,
+      "expected": 15.333,
+      "p_value": 5.861243856239434e-13
+    },
+    {
+      "code": "JWH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_OTHER",
+      "month": "2024-11",
+      "count": 43,
+      "expected": 18.083,
+      "p_value": 4.506808427789922e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2024-07",
+      "count": 12,
+      "expected": 3.5,
+      "p_value": 0.0002889922199303002
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2024-08",
+      "count": 14,
+      "expected": 4.417,
+      "p_value": 0.00020893629500573548
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2024-09",
+      "count": 18,
+      "expected": 5.333,
+      "p_value": 1.2689637528144205e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_DEVICE_FRACTURE",
+      "month": "2023-03",
+      "count": 170,
+      "expected": 87.667,
+      "p_value": 4.543814637257278e-15
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_DEVICE_FRACTURE",
+      "month": "2023-12",
+      "count": 134,
+      "expected": 90.417,
+      "p_value": 1.0959945797427804e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INFECTION",
+      "month": "2024-01",
+      "count": 38,
+      "expected": 7.333,
+      "p_value": 1.1695046278754413e-15
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INFECTION",
+      "month": "2024-06",
+      "count": 30,
+      "expected": 10.917,
+      "p_value": 1.454851037219287e-06
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INFECTION",
+      "month": "2024-07",
+      "count": 26,
+      "expected": 12.333,
+      "p_value": 0.0004589375408336899
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INTRAOP",
+      "month": "2023-04",
+      "count": 18,
+      "expected": 5.583,
+      "p_value": 2.2940582680114306e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INTRAOP",
+      "month": "2024-10",
+      "count": 18,
+      "expected": 7.417,
+      "p_value": 0.0006976149405135253
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_LOOSENING",
+      "month": "2024-05",
+      "count": 32,
+      "expected": 16.083,
+      "p_value": 0.0003014240288253581
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_LOOSENING",
+      "month": "2024-06",
+      "count": 42,
+      "expected": 17.083,
+      "p_value": 2.6126842000342815e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_OTHER",
+      "month": "2023-12",
+      "count": 44,
+      "expected": 15.0,
+      "p_value": 9.612809963453834e-10
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_OTHER",
+      "month": "2024-01",
+      "count": 52,
+      "expected": 16.417,
+      "p_value": 2.0794050988396412e-12
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2023-12",
+      "count": 45,
+      "expected": 22.75,
+      "p_value": 2.480824091609062e-05
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-02",
+      "count": 59,
+      "expected": 25.5,
+      "p_value": 1.0139653322204877e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-04",
+      "count": 59,
+      "expected": 29.0,
+      "p_value": 6.698709656663007e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-06",
+      "count": 62,
+      "expected": 31.083,
+      "p_value": 6.743961595468385e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-07",
+      "count": 70,
+      "expected": 33.667,
+      "p_value": 3.012641220658752e-08
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_WEAR",
+      "month": "2023-04",
+      "count": 16,
+      "expected": 3.333,
+      "p_value": 4.911573228674632e-07
+    },
+    {
+      "code": "JWH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_WEAR",
+      "month": "2023-10",
+      "count": 19,
+      "expected": 5.167,
+      "p_value": 2.236162006369194e-06
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_DEVICE_FRACTURE",
+      "month": "2024-10",
+      "count": 29,
+      "expected": 11.333,
+      "p_value": 8.113000348185532e-06
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INFECTION",
+      "month": "2024-10",
+      "count": 96,
+      "expected": 65.333,
+      "p_value": 0.0002252734789174555
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INTRAOP",
+      "month": "2023-08",
+      "count": 15,
+      "expected": 4.167,
+      "p_value": 3.154129389886745e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INTRAOP",
+      "month": "2023-10",
+      "count": 18,
+      "expected": 5.417,
+      "p_value": 1.5523410276223894e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_LOOSENING",
+      "month": "2024-07",
+      "count": 32,
+      "expected": 13.667,
+      "p_value": 1.6297572585574647e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_OTHER",
+      "month": "2023-10",
+      "count": 56,
+      "expected": 21.583,
+      "p_value": 4.889638794357007e-10
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_OTHER",
+      "month": "2024-04",
+      "count": 43,
+      "expected": 23.583,
+      "p_value": 0.00020945743570195728
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2023-03",
+      "count": 48,
+      "expected": 27.5,
+      "p_value": 0.0002491689822917016
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2023-06",
+      "count": 48,
+      "expected": 28.667,
+      "p_value": 0.0005995629506108138
+    },
+    {
+      "code": "LPH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_WEAR",
+      "month": "2023-03",
+      "count": 64,
+      "expected": 40.417,
+      "p_value": 0.000372288492023799
+    },
+    {
+      "code": "LPH",
+      "parent": "ENCORE MEDICAL",
+      "mode": "O_INSTABILITY",
+      "month": "2023-06",
+      "count": 13,
+      "expected": 4.583,
+      "p_value": 0.0009479976027585535
+    },
+    {
+      "code": "LPH",
+      "parent": "ENOVRE MEDICAL",
+      "mode": "O_INSTABILITY",
+      "month": "2024-12",
+      "count": 5,
+      "expected": 0.5,
+      "p_value": 0.00017211562995584072
+    },
+    {
+      "code": "LPH",
+      "parent": "MEDACTA INTERNATIONAL",
+      "mode": "O_INFECTION",
+      "month": "2023-12",
+      "count": 6,
+      "expected": 0.833,
+      "p_value": 0.00022897227553628872
+    },
+    {
+      "code": "LPH",
+      "parent": "ONKOS SURGICAL",
+      "mode": "O_INFECTION",
+      "month": "2024-04",
+      "count": 14,
+      "expected": 0.5,
+      "p_value": 4.392539881550789e-16
+    },
+    {
+      "code": "LPH",
+      "parent": "ONKOS SURGICAL",
+      "mode": "O_INFECTION",
+      "month": "2024-06",
+      "count": 10,
+      "expected": 1.25,
+      "p_value": 8.284874851191875e-07
+    },
+    {
+      "code": "LPH",
+      "parent": "ONKOS SURGICAL",
+      "mode": "O_OTHER",
+      "month": "2023-06",
+      "count": 5,
+      "expected": 0.5,
+      "p_value": 0.00017211562995584072
+    },
+    {
+      "code": "LPH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_DEVICE_FRACTURE",
+      "month": "2024-07",
+      "count": 5,
+      "expected": 0.667,
+      "p_value": 0.0006325213892344497
+    },
+    {
+      "code": "LPH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_INSTABILITY",
+      "month": "2024-06",
+      "count": 9,
+      "expected": 1.0,
+      "p_value": 1.1252025979690174e-06
+    },
+    {
+      "code": "LPH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_LOOSENING",
+      "month": "2023-12",
+      "count": 14,
+      "expected": 0.5,
+      "p_value": 4.392539881550789e-16
+    },
+    {
+      "code": "LPH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_LOOSENING",
+      "month": "2024-01",
+      "count": 28,
+      "expected": 1.5,
+      "p_value": 6.576506469138169e-26
+    },
+    {
+      "code": "LPH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_OTHER",
+      "month": "2023-09",
+      "count": 8,
+      "expected": 0.667,
+      "p_value": 5.36257845306054e-07
+    },
+    {
+      "code": "LPH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_OTHER",
+      "month": "2024-09",
+      "count": 13,
+      "expected": 1.5,
+      "p_value": 7.803298350822837e-09
+    },
+    {
+      "code": "LPH",
+      "parent": "STRYKER",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2023-07",
+      "count": 13,
+      "expected": 4.333,
+      "p_value": 0.0005730328957878042
+    },
+    {
+      "code": "LPH",
+      "parent": "STRYKER",
+      "mode": "O_WEAR",
+      "month": "2023-10",
+      "count": 29,
+      "expected": 6.75,
+      "p_value": 1.9113824355970486e-10
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_BONE_FRACTURE",
+      "month": "2024-04",
+      "count": 10,
+      "expected": 2.167,
+      "p_value": 8.921628394895056e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INFECTION",
+      "month": "2023-01",
+      "count": 18,
+      "expected": 4.0,
+      "p_value": 2.4817760194438543e-07
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INFECTION",
+      "month": "2024-10",
+      "count": 19,
+      "expected": 5.333,
+      "p_value": 3.4978739402047536e-06
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INFECTION",
+      "month": "2024-12",
+      "count": 17,
+      "expected": 5.833,
+      "p_value": 0.00012633563270192732
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INSTABILITY",
+      "month": "2023-02",
+      "count": 30,
+      "expected": 9.0,
+      "p_value": 2.765418423110201e-08
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INSTABILITY",
+      "month": "2023-03",
+      "count": 26,
+      "expected": 11.083,
+      "p_value": 9.230397317692933e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INSTABILITY",
+      "month": "2023-07",
+      "count": 32,
+      "expected": 13.0,
+      "p_value": 6.205204286057422e-06
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INSTABILITY",
+      "month": "2024-07",
+      "count": 50,
+      "expected": 23.417,
+      "p_value": 1.2157984821188358e-06
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INTRAOP",
+      "month": "2024-12",
+      "count": 30,
+      "expected": 12.667,
+      "p_value": 2.3847278244130773e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_LOOSENING",
+      "month": "2023-12",
+      "count": 15,
+      "expected": 4.417,
+      "p_value": 6.007478640249193e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_LOOSENING",
+      "month": "2024-12",
+      "count": 22,
+      "expected": 6.167,
+      "p_value": 6.102114721553096e-07
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_OTHER",
+      "month": "2023-12",
+      "count": 29,
+      "expected": 11.833,
+      "p_value": 1.765598013015051e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_OTHER",
+      "month": "2024-05",
+      "count": 44,
+      "expected": 16.583,
+      "p_value": 1.7200097755260587e-08
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-01",
+      "count": 13,
+      "expected": 4.417,
+      "p_value": 0.0006807991902009237
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-03",
+      "count": 19,
+      "expected": 5.833,
+      "p_value": 1.2036012717698415e-05
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-10",
+      "count": 19,
+      "expected": 7.333,
+      "p_value": 0.00023070231051552993
+    },
+    {
+      "code": "LPH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-12",
+      "count": 22,
+      "expected": 7.833,
+      "p_value": 2.4577896446051663e-05
+    },
+    {
+      "code": "LWP",
+      "parent": "ABBOTT",
+      "mode": "C_OTHER",
+      "month": "2023-01",
+      "count": 538,
+      "expected": 403.333,
+      "p_value": 9.98344933645195e-11
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_INFECTION_POCKET",
+      "month": "2023-10",
+      "count": 116,
+      "expected": 80.833,
+      "p_value": 0.0001375526438682399
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_LEAD_CAPTURE",
+      "month": "2023-05",
+      "count": 195,
+      "expected": 131.167,
+      "p_value": 1.1726160393370231e-07
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_LEAD_CAPTURE",
+      "month": "2023-06",
+      "count": 197,
+      "expected": 132.25,
+      "p_value": 8.908335296631328e-08
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_LEAD_CAPTURE",
+      "month": "2023-07",
+      "count": 184,
+      "expected": 136.0,
+      "p_value": 5.252914911894189e-05
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_LEAD_CAPTURE",
+      "month": "2023-08",
+      "count": 196,
+      "expected": 143.0,
+      "p_value": 1.5286980950030693e-05
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_OTHER",
+      "month": "2023-05",
+      "count": 90,
+      "expected": 53.167,
+      "p_value": 2.62033196007804e-06
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_OTHER",
+      "month": "2023-08",
+      "count": 88,
+      "expected": 52.25,
+      "p_value": 4.0433673883532246e-06
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_OTHER",
+      "month": "2024-09",
+      "count": 82,
+      "expected": 56.583,
+      "p_value": 0.0008853757097785627
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_OTHER",
+      "month": "2024-11",
+      "count": 87,
+      "expected": 60.25,
+      "p_value": 0.0007050745179413027
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-03",
+      "count": 21,
+      "expected": 9.083,
+      "p_value": 0.0004933362384744996
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-04",
+      "count": 62,
+      "expected": 10.5,
+      "p_value": 2.1610339635935896e-27
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-05",
+      "count": 85,
+      "expected": 14.0,
+      "p_value": 9.288304532109622e-38
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-06",
+      "count": 79,
+      "expected": 19.75,
+      "p_value": 8.778386484988059e-24
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-07",
+      "count": 62,
+      "expected": 25.5,
+      "p_value": 7.168479265812018e-10
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-08",
+      "count": 90,
+      "expected": 29.833,
+      "p_value": 5.837210907125237e-19
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-09",
+      "count": 77,
+      "expected": 36.667,
+      "p_value": 4.311101240180234e-09
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-10",
+      "count": 79,
+      "expected": 42.917,
+      "p_value": 5.184105395962364e-07
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2023-11",
+      "count": 75,
+      "expected": 48.583,
+      "p_value": 0.00026310744161733927
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2024-01",
+      "count": 85,
+      "expected": 58.0,
+      "p_value": 0.0005270344599294104
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_SENSING",
+      "month": "2024-12",
+      "count": 105,
+      "expected": 71.667,
+      "p_value": 0.00013311318012897881
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_TELEMETRY_SOFTWARE",
+      "month": "2023-06",
+      "count": 91,
+      "expected": 47.417,
+      "p_value": 1.2463351157778185e-08
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_TELEMETRY_SOFTWARE",
+      "month": "2023-09",
+      "count": 84,
+      "expected": 56.583,
+      "p_value": 0.0003895160707377005
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_TELEMETRY_SOFTWARE",
+      "month": "2023-10",
+      "count": 109,
+      "expected": 60.917,
+      "p_value": 1.8441294767336994e-08
+    },
+    {
+      "code": "LWP",
+      "parent": "BOSTON SCIENTIFIC",
+      "mode": "C_TELEMETRY_SOFTWARE",
+      "month": "2024-03",
+      "count": 113,
+      "expected": 81.75,
+      "p_value": 0.0006125130226501452
+    },
+    {
+      "code": "LWP",
+      "parent": "MEDTRONIC",
+      "mode": "C_INFECTION_POCKET",
+      "month": "2023-08",
+      "count": 43,
+      "expected": 0.667,
+      "p_value": 2.3122129694956647e-61
+    },
+    {
+      "code": "LWP",
+      "parent": "MEDTRONIC",
+      "mode": "C_LEAD_CAPTURE",
+      "month": "2023-08",
+      "count": 67,
+      "expected": 4.333,
+      "p_value": 1.7854864182546182e-54
+    },
+    {
+      "code": "LWP",
+      "parent": "MEDTRONIC",
+      "mode": "C_OTHER",
+      "month": "2023-08",
+      "count": 117,
+      "expected": 12.167,
+      "p_value": 1.3476900045198136e-71
+    },
+    {
+      "code": "LWP",
+      "parent": "MEDTRONIC",
+      "mode": "C_SENSING",
+      "month": "2023-08",
+      "count": 19,
+      "expected": 0.667,
+      "p_value": 1.9694303402794404e-21
+    },
+    {
+      "code": "LWP",
+      "parent": "MICROPORT",
+      "mode": "C_BATTERY",
+      "month": "2023-02",
+      "count": 31,
+      "expected": 2.167,
+      "p_value": 3.836554813327009e-25
+    },
+    {
+      "code": "LWP",
+      "parent": "MICROPORT",
+      "mode": "C_BATTERY",
+      "month": "2023-03",
+      "count": 18,
+      "expected": 4.667,
+      "p_value": 2.134673165805607e-06
+    },
+    {
+      "code": "LWP",
+      "parent": "MICROPORT",
+      "mode": "C_BATTERY",
+      "month": "2023-04",
+      "count": 115,
+      "expected": 6.083,
+      "p_value": 1.234726674364949e-101
+    },
+    {
+      "code": "LWP",
+      "parent": "MICROPORT",
+      "mode": "C_OTHER",
+      "month": "2023-03",
+      "count": 19,
+      "expected": 5.167,
+      "p_value": 2.236162006369194e-06
+    },
+    {
+      "code": "LWP",
+      "parent": "UNKNOWN",
+      "mode": "C_OTHER",
+      "month": "2023-08",
+      "count": 13,
+      "expected": 0.5,
+      "p_value": 1.2329271630613011e-14
+    },
+    {
+      "code": "LZG",
+      "parent": "ANIMAS",
+      "mode": "D_OTHER",
+      "month": "2023-08",
+      "count": 5,
+      "expected": 0.5,
+      "p_value": 0.00017211562995584072
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2023-06",
+      "count": 731,
+      "expected": 445.917,
+      "p_value": 2.9273769515316865e-35
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2023-07",
+      "count": 580,
+      "expected": 460.917,
+      "p_value": 5.292739531409799e-08
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2023-08",
+      "count": 591,
+      "expected": 449.0,
+      "p_value": 9.213615558720758e-11
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2023-09",
+      "count": 621,
+      "expected": 439.333,
+      "p_value": 1.970915205236558e-16
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2023-10",
+      "count": 612,
+      "expected": 446.583,
+      "p_value": 7.192448866808471e-14
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2024-07",
+      "count": 648,
+      "expected": 440.417,
+      "p_value": 1.4472301680135556e-20
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2024-08",
+      "count": 595,
+      "expected": 446.083,
+      "p_value": 1.1104254616321144e-11
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ADHESIVE_DISLODGED",
+      "month": "2024-09",
+      "count": 547,
+      "expected": 446.417,
+      "p_value": 2.3001805182426443e-06
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ALARM_ELECTRONICS",
+      "month": "2023-01",
+      "count": 147,
+      "expected": 47.583,
+      "p_value": 7.098119993382005e-31
+    },
+    {
+      "code": "LZG",
+      "parent": "INSULET",
+      "mode": "D_ALARM_ELECTRONICS",
+      "month": "2023-02",
+      "count": 137,
+      "expected": 59.75,
+      "p_value": 8.989569763712442e-18
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_ALARM_ELECTRONICS",
+      "month": "2023-08",
+      "count": 134,
+      "expected": 89.0,
+      "p_value": 5.289452668117757e-06
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OCCLUSION_DELIVERY",
+      "month": "2023-01",
+      "count": 90,
+      "expected": 38.583,
+      "p_value": 1.215167983635435e-12
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OCCLUSION_DELIVERY",
+      "month": "2024-01",
+      "count": 67,
+      "expected": 27.75,
+      "p_value": 2.041289076850231e-10
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OCCLUSION_DELIVERY",
+      "month": "2024-04",
+      "count": 92,
+      "expected": 26.083,
+      "p_value": 1.0593810541474766e-23
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OCCLUSION_DELIVERY",
+      "month": "2024-05",
+      "count": 109,
+      "expected": 32.333,
+      "p_value": 3.167242318650136e-26
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OCCLUSION_DELIVERY",
+      "month": "2024-06",
+      "count": 64,
+      "expected": 40.333,
+      "p_value": 0.0003534924480195115
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OCCLUSION_DELIVERY",
+      "month": "2024-07",
+      "count": 111,
+      "expected": 44.0,
+      "p_value": 1.9195431198985915e-17
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2023-01",
+      "count": 255,
+      "expected": 172.083,
+      "p_value": 2.143593836396268e-09
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2023-02",
+      "count": 235,
+      "expected": 182.5,
+      "p_value": 0.00010906429558860368
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2023-08",
+      "count": 246,
+      "expected": 188.0,
+      "p_value": 2.9743635787255572e-05
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2024-03",
+      "count": 223,
+      "expected": 172.75,
+      "p_value": 0.0001392698921478098
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2024-05",
+      "count": 246,
+      "expected": 179.917,
+      "p_value": 1.7264227776750711e-06
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2024-07",
+      "count": 262,
+      "expected": 188.833,
+      "p_value": 2.787147369178e-07
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2024-09",
+      "count": 259,
+      "expected": 190.833,
+      "p_value": 1.610494513397438e-06
+    },
+    {
+      "code": "LZG",
+      "parent": "MEDTRONIC",
+      "mode": "D_OTHER",
+      "month": "2024-12",
+      "count": 275,
+      "expected": 199.0,
+      "p_value": 1.9971723362399306e-07
+    },
+    {
+      "code": "LZG",
+      "parent": "ROCHE",
+      "mode": "D_LEAK",
+      "month": "2024-07",
+      "count": 18,
+      "expected": 6.917,
+      "p_value": 0.0003149471184104929
+    },
+    {
+      "code": "LZG",
+      "parent": "ROCHE",
+      "mode": "D_OTHER",
+      "month": "2024-07",
+      "count": 23,
+      "expected": 1.833,
+      "p_value": 7.590066798057879e-18
+    },
+    {
+      "code": "LZG",
+      "parent": "ROCHE",
+      "mode": "D_OTHER",
+      "month": "2024-08",
+      "count": 18,
+      "expected": 3.583,
+      "p_value": 5.0611802844710694e-08
+    },
+    {
+      "code": "LZG",
+      "parent": "ROCHE",
+      "mode": "D_OTHER",
+      "month": "2024-09",
+      "count": 21,
+      "expected": 4.667,
+      "p_value": 2.6081280309063976e-08
+    },
+    {
+      "code": "MBH",
+      "parent": "ARTHREX",
+      "mode": "O_OTHER",
+      "month": "2024-05",
+      "count": 5,
+      "expected": 0.5,
+      "p_value": 0.00017211562995584072
+    },
+    {
+      "code": "MBH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_INFECTION",
+      "month": "2023-06",
+      "count": 8,
+      "expected": 1.583,
+      "p_value": 0.00024301505788654646
+    },
+    {
+      "code": "MBH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_OTHER",
+      "month": "2023-04",
+      "count": 7,
+      "expected": 1.167,
+      "p_value": 0.0002121612836551106
+    },
+    {
+      "code": "MBH",
+      "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+      "mode": "O_OTHER",
+      "month": "2024-10",
+      "count": 10,
+      "expected": 2.417,
+      "p_value": 0.00021280388205884606
+    },
+    {
+      "code": "MBH",
+      "parent": "SMITH & NEPHEW",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2023-11",
+      "count": 5,
+      "expected": 0.583,
+      "p_value": 0.00034737768911190226
+    },
+    {
+      "code": "MBH",
+      "parent": "STRYKER",
+      "mode": "O_OTHER",
+      "month": "2024-01",
+      "count": 17,
+      "expected": 7.0,
+      "p_value": 0.0009581831589176794
+    },
+    {
+      "code": "MBH",
+      "parent": "STRYKER",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2023-10",
+      "count": 37,
+      "expected": 6.25,
+      "p_value": 4.7000319602432855e-17
+    },
+    {
+      "code": "MBH",
+      "parent": "STRYKER",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2023-11",
+      "count": 27,
+      "expected": 8.917,
+      "p_value": 8.118827445279591e-07
+    },
+    {
+      "code": "MBH",
+      "parent": "STRYKER",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2023-12",
+      "count": 28,
+      "expected": 10.5,
+      "p_value": 5.495772735518003e-06
+    },
+    {
+      "code": "MBH",
+      "parent": "STRYKER",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-01",
+      "count": 33,
+      "expected": 12.333,
+      "p_value": 7.991707600425632e-07
+    },
+    {
+      "code": "MBH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_INSTABILITY",
+      "month": "2023-09",
+      "count": 13,
+      "expected": 3.25,
+      "p_value": 3.639383275636723e-05
+    },
+    {
+      "code": "MBH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_PAIN_STIFFNESS",
+      "month": "2024-10",
+      "count": 24,
+      "expected": 9.417,
+      "p_value": 4.909404060842181e-05
+    },
+    {
+      "code": "MBH",
+      "parent": "ZIMMER BIOMET",
+      "mode": "O_WEAR",
+      "month": "2023-10",
+      "count": 5,
+      "expected": 0.583,
+      "p_value": 0.00034737768911190226
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+# Local only (not CI): the embedding model for Phase 3+ (python -m mdqc.embed).
+# Install CPU PyTorch first:  pip install torch --index-url https://download.pytorch.org/whl/cpu
+# Versions used for the published Phase 3 results: torch 2.15.0+cpu, sentence-transformers 6.3.0;
+# model BAAI/bge-small-en-v1.5 revision 5c38ec7c405e (downloaded once from Hugging Face, ~135 MB).
+sentence-transformers>=6.0

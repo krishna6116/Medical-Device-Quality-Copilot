@@ -1,0 +1,124 @@
+{
+  "checked_utc": "2026-11-21T22:43:52Z",
+  "offline": false,
+  "all_pass": true,
+  "checks": [
+    {
+      "id": "F1",
+      "check": "criteria -> labels -> results committed in that order; labels unchanged since",
+      "pass": true,
+      "detail": {
+        "criteria": "15c9aab",
+        "labels": "116825f",
+        "results": "not com",
+        "labels_unchanged": true
+      }
+    },
+    {
+      "id": "F2",
+      "check": "spot-check of 20 labels: >= 16 agree (reviewer recorded; delegated to Claude = post hoc)",
+      "pass": true,
+      "detail": {
+        "reviewed": 20,
+        "agree": 18,
+        "of": 20,
+        "reviewer": [
+          "Claude second pass on full text (user delegated the review on 2026-11-21; not independent of the labeller)"
+        ]
+      }
+    },
+    {
+      "id": "F3",
+      "check": "chosen method and settings follow from validation accuracy only",
+      "pass": true,
+      "detail": {
+        "validation": {
+          "M1": 0.75,
+          "M2": 0.75,
+          "M3": 0.39,
+          "M4": 0.73,
+          "M5": 0.51
+        },
+        "chosen": "M1"
+      }
+    },
+    {
+      "id": "F4",
+      "check": "test accuracy, macro-F1, intervals and chosen-vs-M1 recomputed",
+      "pass": true,
+      "detail": {
+        "mismatch": [],
+        "test_accuracy": {
+          "M1": 0.7,
+          "M2": 0.6,
+          "M3": 0.32,
+          "M4": 0.59,
+          "M5": 0.35
+        },
+        "chosen_minus_M1": {
+          "chosen": "M1",
+          "baseline": "M1",
+          "difference": 0.0,
+          "difference_ci95": [
+            0.0,
+            0.0
+          ],
+          "chosen_better": false
+        }
+      }
+    },
+    {
+      "id": "F7",
+      "check": "every report has one mode; DB = saved predictions = counts; chosen method recomputed independently",
+      "pass": true,
+      "detail": {
+        "reports": 154193,
+        "db_rows": 154193,
+        "recomputed_full_corpus": 154193,
+        "mismatches": [],
+        "n_mismatches": 0
+      }
+    },
+    {
+      "id": "F5",
+      "check": "retrieval rankings and MRR recomputed with own BM25 / cosine / fusion",
+      "pass": true,
+      "detail": {
+        "queries_with_differences": 0,
+        "chosen": "R2_embedding",
+        "test_mrr": {
+          "R1_bm25": 0.6786,
+          "R2_embedding": 0.6357,
+          "R3_hybrid": 0.633
+        }
+      }
+    },
+    {
+      "id": "F6",
+      "check": "signals and backtest recomputed from the database (own Poisson tail)",
+      "pass": true,
+      "detail": {
+        "signals": 214,
+        "recall_events": 38,
+        "hits": 15,
+        "base_rate": 0.1404
+      }
+    },
+    {
+      "id": "F8",
+      "check": "Phase 3 unit tests pass (CI runs them plus the offline verifier)",
+      "pass": true,
+      "detail": {
+        "pytest": "...............                                                          [100%]"
+      }
+    }
+  ],
+  "scorecard": {
+    "S1_honest_reference": true,
+    "S2_fair_method_choice": true,
+    "S3_similar_report_search": true,
+    "S4_signals_and_backtest": true,
+    "S5_database_and_ci": true
+  },
+  "scorecard_score": "5/5"
+}

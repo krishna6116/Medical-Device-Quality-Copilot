@@ -37,7 +37,7 @@ Each phase lists what gets built, why, and what "done" means. "Verified" always 
 - **Why:** the assistant's tools and the dashboards query this database; numbers must be reproducible and clean.
 - **Done:** every raw record accounted for (loaded or quarantined with a reason); verifier compares the database cell for cell with the raw files using different code; CI job loads a small pinned sample into a Postgres service.
 
-### Phase 3: Failure-mode grouping with a non-LLM baseline
+### Phase 3: Failure-mode grouping with a non-LLM baseline (done 2026-11-21: `docs/FAILURE_MODES.md`, scorecard 5/5; FDA-term baseline won)
 - **Build:** group report narratives into failure modes (e.g. occlusion alarm, battery, software, loosening/fracture). The **local embedding model** (small, CPU, free) is core here: similar-report search and failure grouping. Non-LLM baselines first: FDA problem codes as weak labels, TF-IDF + clustering, and embedding clustering; a hand-labelled sample split by product code into validation and test. Optional Haiku 5.5 labelling of a sample compared against the baselines. Retrieval for later phases (BM25 vs local embeddings vs hybrid) chosen here on the same validation set. A pre-registered signal rule (e.g. control chart on monthly counts per failure mode) with an honest backtest: did signals come before recalls?
 - **Why:** quality engineers think in failure modes; a non-LLM baseline shows whether an LLM adds anything (same honesty rule as "publish the winner even if it is not the deep model").
 - **Done:** method chosen on validation (agreement/F1, recall@k, bootstrap intervals, Holm), confirmed on test; verifier re-scores from saved labels and rankings.

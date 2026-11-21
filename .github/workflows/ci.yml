@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-24.04  # pinned so a runner upgrade cannot change results silently
     steps:
       - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0  # full history: the Phase 3 verifier checks the commit order (criteria -> labels -> results)
       - uses: actions/setup-python@v6
         with:
           python-version: "3.14"
@@ -20,6 +22,10 @@ jobs:
           python -m mdqc.verify_phase1 --raw tests/fixtures/phase1/raw --summary "$RUNNER_TEMP/phase1/eda_summary.json" --no-download-checks
       - name: Findings doc is generated from the committed results
         run: python -m mdqc.report_phase1 --check
+      - name: Phase 3 offline verifier (order, spot-check, selection, test metrics) and doc
+        run: |
+          python -m mdqc.verify_phase3 --offline
+          python -m mdqc.report_phase3 --check
 
   # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
   # (including the tampered-cell check) and the independent verifier (P1-P8) on it.
