@@ -1,0 +1,356 @@
+{
+  "checked_at_utc": "2026-11-21T18:38:23Z",
+  "api_key_used": false,
+  "probes": [
+    {
+      "probe": "endpoints answer",
+      "expected": "all four return records",
+      "observed": {
+        "event": {
+          "total": 26849547,
+          "last_updated": "2026-11-11"
+        },
+        "recall": {
+          "total": 59705,
+          "last_updated": "2026-11-19"
+        },
+        "enforcement": {
+          "total": 40535,
+          "last_updated": "2026-11-11"
+        },
+        "classification": {
+          "total": 7103,
+          "last_updated": "2026-11-09"
+        }
+      },
+      "pass": true
+    },
+    {
+      "probe": "limit=999 without key",
+      "expected": "200 OK",
+      "observed": [
+        200,
+        "OK"
+      ],
+      "pass": true
+    },
+    {
+      "probe": "limit=1000 on /device/event without key",
+      "expected": "403 API_KEY_MISSING (observed rule)",
+      "observed": [
+        403,
+        "API_KEY_MISSING"
+      ],
+      "pass": true
+    },
+    {
+      "probe": "limit=1001",
+      "expected": "400 BAD_REQUEST",
+      "observed": [
+        400,
+        "BAD_REQUEST"
+      ],
+      "pass": true
+    },
+    {
+      "probe": "skip=25001",
+      "expected": "400 BAD_REQUEST",
+      "observed": [
+        400,
+        "BAD_REQUEST"
+      ],
+      "pass": true
+    },
+    {
+      "probe": "search_after paging",
+      "expected": "page 2 has 5 new report keys",
+      "observed": {
+        "token": "0%3D18423578",
+        "page1": 5,
+        "page2": 5,
+        "overlap": 0
+      },
+      "pass": true
+    },
+    {
+      "probe": "search: infusion pumps (FRN) received in 2024",
+      "expected": "> 0 reports",
+      "observed": 57731,
+      "pass": true
+    },
+    {
+      "probe": "count: top product codes, 2024",
+      "expected": "10 terms",
+      "observed": [
+        {
+          "term": "DZE",
+          "count": 697102
+        },
+        {
+          "term": "QBJ",
+          "count": 347117
+        },
+        {
+          "term": "QFG",
+          "count": 273190
+        },
+        {
+          "term": "OZP",
+          "count": 129592
+        },
+        {
+          "term": "BZD",
+          "count": 68263
+        },
+        {
+          "term": "FRN",
+          "count": 57731
+        },
+        {
+          "term": "FPA",
+          "count": 47209
+        },
+        {
+          "term": "QLG",
+          "count": 35116
+        },
+        {
+          "term": "LGW",
+          "count": 35077
+        },
+        {
+          "term": "FTR",
+          "count": 30289
+        }
+      ],
+      "pass": true
+    },
+    {
+      "probe": "event fields",
+      "expected": "planned fields present",
+      "observed": {
+        "missing": [],
+        "with_narrative": "100/100"
+      },
+      "pass": true
+    },
+    {
+      "probe": "recall fields",
+      "expected": "planned fields present",
+      "observed": {
+        "missing": [],
+        "frn_recalls": 721,
+        "largest_code_info_chars": 253700
+      },
+      "pass": true
+    },
+    {
+      "probe": "bulk download sizes",
+      "expected": "read from download.json, nothing downloaded",
+      "observed": {
+        "classification": {
+          "files": 1,
+          "zipped_mb": 3.1,
+          "records": 7103,
+          "export_date": "2026-11-18"
+        },
+        "enforcement": {
+          "files": 1,
+          "zipped_mb": 91.2,
+          "records": 40535,
+          "export_date": "2026-11-19"
+        },
+        "event": {
+          "files": 378,
+          "zipped_mb": 18951.8,
+          "records": 26849547,
+          "export_date": "2026-11-19"
+        },
+        "recall": {
+          "files": 1,
+          "zipped_mb": 276.5,
+          "records": 59705,
+          "export_date": "2026-11-20"
+        }
+      },
+      "pass": true
+    }
+  ],
+  "event_fields": [
+    "adverse_event_flag",
+    "date_added",
+    "date_changed",
+    "date_manufacturer_received",
+    "date_of_event",
+    "date_received",
+    "date_report",
+    "device",
+    "device.brand_name",
+    "device.catalog_number",
+    "device.combination_product_flag",
+    "device.date_received",
+    "device.date_removed_flag",
+    "device.date_removed_year",
+    "device.date_returned_to_manufacturer",
+    "device.device_age_text",
+    "device.device_availability",
+    "device.device_evaluated_by_manufacturer",
+    "device.device_event_key",
+    "device.device_operator",
+    "device.device_report_product_code",
+    "device.device_sequence_number",
+    "device.expiration_date_of_device",
+    "device.generic_name",
+    "device.implant_date_year",
+    "device.implant_flag",
+    "device.lot_number",
+    "device.manufacturer_d_address_1",
+    "device.manufacturer_d_address_2",
+    "device.manufacturer_d_city",
+    "device.manufacturer_d_country",
+    "device.manufacturer_d_name",
+    "device.manufacturer_d_postal_code",
+    "device.manufacturer_d_state",
+    "device.manufacturer_d_zip_code",
+    "device.manufacturer_d_zip_code_ext",
+    "device.model_number",
+    "device.openfda",
+    "device.openfda.device_class",
+    "device.openfda.device_name",
+    "device.openfda.medical_specialty_description",
+    "device.openfda.regulation_number",
+    "device.other_id_number",
+    "device.serviced_by_3rd_party_flag",
+    "device.udi_di",
+    "device.udi_public",
+    "device_date_of_manufacturer",
+    "distributor_address_1",
+    "distributor_address_2",
+    "distributor_city",
+    "distributor_name",
+    "distributor_state",
+    "distributor_zip_code",
+    "distributor_zip_code_ext",
+    "event_key",
+    "event_location",
+    "event_type",
+    "exemption_number",
+    "health_professional",
+    "initial_report_to_fda",
+    "manufacturer_address_1",
+    "manufacturer_address_2",
+    "manufacturer_city",
+    "manufacturer_contact_address_1",
+    "manufacturer_contact_address_2",
+    "manufacturer_contact_area_code",
+    "manufacturer_contact_city",
+    "manufacturer_contact_country",
+    "manufacturer_contact_exchange",
+    "manufacturer_contact_extension",
+    "manufacturer_contact_f_name",
+    "manufacturer_contact_l_name",
+    "manufacturer_contact_pcity",
+    "manufacturer_contact_pcountry",
+    "manufacturer_contact_phone_number",
+    "manufacturer_contact_plocal",
+    "manufacturer_contact_postal_code",
+    "manufacturer_contact_state",
+    "manufacturer_contact_t_name",
+    "manufacturer_contact_zip_code",
+    "manufacturer_contact_zip_ext",
+    "manufacturer_country",
+    "manufacturer_g1_address_1",
+    "manufacturer_g1_address_2",
+    "manufacturer_g1_city",
+    "manufacturer_g1_country",
+    "manufacturer_g1_name",
+    "manufacturer_g1_postal_code",
+    "manufacturer_g1_state",
+    "manufacturer_g1_zip_code",
+    "manufacturer_g1_zip_code_ext",
+    "manufacturer_link_flag",
+    "manufacturer_name",
+    "manufacturer_postal_code",
+    "manufacturer_state",
+    "manufacturer_zip_code",
+    "manufacturer_zip_code_ext",
+    "mdr_report_key",
+    "mdr_text",
+    "mdr_text.mdr_text_key",
+    "mdr_text.patient_sequence_number",
+    "mdr_text.text",
+    "mdr_text.text_type_code",
+    "mfr_report_type",
+    "noe_summarized",
+    "number_devices_in_event",
+    "number_patients_in_event",
+    "patient",
+    "patient.date_received",
+    "patient.patient_age",
+    "patient.patient_ethnicity",
+    "patient.patient_problems",
+    "patient.patient_race",
+    "patient.patient_sequence_number",
+    "patient.patient_sex",
+    "patient.patient_weight",
+    "patient.sequence_number_outcome",
+    "patient.sequence_number_treatment",
+    "pma_pmn_number",
+    "previous_use_code",
+    "product_problem_flag",
+    "product_problems",
+    "remedial_action",
+    "removal_correction_number",
+    "report_number",
+    "report_source_code",
+    "report_to_fda",
+    "report_to_manufacturer",
+    "reporter_country_code",
+    "reporter_occupation_code",
+    "reporter_state_code",
+    "reprocessed_and_reused_flag",
+    "single_use_flag",
+    "source_type",
+    "summary_report_flag",
+    "suppl_dates_fda_received",
+    "suppl_dates_mfr_received",
+    "type_of_report"
+  ],
+  "recall_fields": [
+    "action",
+    "additional_info_contact",
+    "address_1",
+    "address_2",
+    "cfres_id",
+    "city",
+    "code_info",
+    "country",
+    "distribution_pattern",
+    "event_date_created",
+    "event_date_initiated",
+    "event_date_posted",
+    "event_date_terminated",
+    "firm_fei_number",
+    "k_numbers",
+    "openfda",
+    "openfda.device_class",
+    "openfda.device_name",
+    "openfda.fei_number",
+    "openfda.k_number",
+    "openfda.medical_specialty_description",
+    "openfda.registration_number",
+    "openfda.regulation_number",
+    "postal_code",
+    "product_code",
+    "product_description",
+    "product_quantity",
+    "product_res_number",
+    "reason_for_recall",
+    "recall_status",
+    "recalling_firm",
+    "res_event_number",
+    "root_cause_description",
+    "state"
+  ],
+  "all_pass": true
+}

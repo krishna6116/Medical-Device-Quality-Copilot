@@ -1,0 +1,46 @@
+# Secrets: API keys live only in .env (copy .env.example)
+.env
+.env.*
+!.env.example
+
+# Data: downloaded openFDA files, local databases and caches are rebuilt by scripts, never committed
+data/
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*.sqlite3
+*.db
+*.parquet
+*.zip
+
+# Model weights and local model caches (embedding models, Ollama models)
+models/weights/
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.onnx
+.cache/
+hf_cache/
+
+# Python / tooling
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg-info/
+
+# Editors, OS, local Claude settings
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.claude/settings.local.json
+
+# Study guide / personal documents
+docs/*.pdf

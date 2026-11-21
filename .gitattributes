@@ -1,0 +1,5 @@
+# Store text with LF in the repo so Windows and CI see identical files
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.pdf binary

@@ -1,0 +1,6 @@
+# Phase 0-1 needs only these. Later phases add packages here (and pin exact versions
+# in requirements-lock.txt once results depend on them).
+requests>=2.32
+python-dotenv>=1.0
+pandas>=2.2
+pytest>=8.3

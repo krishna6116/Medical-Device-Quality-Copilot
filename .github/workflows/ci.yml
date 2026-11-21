@@ -1,0 +1,15 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  # Unit tests only: no network, no API keys, no data downloads.
+  # Later phases add jobs (pipeline on a small pinned sample, verifiers, recorded-answer replay).
+  test:
+    runs-on: ubuntu-24.04  # pinned so a runner upgrade cannot change results silently
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - run: pip install -r requirements.txt
+      - run: pytest
