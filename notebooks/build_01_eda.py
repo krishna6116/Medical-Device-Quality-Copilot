@@ -59,7 +59,14 @@ cells = [
          "                  'invalid date': pc[c]['q6_recalls_invalid_initiation_date'],\n"
          "                  'median lag (days)': pc[c]['q7_lag_median_days'], 'p90 lag (days)': pc[c]['q7_lag_p90_days'],\n"
          "                  'multi-device reports': pc[c]['q8_multi_device_reports']} for c in codes}).T"),
-    md("## 6. Findings\n\nThe findings text is generated from the same results files:"),
+    md("## 6. Manufacturer trends (Q9, added post hoc on the re-check)\n\n"
+       "A code's total can stay flat while one maker rises and another falls, so we also look at the three "
+       "largest manufacturers per code. Names are as reported (St. Jude Medical is part of Abbott since 2017; "
+       "Phase 2 merges such names)."),
+    code("display(Image(filename=str(ROOT / 'docs/figures/phase1/manufacturer_trends.png'), width=800))\n"
+         "pd.DataFrame([{'code': c, 'manufacturer': m, **by} for c in codes\n"
+         "              for m, by in pc[c]['q9_top3_by_year'].items()])"),
+    md("## 7. Findings\n\nThe findings text is generated from the same results files:"),
     code("doc = (ROOT / 'docs/EDA_FINDINGS.md').read_text(encoding='utf-8')\n"
          "display(Markdown(doc.split('## What stands out')[1].split('## Checks (criteria')[0]))"),
     md("## Why we did these tasks\n\n"
@@ -69,7 +76,8 @@ cells = [
        "| Checksums on the raw files | To pin our copy (openFDA changes weekly) | gzip embeds a file name and time; writing neither makes checksums reproducible | Later phases check they read the same bytes |\n"
        "| Answered the pre-registered questions Q1-Q8 | To learn the data's shape before modelling | Problem codes are coarse, narratives are rich, one maker often dominates, implant reports arrive late | Phase 3 groups failure modes from text; trends per manufacturer; drift checks allow for lag |\n"
        "| Independent verifier | So a bug in the analysis cannot pass silently | It caught a recall dated year 0013 that the two implementations handled differently | Phase 2 adds date validation and repair rules for recall dates |\n"
-       "| Cross-check against openFDA's own server counts | Two programs can share the same wrong definition | Problem terms are repeated inside reports; our counts were doubled until this check | Every later verifier also compares with an outside source |"),
+       "| Cross-check against openFDA's own server counts | Two programs can share the same wrong definition | Problem terms are repeated inside reports; our counts were doubled until this check | Every later verifier also compares with an outside source |\n"
+       "| Per-manufacturer trends (Q9, post hoc) | The plan asked for them; code totals can hide makers | Makers move in opposite directions inside one code (e.g. one knee maker +253% while others stay flat) | Phase 3 signals per manufacturer; Phase 2 merges brand names like St. Jude / Abbott |"),
 ]
 nb = nbf.v4.new_notebook(cells=cells, metadata={"kernelspec": {"name": "python3", "display_name": "Python 3"}})
 NotebookClient(nb, timeout=300, kernel_name="python3", resources={"metadata": {"path": "notebooks"}}).execute()

@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-21T19:17:27Z",
+  "checked_utc": "2026-11-21T19:23:58Z",
   "all_pass": true,
   "checks": [
     {
@@ -134,7 +134,7 @@
       "check": "independent recount of every summary number",
       "pass": true,
       "detail": {
-        "values_compared": 471,
+        "values_compared": 1071,
         "mismatches": []
       }
     },

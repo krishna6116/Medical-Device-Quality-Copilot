@@ -14,6 +14,8 @@ Definitions (the verifier, mdqc/verify_phase1.py, re-implements each one indepen
   so each term counts once per report; corrected post hoc after a cross-check with openFDA's own counts);
 - recall year = first 4 digits of event_date_initiated; missing or before 1976 = invalid (post hoc rule,
   added after the verifier found '0013-11-26'), counted separately and left out of by-year counts;
+- Q9 (post hoc) = the 3 manufacturers with most reports in a code (ties by name), their monthly counts,
+  yearly totals, and their counts in the code's busiest month;
 - lag = date_received - date_of_event in days, when both are valid YYYYMMDD dates;
 - percentiles use linear interpolation between order statistics (numpy's default).
 """
@@ -165,6 +167,21 @@ def summarize(rep: pd.DataFrame, rc: pd.DataFrame) -> dict:
                                       (r.date_received > SCOPE["event_window"]["to"])).sum()),
             "c7_reports_with_contact_fields": int(r.has_contact.sum()),
         }
+        # Q9 (post hoc, added on re-check): monthly trend of the 3 largest manufacturers per code
+        top3 = [m for m, _ in sorted(makers.items(), key=lambda x: (-x[1], x[0]))[:3]]
+        busiest = str(monthly.idxmax())
+        q9_monthly, q9_year = {}, {}
+        for m in top3:
+            rm = r[r.manufacturer == m]
+            series = rm.month.value_counts().reindex(months, fill_value=0)
+            q9_monthly[m] = [int(v) for v in series.values]
+            q9_year[m] = {y: int(series[[x for x in months if x.startswith(y)]].sum())
+                          for y in sorted({x[:4] for x in months})}
+        s["per_code"][code].update({
+            "q9_top3_monthly": q9_monthly,
+            "q9_top3_by_year": q9_year,
+            "q9_busiest_month_by_maker": {m: q9_monthly[m][months.index(busiest)] for m in top3},
+        })
     s["overall"] = {
         "reports": int(len(rep)),
         "distinct_report_keys_across_codes": int(rep.key.nunique()),
@@ -244,6 +261,24 @@ def figures(s: dict, rep: pd.DataFrame) -> list[str]:
               labelcolor=INK2)
     fig.tight_layout()
     p = FIG / "event_type_mix.png"
+    fig.savefig(p, dpi=150, facecolor=SURFACE)
+    plt.close(fig)
+    out.append(p.name)
+
+    # 2b. Q9: top-3 manufacturers per code, monthly (small multiples; 3 series -> legend in each panel)
+    fig, axes = plt.subplots(len(CODES), 1, figsize=(8, 2.2 * len(CODES)), sharex=True, facecolor=SURFACE)
+    for ax, code in zip(axes, CODES):
+        _style(ax)
+        for j, (maker, series) in enumerate(s["per_code"][code]["q9_top3_monthly"].items()):
+            ax.plot(x, series, color=SERIES[j], linewidth=2, label=maker.title()[:38])
+        ax.set_title(f"{code} ({names[code]}): reports per month, 3 largest manufacturers", loc="left",
+                     fontsize=9, color=INK, pad=18)
+        ax.set_ylim(bottom=0)
+        ax.legend(frameon=False, fontsize=7, loc="lower left", bbox_to_anchor=(0, 0.99), labelcolor=INK2,
+                  ncol=3, borderaxespad=0, handlelength=1.5)
+    axes[-1].set_xticks(x[::6], [months[i] for i in range(0, len(months), 6)])
+    fig.tight_layout()
+    p = FIG / "manufacturer_trends.png"
     fig.savefig(p, dpi=150, facecolor=SURFACE)
     plt.close(fig)
     out.append(p.name)

@@ -28,6 +28,7 @@ When a device starts failing in the field, a quality engineer has to answer ques
 python -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
 .venv\Scripts\python -m pytest
+.venv\Scripts\python -m mdqc.setup_env       # optional: free openFDA key, hidden prompt, saved to .env
 .venv\Scripts\python -m mdqc.download        # ~1 GB transfer, 68 MB stored, no key needed
 .venv\Scripts\python -m mdqc.eda
 .venv\Scripts\python -m mdqc.verify_phase1

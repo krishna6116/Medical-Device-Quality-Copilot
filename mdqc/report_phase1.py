@@ -103,7 +103,22 @@ def render() -> str:
     a("6. **Implant reports arrive late.** Median lag from event to FDA receipt: " + ", ".join(
       f"{c} {n(pc[c]['q7_lag_median_days'])} days" for c in codes) + "; 90th percentile up to "
       f"{n(max(pc[c]['q7_lag_p90_days'] for c in codes))} days. Recent months always look quieter than they "
-      "will once late reports arrive, so drift monitoring (Phase 7) must allow for that.\n")
+      "will once late reports arrive, so drift monitoring (Phase 7) must allow for that.")
+    years = sorted({m[:4] for m in s["months"]})
+    y0, y1 = years[0], years[-1]
+
+    def change(code, maker):
+        by = pc[code]["q9_top3_by_year"][maker]
+        return (by[y1] - by[y0]) / by[y0] if by[y0] else float("inf")
+
+    moves = []
+    for c in codes:
+        m = max(pc[c]["q9_top3_by_year"], key=lambda k: (abs(change(c, k)), k))
+        by = pc[c]["q9_top3_by_year"][m]
+        moves.append(f"{c} {m.title()} {n(by[y0])} to {n(by[y1])} ({change(c, m):+.0%})")
+    a(f"7. **Totals hide manufacturer shifts (Q9, post hoc).** Largest {y0}-to-{y1} change among each code's "
+      "three biggest manufacturers: " + "; ".join(moves) + ". A flat code-level line can hide one maker rising "
+      "while another falls, so Phase 3's signal rule works per manufacturer.\n")
 
     a("## Checks (criteria C1-C8)\n")
     rows = []
@@ -150,8 +165,24 @@ def render() -> str:
     rows = [[c, n(pc[c]["q4_distinct_manufacturers"]), pct(pc[c]["q4_top_manufacturer_share"]),
              "; ".join(f"{m} {n(k)}" for m, k in pc[c]["q4_top_manufacturers"])] for c in codes]
     a(table(["Code", "Distinct manufacturers", "Largest one's share", "Top 5 (reports)"], rows) + "\n")
-    a("Manufacturer names are written as reported (e.g. one company can appear under several site names); "
+    a("Manufacturer names are written as reported: one company can appear under several names (site names, "
+      "or an acquired brand: St. Jude Medical has been part of Abbott since 2017, yet both names appear for LWP). "
       "Phase 2 normalises them.\n")
+
+    a("## Q9. Monthly trend of the three largest manufacturers (post hoc)\n")
+    a("*Added on the Phase 1 re-check:* the plan asked for trends per manufacturer, but the pre-registered "
+      "questions Q1-Q8 did not include them. Recomputed independently by the verifier like every other number.\n")
+    a("![Top manufacturers per month](figures/phase1/manufacturer_trends.png)\n")
+    years = sorted({m[:4] for m in s["months"]})
+    rows = []
+    for c in codes:
+        busiest = pc[c]["q1_monthly_max_month"]
+        for m, by in pc[c]["q9_top3_by_year"].items():
+            ch = (by[years[-1]] - by[years[0]]) / by[years[0]] if by[years[0]] else None
+            rows.append([c, m] + [n(by[y]) for y in years] + [f"{ch:+.0%}" if ch is not None else "n/a",
+                        f"{n(pc[c]['q9_busiest_month_by_maker'][m])} of {n(pc[c]['q1_monthly_max'])} ({busiest})"])
+    a(table(["Code", "Manufacturer"] + years + [f"Change {years[0]}-{years[-1]}", "In the code's busiest month"],
+            rows) + "\n")
 
     a("## Q5. Narrative text\n")
     rows = [[c, pct(pc[c]["q5_share_with_narrative"]), n(pc[c]["q5_narrative_len_median"]),
@@ -201,6 +232,9 @@ def render() -> str:
         ["Cross-check against openFDA's own server counts", "Two programs can share the same wrong definition",
          "Problem terms are repeated inside reports; our counts were doubled until this check",
          "Every later verifier also compares with an outside source, not only with itself"],
+        ["Per-manufacturer trends (Q9, post hoc)", "The plan asked for them; code totals can hide makers",
+         "Makers move in opposite directions inside one code (e.g. one knee maker +253% while others stay flat)",
+         "Phase 3 signals are computed per manufacturer; Phase 2 merges brand names like St. Jude / Abbott"],
     ]) + "\n")
     return "\n".join(L).rstrip() + "\n"
 

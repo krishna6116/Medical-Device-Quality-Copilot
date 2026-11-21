@@ -68,6 +68,7 @@ def recompute(raw: Path) -> dict:
     recalls_total = 0
     for code in CODES:
         seen, month_n, types, makers, probs = set(), Counter(), Counter(), Counter(), Counter()
+        maker_month = defaultdict(Counter)
         no_probs = with_text = 0
         text_lens, lags = [], []
         multi = other = not_listed = outside = contact = 0
@@ -88,7 +89,9 @@ def recompute(raw: Path) -> dict:
                 if d.get("device_report_product_code") == code:
                     first = d
                     break
-            makers[((first or {}).get("manufacturer_d_name") or "").strip().upper() or "(blank)"] += 1
+            maker = ((first or {}).get("manufacturer_d_name") or "").strip().upper() or "(blank)"
+            makers[maker] += 1
+            maker_month[maker][dr[:4] + "-" + dr[4:6]] += 1
             pp = rec.get("product_problems") or []
             if not pp:
                 no_probs += 1
@@ -158,6 +161,12 @@ def recompute(raw: Path) -> dict:
             "c3_outside_window": outside,
             "c7_reports_with_contact_fields": contact,
         }
+        top3 = [m for m, _ in sorted(makers.items(), key=lambda x: (-x[1], x[0]))[:3]]
+        ms = months()
+        per[code]["q9_top3_monthly"] = {m: [maker_month[m].get(x, 0) for x in ms] for m in top3}
+        per[code]["q9_top3_by_year"] = {m: {y: sum(v for x, v in maker_month[m].items() if x[:4] == y)
+                                            for y in sorted({x[:4] for x in ms})} for m in top3}
+        per[code]["q9_busiest_month_by_maker"] = {m: maker_month[m].get(ms[top_m], 0) for m in top3}
     total = sum(p["reports"] for p in per.values())
     return {"per_code": per, "overall": {
         "reports": total, "distinct_report_keys_across_codes": len(keys_all), "recalls": recalls_total,

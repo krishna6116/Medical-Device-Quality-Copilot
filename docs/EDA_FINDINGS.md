@@ -4,7 +4,7 @@
 
 **Scope (pre-registered 2026-11-21, `config/scope.json`):** 5 FDA product codes, adverse-event reports received 2022-01-01 to 2024-12-31, plus every recall for those codes. **154,194 reports** (154,194 distinct report keys) and **1,626 recall records**.
 
-**Verification:** `python -m mdqc.verify_phase1` recomputes every number below from the raw files with separate standard-library code: **8/8 checks pass** (evidence `results/phase1/verify_phase1.json`, checked 2026-11-21T19:17:27Z).
+**Verification:** `python -m mdqc.verify_phase1` recomputes every number below from the raw files with separate standard-library code: **8/8 checks pass** (evidence `results/phase1/verify_phase1.json`, checked 2026-11-21T19:23:58Z).
 
 **Read every count with this in mind:** a MAUDE report says a device *may* have been involved in an event. Reports are not confirmed failures, are not proof of cause, and there is no count of devices in use, so report counts are signals, never failure rates. Large companies sell more devices and must report, so they appear more often for that reason alone.
 
@@ -26,6 +26,7 @@
 4. **No extreme monthly spikes** (no month above 3x its code's median). The busiest month was at most 2.2x its code's median, so Phase 3's signal rule must detect smaller shifts than a spike filter would.
 5. **Recalls concentrate in the knees.** Recall records initiated in the report window: LPH 23, JWH 112, MBH 16, LWP 4, LZG 1. The pacemaker and insulin pump codes have few recalls in the window, so backtesting signals against recalls will rest mainly on the orthopedic codes.
 6. **Implant reports arrive late.** Median lag from event to FDA receipt: LPH 22 days, JWH 26 days, MBH 24 days, LWP 21 days, LZG 12 days; 90th percentile up to 868 days. Recent months always look quieter than they will once late reports arrive, so drift monitoring (Phase 7) must allow for that.
+7. **Totals hide manufacturer shifts (Q9, post hoc).** Largest 2022-to-2024 change among each code's three biggest manufacturers: LPH Zimmer Biomet, Inc. 571 to 1,191 (+109%); JWH Exactech, Inc. 959 to 3,382 (+253%); MBH Zimmer Orthopaedic Mfg. Ltd. 161 to 267 (+66%); LWP Abbott 2,298 to 763 (-67%); LZG Roche Diabetes Care, Inc. 1,818 to 893 (-51%). A flat code-level line can hide one maker rising while another falls, so Phase 3's signal rule works per manufacturer.
 
 ## Checks (criteria C1-C8)
 
@@ -90,7 +91,31 @@ Every downloaded count equals the server's total for the same search at the mome
 | LWP | 52 | 58.0% | BOSTON SCIENTIFIC CORPORATION 21,703; ST. JUDE MEDICAL, INC.(CRM-SYLMAR) 8,749; ABBOTT 4,571; MICROPORT CRM S.R.L. 739; MPRI 543 |
 | LZG | 27 | 73.8% | INSULET CORPORATION 50,461; MEDTRONIC PUERTO RICO OPERATIONS CO. 11,471; ROCHE DIABETES CARE, INC. 3,816; TANDEM DIABETES CARE 1,645; MEDTRONIC MINIMED 565 |
 
-Manufacturer names are written as reported (e.g. one company can appear under several site names); Phase 2 normalises them.
+Manufacturer names are written as reported: one company can appear under several names (site names, or an acquired brand: St. Jude Medical has been part of Abbott since 2017, yet both names appear for LWP). Phase 2 normalises them.
+
+## Q9. Monthly trend of the three largest manufacturers (post hoc)
+
+*Added on the Phase 1 re-check:* the plan asked for trends per manufacturer, but the pre-registered questions Q1-Q8 did not include them. Recomputed independently by the verifier like every other number.
+
+![Top manufacturers per month](figures/phase1/manufacturer_trends.png)
+
+| Code | Manufacturer | 2022 | 2023 | 2024 | Change 2022-2024 | In the code's busiest month |
+|---|---|---|---|---|---|---|
+| LPH | DEPUY ORTHOPAEDICS INC US | 2,983 | 2,963 | 2,836 | -5% | 381 of 629 (2022-07) |
+| LPH | ZIMMER BIOMET, INC. | 571 | 921 | 1,191 | +109% | 33 of 629 (2022-07) |
+| LPH | STRYKER ORTHOPAEDICS-MAHWAH | 629 | 526 | 496 | -21% | 58 of 629 (2022-07) |
+| JWH | EXACTECH, INC. | 959 | 2,031 | 3,382 | +253% | 443 of 1,059 (2024-05) |
+| JWH | ZIMMER BIOMET, INC. | 2,194 | 1,957 | 2,139 | -3% | 172 of 1,059 (2024-05) |
+| JWH | DEPUY ORTHOPAEDICS INC US | 1,558 | 1,568 | 1,524 | -2% | 121 of 1,059 (2024-05) |
+| MBH | STRYKER ORTHOPAEDICS-MAHWAH | 638 | 569 | 677 | +6% | 99 of 169 (2022-12) |
+| MBH | ZIMMER BIOMET, INC. | 259 | 296 | 288 | +11% | 23 of 169 (2022-12) |
+| MBH | ZIMMER ORTHOPAEDIC MFG. LTD. | 161 | 181 | 267 | +66% | 16 of 169 (2022-12) |
+| LWP | BOSTON SCIENTIFIC CORPORATION | 7,178 | 6,985 | 7,540 | +5% | 501 of 2,084 (2022-10) |
+| LWP | ST. JUDE MEDICAL, INC.(CRM-SYLMAR) | 4,112 | 2,952 | 1,685 | -59% | 867 of 2,084 (2022-10) |
+| LWP | ABBOTT | 2,298 | 1,510 | 763 | -67% | 653 of 2,084 (2022-10) |
+| LZG | INSULET CORPORATION | 21,359 | 16,650 | 12,452 | -42% | 1,868 of 2,762 (2022-03) |
+| LZG | MEDTRONIC PUERTO RICO OPERATIONS CO. | 3,537 | 3,449 | 4,485 | +27% | 586 of 2,762 (2022-03) |
+| LZG | ROCHE DIABETES CARE, INC. | 1,818 | 1,105 | 893 | -51% | 151 of 2,762 (2022-03) |
 
 ## Q5. Narrative text
 
@@ -148,3 +173,4 @@ One recall event (one firm action) often covers several products, so it produces
 | Answered the pre-registered questions Q1-Q8 | To learn the data's shape before modelling | Problem codes are coarse, narratives are rich, one maker often dominates, implant reports arrive late | Phase 3 groups failure modes from text; trends per manufacturer; drift checks allow for lag |
 | Independent verifier | So a bug in the analysis cannot pass silently | It caught a recall dated year 0013 that the two implementations handled differently | Phase 2 adds date validation and repair rules for recall dates |
 | Cross-check against openFDA's own server counts | Two programs can share the same wrong definition | Problem terms are repeated inside reports; our counts were doubled until this check | Every later verifier also compares with an outside source, not only with itself |
+| Per-manufacturer trends (Q9, post hoc) | The plan asked for them; code totals can hide makers | Makers move in opposite directions inside one code (e.g. one knee maker +253% while others stay flat) | Phase 3 signals are computed per manufacturer; Phase 2 merges brand names like St. Jude / Abbott |
