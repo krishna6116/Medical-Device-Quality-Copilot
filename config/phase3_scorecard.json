@@ -1,0 +1,10 @@
+{
+  "_about": "Phase 3 scorecard (5 items), added 2026-11-21 at the user's request while the embeddings were still being computed: no Phase 3 method output, metric or signal existed when this file was committed (git order shows it). Each item groups criteria from config/phase3_criteria.json and passes only if all of its criteria pass in the verifier (mdqc.verify_phase3, full mode). The scorecard checks that the phase was done correctly and independently verified; it deliberately has NO performance target, so a weak result (e.g. the FDA-term baseline winning) is reported, not hidden or tuned.",
+  "items": {
+    "S1_honest_reference": {"criteria": ["F1", "F2"], "means": "codebook, sample and criteria committed before the labels; labels committed before any result and never changed; 20-label spot-check >= 16/20 agree"},
+    "S2_fair_method_choice": {"criteria": ["F3", "F4"], "means": "method chosen on validation only; test scored once; every accuracy, interval and the comparison with the FDA-term baseline recomputed independently"},
+    "S3_similar_report_search": {"criteria": ["F5"], "means": "BM25, embedding and hybrid search rankings and MRR recomputed with independent code"},
+    "S4_signals_and_backtest": {"criteria": ["F6"], "means": "every early-warning signal and the recall backtest recomputed from the database with independent code"},
+    "S5_database_and_ci": {"criteria": ["F7", "F8"], "means": "every report has exactly one failure mode in the database, matching the saved predictions and an independent re-run of the chosen method; unit tests and the offline verifier pass in CI"}
+  }
+}
