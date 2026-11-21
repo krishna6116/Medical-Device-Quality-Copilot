@@ -31,3 +31,11 @@
 - *Reading MAUDE:* implant reports are mostly "injury" (another operation), pump reports mostly "malfunction"; the generic problem term dominates, so the failure mode must come from the narrative text; reports can arrive years late.
 
 **Next:** Phase 2, the PostgreSQL pipeline (drop contact fields, normalise manufacturer names, repair or flag bad dates, link reports to recalls).
+
+## 2026-11-21 (re-check): Phase 1 correction
+
+**What happened:** a re-check compared our published numbers with openFDA's own server-side counts. Monthly volumes, event types and recall root causes matched exactly, but every problem-term count was about double: openFDA lists most problem terms twice inside one report, and both the analysis and the verifier counted list entries. Because they shared the same definition, they agreed with each other and the verifier passed.
+
+**Fixed:** terms are now counted once per report in both programs (a test pins it), the findings doc carries a dated correction note, and the verifier gained criterion C8 (post hoc): published numbers must equal the server's own counts. Corrected example: the generic "no device problem identified" term is on 48% of hip reports, not 96%. No other number changed.
+
+**Concept:** *independent* verification needs an independent source, not just independent code. Two programs written from the same (wrong) definition fail together; an outside reference (here the data owner's own counts) catches that.

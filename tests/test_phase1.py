@@ -78,10 +78,39 @@ RESULTS = ROOT / "results" / "phase1"
 @pytest.mark.skipif(not (RESULTS / "verify_phase1.json").exists(), reason="no committed evidence yet")
 def test_committed_evidence_is_consistent():
     ev = json.loads((RESULTS / "verify_phase1.json").read_text(encoding="utf-8"))
-    assert ev["all_pass"] and {c["id"] for c in ev["checks"]} >= {"C1", "C2", "C3", "C4", "C5", "C6", "C7"}
+    assert ev["all_pass"] and {c["id"] for c in ev["checks"]} >= {"C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8"}
     s = json.loads((RESULTS / "eda_summary.json").read_text(encoding="utf-8"))
     m = json.loads((RESULTS / "download_manifest.json").read_text(encoding="utf-8"))
     for code, e in m["events"].items():
         assert e["server_total_before"] == e["downloaded"] == s["per_code"][code]["reports"]
     scope = json.loads((ROOT / "config" / "scope.json").read_text(encoding="utf-8"))
     assert list(s["per_code"]) == list(scope["product_codes"])  # analysis used exactly the registered scope
+
+
+def test_problem_terms_count_once_per_report(tmp_path):
+    """openFDA repeats a term inside one report; both implementations must count reports, not list entries."""
+    for code in eda.CODES:
+        rec = {"mdr_report_key": "9", "date_received": "20230101", "event_type": "Injury",
+               "device": [{"device_report_product_code": code, "manufacturer_d_name": "X"}],
+               "product_problems": ["Fracture", "Fracture", "Unstable"], "mdr_text": [{"text": "t"}]}
+        write_jsonl_gz(tmp_path / f"events_{code}.jsonl.gz", iter([rec]))
+        write_jsonl_gz(tmp_path / f"recalls_{code}.jsonl.gz",
+                       iter([{"event_date_initiated": "2023-01-01", "root_cause_description": "Other"}]))
+    s = eda.summarize(eda.load_reports(tmp_path), eda.load_recalls(tmp_path))
+    mine = verify_phase1.recompute(tmp_path)
+    for result in (s, mine):
+        assert dict(map(tuple, result["per_code"][eda.CODES[0]]["q3_top_problems"])) == {"Fracture": 1, "Unstable": 1}
+
+
+@pytest.mark.skipif(not FIXTURE.exists(), reason="fixture not built yet")
+def test_verifier_exit_code_and_evidence(tmp_path):
+    """The verifier must exit 1 and record all_pass=false when a published number is wrong (CI relies on it)."""
+    s = eda.main(raw=FIXTURE, out=tmp_path, make_figures=False)
+    good = tmp_path / "eda_summary.json"
+    assert verify_phase1.main(FIXTURE, good, False, False, tmp_path / "ev_good.json") == 0
+    assert json.loads((tmp_path / "ev_good.json").read_text(encoding="utf-8"))["all_pass"] is True
+    s["per_code"][s["codes"][0]]["q4_distinct_manufacturers"] += 1
+    bad = tmp_path / "bad.json"
+    bad.write_text(json.dumps(s), encoding="utf-8")
+    assert verify_phase1.main(FIXTURE, bad, False, False, tmp_path / "ev_bad.json") == 1
+    assert json.loads((tmp_path / "ev_bad.json").read_text(encoding="utf-8"))["all_pass"] is False

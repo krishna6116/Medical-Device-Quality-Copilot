@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-21T19:07:02Z",
+  "checked_utc": "2026-11-21T19:17:27Z",
   "all_pass": true,
   "checks": [
     {
@@ -171,6 +171,83 @@
         "LZG": {
           "server_now": 68425,
           "ours": 68425
+        }
+      }
+    },
+    {
+      "id": "C8",
+      "check": "published numbers = openFDA's own server-side counts (post hoc)",
+      "pass": true,
+      "detail": {
+        "LPH": {
+          "monthly": true,
+          "event_types": true,
+          "problem_terms_mismatch": {},
+          "recall_root_causes": true,
+          "top_maker_server_raw": [
+            "DEPUY ORTHOPAEDICS INC US",
+            8782
+          ],
+          "top_maker_ours_merged_case": [
+            "DEPUY ORTHOPAEDICS INC US",
+            8782
+          ]
+        },
+        "JWH": {
+          "monthly": true,
+          "event_types": true,
+          "problem_terms_mismatch": {},
+          "recall_root_causes": true,
+          "top_maker_server_raw": [
+            "EXACTECH, INC.",
+            6372
+          ],
+          "top_maker_ours_merged_case": [
+            "EXACTECH, INC.",
+            6372
+          ]
+        },
+        "MBH": {
+          "monthly": true,
+          "event_types": true,
+          "problem_terms_mismatch": {},
+          "recall_root_causes": true,
+          "top_maker_server_raw": [
+            "STRYKER ORTHOPAEDICS-MAHWAH",
+            1882
+          ],
+          "top_maker_ours_merged_case": [
+            "STRYKER ORTHOPAEDICS-MAHWAH",
+            1884
+          ]
+        },
+        "LWP": {
+          "monthly": true,
+          "event_types": true,
+          "problem_terms_mismatch": {},
+          "recall_root_causes": true,
+          "top_maker_server_raw": [
+            "BOSTON SCIENTIFIC CORPORATION",
+            21703
+          ],
+          "top_maker_ours_merged_case": [
+            "BOSTON SCIENTIFIC CORPORATION",
+            21703
+          ]
+        },
+        "LZG": {
+          "monthly": true,
+          "event_types": true,
+          "problem_terms_mismatch": {},
+          "recall_root_causes": true,
+          "top_maker_server_raw": [
+            "INSULET CORPORATION",
+            50461
+          ],
+          "top_maker_ours_merged_case": [
+            "INSULET CORPORATION",
+            50461
+          ]
         }
       }
     }

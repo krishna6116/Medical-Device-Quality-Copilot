@@ -4,7 +4,7 @@
 
 **Scope (pre-registered 2026-11-21, `config/scope.json`):** 5 FDA product codes, adverse-event reports received 2022-01-01 to 2024-12-31, plus every recall for those codes. **154,194 reports** (154,194 distinct report keys) and **1,626 recall records**.
 
-**Verification:** `python -m mdqc.verify_phase1` recomputes every number below from the raw files with separate standard-library code: **7/7 checks pass** (evidence `results/phase1/verify_phase1.json`, checked 2026-11-21T19:07:02Z).
+**Verification:** `python -m mdqc.verify_phase1` recomputes every number below from the raw files with separate standard-library code: **8/8 checks pass** (evidence `results/phase1/verify_phase1.json`, checked 2026-11-21T19:17:27Z).
 
 **Read every count with this in mind:** a MAUDE report says a device *may* have been involved in an event. Reports are not confirmed failures, are not proof of cause, and there is no count of devices in use, so report counts are signals, never failure rates. Large companies sell more devices and must report, so they appear more often for that reason alone.
 
@@ -21,13 +21,13 @@
 ## What stands out
 
 1. **Implants and pumps report differently.** Implant reports are mostly classed as injuries (LPH 92%, JWH 84%, MBH 82%, LWP 65%), because an implant problem that leads to another operation is reported as an injury; insulin pump reports are mostly malfunctions (LZG 92%). Raw counts must not be compared across device families.
-2. **FDA problem codes are coarse.** The top term for 4 of 5 codes is "Adverse Event Without Identified Device or Use Problem" (LPH 96% of reports, JWH 85% of reports, MBH 94% of reports, LWP 64% of reports). The failure mode is in the narrative text, which every report has (median length LPH 1,724, JWH 1,710, MBH 1,493, LWP 997, LZG 791 characters). So Phase 3 groups failure modes from the text, with the FDA codes only as a weak baseline.
+2. **FDA problem codes are coarse.** The top term for 4 of 5 codes is "Adverse Event Without Identified Device or Use Problem" (LPH 48% of reports, JWH 42% of reports, MBH 47% of reports, LWP 32% of reports). The failure mode is in the narrative text, which every report has (median length LPH 1,724, JWH 1,710, MBH 1,493, LWP 997, LZG 791 characters). So Phase 3 groups failure modes from the text, with the FDA codes only as a weak baseline.
 3. **One manufacturer often dominates a code.** Largest share: LPH DEPUY ORTHOPAEDICS INC US 54%; JWH EXACTECH, INC. 23%; MBH STRYKER ORTHOPAEDICS-MAHWAH 47%; LWP BOSTON SCIENTIFIC CORPORATION 58%; LZG INSULET CORPORATION 74%. Counts mostly reflect market share and reporting practice, so trends are read per manufacturer.
 4. **No extreme monthly spikes** (no month above 3x its code's median). The busiest month was at most 2.2x its code's median, so Phase 3's signal rule must detect smaller shifts than a spike filter would.
 5. **Recalls concentrate in the knees.** Recall records initiated in the report window: LPH 23, JWH 112, MBH 16, LWP 4, LZG 1. The pacemaker and insulin pump codes have few recalls in the window, so backtesting signals against recalls will rest mainly on the orthopedic codes.
 6. **Implant reports arrive late.** Median lag from event to FDA receipt: LPH 22 days, JWH 26 days, MBH 24 days, LWP 21 days, LZG 12 days; 90th percentile up to 868 days. Recent months always look quieter than they will once late reports arrive, so drift monitoring (Phase 7) must allow for that.
 
-## Download checks (criteria C1-C5, C7)
+## Checks (criteria C1-C8)
 
 | Criterion | What was checked | Result |
 |---|---|---|
@@ -36,7 +36,9 @@
 | C3 | every report in window and lists its code | pass |
 | C4 | no duplicate report keys within a code | pass |
 | C5 | checksums match | pass |
+| C6 | independent recount of every summary number | pass |
 | C7 | no data or secrets in git; contact fields counted | pass |
+| C8 | published numbers = openFDA's own server-side counts (post hoc) | pass |
 
 Every downloaded count equals the server's total for the same search at the moment of download. Raw files: `data/raw/` (11 files, 68.3 MB compressed), pinned by `data/checksums.sha256`. 153,038 reports carry manufacturer contact names or phone numbers; Phase 2 drops those fields before anything is loaded or indexed.
 
@@ -64,17 +66,19 @@ Every downloaded count equals the server's total for the same search at the mome
 | LWP | 12,960 (34.6%) | 24,249 (64.8%) | 200 (0.5%) | 5 (0.0%) | 0 (0.0%) | 0 |
 | LZG | 62,799 (91.8%) | 5,574 (8.1%) | 51 (0.1%) | 1 (0.0%) | 0 (0.0%) | 0 |
 
-## Q3. Most common FDA problem terms (top 10 per code)
+## Q3. Most common FDA problem terms (number of reports listing each term, top 10 per code)
 
-**LPH (orthopedic)**: Adverse Event Without Identified Device or Use Problem 15,532; Device Dislodged or Dislocated 6,167; Naturally Worn 1,882; Fracture 1,710; Osseointegration Problem 1,342; Material Erosion 858; Degraded 838; Insufficient Device Problem Information 763; Difficult to Insert 628; Migration 602. Reports with no problem term: 26.
+**LPH (orthopedic)**: Adverse Event Without Identified Device or Use Problem 7,781; Device Dislodged or Dislocated 3,099; Naturally Worn 942; Fracture 861; Osseointegration Problem 671; Material Erosion 429; Degraded 421; Insufficient Device Problem Information 382; Difficult to Insert 314; Migration 301. Reports with no problem term: 26.
 
-**JWH (orthopedic)**: Adverse Event Without Identified Device or Use Problem 23,780; Naturally Worn 9,640; Fracture 6,825; Loosening of Implant Not Related to Bone-Ingrowth 5,085; Unstable 3,332; Insufficient Device Problem Information 3,024; Loss of or Failure to Bond 2,554; Detachment of Device or Device Component 1,258; Device Appears to Trigger Rejection 944; Appropriate Device Problem Term/Code Not Available 842. Reports with no problem term: 74.
+**JWH (orthopedic)**: Adverse Event Without Identified Device or Use Problem 11,958; Naturally Worn 4,852; Fracture 3,420; Loosening of Implant Not Related to Bone-Ingrowth 2,577; Unstable 1,732; Insufficient Device Problem Information 1,517; Loss of or Failure to Bond 1,278; Appropriate Device Problem Term/Code Not Available 634; Detachment of Device or Device Component 630; Device Appears to Trigger Rejection 472. Reports with no problem term: 74.
 
-**MBH (orthopedic)**: Adverse Event Without Identified Device or Use Problem 3,782; Fracture 1,155; Unstable 803; Loss of Osseointegration 324; Insufficient Device Problem Information 323; Loosening of Implant Not Related to Bone-Ingrowth 276; Difficult to Insert 226; Osseointegration Problem 197; Migration 174; Detachment of Device or Device Component 168. Reports with no problem term: 5.
+**MBH (orthopedic)**: Adverse Event Without Identified Device or Use Problem 1,891; Fracture 578; Unstable 402; Insufficient Device Problem Information 162; Loss of Osseointegration 162; Loosening of Implant Not Related to Bone-Ingrowth 140; Difficult to Insert 113; Osseointegration Problem 99; Migration 87; Detachment of Device or Device Component 85. Reports with no problem term: 5.
 
-**LWP (cardiac)**: Adverse Event Without Identified Device or Use Problem 23,846; Premature Discharge of Battery 13,305; Over-Sensing 7,493; Incorrect, Inadequate or Imprecise Result or Readings 6,772; Battery Problem 5,555; Defective Device 5,528; High impedance 4,735; Pacing Problem 4,716; Signal Artifact/Noise 4,472; Failure to Capture 3,750. Reports with no problem term: 146.
+**LWP (cardiac)**: Adverse Event Without Identified Device or Use Problem 11,924; Premature Discharge of Battery 6,658; Over-Sensing 3,747; Incorrect, Inadequate or Imprecise Result or Readings 3,386; Battery Problem 2,784; Defective Device 2,766; High impedance 2,369; Pacing Problem 2,360; Signal Artifact/Noise 2,236; Failure to Capture 1,876. Reports with no problem term: 146.
 
-**LZG (diabetes)**: Unintended Movement 35,346; Loss of or Failure to Bond 30,049; Material Twisted/Bent 21,476; Failure to Fire 14,018; Insufficient Device Problem Information 9,553; Mechanical Problem 7,737; Fluid/Blood Leak 7,375; Premature Activation 6,688; Difficult to Insert 6,626; Activation, Positioning or Separation Problem 4,370. Reports with no problem term: 38.
+**LZG (diabetes)**: Unintended Movement 17,673; Loss of or Failure to Bond 15,025; Material Twisted/Bent 10,738; Failure to Fire 7,009; Insufficient Device Problem Information 4,777; Mechanical Problem 3,871; Fluid/Blood Leak 3,689; Premature Activation 3,344; Difficult to Insert 3,313; Activation, Positioning or Separation Problem 2,185. Reports with no problem term: 38.
+
+*Correction (post hoc, 2026-11-21):* openFDA lists most problem terms twice inside one report. The first version of this doc counted list entries, which roughly doubled every term count (and overstated, for example, the share of hip reports carrying the generic term). Both the analysis and the verifier used the same wrong definition, so they agreed; a third check against openFDA's own server-side counts (verifier criterion C8, `--network`) exposed it. Terms are now counted once per report and match the server exactly.
 
 ## Q4. Manufacturers
 
@@ -143,3 +147,4 @@ One recall event (one firm action) often covers several products, so it produces
 | Checksums on the raw files | To pin our copy (openFDA changes weekly) | gzip embeds a file name and time; writing neither makes checksums reproducible | Later phases check they read the same bytes |
 | Answered the pre-registered questions Q1-Q8 | To learn the data's shape before modelling | Problem codes are coarse, narratives are rich, one maker often dominates, implant reports arrive late | Phase 3 groups failure modes from text; trends per manufacturer; drift checks allow for lag |
 | Independent verifier | So a bug in the analysis cannot pass silently | It caught a recall dated year 0013 that the two implementations handled differently | Phase 2 adds date validation and repair rules for recall dates |
+| Cross-check against openFDA's own server counts | Two programs can share the same wrong definition | Problem terms are repeated inside reports; our counts were doubled until this check | Every later verifier also compares with an outside source, not only with itself |

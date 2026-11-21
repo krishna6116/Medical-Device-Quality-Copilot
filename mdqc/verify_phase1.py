@@ -92,7 +92,7 @@ def recompute(raw: Path) -> dict:
             pp = rec.get("product_problems") or []
             if not pp:
                 no_probs += 1
-            for p in pp:
+            for p in set(pp):  # once per report: openFDA repeats terms inside a report
                 probs[p] += 1
             text = " ".join((t.get("text") or "") for t in (rec.get("mdr_text") or []))
             if text.strip():
@@ -252,6 +252,8 @@ def main(raw: Path, summary_path: Path, download_checks: bool, network: bool, ev
         checks.append({"id": "info", "check": "server totals today (openFDA keeps adding late reports)",
                        "pass": True, "detail": today})
         print("INFO server totals today:", json.dumps(today))
+        check("C8", "published numbers = openFDA's own server-side counts (post hoc)",
+              *server_crosscheck(c, summary))
 
     ok = all(c["pass"] for c in checks)
     if evidence:
@@ -260,6 +262,47 @@ def main(raw: Path, summary_path: Path, download_checks: bool, network: bool, ev
                             encoding="utf-8", newline="\n")
     print(f"\n{sum(c['pass'] for c in checks)}/{len(checks)} checks pass")
     return 0 if ok else 1
+
+
+def server_crosscheck(c, summary) -> tuple[bool, dict]:
+    """Third, fully external check (added post hoc after it found the doubled problem-term counts):
+    openFDA counts on its own server and we compare with what we publish. Monthly volume (from
+    results/phase1/monthly_counts.csv), event types, top-10 problem terms and recall root causes must
+    match exactly. The top manufacturer is reported only: the server counts raw spellings, we merge
+    upper/lower case on purpose."""
+    import csv
+    from mdqc.openfda import build_search
+
+    monthly = list(csv.DictReader(open(ROOT / "results" / "phase1" / "monthly_counts.csv", encoding="utf-8")))
+    detail, ok = {}, True
+    for code in CODES:
+        pc = summary["per_code"][code]
+        s = build_search(product_code=code, date_field="date_received", date_from=W_FROM, date_to=W_TO)
+
+        def count(endpoint, search, field, limit=None):
+            params = {"search": search, "count": field}
+            if limit:
+                params["limit"] = limit
+            return c.get(endpoint, **params)[0]["results"]
+
+        srv_month = Counter()
+        for row in count("event", s, "date_received"):
+            srv_month[row["time"][:4] + "-" + row["time"][4:6]] += row["count"]
+        months_ok = all(srv_month.get(r["month"], 0) == int(r[code]) for r in monthly) \
+            and sum(srv_month.values()) == pc["reports"]
+        et_srv = {r["term"]: r["count"] for r in count("event", s, "event_type.exact")}
+        types_ok = et_srv == {k: v for k, v in pc["q2_event_type"].items() if k != "(blank)"}
+        pr_srv = {r["term"]: r["count"] for r in count("event", s, "product_problems.exact", 999)}
+        terms_bad = {p: [k, pr_srv.get(p)] for p, k in pc["q3_top_problems"] if pr_srv.get(p) != k}
+        rc_srv = {r["term"]: r["count"] for r in count("recall", f"product_code:{code}", "root_cause_description.exact")}
+        causes_ok = rc_srv == {k: v for k, v in pc["q6_recalls_by_root_cause"].items() if k != "(blank)"}
+        mf = count("event", s, "device.manufacturer_d_name.exact", 5)[0]
+        detail[code] = {"monthly": months_ok, "event_types": types_ok, "problem_terms_mismatch": terms_bad,
+                        "recall_root_causes": causes_ok,
+                        "top_maker_server_raw": [mf["term"], mf["count"]],
+                        "top_maker_ours_merged_case": pc["q4_top_manufacturers"][0]}
+        ok &= months_ok and types_ok and not terms_bad and causes_ok
+    return ok, detail
 
 
 def _leaves(o):

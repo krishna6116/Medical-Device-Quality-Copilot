@@ -60,43 +60,43 @@
       "q3_top_problems": [
         [
           "Adverse Event Without Identified Device or Use Problem",
-          15532
+          7781
         ],
         [
           "Device Dislodged or Dislocated",
-          6167
+          3099
         ],
         [
           "Naturally Worn",
-          1882
+          942
         ],
         [
           "Fracture",
-          1710
+          861
         ],
         [
           "Osseointegration Problem",
-          1342
+          671
         ],
         [
           "Material Erosion",
-          858
+          429
         ],
         [
           "Degraded",
-          838
+          421
         ],
         [
           "Insufficient Device Problem Information",
-          763
+          382
         ],
         [
           "Difficult to Insert",
-          628
+          314
         ],
         [
           "Migration",
-          602
+          301
         ]
       ],
       "q3_reports_without_problem_terms": 26,
@@ -203,43 +203,43 @@
       "q3_top_problems": [
         [
           "Adverse Event Without Identified Device or Use Problem",
-          23780
+          11958
         ],
         [
           "Naturally Worn",
-          9640
+          4852
         ],
         [
           "Fracture",
-          6825
+          3420
         ],
         [
           "Loosening of Implant Not Related to Bone-Ingrowth",
-          5085
+          2577
         ],
         [
           "Unstable",
-          3332
+          1732
         ],
         [
           "Insufficient Device Problem Information",
-          3024
+          1517
         ],
         [
           "Loss of or Failure to Bond",
-          2554
-        ],
-        [
-          "Detachment of Device or Device Component",
-          1258
-        ],
-        [
-          "Device Appears to Trigger Rejection",
-          944
+          1278
         ],
         [
           "Appropriate Device Problem Term/Code Not Available",
-          842
+          634
+        ],
+        [
+          "Detachment of Device or Device Component",
+          630
+        ],
+        [
+          "Device Appears to Trigger Rejection",
+          472
         ]
       ],
       "q3_reports_without_problem_terms": 74,
@@ -353,43 +353,43 @@
       "q3_top_problems": [
         [
           "Adverse Event Without Identified Device or Use Problem",
-          3782
+          1891
         ],
         [
           "Fracture",
-          1155
+          578
         ],
         [
           "Unstable",
-          803
-        ],
-        [
-          "Loss of Osseointegration",
-          324
+          402
         ],
         [
           "Insufficient Device Problem Information",
-          323
+          162
+        ],
+        [
+          "Loss of Osseointegration",
+          162
         ],
         [
           "Loosening of Implant Not Related to Bone-Ingrowth",
-          276
+          140
         ],
         [
           "Difficult to Insert",
-          226
+          113
         ],
         [
           "Osseointegration Problem",
-          197
+          99
         ],
         [
           "Migration",
-          174
+          87
         ],
         [
           "Detachment of Device or Device Component",
-          168
+          85
         ]
       ],
       "q3_reports_without_problem_terms": 5,
@@ -480,43 +480,43 @@
       "q3_top_problems": [
         [
           "Adverse Event Without Identified Device or Use Problem",
-          23846
+          11924
         ],
         [
           "Premature Discharge of Battery",
-          13305
+          6658
         ],
         [
           "Over-Sensing",
-          7493
+          3747
         ],
         [
           "Incorrect, Inadequate or Imprecise Result or Readings",
-          6772
+          3386
         ],
         [
           "Battery Problem",
-          5555
+          2784
         ],
         [
           "Defective Device",
-          5528
+          2766
         ],
         [
           "High impedance",
-          4735
+          2369
         ],
         [
           "Pacing Problem",
-          4716
+          2360
         ],
         [
           "Signal Artifact/Noise",
-          4472
+          2236
         ],
         [
           "Failure to Capture",
-          3750
+          1876
         ]
       ],
       "q3_reports_without_problem_terms": 146,
@@ -604,43 +604,43 @@
       "q3_top_problems": [
         [
           "Unintended Movement",
-          35346
+          17673
         ],
         [
           "Loss of or Failure to Bond",
-          30049
+          15025
         ],
         [
           "Material Twisted/Bent",
-          21476
+          10738
         ],
         [
           "Failure to Fire",
-          14018
+          7009
         ],
         [
           "Insufficient Device Problem Information",
-          9553
+          4777
         ],
         [
           "Mechanical Problem",
-          7737
+          3871
         ],
         [
           "Fluid/Blood Leak",
-          7375
+          3689
         ],
         [
           "Premature Activation",
-          6688
+          3344
         ],
         [
           "Difficult to Insert",
-          6626
+          3313
         ],
         [
           "Activation, Positioning or Separation Problem",
-          4370
+          2185
         ]
       ],
       "q3_reports_without_problem_terms": 38,

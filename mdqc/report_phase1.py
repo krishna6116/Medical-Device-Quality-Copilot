@@ -105,10 +105,10 @@ def render() -> str:
       f"{n(max(pc[c]['q7_lag_p90_days'] for c in codes))} days. Recent months always look quieter than they "
       "will once late reports arrive, so drift monitoring (Phase 7) must allow for that.\n")
 
-    a("## Download checks (criteria C1-C5, C7)\n")
+    a("## Checks (criteria C1-C8)\n")
     rows = []
     for c in sorted(ver["checks"], key=lambda c: c["id"]):
-        if c["id"] in ("C1", "C2", "C3", "C4", "C5", "C7"):
+        if c["id"] != "info":
             rows.append([c["id"], c["check"], "pass" if c["pass"] else "**FAIL**"])
     a(table(["Criterion", "What was checked", "Result"], rows) + "\n")
     a(f"Every downloaded count equals the server's total for the same search at the moment of download. "
@@ -135,11 +135,16 @@ def render() -> str:
         rows.append([c] + [f"{n(et.get(t, 0))} ({pct(et.get(t, 0) / tot)})" for t in types] + [n(rest)])
     a(table(["Code"] + types + ["Other labels"], rows) + "\n")
 
-    a("## Q3. Most common FDA problem terms (top 10 per code)\n")
+    a("## Q3. Most common FDA problem terms (number of reports listing each term, top 10 per code)\n")
     for c in codes:
         top = pc[c]["q3_top_problems"]
         a(f"**{c} ({fam[c]})**: " + "; ".join(f"{p} {n(k)}" for p, k in top) +
           f". Reports with no problem term: {n(pc[c]['q3_reports_without_problem_terms'])}.\n")
+    a("*Correction (post hoc, 2026-11-21):* openFDA lists most problem terms twice inside one report. The first "
+      "version of this doc counted list entries, which roughly doubled every term count (and overstated, for "
+      "example, the share of hip reports carrying the generic term). Both the analysis and the verifier used the "
+      "same wrong definition, so they agreed; a third check against openFDA's own server-side counts (verifier "
+      "criterion C8, `--network`) exposed it. Terms are now counted once per report and match the server exactly.\n")
 
     a("## Q4. Manufacturers\n")
     rows = [[c, n(pc[c]["q4_distinct_manufacturers"]), pct(pc[c]["q4_top_manufacturer_share"]),
@@ -193,6 +198,9 @@ def render() -> str:
         ["Independent verifier", "So a bug in the analysis cannot pass silently",
          "It caught a recall dated year 0013 that the two implementations handled differently",
          "Phase 2 adds date validation and repair rules for recall dates"],
+        ["Cross-check against openFDA's own server counts", "Two programs can share the same wrong definition",
+         "Problem terms are repeated inside reports; our counts were doubled until this check",
+         "Every later verifier also compares with an outside source, not only with itself"],
     ]) + "\n")
     return "\n".join(L).rstrip() + "\n"
 

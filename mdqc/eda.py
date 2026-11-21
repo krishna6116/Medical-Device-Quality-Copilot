@@ -10,6 +10,8 @@ Definitions (the verifier, mdqc/verify_phase1.py, re-implements each one indepen
   searched code, stripped and upper-cased; '(blank)' if missing;
 - narrative = all mdr_text[].text joined with a single space; length in characters;
 - event type = event_type stripped; '' becomes '(blank)';
+- problem term count = number of reports listing the term (openFDA repeats terms inside one report,
+  so each term counts once per report; corrected post hoc after a cross-check with openFDA's own counts);
 - recall year = first 4 digits of event_date_initiated; missing or before 1976 = invalid (post hoc rule,
   added after the verifier found '0013-11-26'), counted separately and left out of by-year counts;
 - lag = date_received - date_of_event in days, when both are valid YYYYMMDD dates;
@@ -126,7 +128,7 @@ def summarize(rep: pd.DataFrame, rc: pd.DataFrame) -> dict:
         med = float(np.median(monthly.values))
         spikes = {m: int(v) for m, v in monthly.items() if v > 3 * med}
         makers = r.manufacturer.value_counts()
-        probs = Counter(p for ps in r.problems for p in ps)
+        probs = Counter(p for ps in r.problems for p in set(ps))  # reports per term
         lags = [v for v in r.lag_days if v is not None and not pd.isna(v)]
         nonneg = [v for v in lags if v >= 0]
         c_rc = rc[rc.code == code]
