@@ -1,6 +1,6 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phase 0 setup done; 9 phases planned). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+> Work in progress (Phases 0-1 done; 8 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
 
 ## The problem
 
@@ -18,8 +18,9 @@ When a device starts failing in the field, a quality engineer has to answer ques
 | Phase | State |
 |---|---|
 | 0 Setup | done |
-| 1 Data + EDA | next (access already checked: [openFDA access check](docs/OPENFDA_ACCESS.md)) |
-| 2-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
+| 1 Data + EDA | done: 154,194 reports + 1,626 recalls for 5 device types; [findings](docs/EDA_FINDINGS.md), [data card](docs/DATA_CARD.md), verifier 8/8 |
+| 2 Pipeline (PostgreSQL) | next |
+| 3-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 
 ## Run locally
 
@@ -27,7 +28,9 @@ When a device starts failing in the field, a quality engineer has to answer ques
 python -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
 .venv\Scripts\python -m pytest
-.venv\Scripts\python -m mdqc.check_openfda
+.venv\Scripts\python -m mdqc.download        # ~1 GB transfer, 68 MB stored, no key needed
+.venv\Scripts\python -m mdqc.eda
+.venv\Scripts\python -m mdqc.verify_phase1
 ```
 
 ## Data and limits

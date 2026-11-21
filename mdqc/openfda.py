@@ -32,7 +32,8 @@ ENDPOINTS = {
 MAX_LIMIT_WITH_KEY = 1000
 MAX_LIMIT_NO_KEY = 999  # observed 2026-11-21: limit=1000 on /device/event without a key -> 403 API_KEY_MISSING
 MAX_SKIP = 25000
-TRUNCATE_FIELDS = {"code_info": 2000, "more_code_info": 2000}  # characters kept
+RETRY_STATUS = {429, 500, 502, 503, 504}
+TRUNCATE_FIELDS ={"code_info": 2000, "more_code_info": 2000}  # characters kept
 
 
 def build_search(product_code: str | None = None, date_field: str | None = None,
@@ -88,7 +89,8 @@ def next_search_after(link_header: str | None) -> str | None:
 class OpenFDAClient:
     api_key: str | None = field(default_factory=lambda: os.environ.get("OPENFDA_API_KEY") or None)
     min_interval_s: float = 0.3  # ~200 requests/minute, under the 240/minute limit
-    timeout_s: float = 60.0
+    timeout_s: float = 120.0
+    max_attempts: int = 6  # retries on 429 / 5xx / dropped connections
     session: requests.Session = field(default_factory=requests.Session)
     _last_call: float = 0.0
 
@@ -116,11 +118,23 @@ class OpenFDAClient:
         skip = params.get("skip")
         if skip is not None and int(skip) > MAX_SKIP:
             raise ValueError(f"skip {skip} > {MAX_SKIP}; use search_after paging instead")
-        wait = self.min_interval_s - (time.monotonic() - self._last_call)
-        if wait > 0:
-            time.sleep(wait)
-        resp = self.session.get(self._url(endpoint, params), timeout=self.timeout_s)
-        self._last_call = time.monotonic()
+        url = self._url(endpoint, params)
+        for attempt in range(self.max_attempts):
+            wait = self.min_interval_s - (time.monotonic() - self._last_call)
+            if wait > 0:
+                time.sleep(wait)
+            try:
+                resp = self.session.get(url, timeout=self.timeout_s)
+            except (requests.ConnectionError, requests.Timeout):
+                resp = None
+            self._last_call = time.monotonic()
+            if resp is not None and resp.status_code not in RETRY_STATUS:
+                break
+            if attempt == self.max_attempts - 1:
+                if resp is None:
+                    raise requests.ConnectionError(f"no response after {self.max_attempts} attempts: {url}")
+                break
+            time.sleep(min(60.0, 2.0 ** (attempt + 1)))  # 2, 4, 8, 16 s ... backoff
         if resp.status_code == 404:
             return {"meta": {"results": {"total": 0}}, "results": []}, resp
         resp.raise_for_status()

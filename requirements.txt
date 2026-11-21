@@ -1,6 +1,13 @@
-# Phase 0-1 needs only these. Later phases add packages here (and pin exact versions
-# in requirements-lock.txt once results depend on them).
+# Lower bounds; versions used for the published Phase 1 results: requests 2.34.2,
+# pandas 3.1.1, numpy 2.5.5, matplotlib 3.11.2 (Python 3.14). A full lock file comes when
+# results depend on model or library behaviour (Phase 3 onwards).
 requests>=2.32
 python-dotenv>=1.0
 pandas>=2.2
+numpy>=2.0
+matplotlib>=3.9
 pytest>=8.3
+# notebooks (built and executed with nbclient)
+nbformat>=5.10
+nbclient>=0.10
+ipykernel>=6.29

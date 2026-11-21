@@ -2,8 +2,9 @@ name: CI
 on: [push, pull_request]
 
 jobs:
-  # Unit tests only: no network, no API keys, no data downloads.
-  # Later phases add jobs (pipeline on a small pinned sample, verifiers, recorded-answer replay).
+  # Unit tests + Phase 1 checks. No network, no API keys, no full data download:
+  # the EDA and the independent verifier run on a small committed fixture of real openFDA records,
+  # and the generated findings doc must match the committed results files.
   test:
     runs-on: ubuntu-24.04  # pinned so a runner upgrade cannot change results silently
     steps:
@@ -13,3 +14,9 @@ jobs:
           python-version: "3.14"
       - run: pip install -r requirements.txt
       - run: pytest
+      - name: Phase 1 EDA vs independent verifier on the fixture
+        run: |
+          python -m mdqc.eda --raw tests/fixtures/phase1/raw --out "$RUNNER_TEMP/phase1" --no-figures
+          python -m mdqc.verify_phase1 --raw tests/fixtures/phase1/raw --summary "$RUNNER_TEMP/phase1/eda_summary.json" --no-download-checks
+      - name: Findings doc is generated from the committed results
+        run: python -m mdqc.report_phase1 --check

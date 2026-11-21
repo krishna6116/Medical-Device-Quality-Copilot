@@ -1,0 +1,178 @@
+{
+  "checked_utc": "2026-11-21T19:07:02Z",
+  "all_pass": true,
+  "checks": [
+    {
+      "id": "C1",
+      "check": "event counts = server totals at download",
+      "pass": true,
+      "detail": {
+        "LPH": {
+          "server": 16196,
+          "downloaded": 16196,
+          "distinct": 16196,
+          "recounted": 16196
+        },
+        "JWH": {
+          "server": 28138,
+          "downloaded": 28138,
+          "distinct": 28138,
+          "recounted": 28138
+        },
+        "MBH": {
+          "server": 4021,
+          "downloaded": 4021,
+          "distinct": 4021,
+          "recounted": 4021
+        },
+        "LWP": {
+          "server": 37414,
+          "downloaded": 37414,
+          "distinct": 37414,
+          "recounted": 37414
+        },
+        "LZG": {
+          "server": 68425,
+          "downloaded": 68425,
+          "distinct": 68425,
+          "recounted": 68425
+        }
+      }
+    },
+    {
+      "id": "C2",
+      "check": "recall counts = server totals",
+      "pass": true,
+      "detail": {
+        "LPH": {
+          "server": 299,
+          "downloaded": 299,
+          "recounted": 299
+        },
+        "JWH": {
+          "server": 985,
+          "downloaded": 985,
+          "recounted": 985
+        },
+        "MBH": {
+          "server": 103,
+          "downloaded": 103,
+          "recounted": 103
+        },
+        "LWP": {
+          "server": 113,
+          "downloaded": 113,
+          "recounted": 113
+        },
+        "LZG": {
+          "server": 126,
+          "downloaded": 126,
+          "recounted": 126
+        }
+      }
+    },
+    {
+      "id": "C4",
+      "check": "no duplicate report keys within a code",
+      "pass": true,
+      "detail": {
+        "duplicates": {
+          "LPH": 0,
+          "JWH": 0,
+          "MBH": 0,
+          "LWP": 0,
+          "LZG": 0
+        },
+        "reports_under_two_scope_codes": {
+          "LPH": 0,
+          "JWH": 0,
+          "MBH": 0,
+          "LWP": 0,
+          "LZG": 0
+        }
+      }
+    },
+    {
+      "id": "C5",
+      "check": "checksums match",
+      "pass": true,
+      "detail": {
+        "files": 11,
+        "mismatch": [],
+        "unlisted": []
+      }
+    },
+    {
+      "id": "C3",
+      "check": "every report in window and lists its code",
+      "pass": true,
+      "detail": {
+        "LPH": {
+          "outside_window": 0,
+          "code_not_listed": 0
+        },
+        "JWH": {
+          "outside_window": 0,
+          "code_not_listed": 0
+        },
+        "MBH": {
+          "outside_window": 0,
+          "code_not_listed": 0
+        },
+        "LWP": {
+          "outside_window": 0,
+          "code_not_listed": 0
+        },
+        "LZG": {
+          "outside_window": 0,
+          "code_not_listed": 0
+        }
+      }
+    },
+    {
+      "id": "C6",
+      "check": "independent recount of every summary number",
+      "pass": true,
+      "detail": {
+        "values_compared": 471,
+        "mismatches": []
+      }
+    },
+    {
+      "id": "C7",
+      "check": "no data or secrets in git; contact fields counted",
+      "pass": true,
+      "detail": {
+        "tracked_leaks": [],
+        "reports_with_contact_fields": 153038
+      }
+    },
+    {
+      "id": "info",
+      "check": "server totals today (openFDA keeps adding late reports)",
+      "pass": true,
+      "detail": {
+        "LPH": {
+          "server_now": 16196,
+          "ours": 16196
+        },
+        "JWH": {
+          "server_now": 28138,
+          "ours": 28138
+        },
+        "MBH": {
+          "server_now": 4021,
+          "ours": 4021
+        },
+        "LWP": {
+          "server_now": 37414,
+          "ours": 37414
+        },
+        "LZG": {
+          "server_now": 68425,
+          "ours": 68425
+        }
+      }
+    }
+  ]
+}

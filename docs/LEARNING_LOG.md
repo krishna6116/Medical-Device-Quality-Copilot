@@ -16,3 +16,18 @@
 - *Why check before building*: the plan assumes certain fields (narratives, problem codes, recall root causes) exist. Eleven small probes proved they do, and found surprises early (a recall with a 9.8 MB lot list; manufacturer contact names and phone numbers we must drop; a 19 GB bulk event file we will not download).
 
 **Next:** pick the product codes and date window, show the user the expected download size, then fetch.
+
+## 2026-11-21 (later): Phase 1 data and exploratory analysis
+
+**Decided:** scope = LPH hip, JWH + MBH knees, LWP pacemaker, LZG insulin pump; reports received 2022-2024 plus all recalls (154,194 reports, 1,626 recalls, ~1 GB transfer, 68 MB stored). Infusion pumps (FRN) were dropped after the count showed 1.1M reports, 888k of them in 2022 and nearly all from one manufacturer.
+
+**Built:** pre-registration (`config/scope.json`, `config/phase1_criteria.json`, committed before downloading), downloader with retries and resume, EDA module, generated findings doc, data card, executed notebook, independent stdlib-only verifier, a small committed fixture so CI can run EDA + verifier without downloading.
+
+**Concepts:**
+- *Pre-registration:* write down what you will measure and what counts as success before seeing the data, and commit it, so the git history proves the order.
+- *Completeness check:* compare what you downloaded with the source's own count for the same query, taken right before the download (the source changes weekly).
+- *Reproducible checksums:* gzip stores a file name and a timestamp in its header, so identical content can give different checksums; writing both as empty fixes that.
+- *Independent verification:* the same numbers computed twice by different code. Here it found a recall dated year '0013' that the two versions treated differently: a real data error, now handled by an explicit (post hoc) rule.
+- *Reading MAUDE:* implant reports are mostly "injury" (another operation), pump reports mostly "malfunction"; the generic problem term dominates, so the failure mode must come from the narrative text; reports can arrive years late.
+
+**Next:** Phase 2, the PostgreSQL pipeline (drop contact fields, normalise manufacturer names, repair or flag bad dates, link reports to recalls).

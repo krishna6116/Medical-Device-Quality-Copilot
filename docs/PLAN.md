@@ -26,7 +26,7 @@ Each phase lists what gets built, why, and what "done" means. "Verified" always 
 - **Why:** a clean, reproducible base; secrets and data can never be committed by accident.
 - **Done:** tests pass locally; committed.
 
-### Phase 1: Data and exploratory analysis
+### Phase 1: Data and exploratory analysis (done 2026-11-21: `docs/EDA_FINDINGS.md`, verifier 8/8)
 - **Build:** openFDA access check (done early, 2026-11-21: `docs/OPENFDA_ACCESS.md`, 11/11 probes; nothing downloaded). Pre-registered scope: 3-4 product codes a quality engineer at a large device maker would own (candidates: FRN infusion pump, LZG/QFG insulin pumps, LPH hip and JWH knee prostheses, DXY pacemaker) and a date window (e.g. reports received 2022-2024), with expected record counts from server-side `count` queries and the expected download size, **shown to the user before fetching**. Optional free openFDA key via a hidden-prompt `.env` writer. Raw JSONL.gz with checksums. EDA notebook + findings doc: monthly trends per product code and manufacturer, event-type mix, problem-code Pareto, narrative lengths, recall timeline, data card (what MAUDE is and is not).
 - **Why:** the project's honesty depends on a fixed, justified slice of data chosen before looking at results; EDA tells us what the later phases must handle.
 - **Done:** scope committed before download; downloaded counts match the server's counts; findings doc generated from results; verifier re-counts from the raw files.

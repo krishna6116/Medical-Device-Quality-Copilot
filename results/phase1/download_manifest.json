@@ -1,0 +1,146 @@
+{
+  "events": {
+    "LPH": {
+      "file": "events_LPH.jsonl.gz",
+      "search": "device.device_report_product_code:LPH+AND+date_received:[20220101+TO+20241231]",
+      "server_total_before": 16196,
+      "server_last_updated": "2026-11-11",
+      "downloaded": 16196,
+      "distinct_mdr_report_key": 16196,
+      "duplicates": 0,
+      "seconds": 22.3,
+      "finished_utc": "2026-11-21T18:58:20Z"
+    },
+    "JWH": {
+      "file": "events_JWH.jsonl.gz",
+      "search": "device.device_report_product_code:JWH+AND+date_received:[20220101+TO+20241231]",
+      "server_total_before": 28138,
+      "server_last_updated": "2026-11-11",
+      "downloaded": 28138,
+      "distinct_mdr_report_key": 28138,
+      "duplicates": 0,
+      "seconds": 37.6,
+      "finished_utc": "2026-11-21T18:58:58Z"
+    },
+    "MBH": {
+      "file": "events_MBH.jsonl.gz",
+      "search": "device.device_report_product_code:MBH+AND+date_received:[20220101+TO+20241231]",
+      "server_total_before": 4021,
+      "server_last_updated": "2026-11-11",
+      "downloaded": 4021,
+      "distinct_mdr_report_key": 4021,
+      "duplicates": 0,
+      "seconds": 5.6,
+      "finished_utc": "2026-11-21T18:59:04Z"
+    },
+    "LWP": {
+      "file": "events_LWP.jsonl.gz",
+      "search": "device.device_report_product_code:LWP+AND+date_received:[20220101+TO+20241231]",
+      "server_total_before": 37414,
+      "server_last_updated": "2026-11-11",
+      "downloaded": 37414,
+      "distinct_mdr_report_key": 37414,
+      "duplicates": 0,
+      "seconds": 47.3,
+      "finished_utc": "2026-11-21T18:59:52Z"
+    },
+    "LZG": {
+      "file": "events_LZG.jsonl.gz",
+      "search": "device.device_report_product_code:LZG+AND+date_received:[20220101+TO+20241231]",
+      "server_total_before": 68425,
+      "server_last_updated": "2026-11-11",
+      "downloaded": 68425,
+      "distinct_mdr_report_key": 68425,
+      "duplicates": 0,
+      "seconds": 104.7,
+      "finished_utc": "2026-11-21T19:01:37Z"
+    }
+  },
+  "recalls": {
+    "LPH": {
+      "file": "recalls_LPH.jsonl.gz",
+      "search": "product_code:LPH",
+      "server_total_before": 299,
+      "server_last_updated": "2026-11-19",
+      "downloaded": 299,
+      "finished_utc": "2026-11-21T19:01:38Z"
+    },
+    "JWH": {
+      "file": "recalls_JWH.jsonl.gz",
+      "search": "product_code:JWH",
+      "server_total_before": 985,
+      "server_last_updated": "2026-11-19",
+      "downloaded": 985,
+      "finished_utc": "2026-11-21T19:01:43Z"
+    },
+    "MBH": {
+      "file": "recalls_MBH.jsonl.gz",
+      "search": "product_code:MBH",
+      "server_total_before": 103,
+      "server_last_updated": "2026-11-19",
+      "downloaded": 103,
+      "finished_utc": "2026-11-21T19:01:43Z"
+    },
+    "LWP": {
+      "file": "recalls_LWP.jsonl.gz",
+      "search": "product_code:LWP",
+      "server_total_before": 113,
+      "server_last_updated": "2026-11-19",
+      "downloaded": 113,
+      "finished_utc": "2026-11-21T19:01:46Z"
+    },
+    "LZG": {
+      "file": "recalls_LZG.jsonl.gz",
+      "search": "product_code:LZG",
+      "server_total_before": 126,
+      "server_last_updated": "2026-11-19",
+      "downloaded": 126,
+      "finished_utc": "2026-11-21T19:01:47Z"
+    }
+  },
+  "scope_registered_on": "2026-11-21",
+  "api_key_used": false,
+  "page_size": 999,
+  "classification": {
+    "file": "classification.jsonl.gz",
+    "downloaded": 5,
+    "finished_utc": "2026-11-21T19:01:49Z"
+  },
+  "files": {
+    "classification.jsonl.gz": {
+      "bytes": 12433
+    },
+    "events_JWH.jsonl.gz": {
+      "bytes": 16910405
+    },
+    "events_LPH.jsonl.gz": {
+      "bytes": 8982924
+    },
+    "events_LWP.jsonl.gz": {
+      "bytes": 16579473
+    },
+    "events_LZG.jsonl.gz": {
+      "bytes": 21378355
+    },
+    "events_MBH.jsonl.gz": {
+      "bytes": 2513161
+    },
+    "recalls_JWH.jsonl.gz": {
+      "bytes": 1458529
+    },
+    "recalls_LPH.jsonl.gz": {
+      "bytes": 275675
+    },
+    "recalls_LWP.jsonl.gz": {
+      "bytes": 80854
+    },
+    "recalls_LZG.jsonl.gz": {
+      "bytes": 61405
+    },
+    "recalls_MBH.jsonl.gz": {
+      "bytes": 68542
+    }
+  },
+  "completed_utc": "2026-11-21T19:01:49Z",
+  "note": "raw gzip headers rewritten without the temporary file name after download (content unchanged), so checksums are reproducible"
+}
