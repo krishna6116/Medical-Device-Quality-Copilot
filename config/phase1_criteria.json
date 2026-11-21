@@ -1,0 +1,24 @@
+{
+  "_about": "Phase 1 success criteria, pre-registered 2026-11-21 before any data download. Judged by mdqc.verify_phase1. Anything added after the download is labelled post hoc in docs/EDA_FINDINGS.md.",
+  "criteria": {
+    "C1_event_counts": "For each product code, the number of distinct mdr_report_key values downloaded equals the openFDA server total for the same search, queried immediately before that code's download (exact match).",
+    "C2_recall_counts": "For each product code, downloaded recall records equal the server total for product_code:X (exact match).",
+    "C3_window": "Every downloaded event has date_received inside 2022-01-01..2024-12-31 and its device list contains the searched product code.",
+    "C4_duplicates": "Duplicate mdr_report_key values inside one code's file are counted and must be 0 after download paging; reports listed under two of our codes (multi-device reports) are counted and reported, not removed.",
+    "C5_checksums": "Every raw file has a SHA-256 in data/checksums.sha256 (committed); the verifier recomputes them.",
+    "C6_independent_recount": "Every number published in docs/EDA_FINDINGS.md comes from results/phase1/eda_summary.json, and the verifier recomputes all of them from the raw files with separate code (standard library only, no pandas): 100% match.",
+    "C7_privacy": "No raw data, database or .env in git (test + verifier); the count of records carrying manufacturer contact name/phone fields is reported so Phase 2 can drop them."
+  },
+  "eda_questions": {
+    "_note": "Descriptive questions fixed in advance so the findings doc answers them all, including the boring or inconvenient answers.",
+    "Q1": "Monthly report volume per product code; any months more than 3x the code's median month.",
+    "Q2": "Event type mix (Death / Injury / Malfunction / Other / blank) per code.",
+    "Q3": "Top 10 FDA product problem terms per code.",
+    "Q4": "Top manufacturers per code and the share of the largest one (concentration).",
+    "Q5": "Share of reports with narrative text; narrative length (median, 90th percentile) per code.",
+    "Q6": "Recalls per code by year initiated and by root cause; how many recalls fall inside the report window.",
+    "Q7": "Reporting lag: date_received minus date_of_event (median, 90th percentile) where both exist.",
+    "Q8": "Reports that list more than one device or more than one of our product codes."
+  },
+  "phase_done_when": "C1-C7 pass, the EDA notebook runs top to bottom, docs/EDA_FINDINGS.md is generated (not hand-typed) and ends with the 'Why we did these tasks' table, the verifier runs in CI on a committed sample fixture, and the full-data verifier evidence is committed."
+}

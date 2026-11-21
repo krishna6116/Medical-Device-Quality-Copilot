@@ -4,7 +4,8 @@
 !.env.example
 
 # Data: downloaded openFDA files, local databases and caches are rebuilt by scripts, never committed
-data/
+data/*
+!data/checksums.sha256
 *.duckdb
 *.duckdb.wal
 *.sqlite

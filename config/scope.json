@@ -1,0 +1,32 @@
+{
+  "_about": "Pre-registered data scope (Phase 1). Committed before any download. Chosen by the user on 2026-11-21 from three options shown with record counts and download sizes.",
+  "registered_on": "2026-11-21",
+  "event_date_field": "date_received",
+  "event_window": {"from": "20220101", "to": "20241231"},
+  "recall_window": "all recalls for the product codes (no date filter), so recalls before and after the report window can be lined up with report trends",
+  "product_codes": {
+    "LPH": {"family": "orthopedic", "device_name": "Prosthesis, Hip, Semi-Constrained, Metal/Polymer, Porous Uncemented", "why": "hip implant: core orthopedic product line at companies like Stryker; recall-rich"},
+    "JWH": {"family": "orthopedic", "device_name": "Prosthesis, Knee, Patellofemorotibial, Semi-Constrained, Cemented, Polymer/Metal/Polymer", "why": "cemented knee implant: most recalls of all candidates (985 all time)"},
+    "MBH": {"family": "orthopedic", "device_name": "Prosthesis, Knee, Patello/Femorotibial, Semi-Constrained, Uncemented", "why": "uncemented knee: pairs with JWH to compare fixation types"},
+    "LWP": {"family": "cardiac", "device_name": "Implantable Pulse Generator, Pacemaker (Non-Crt)", "why": "pacemaker: core product line at companies like Medtronic; a second device family to compare against"},
+    "LZG": {"family": "diabetes", "device_name": "Pump, Infusion, Insulin", "why": "insulin pump: electromechanical + software failure modes, different from implants"}
+  },
+  "expected_counts_at_registration": {
+    "_source": "openFDA server-side totals queried 2026-11-21 (event data last_updated 2026-11-11). openFDA refreshes weekly, so the download records the server total at download time and compares against that.",
+    "events": {"LPH": 16196, "JWH": 28138, "MBH": 4021, "LWP": 37414, "LZG": 68425},
+    "events_total": 154194,
+    "recalls_all_time": {"LPH": 299, "JWH": 985, "MBH": 103, "LWP": 113, "LZG": 126},
+    "recalls_total": 1626
+  },
+  "expected_size": {
+    "transfer_gb": 1.0,
+    "stored_compressed_mb": 60,
+    "requests": 200,
+    "api_key_needed": false
+  },
+  "excluded": {
+    "FRN": "infusion pumps: 1,111,589 reports in 2022-2024, of which 888,020 in 2022 and 1,012,959 (2022-2023) from one manufacturer (CareFusion SD). Would multiply the download by ~7 and let one manufacturer's bulk reporting dominate every count. Recorded as a possible later extension.",
+    "QFG, OZP": "insulin dosing systems with 590k and 430k reports: same size problem; LZG represents insulin pumps",
+    "DXY, NVZ, LWJ, KWY": "smaller pacemaker / hip codes; kept out to keep one code per device type except knees (JWH + MBH)"
+  }
+}
