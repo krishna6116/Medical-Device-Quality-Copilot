@@ -4,7 +4,7 @@
 
 **What it does:** turns the 154,194 raw adverse-event reports and 1,626 recall records from Phase 1 into a cleaned star schema in PostgreSQL (database `mdqc`, schema `core`), drops personal fields, puts every record that breaks a rule into a quarantine table with the rule it broke, merges manufacturer names into parent companies, and links reports to recalls.
 
-**Verification:** `python -m mdqc.verify_phase2` rebuilds every table from the raw files with separate code and compares every row and column: **9/9 criteria pass** (evidence `results/phase2/verify_phase2.json`, checked 2026-11-21T19:48:19Z). Rules and criteria were committed before the first load (`config/phase2_criteria.json`, `config/manufacturer_aliases.json`).
+**Verification:** `python -m mdqc.verify_phase2` rebuilds every table from the raw files with separate code and compares every row and column: **10/10 criteria pass** (evidence `results/phase2/verify_phase2.json`, checked 2026-11-21T19:59:58Z). Rules and criteria were committed before the first load (`config/phase2_criteria.json`, `config/manufacturer_aliases.json`).
 
 ## Schema
 
@@ -102,7 +102,7 @@ Recall date repaired by the registered rule: `Z-0493-2014` invalid initiation ye
 - **LWP has no 510(k) links:** pacemakers are approved through PMA ('P' numbers: 39,231 reports overall), and recall records list 510(k) numbers only, so they are linked only through the firm-and-time-window rule.
 - **A link is context, never proof** that a report was caused by the recalled defect.
 
-## Checks (criteria P1-P9)
+## Checks (criteria P1-P11)
 
 | Criterion | What was checked | Result |
 |---|---|---|
@@ -115,15 +115,16 @@ Recall date repaired by the registered rule: `Z-0493-2014` invalid initiation ye
 | P7 | invalid recall dates repaired by the registered rule or quarantined | pass |
 | P8 | report-recall links = independent recomputation | pass |
 | P9 | SQL reproduces Phase 1 numbers (quarantined records added back) | pass |
+| P11 | database = openFDA's own server-side counts (post hoc, --network) | pass |
 
-P10 (CI): the `pipeline` job in `.github/workflows/ci.yml` starts PostgreSQL, loads the committed fixture and runs the verifier on it (P1-P8), plus a test that a single tampered cell is detected.
+P10 (CI): the `pipeline` job in `.github/workflows/ci.yml` starts PostgreSQL, loads the committed fixture and runs the verifier on it (P1-P8), plus a test that a single tampered cell is detected. P11 was added post hoc on the Phase 2 re-check (lesson from Phase 1: compare with an outside source, not only with our own code); it compares the database with openFDA's own counts.
 
 ## Run it
 
 ```powershell
 .venv\Scripts\python -m mdqc.db_setup        # once: database mdqc + login mdqc_app, password into .env
 .venv\Scripts\python -m mdqc.load            # about 1 minute
-.venv\Scripts\python -m mdqc.verify_phase2   # about 2-3 minutes (reloads once to test idempotence)
+.venv\Scripts\python -m mdqc.verify_phase2 --network   # 3-4 minutes (reloads once; P11 asks openFDA)
 .venv\Scripts\python -m mdqc.report_phase2
 ```
 

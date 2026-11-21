@@ -19,7 +19,7 @@ When a device starts failing in the field, a quality engineer has to answer ques
 |---|---|
 | 0 Setup | done |
 | 1 Data + EDA | done: 154,194 reports + 1,626 recalls for 5 device types; [findings](docs/EDA_FINDINGS.md), [data card](docs/DATA_CARD.md), verifier 8/8 |
-| 2 Pipeline (PostgreSQL) | done: star schema, 1 record quarantined, 305 maker names -> 101 companies, report-recall links; [pipeline](docs/PIPELINE.md), verifier 9/9 |
+| 2 Pipeline (PostgreSQL) | done: star schema, 1 record quarantined, 305 maker names -> 101 companies, report-recall links; [pipeline](docs/PIPELINE.md), verifier 10/10 |
 | 3 Failure modes | next |
 | 4-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 

@@ -29,11 +29,12 @@ Five product codes: LPH (uncemented hip), JWH (cemented knee), MBH (uncemented k
 ## Fields we use and fields we drop
 
 - **Use:** report key and number, dates (received, event), event type, FDA problem terms, narrative text (event description + manufacturer narrative), device brand / generic name / model / manufacturer / product code; recall dates, status, reason, root cause, firm, 510(k) numbers.
-- **Drop in Phase 2 (before loading or indexing):** manufacturer contact names, phone numbers and addresses. Patient age / sex / weight are kept out of the assistant's search index. Narratives are already redacted by FDA (`(b)(6)`), but they are still free text, and the assistant must never try to identify a person.
+- **Never loaded (Phase 2):** every manufacturer contact field (names, phone numbers, addresses) and patient age, sex, weight, race and ethnicity; patient information is limited to FDA patient-problem terms. Verified by criterion P3 in `docs/PIPELINE.md`. Narratives are already redacted by FDA (`(b)(6)`), but they are still free text, and the assistant must never try to identify a person.
 - **Truncated at download:** recall `code_info` (lot/serial lists, up to 9.8 MB for one record) is cut to 2,000 characters.
 
 ## Known quirks
 
 - Manufacturer names are written several ways (site names, punctuation); Phase 2 normalises them.
 - The most common FDA problem term in four of five codes is "Adverse Event Without Identified Device or Use Problem": the failure mode is in the narrative.
+- A few narratives contain a stray control character (0x12) just before an FDA redaction marker, exactly as in FDA's text; the database keeps text as received and later phases normalise it before search.
 - openFDA refreshes weekly; late reports keep arriving for past months. Our copy is a snapshot.

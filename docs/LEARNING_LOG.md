@@ -57,3 +57,5 @@
 - *Link strength:* a shared 510(k) number links a report to recalls years apart, so the assistant must filter links by date and say how strong a link is.
 
 **Next:** Phase 3, failure-mode grouping with non-LLM baselines and a per-manufacturer signal rule.
+
+**Phase 2 re-check (same evening):** everything passed again (CI ran every database test, none skipped). Following the Phase 1 lesson, the database was also compared directly with openFDA's own server counts. Two apparent differences were explained, not data errors: recall status has no exact-count field on the server (my query asked for one), and one Boston Scientific report is the quarantined one. That comparison is now permanent criterion P11 (post hoc, `--network`), shown to fail on a planted change. Health checks found 3 insulin-pump narratives with a stray control character that is in FDA's own text; it is kept as received and will be normalised before search in Phase 3. *Concept:* when a check disagrees, first check the check (here the query), then the data.

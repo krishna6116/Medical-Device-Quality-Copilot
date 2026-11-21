@@ -134,16 +134,18 @@ def render() -> str:
           "numbers only, so they are linked only through the firm-and-time-window rule.")
     a("- **A link is context, never proof** that a report was caused by the recalled defect.\n")
 
-    a("## Checks (criteria P1-P9)\n")
+    a("## Checks (criteria P1-P11)\n")
     a(table(["Criterion", "What was checked", "Result"],
-            [[x["id"], x["check"], "pass" if x["pass"] else "**FAIL**"] for x in sorted(ver["checks"], key=lambda x: x["id"])]) + "\n")
+            [[x["id"], x["check"], "pass" if x["pass"] else "**FAIL**"] for x in sorted(ver["checks"], key=lambda x: int(x["id"][1:]))]) + "\n")
     a("P10 (CI): the `pipeline` job in `.github/workflows/ci.yml` starts PostgreSQL, loads the committed fixture and "
-      "runs the verifier on it (P1-P8), plus a test that a single tampered cell is detected.\n")
+      "runs the verifier on it (P1-P8), plus a test that a single tampered cell is detected. P11 was added post hoc on "
+      "the Phase 2 re-check (lesson from Phase 1: compare with an outside source, not only with our own code); "
+      "it compares the database with openFDA's own counts.\n")
 
     a("## Run it\n")
     a("```powershell\n.venv\\Scripts\\python -m mdqc.db_setup        # once: database mdqc + login mdqc_app, password into .env\n"
       ".venv\\Scripts\\python -m mdqc.load            # about 1 minute\n"
-      ".venv\\Scripts\\python -m mdqc.verify_phase2   # about 2-3 minutes (reloads once to test idempotence)\n"
+      ".venv\\Scripts\\python -m mdqc.verify_phase2 --network   # 3-4 minutes (reloads once; P11 asks openFDA)\n"
       ".venv\\Scripts\\python -m mdqc.report_phase2\n```\n")
 
     a("## Why we did these tasks\n")

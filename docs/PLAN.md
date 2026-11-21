@@ -32,7 +32,7 @@ Each phase lists what gets built, why, and what "done" means. "Verified" always 
 - **Why:** the project's honesty depends on a fixed, justified slice of data chosen before looking at results; EDA tells us what the later phases must handle.
 - **Done:** scope committed before download; downloaded counts match the server's counts; findings doc generated from results; verifier re-counts from the raw files.
 
-### Phase 2: Pipeline into PostgreSQL with validation (done 2026-11-21: `docs/PIPELINE.md`, verifier 9/9)
+### Phase 2: Pipeline into PostgreSQL with validation (done 2026-11-21: `docs/PIPELINE.md`, verifier 10/10 incl. the post hoc server cross-check P11)
 - **Build:** star schema in PostgreSQL (fact: reports; dimensions: device/product code, manufacturer, date, problem term; plus narratives, recalls, and a report-recall link by product code + 510(k) number + date window); drop the dataset's personal contact fields; dedupe; validation rules with a quarantine table; idempotent, re-runnable loads (reusing the predictive maintenance pipeline patterns).
 - **Why:** the assistant's tools and the dashboards query this database; numbers must be reproducible and clean.
 - **Done:** every raw record accounted for (loaded or quarantined with a reason); verifier compares the database cell for cell with the raw files using different code; CI job loads a small pinned sample into a Postgres service.

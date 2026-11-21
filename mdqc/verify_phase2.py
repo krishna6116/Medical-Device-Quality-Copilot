@@ -287,7 +287,90 @@ def table_diffs(con, schema: str, exp: dict) -> tuple[dict, dict]:
     return diffs, sizes
 
 
-def main(raw: Path, schema: str, fixture: bool, reload: bool, evidence: Path | None) -> int:
+def server_crosscheck(con, schema: str) -> tuple[bool, dict]:
+    """Outside reference (added post hoc on the Phase 2 re-check): FDA counts on its own server, we compare
+    the database (quarantined reports added back). Exact equality required for: reports per month, event
+    types, top-10 device and patient problem terms, top-10 PMA/510(k) numbers on reports, recalls per status,
+    recall root causes and top-10 recall 510(k) numbers. Top-10 raw manufacturer names are reported only (the
+    server counts a name on any device of a report; we use the device with the scope code)."""
+    from urllib.parse import quote
+
+    from mdqc.openfda import OpenFDAClient
+
+    c = OpenFDAClient()
+
+    def srv(endpoint, search, field=None, limit=None):
+        params = {"search": search}
+        if field:
+            params["count"] = field
+        params["limit"] = limit or (None if field else 1)
+        data, _ = c.get(endpoint, **{k: v for k, v in params.items() if v is not None})
+        return data
+
+    def db(q, *a):
+        return con.execute(q.format(s=schema), a).fetchall()
+
+    qraw = [(s, json.loads(r)) for s, r in db("SELECT source, raw::text FROM {s}.quarantine WHERE source LIKE 'events_%%'")]
+    detail, ok = {}, True
+    for code in CODES:
+        s = f"device.device_report_product_code:{code}+AND+date_received:[{WF}+TO+{WT}]"
+        qc = [r for src, r in qraw if src == f"events_{code}.jsonl.gz"]
+        out = {}
+        months_s = Counter()
+        for row in srv("event", s, "date_received")["results"]:
+            months_s[row["time"][:6]] += row["count"]
+        months_d = Counter(dict(db("SELECT to_char(date_received,'YYYYMM'), count(*) FROM {s}.fact_report WHERE product_code=%s GROUP BY 1", code)))
+        for r in qc:
+            months_d[r["date_received"][:6]] += 1
+        out["months"] = months_s == months_d
+        et_s = {x["term"]: x["count"] for x in srv("event", s, "event_type.exact")["results"]}
+        et_d = Counter({("" if k == "Not provided" else k): v for k, v in db(
+            "SELECT event_type, count(*) FROM {s}.fact_report WHERE product_code=%s GROUP BY 1", code)})
+        for r in qc:
+            et_d[(r.get("event_type") or "").strip()] += 1
+        et_d.pop("", None)
+        out["event_types"] = et_s == dict(et_d)
+        for name, field, table, getter in (
+                ("device_problem_terms", "product_problems.exact", "report_problem", lambda r: set(r.get("product_problems") or [])),
+                ("patient_problem_terms", "patient.patient_problems.exact", "report_patient_problem",
+                 lambda r: {t for p in (r.get("patient") or []) for t in (p.get("patient_problems") or [])})):
+            top = srv("event", s, field, 10)["results"]
+            cnt = Counter(dict(db(f"SELECT term, count(*) FROM {{s}}.{table} x JOIN {{s}}.fact_report r USING (mdr_report_key) "
+                                  "WHERE r.product_code=%s GROUP BY 1", code)))
+            for r in qc:
+                for t in getter(r):
+                    cnt[t] += 1
+            out[name] = {x["term"]: [cnt[x["term"]], x["count"]] for x in top if cnt[x["term"]] != x["count"]} or True
+        top = srv("event", s, "pma_pmn_number.exact", 10)["results"]
+        cnt = Counter(dict(db("SELECT pma_pmn_number, count(*) FROM {s}.fact_report WHERE product_code=%s AND pma_pmn_number IS NOT NULL GROUP BY 1", code)))
+        for r in qc:
+            p = (r.get("pma_pmn_number") or "").strip().upper()
+            if p:
+                cnt[p] += 1
+        out["pma_numbers"] = {x["term"]: [cnt[x["term"].strip().upper()], x["count"]] for x in top
+                              if cnt[x["term"].strip().upper()] != x["count"]} or True
+        status_d = dict(db("SELECT recall_status, count(*) FROM {s}.fact_recall WHERE product_code=%s GROUP BY 1", code))
+        status_s = {st: srv("recall", f'product_code:{code}+AND+recall_status:"{quote(st)}"')["meta"]["results"]["total"]
+                    for st in status_d}
+        total_s = srv("recall", f"product_code:{code}")["meta"]["results"]["total"]
+        out["recall_status"] = status_s == status_d and sum(status_d.values()) == total_s
+        rc_s = {x["term"]: x["count"] for x in srv("recall", f"product_code:{code}", "root_cause_description.exact")["results"]}
+        out["recall_root_causes"] = rc_s == dict(db("SELECT root_cause, count(*) FROM {s}.fact_recall WHERE product_code=%s AND root_cause IS NOT NULL GROUP BY 1", code))
+        top = srv("recall", f"product_code:{code}", "k_numbers.exact", 10)["results"]
+        kn = Counter(dict(db("SELECT k, count(*) FROM {s}.fact_recall, unnest(k_numbers) k WHERE product_code=%s GROUP BY 1", code)))
+        out["recall_k_numbers"] = all(kn[x["term"].strip().upper()] == x["count"] for x in top)
+        top = srv("event", s, "device.manufacturer_d_name.exact", 10)["results"]
+        mk = Counter(dict(db("SELECT m.raw_name, count(*) FROM {s}.fact_report r JOIN {s}.dim_manufacturer m USING (manufacturer_id) WHERE r.product_code=%s GROUP BY 1", code)))
+        for r in qc:
+            d = next((d for d in r.get("device") or [] if d.get("device_report_product_code") == code), {})
+            mk[d.get("manufacturer_d_name") or ""] += 1
+        out["info_maker_name_diffs"] = {x["term"]: [mk[x["term"]], x["count"]] for x in top if mk[x["term"]] != x["count"]}
+        ok &= all(v is True for k, v in out.items() if not k.startswith("info_"))
+        detail[code] = out
+    return ok, detail
+
+
+def main(raw: Path, schema: str, fixture: bool, reload: bool, evidence: Path | None, network: bool = False) -> int:
     load_dotenv(ROOT / ".env")
     url = os.environ["DATABASE_URL"]
     checks = []
@@ -441,6 +524,10 @@ def main(raw: Path, schema: str, fixture: bool, reload: bool, evidence: Path | N
             check("P9", "SQL reproduces Phase 1 numbers (quarantined records added back)", not bad,
                   {"mismatches": bad, "quarantined_reports_added_back": len(qrecs)})
 
+        if network:
+            check("P11", "database = openFDA's own server-side counts (post hoc, --network)",
+                  *server_crosscheck(con, schema))
+
     ok = all(c["pass"] for c in checks)
     if evidence:
         evidence.parent.mkdir(parents=True, exist_ok=True)
@@ -458,6 +545,7 @@ if __name__ == "__main__":
     ap.add_argument("--fixture", action="store_true", help="skip P9 (needs the full data) and write no evidence")
     ap.add_argument("--no-reload", action="store_true", help="skip P4 (it re-runs the loader)")
     ap.add_argument("--evidence", type=Path, default=None)
+    ap.add_argument("--network", action="store_true", help="add P11: compare with openFDA server counts")
     a = ap.parse_args()
     ev = a.evidence or (None if a.fixture else ROOT / "results" / "phase2" / "verify_phase2.json")
-    sys.exit(main(a.raw.resolve(), a.schema, a.fixture, not a.no_reload, ev))
+    sys.exit(main(a.raw.resolve(), a.schema, a.fixture, not a.no_reload, ev, a.network))

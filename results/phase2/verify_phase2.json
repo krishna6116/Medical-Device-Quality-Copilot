@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-21T19:48:19Z",
+  "checked_utc": "2026-11-21T19:59:58Z",
   "schema": "core",
   "all_pass": true,
   "checks": [
@@ -118,8 +118,8 @@
       "pass": true,
       "detail": {
         "expected_by_type": {
-          "firm_window": 197931,
-          "510k": 333623
+          "510k": 333623,
+          "firm_window": 197931
         },
         "only_db": 0,
         "only_expected": 0
@@ -208,6 +208,68 @@
       "detail": {
         "mismatches": [],
         "quarantined_reports_added_back": 1
+      }
+    },
+    {
+      "id": "P11",
+      "check": "database = openFDA's own server-side counts (post hoc, --network)",
+      "pass": true,
+      "detail": {
+        "LPH": {
+          "months": true,
+          "event_types": true,
+          "device_problem_terms": true,
+          "patient_problem_terms": true,
+          "pma_numbers": true,
+          "recall_status": true,
+          "recall_root_causes": true,
+          "recall_k_numbers": true,
+          "info_maker_name_diffs": {}
+        },
+        "JWH": {
+          "months": true,
+          "event_types": true,
+          "device_problem_terms": true,
+          "patient_problem_terms": true,
+          "pma_numbers": true,
+          "recall_status": true,
+          "recall_root_causes": true,
+          "recall_k_numbers": true,
+          "info_maker_name_diffs": {}
+        },
+        "MBH": {
+          "months": true,
+          "event_types": true,
+          "device_problem_terms": true,
+          "patient_problem_terms": true,
+          "pma_numbers": true,
+          "recall_status": true,
+          "recall_root_causes": true,
+          "recall_k_numbers": true,
+          "info_maker_name_diffs": {}
+        },
+        "LWP": {
+          "months": true,
+          "event_types": true,
+          "device_problem_terms": true,
+          "patient_problem_terms": true,
+          "pma_numbers": true,
+          "recall_status": true,
+          "recall_root_causes": true,
+          "recall_k_numbers": true,
+          "info_maker_name_diffs": {}
+        },
+        "LZG": {
+          "months": true,
+          "event_types": true,
+          "device_problem_terms": true,
+          "patient_problem_terms": true,
+          "pma_numbers": true,
+          "recall_status": true,
+          "recall_root_causes": true,
+          "recall_k_numbers": true,
+          "info_maker_name_diffs": {}
+        }
       }
     }
   ]
