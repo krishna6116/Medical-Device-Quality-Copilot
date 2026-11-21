@@ -6,7 +6,7 @@ Portfolio project: an AI assistant that helps a medical device quality engineer 
 
 - Phase 0 (setup): done, committed locally. `.venv` on Python 3.14; `requirements.txt`; `pytest` (8 tests); CI skeleton `.github/workflows/ci.yml` (ubuntu-24.04, Python 3.14, unit tests only, no network).
 - Phase 1 (data + EDA): not started (today was setup only); access already checked. Client `mdqc/openfda.py` (no-key limit 999, skip <= 25000, search_after paging, truncates `code_info`). Access check `python -m mdqc.check_openfda` -> `docs/openfda_access_check.json` (11/11), write-up `docs/OPENFDA_ACCESS.md`. Next: pre-register scope (product codes + date window, expected counts and download size shown to the user first), optional free openFDA key in `.env`, then download + EDA.
-- GitHub: no remote yet. Creating the public repository and pushing are the user's call; ask first. User's GitHub: Krishna6116; CLI at `C:\Program Files\GitHub CLI\gh.exe`.
+- GitHub: https://github.com/krishna6116/Medical-Device-Quality-Copilot (public, created 2026-11-21 with the user's approval; branch main; first CI run green on 939cfd5). Push after each phase. User's GitHub: Krishna6116; CLI at `C:\Program Files\GitHub CLI\gh.exe`.
 
 ## Phases
 
