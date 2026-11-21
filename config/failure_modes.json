@@ -1,0 +1,96 @@
+{
+  "_about": "Phase 3 failure-mode codebook, pre-registered 2026-11-21 before any reference label or method output existed. Written from FDA problem-term frequencies (all reports) and 7 example narratives per code drawn OUTSIDE the reference sample. One PRIMARY mode per report: the device problem or clinical reason that made someone file the report; if several are named, the most specific cause in 'priority' order wins (a cause beats its symptom: 'revised for pain due to loosening' = loosening). '*_OTHER' = no identifiable failure mode, insufficient information, or a reason outside the list.",
+  "families": {
+    "orthopedic": {
+      "codes": ["LPH", "JWH", "MBH"],
+      "priority": ["O_INFECTION", "O_DEVICE_FRACTURE", "O_BONE_FRACTURE", "O_INSTABILITY", "O_LOOSENING", "O_WEAR", "O_INTRAOP", "O_PAIN_STIFFNESS"],
+      "modes": {
+        "O_INFECTION": {"definition": "Infection around the hip or knee implant (periprosthetic joint infection): revision, spacer, irrigation and debridement, or antibiotics because of infection.",
+                        "keywords": "INFECT|SEPTIC|SEPSIS|\\bPJI\\b|SPACER|PURULEN|ABSCESS|DEBRIDEMENT|\\bDAIR\\b"},
+        "O_DEVICE_FRACTURE": {"definition": "An implant component (stem, liner, insert, post, shell, tray, head) broke, cracked, fractured or dissociated from its mating part, in or out of the patient.",
+                              "keywords": "DISSOCIAT|(STEM|LINER|INSERT|POST|SHELL|CUP|HEAD|NECK|POLY\\w*|TRAY|BASEPLATE|COMPONENT|IMPLANT|DEVICE)\\W+(\\w+\\W+){0,3}(BROKE|BROKEN|FRACTURED|CRACKED|SNAPPED)"},
+        "O_BONE_FRACTURE": {"definition": "The patient's bone around the implant fractured (periprosthetic fracture), e.g. femur, tibia, patella or acetabulum.",
+                            "keywords": "PERIPROSTHETIC FRACTURE|(FEMUR|FEMORAL|TIBIA\\w*|PATELLA\\w*|ACETABUL\\w*|BONE|CALCAR|TROCHANTER\\w*)\\W+(\\w+\\W+){0,2}FRACTUR"},
+        "O_INSTABILITY": {"definition": "The joint dislocated, subluxed or was unstable or lax; includes malposition or malalignment causing instability.",
+                          "keywords": "DISLOCAT|INSTABILIT|UNSTABLE|SUBLUX|LAXITY|MALALIGN|MALPOSITION"},
+        "O_LOOSENING": {"definition": "The implant came loose from bone or failed to grow into or fix to bone (aseptic loosening, lack of osseointegration, subsidence, migration).",
+                        "keywords": "LOOSE|LOOSENING|LOOSENED|ASEPTIC|SUBSID|MIGRAT|OSSEOINTEGRAT|FIXATION|DEBOND|RADIOLUCEN"},
+        "O_WEAR": {"definition": "Wear of bearing surfaces or a reaction to wear debris or metal: polyethylene wear, osteolysis, metallosis, adverse local tissue reaction, corrosion, elevated metal ions.",
+                   "keywords": "\\bWEAR\\b|\\bWORN\\b|OSTEOLYSIS|METALLOSIS|METAL REACTION|\\bALTR\\b|\\bALVAL\\b|PSEUDOTUMOR|CORROSION|TRUNNION|METAL ION|COBALT|DEBRIS"},
+        "O_INTRAOP": {"definition": "A problem during surgery or handling before implantation: component would not seat or lock, difficult insertion, wrong size, packaging or sterility problem, trial or instrument issue.",
+                      "keywords": "WOULD NOT (LOCK|SEAT|FIT)|DID NOT (LOCK|SEAT|FIT)|UNABLE TO (INSERT|SEAT|LOCK|IMPACT)|DIFFICULT\\w* TO (INSERT|IMPACT|SEAT)|INTRA-?OPERATIV|PACKAG|STERIL|WRONG SIZE|INCORRECT SIZE|\\bTRIAL\\b"},
+        "O_PAIN_STIFFNESS": {"definition": "Pain, stiffness, arthrofibrosis or reduced range of motion with no more specific cause named.",
+                             "keywords": "\\bPAIN|STIFF|ARTHROFIBROSIS|RANGE OF MOTION|\\bROM\\b|FLEXION|MANIPULATION UNDER"},
+        "O_OTHER": {"definition": "No identifiable failure mode, insufficient information, revision for an unknown reason, or a reason outside this list (e.g. blood clots, literature summaries)."}
+      }
+    },
+    "cardiac": {
+      "codes": ["LWP"],
+      "priority": ["C_PREVENTIVE", "C_INFECTION_POCKET", "C_BATTERY", "C_LEAD_CAPTURE", "C_SENSING", "C_TELEMETRY_SOFTWARE"],
+      "modes": {
+        "C_PREVENTIVE": {"definition": "Device explanted or replaced as a precaution because of an advisory, field safety notice or recall, with no malfunction observed in this device.",
+                         "keywords": "PROPHYLACTIC|ADVISORY|FIELD SAFETY|PREVENTIVE|PRECAUTION"},
+        "C_INFECTION_POCKET": {"definition": "Infection, pocket erosion, hematoma or sepsis related to the implant site.",
+                               "keywords": "INFECT|POCKET|EROSION|HEMATOMA|SEPSIS|ENDOCARDITIS"},
+        "C_BATTERY": {"definition": "Battery depleting early, reaching ERI/end of life early, or an unexpected battery or longevity reading.",
+                      "keywords": "BATTER|DEPLET|\\bERI\\b|\\bEOL\\b|ELECTIVE REPLACEMENT|LONGEVITY|END OF (SERVICE|LIFE)"},
+        "C_LEAD_CAPTURE": {"definition": "Pacing not reaching the heart: high or low impedance, loss of capture, high threshold, lead dislodgement or fracture, header or connection problem, no pacing.",
+                           "keywords": "IMPEDANCE|CAPTURE|THRESHOLD|DISLODG|HEADER|SET ?SCREW|CONNECT(OR|ION)|LEAD SAFETY SWITCH|NO PACING|LOSS OF PACING|LEAD (FRACTURE|ISSUE|PROBLEM)"},
+        "C_SENSING": {"definition": "The device sensed the wrong signals: over-sensing, under-sensing, noise or artifact, leading to wrong pacing or inappropriate therapy.",
+                      "keywords": "OVER-?SENS|UNDER-?SENS|NOISE|ARTIFACT|INAPPROPRIATE (SHOCK|THERAPY|ATP|PACING)|MYOPOTENTIAL|CROSSTALK|SENSING"},
+        "C_TELEMETRY_SOFTWARE": {"definition": "Communication, interrogation, telemetry, programming, software or firmware problem, unexpected reset or back-up mode, wrong data or display.",
+                                 "keywords": "INTERROGAT|TELEMETRY|COMMUNICAT|PROGRAMM|SOFTWARE|FIRMWARE|RESET|BACK-?UP MODE|SAFETY MODE|ERROR CODE|DISPLAY|REMOTE MONITOR|BLUETOOTH"},
+        "C_OTHER": {"definition": "No identifiable failure mode, insufficient information, or a reason outside this list."}
+      }
+    },
+    "diabetes": {
+      "codes": ["LZG"],
+      "priority": ["D_LEAK", "D_OCCLUSION_DELIVERY", "D_CANNULA_INSERTION", "D_ADHESIVE_DISLODGED", "D_SKIN", "D_ALARM_ELECTRONICS"],
+      "modes": {
+        "D_LEAK": {"definition": "Insulin leaked from the pump, pod, reservoir or infusion site.",
+                   "keywords": "LEAK|\\bWET\\b|SMELL OF INSULIN|INSULIN (ODOR|SMELL)"},
+        "D_OCCLUSION_DELIVERY": {"definition": "Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.",
+                                 "keywords": "OCCLU|BLOCKAG|INACCURATE (AMOUNT|DELIVER|DOSE)|UNDER-?DELIVER|OVER-?DELIVER|NOT DELIVER|STOPPED DELIVER|DELIVERY (ISSUE|PROBLEM)|NO INSULIN DELIVER"},
+        "D_CANNULA_INSERTION": {"definition": "The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.",
+                                "keywords": "CANNULA|NEEDLE|DEPLOY|INSERTION|INSERTER|KINK|\\bBENT\\b"},
+        "D_ADHESIVE_DISLODGED": {"definition": "The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.",
+                                 "keywords": "ADHES|CAME OFF|FELL OFF|DISLODG|PEEL|NOT STICK|KNOCKED OFF|PULLED OFF"},
+        "D_SKIN": {"definition": "Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.",
+                   "keywords": "SKIN|IRRITAT|\\bRASH|ITCH|ERYTHEMA|SITE INFECTION|ABSCESS|REDNESS|ALLERG"},
+        "D_ALARM_ELECTRONICS": {"definition": "Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.",
+                                "keywords": "ALARM|ERROR|FAULT|BATTER|BUTTON|DISPLAY|SCREEN|POWER|SOFTWARE|\\bAPP\\b|BLUETOOTH|COMMUNICAT|CONTROLLER|\\bPDM\\b|OVERHEAT|RESET|HISTORY|CHARG|MOTOR|DRIVE SUPPORT"},
+        "D_OTHER": {"definition": "No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list."}
+      }
+    }
+  },
+  "fda_term_map": {
+    "_about": "Method M1: FDA device and patient problem terms -> mode. Generic terms (no device problem identified, insufficient information, no clinical signs) are ignored. If a report carries terms for several modes, the family's priority order decides; none -> *_OTHER.",
+    "orthopedic": {
+      "Naturally Worn": "O_WEAR", "Degraded": "O_WEAR", "Material Erosion": "O_WEAR", "Corroded": "O_WEAR", "Device Appears to Trigger Rejection": "O_WEAR",
+      "Fracture": "O_DEVICE_FRACTURE", "Break": "O_DEVICE_FRACTURE", "Detachment of Device or Device Component": "O_DEVICE_FRACTURE",
+      "Device Dislodged or Dislocated": "O_INSTABILITY", "Unstable": "O_INSTABILITY", "Malposition of Device": "O_INSTABILITY",
+      "Loosening of Implant Not Related to Bone-Ingrowth": "O_LOOSENING", "Loss of or Failure to Bond": "O_LOOSENING", "Osseointegration Problem": "O_LOOSENING", "Loss of Osseointegration": "O_LOOSENING", "Migration": "O_LOOSENING",
+      "Difficult to Insert": "O_INTRAOP", "Tear, Rip or Hole in Device Packaging": "O_INTRAOP", "Packaging Problem": "O_INTRAOP", "Positioning Failure": "O_INTRAOP", "Device-Device Incompatibility": "O_INTRAOP", "Manufacturing, Packaging or Shipping Problem": "O_INTRAOP",
+      "patient:Unspecified Infection": "O_INFECTION", "patient:Bacterial Infection": "O_INFECTION", "patient:Sepsis": "O_INFECTION", "patient:Purulent Discharge": "O_INFECTION",
+      "patient:Joint Dislocation": "O_INSTABILITY", "patient:Joint Laxity": "O_INSTABILITY",
+      "patient:Osteolysis": "O_WEAR", "patient:Metal Related Pathology": "O_WEAR", "patient:Foreign Body Reaction": "O_WEAR", "patient:Synovitis": "O_WEAR",
+      "patient:Inadequate Osseointegration": "O_LOOSENING", "patient:Bone Fracture(s)": "O_BONE_FRACTURE",
+      "patient:Pain": "O_PAIN_STIFFNESS", "patient:Implant Pain": "O_PAIN_STIFFNESS", "patient:Discomfort": "O_PAIN_STIFFNESS", "patient:Loss of Range of Motion": "O_PAIN_STIFFNESS"
+    },
+    "cardiac": {
+      "Premature Discharge of Battery": "C_BATTERY", "Battery Problem": "C_BATTERY",
+      "Over-Sensing": "C_SENSING", "Under-Sensing": "C_SENSING", "Signal Artifact/Noise": "C_SENSING", "Device Sensing Problem": "C_SENSING", "Inappropriate/Inadequate Shock/Stimulation": "C_SENSING",
+      "High impedance": "C_LEAD_CAPTURE", "Low impedance": "C_LEAD_CAPTURE", "Impedance Problem": "C_LEAD_CAPTURE", "Failure to Capture": "C_LEAD_CAPTURE", "High Capture Threshold": "C_LEAD_CAPTURE", "No Pacing": "C_LEAD_CAPTURE", "Pacing Problem": "C_LEAD_CAPTURE", "Device Dislodged or Dislocated": "C_LEAD_CAPTURE", "Connection Problem": "C_LEAD_CAPTURE", "Loose or Intermittent Connection": "C_LEAD_CAPTURE", "Material Integrity Problem": "C_LEAD_CAPTURE",
+      "Failure to Interrogate": "C_TELEMETRY_SOFTWARE", "Interrogation Problem": "C_TELEMETRY_SOFTWARE", "Telemetry Discrepancy": "C_TELEMETRY_SOFTWARE", "Data Problem": "C_TELEMETRY_SOFTWARE", "Incorrect Measurement": "C_TELEMETRY_SOFTWARE", "Incorrect, Inadequate or Imprecise Result or Readings": "C_TELEMETRY_SOFTWARE", "Pacemaker Found in Back-Up Mode": "C_TELEMETRY_SOFTWARE", "Inappropriate or Unexpected Reset": "C_TELEMETRY_SOFTWARE", "Failure to Read Input Signal": "C_TELEMETRY_SOFTWARE",
+      "patient:Unspecified Infection": "C_INFECTION_POCKET", "patient:Pocket Erosion": "C_INFECTION_POCKET", "patient:Sepsis": "C_INFECTION_POCKET", "patient:Bacterial Infection": "C_INFECTION_POCKET", "patient:Hematoma": "C_INFECTION_POCKET"
+    },
+    "diabetes": {
+      "Unintended Movement": "D_ADHESIVE_DISLODGED", "Loss of or Failure to Bond": "D_ADHESIVE_DISLODGED", "Detachment of Device or Device Component": "D_ADHESIVE_DISLODGED",
+      "Material Twisted/Bent": "D_CANNULA_INSERTION", "Failure to Fire": "D_CANNULA_INSERTION", "Premature Activation": "D_CANNULA_INSERTION", "Difficult to Insert": "D_CANNULA_INSERTION", "Activation, Positioning or Separation Problem": "D_CANNULA_INSERTION", "Retraction Problem": "D_CANNULA_INSERTION", "Difficult or Delayed Activation": "D_CANNULA_INSERTION",
+      "Fluid/Blood Leak": "D_LEAK",
+      "Obstruction of Flow": "D_OCCLUSION_DELIVERY", "Inaccurate Delivery": "D_OCCLUSION_DELIVERY", "Pumping Stopped": "D_OCCLUSION_DELIVERY",
+      "Battery Problem": "D_ALARM_ELECTRONICS", "Inadequate User Interface": "D_ALARM_ELECTRONICS", "Fail-Safe Did Not Operate": "D_ALARM_ELECTRONICS", "Device Difficult to Program or Calibrate": "D_ALARM_ELECTRONICS", "Overheating of Device": "D_ALARM_ELECTRONICS", "Key or Button Unresponsive/not Working": "D_ALARM_ELECTRONICS", "No Display/Image": "D_ALARM_ELECTRONICS", "Display or Visual Feedback Problem": "D_ALARM_ELECTRONICS", "Display Difficult to Read": "D_ALARM_ELECTRONICS", "Power Problem": "D_ALARM_ELECTRONICS", "Failure to Cycle": "D_ALARM_ELECTRONICS",
+      "patient:Skin Inflammation/ Irritation": "D_SKIN", "patient:Skin Infection": "D_SKIN", "patient:Erythema": "D_SKIN", "patient:Itching Sensation": "D_SKIN", "patient:Purulent Discharge": "D_SKIN", "patient:Abscess": "D_SKIN"
+    }
+  }
+}

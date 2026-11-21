@@ -1,0 +1,42 @@
+{
+  "_about": "Phase 3 (failure modes, similar-report search, early-warning signals) success criteria, pre-registered 2026-11-21 before any reference label or method output existed. Judged by mdqc.verify_phase3. Later changes are labelled post hoc in docs/FAILURE_MODES.md.",
+  "reference_labels": {
+    "sample": "config/phase3_sample.csv: 40 reports per product code drawn by md5 order (text-blind); first 20 per code = validation, next 20 = test",
+    "labeller": "Claude (the AI coding assistant) labels every sample report with one primary mode from config/failure_modes.json, reading the report text (mdqc/textprep.py), before any method is run; labels are committed (config/phase3_labels.csv) before method outputs exist. The user then reviews 20 labels drawn by md5 order (10 validation, 10 test) and records agree/disagree.",
+    "spot_check_rule": "If the user agrees with fewer than 16 of 20 (80%), the codebook and labels are revised and everything after is labelled post hoc."
+  },
+  "methods": {
+    "M1_fda_terms": "FDA device + patient problem terms mapped by config/failure_modes.json fda_term_map; several modes -> family priority; none -> *_OTHER. Settings: none.",
+    "M2_keywords": "Codebook keyword regexes on the report text (case-insensitive). Settings chosen on validation: 'earliest' (the mode whose first match appears earliest in the text) or 'priority' (the highest-priority mode with any match). No match -> *_OTHER.",
+    "M3_embedding": "bge-small-en-v1.5 (BAAI, CPU): cosine similarity between the report text and each mode's definition (query prefix 'Represent this sentence for searching relevant passages: '); best mode, or *_OTHER if the best similarity is below a threshold. Settings chosen on validation: threshold in {none, 0.55, 0.60, 0.65}.",
+    "M4_hybrid": "M2 (with its chosen setting) when any keyword matches, else M3 (with its chosen setting).",
+    "M5_tfidf_kmeans": "TF-IDF (1-2 grams, min_df 5, English stop words) + k-means per family on all reports of the family (k = number of modes, seed 0); each cluster named by the majority reference label among VALIDATION reports in it (clusters with no validation report -> *_OTHER)."
+  },
+  "selection_and_test": {
+    "primary_metric": "accuracy of the primary mode (all codes pooled); secondary: macro-F1 over modes, per-family accuracy",
+    "selection": "the method + setting with the highest validation accuracy (ties -> simpler: M1 < M2 < M3 < M4 < M5) is the chosen method",
+    "test": "every method's chosen setting is scored once on the 100 test reports: accuracy with a 95% bootstrap interval (2,000 resamples of reports, seed 0)",
+    "claim_rule": "the chosen method is called better than the FDA-term baseline (M1) only if the paired bootstrap 95% interval of (chosen - M1) test accuracy is entirely above 0"
+  },
+  "similar_reports": {
+    "methods": "R1 BM25 (rank-bm25, Okapi defaults, simple word tokens), R2 bge-small cosine, R3 hybrid reciprocal-rank fusion of R1 and R2 (k=60)",
+    "evaluation": "each labelled report whose mode is not *_OTHER is a query; candidates = the other labelled reports of the same code in the same split; relevant = same reference mode. Metrics: MRR (primary) and precision@5",
+    "selection": "highest validation MRR; test MRR reported for all three with 95% bootstrap intervals; chosen vs BM25 claimed only if the paired interval is above 0"
+  },
+  "signals": {
+    "series": "monthly report counts by date_received for each (product code, parent company, failure mode from the chosen method), 2022-01 to 2024-12",
+    "rule": "month t (2023-01 or later, so 12 months of history exist) is a SIGNAL if count_t >= 5 and the Poisson probability of seeing count_t or more, with mean = average of the previous 12 months (at least 0.5), is below 0.001",
+    "backtest": "recall events (distinct res_event_number) of the scope codes initiated 2023-01-01..2024-12-31, matched to (product code, parent company of the recalling firm). HIT if that (code, parent) has any signal (any mode) in the initiation month or the 6 months before it. Base rate = share of all (code, parent, month) 7-month windows from 2023-07 to 2024-12 that contain a signal, for (code, parent) pairs with at least one report. Reported: hits / recall events, base rate, signals per year. No tuning: one registered rule.",
+    "caution": "a signal is a prompt to look, not evidence of a defect; recalls are few and concentrated in a few companies, so the backtest is descriptive"
+  },
+  "criteria": {
+    "F1_order": "git history shows codebook + sample + criteria committed before the labels, and the labels committed before any method output (results/phase3/).",
+    "F2_spot_check": "the user's review of 20 labels is recorded in config/phase3_spot_check.csv; agreement >= 16/20, else the post hoc rule applies.",
+    "F3_selection": "the chosen method was selected on validation only (verifier recomputes validation accuracies from saved predictions and confirms the choice).",
+    "F4_test": "test accuracy, intervals and the chosen-vs-M1 comparison are recomputed by the verifier from saved predictions with independent code.",
+    "F5_retrieval": "retrieval MRR / precision@5 recomputed by the verifier from saved rankings.",
+    "F6_signals": "signals and the backtest recomputed by the verifier from the database with independent code: identical.",
+    "F7_database": "every report has exactly one mode from the chosen method in core.report_failure_mode; counts per mode equal the saved full-corpus predictions.",
+    "F8_ci": "unit tests (keyword rules, M1 mapping, Poisson rule, metrics) and the verifier on a fixture run in CI."
+  }
+}
