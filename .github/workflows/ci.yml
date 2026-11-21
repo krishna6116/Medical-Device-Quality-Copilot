@@ -20,3 +20,33 @@ jobs:
           python -m mdqc.verify_phase1 --raw tests/fixtures/phase1/raw --summary "$RUNNER_TEMP/phase1/eda_summary.json" --no-download-checks
       - name: Findings doc is generated from the committed results
         run: python -m mdqc.report_phase1 --check
+
+  # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
+  # (including the tampered-cell check) and the independent verifier (P1-P8) on it.
+  pipeline:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: ci
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: mdqc
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U ci" --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://ci:ci-only-password@localhost:5432/mdqc
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - run: pip install -r requirements.txt
+      - run: pytest tests/test_phase2.py
+      - name: Load the fixture and verify it independently
+        run: |
+          python -m mdqc.load --raw tests/fixtures/phase1/raw --schema core --no-summary
+          python -m mdqc.verify_phase2 --raw tests/fixtures/phase1/raw --fixture
+      - name: Pipeline doc is generated from the committed results
+        run: python -m mdqc.report_phase2 --check

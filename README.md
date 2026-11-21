@@ -1,6 +1,6 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phases 0-1 done; 8 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+> Work in progress (Phases 0-2 done; 7 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
 
 ## The problem
 
@@ -19,8 +19,9 @@ When a device starts failing in the field, a quality engineer has to answer ques
 |---|---|
 | 0 Setup | done |
 | 1 Data + EDA | done: 154,194 reports + 1,626 recalls for 5 device types; [findings](docs/EDA_FINDINGS.md), [data card](docs/DATA_CARD.md), verifier 8/8 |
-| 2 Pipeline (PostgreSQL) | next |
-| 3-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
+| 2 Pipeline (PostgreSQL) | done: star schema, 1 record quarantined, 305 maker names -> 101 companies, report-recall links; [pipeline](docs/PIPELINE.md), verifier 9/9 |
+| 3 Failure modes | next |
+| 4-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 
 ## Run locally
 
@@ -32,6 +33,9 @@ python -m venv .venv
 .venv\Scripts\python -m mdqc.download        # ~1 GB transfer, 68 MB stored, no key needed
 .venv\Scripts\python -m mdqc.eda
 .venv\Scripts\python -m mdqc.verify_phase1
+.venv\Scripts\python -m mdqc.db_setup        # once: PostgreSQL database + login (password into .env)
+.venv\Scripts\python -m mdqc.load
+.venv\Scripts\python -m mdqc.verify_phase2
 ```
 
 ## Data and limits

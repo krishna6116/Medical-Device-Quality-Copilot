@@ -1,0 +1,330 @@
+{
+  "run_id": "load-20261121T193943Z",
+  "schema": "core",
+  "stats": {
+    "quarantine": [
+      [
+        "events_LWP.jsonl.gz",
+        "20466318",
+        "R5",
+        "no narrative text"
+      ]
+    ],
+    "event_date_flag": {
+      "after_received": 190,
+      "missing": 6784,
+      "ok": 147219
+    },
+    "pma_prefix": {
+      "K (510(k))": 80990,
+      "P (PMA)": 39231,
+      "none": 26064,
+      "other": 7891,
+      "DEN (De Novo)": 17
+    },
+    "manufacturer_names": [
+      305,
+      101
+    ],
+    "parents_per_code": {
+      "LPH": {
+        "top": [
+          [
+            "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+            9822,
+            13
+          ],
+          [
+            "ZIMMER BIOMET",
+            3112,
+            19
+          ],
+          [
+            "STRYKER",
+            1670,
+            10
+          ],
+          [
+            "ENCORE MEDICAL",
+            575,
+            4
+          ],
+          [
+            "SMITH & NEPHEW",
+            445,
+            3
+          ],
+          [
+            "MEDACTA INTERNATIONAL",
+            243,
+            1
+          ]
+        ],
+        "parents": 33,
+        "reports_outside_top6": 329,
+        "reports_under_parents_with_under_20": 81
+      },
+      "JWH": {
+        "top": [
+          [
+            "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+            8684,
+            16
+          ],
+          [
+            "ZIMMER BIOMET",
+            7377,
+            19
+          ],
+          [
+            "EXACTECH",
+            6406,
+            3
+          ],
+          [
+            "SMITH & NEPHEW",
+            2520,
+            7
+          ],
+          [
+            "MEDACTA INTERNATIONAL",
+            1339,
+            2
+          ],
+          [
+            "ENCORE MEDICAL",
+            818,
+            3
+          ]
+        ],
+        "parents": 47,
+        "reports_outside_top6": 994,
+        "reports_under_parents_with_under_20": 129
+      },
+      "MBH": {
+        "top": [
+          [
+            "STRYKER",
+            1890,
+            5
+          ],
+          [
+            "ZIMMER BIOMET",
+            1551,
+            6
+          ],
+          [
+            "DEPUY SYNTHES (JOHNSON & JOHNSON)",
+            349,
+            5
+          ],
+          [
+            "ENCORE MEDICAL",
+            93,
+            2
+          ],
+          [
+            "SMITH & NEPHEW",
+            64,
+            1
+          ],
+          [
+            "MICROPORT",
+            18,
+            1
+          ]
+        ],
+        "parents": 17,
+        "reports_outside_top6": 56,
+        "reports_under_parents_with_under_20": 74
+      },
+      "LWP": {
+        "top": [
+          [
+            "BOSTON SCIENTIFIC",
+            21753,
+            6
+          ],
+          [
+            "ABBOTT",
+            13423,
+            16
+          ],
+          [
+            "MEDTRONIC",
+            900,
+            12
+          ],
+          [
+            "MICROPORT",
+            741,
+            3
+          ],
+          [
+            "MPRI",
+            543,
+            1
+          ],
+          [
+            "UNKNOWN",
+            20,
+            1
+          ]
+        ],
+        "parents": 19,
+        "reports_outside_top6": 33,
+        "reports_under_parents_with_under_20": 33
+      },
+      "LZG": {
+        "top": [
+          [
+            "INSULET",
+            50464,
+            3
+          ],
+          [
+            "MEDTRONIC",
+            12048,
+            8
+          ],
+          [
+            "ROCHE",
+            3818,
+            3
+          ],
+          [
+            "TANDEM DIABETES CARE",
+            1677,
+            3
+          ],
+          [
+            "MANNKIND",
+            324,
+            2
+          ],
+          [
+            "ZEALAND PHARMA U S",
+            74,
+            1
+          ]
+        ],
+        "parents": 13,
+        "reports_outside_top6": 20,
+        "reports_under_parents_with_under_20": 20
+      }
+    },
+    "recalls_repaired": [
+      [
+        "Z-0493-2014",
+        "2013-11-26",
+        "2013-12-13"
+      ]
+    ],
+    "links": {
+      "510k": {
+        "links": 333623,
+        "reports": 66734,
+        "recalls": 944,
+        "median_days": 903,
+        "min_days": -1716,
+        "max_days": 7695,
+        "links_within_365_days": 22331,
+        "per_code": {
+          "JWH": [
+            10732,
+            611
+          ],
+          "LPH": [
+            2404,
+            205
+          ],
+          "LZG": [
+            52403,
+            34
+          ],
+          "MBH": [
+            1195,
+            94
+          ]
+        }
+      },
+      "firm_window": {
+        "links": 197931,
+        "reports": 64888,
+        "recalls": 200,
+        "median_days": 126,
+        "min_days": -180,
+        "max_days": 365,
+        "links_within_365_days": 197931,
+        "per_code": {
+          "JWH": [
+            17560,
+            123
+          ],
+          "LPH": [
+            3373,
+            45
+          ],
+          "LWP": [
+            7791,
+            11
+          ],
+          "LZG": [
+            33651,
+            4
+          ],
+          "MBH": [
+            2513,
+            17
+          ]
+        }
+      }
+    },
+    "reports_with_any_link": 90618
+  },
+  "raw_dir": "data\\raw",
+  "counts": {
+    "dim_product_code": 5,
+    "dim_manufacturer": 305,
+    "fact_report": 154193,
+    "report_device": 154680,
+    "report_problem": 200993,
+    "report_patient_problem": 206357,
+    "report_text": 410058,
+    "fact_recall": 1626,
+    "report_recall_link": 531554,
+    "quarantine": 1,
+    "links_by_type": {
+      "510k": 333623,
+      "firm_window": 197931
+    },
+    "quarantine_by_rule": {
+      "R5": 1
+    },
+    "raw_records": {
+      "events_LPH.jsonl.gz": 16196,
+      "events_JWH.jsonl.gz": 28138,
+      "events_MBH.jsonl.gz": 4021,
+      "events_LWP.jsonl.gz": 37414,
+      "events_LZG.jsonl.gz": 68425,
+      "recalls_LPH.jsonl.gz": 299,
+      "recalls_JWH.jsonl.gz": 985,
+      "recalls_MBH.jsonl.gz": 103,
+      "recalls_LWP.jsonl.gz": 113,
+      "recalls_LZG.jsonl.gz": 126
+    }
+  },
+  "raw_checksums": {
+    "classification.jsonl.gz": "7eeba4fcd055b2e2656d6d9f66df4c4cb4ce5af0cabed06eebbe769e711df755",
+    "events_JWH.jsonl.gz": "62fa3b17fb72773cedbda8805ca491753f80ba5d5e8f594681974f5855cb0f18",
+    "events_LPH.jsonl.gz": "96d2b68931bfcd14af2247b5b829955abdbbd7d97b6dae09ba34f694adeef8e5",
+    "events_LWP.jsonl.gz": "37d60471f8706d7e8d1fab16ac141037b8da753b5f0fc117bc3c5ea3371fb253",
+    "events_LZG.jsonl.gz": "8e16f0d1cbc8e70ac0b886388475590f48deb3952d339b6e2eeeb918765c53bf",
+    "events_MBH.jsonl.gz": "67585cdf7b1dd3478215e556458b739e989c4a8c1259a2a6ae298854add9c12c",
+    "recalls_JWH.jsonl.gz": "1dd7fb6a893a802c0d3ea6d26c78fb6878e08c3d21452c5dbf5bff5d4543607a",
+    "recalls_LPH.jsonl.gz": "eb768d212669523d5c4b930bc54363ce0d768ecee7f59a085bdf4161ac786175",
+    "recalls_LWP.jsonl.gz": "64ad832af854d126cb238c8e4527b9779e98932bf94670911b616322d2024577",
+    "recalls_LZG.jsonl.gz": "926d94e9e451e497f379ad2053eb5d585660ca2a08e7e1922d0616ea9958889a",
+    "recalls_MBH.jsonl.gz": "3f50f1d5073f314cdb4ca2dbf991223a0a169cf7a5e02bf01efd15e2f1eeeb86"
+  }
+}

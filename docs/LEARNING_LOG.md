@@ -41,3 +41,19 @@
 **Concept:** *independent* verification needs an independent source, not just independent code. Two programs written from the same (wrong) definition fail together; an outside reference (here the data owner's own counts) catches that.
 
 **Same day, gaps closed:** the two plan items Phase 1 had not delivered are now done. (1) Q9, per-manufacturer monthly trends (post hoc, verified like every other number): code totals hide makers moving in opposite directions, e.g. one knee maker's reports rose 253% from 2022 to 2024 while the other two large makers stayed flat, and the October 2022 pacemaker peak came from St. Jude/Abbott, not the largest maker. (2) `python -m mdqc.setup_env`, an optional hidden-prompt writer for API keys. *Concept:* aggregation can hide structure (a form of Simpson's paradox in time series), so trends are read at the level where decisions are made: per manufacturer.
+
+## 2026-11-21 (evening): Phase 2 PostgreSQL pipeline
+
+**Decided:** a separate database `mdqc` with its own login `mdqc_app` (created once from the predictive maintenance project's admin connection; the new password lives only in this project's `.env`).
+
+**Built:** pre-registered rules and criteria (committed before the first load), a star schema, a one-transaction loader with quarantine, manufacturer parent mapping, report-recall links, an independent verifier (cell-for-cell rebuild of 1.1M rows, privacy scan, idempotent reload, planted faults, Phase 1 numbers reproduced), DB tests (a single tampered cell is caught; link-window edges), a CI job with a real PostgreSQL, a generated pipeline doc and a notebook that runs SQL.
+
+**Concepts:**
+- *Star schema:* facts (events) in the middle, dimensions (what the events are about) around them; repeated lists in child tables so each item is counted once.
+- *Quarantine, not deletion:* a bad record is kept with the rule it broke, so nothing disappears silently. The rules caught one real report with no narrative at all.
+- *Idempotence:* the load rebuilds everything in one transaction, so running it twice gives identical tables (checked with fingerprints).
+- *Least privilege:* the app login owns only its own database.
+- *Entity resolution:* 305 spellings of manufacturers became 101 parent companies with written ownership rules (St. Jude -> Abbott, Howmedica -> Stryker, ...); a small misspelled tail is documented instead of quietly patched.
+- *Link strength:* a shared 510(k) number links a report to recalls years apart, so the assistant must filter links by date and say how strong a link is.
+
+**Next:** Phase 3, failure-mode grouping with non-LLM baselines and a per-manufacturer signal rule.

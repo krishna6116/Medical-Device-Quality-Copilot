@@ -1,0 +1,214 @@
+{
+  "checked_utc": "2026-11-21T19:48:19Z",
+  "schema": "core",
+  "all_pass": true,
+  "checks": [
+    {
+      "id": "P1",
+      "check": "loaded + quarantined = raw records, every file",
+      "pass": true,
+      "detail": {
+        "events_LPH.jsonl.gz": {
+          "raw": 16196,
+          "loaded": 16196,
+          "quarantined": 0
+        },
+        "recalls_LPH.jsonl.gz": {
+          "raw": 299,
+          "loaded": 299,
+          "quarantined": 0
+        },
+        "events_JWH.jsonl.gz": {
+          "raw": 28138,
+          "loaded": 28138,
+          "quarantined": 0
+        },
+        "recalls_JWH.jsonl.gz": {
+          "raw": 985,
+          "loaded": 985,
+          "quarantined": 0
+        },
+        "events_MBH.jsonl.gz": {
+          "raw": 4021,
+          "loaded": 4021,
+          "quarantined": 0
+        },
+        "recalls_MBH.jsonl.gz": {
+          "raw": 103,
+          "loaded": 103,
+          "quarantined": 0
+        },
+        "events_LWP.jsonl.gz": {
+          "raw": 37414,
+          "loaded": 37413,
+          "quarantined": 1
+        },
+        "recalls_LWP.jsonl.gz": {
+          "raw": 113,
+          "loaded": 113,
+          "quarantined": 0
+        },
+        "events_LZG.jsonl.gz": {
+          "raw": 68425,
+          "loaded": 68425,
+          "quarantined": 0
+        },
+        "recalls_LZG.jsonl.gz": {
+          "raw": 126,
+          "loaded": 126,
+          "quarantined": 0
+        }
+      }
+    },
+    {
+      "id": "P2",
+      "check": "every loaded row and column = independent rebuild from raw",
+      "pass": true,
+      "detail": {
+        "rows_compared": {
+          "fact_report": 154193,
+          "report_device": 154680,
+          "report_problem": 200993,
+          "report_patient_problem": 206357,
+          "report_text": 410058,
+          "fact_recall": 1626
+        },
+        "differences": {},
+        "quarantine_matches": true
+      }
+    },
+    {
+      "id": "P3",
+      "check": "no personal columns; contact names/phones absent from loaded rows",
+      "pass": true,
+      "detail": {
+        "personal_columns": [],
+        "quarantine_rows_with_personal_keys": 0,
+        "reports_sampled_with_contact_values": 990,
+        "reports_where_found": []
+      }
+    },
+    {
+      "id": "P6",
+      "check": "manufacturer clean/parent mapping = independent application of the alias file",
+      "pass": true,
+      "detail": {
+        "names": 305,
+        "parents": 101,
+        "mismatches": []
+      }
+    },
+    {
+      "id": "P7",
+      "check": "invalid recall dates repaired by the registered rule or quarantined",
+      "pass": true,
+      "detail": {
+        "repaired": [
+          [
+            "Z-0493-2014",
+            "2013-11-26"
+          ]
+        ],
+        "quarantined_Q2": []
+      }
+    },
+    {
+      "id": "P8",
+      "check": "report-recall links = independent recomputation",
+      "pass": true,
+      "detail": {
+        "expected_by_type": {
+          "firm_window": 197931,
+          "510k": 333623
+        },
+        "only_db": 0,
+        "only_expected": 0
+      }
+    },
+    {
+      "id": "P4",
+      "check": "second load gives identical table fingerprints",
+      "pass": true,
+      "detail": {
+        "dim_date": {
+          "rows": 18628,
+          "same": true
+        },
+        "dim_manufacturer": {
+          "rows": 305,
+          "same": true
+        },
+        "dim_product_code": {
+          "rows": 5,
+          "same": true
+        },
+        "fact_recall": {
+          "rows": 1626,
+          "same": true
+        },
+        "fact_report": {
+          "rows": 154193,
+          "same": true
+        },
+        "quarantine": {
+          "rows": 1,
+          "same": true
+        },
+        "report_device": {
+          "rows": 154680,
+          "same": true
+        },
+        "report_patient_problem": {
+          "rows": 206357,
+          "same": true
+        },
+        "report_problem": {
+          "rows": 200993,
+          "same": true
+        },
+        "report_recall_link": {
+          "rows": 531554,
+          "same": true
+        },
+        "report_text": {
+          "rows": 410058,
+          "same": true
+        }
+      }
+    },
+    {
+      "id": "P5",
+      "check": "each planted fault quarantined with its rule; clean rows still load",
+      "pass": true,
+      "detail": {
+        "caught": {
+          "R1": true,
+          "R2": true,
+          "R3": true,
+          "R4": true,
+          "R5": true,
+          "Q1": true,
+          "Q2": true
+        },
+        "quarantined": 7,
+        "reports_loaded": [
+          196,
+          196
+        ],
+        "recalls_loaded": [
+          49,
+          49
+        ]
+      }
+    },
+    {
+      "id": "P9",
+      "check": "SQL reproduces Phase 1 numbers (quarantined records added back)",
+      "pass": true,
+      "detail": {
+        "mismatches": [],
+        "quarantined_reports_added_back": 1
+      }
+    }
+  ]
+}
