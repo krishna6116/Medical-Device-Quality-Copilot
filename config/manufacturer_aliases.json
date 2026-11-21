@@ -1,0 +1,20 @@
+{
+  "_about": "Pre-registered (Phase 2, before the first load) rules that map a manufacturer or recalling-firm name to a parent company. Step 1, clean: upper-case, '&' kept, other punctuation removed, trailing site numbers ('- 9616671') removed, trailing legal suffixes removed (list below), spaces collapsed. Step 2, parent: the first pattern found as a whole-word substring of the clean name decides; no match = the clean name itself. Only well-documented ownership is encoded; anything uncertain stays separate. Changes after the first load are labelled post hoc in docs/PIPELINE.md.",
+  "legal_suffixes": ["INCORPORATED", "INC", "CORPORATION", "CORP", "COMPANY", "CO", "LLC", "LIMITED", "LTD", "LP", "L P", "SA", "AG", "BV", "B V", "SRL", "S R L", "GMBH", "PLC", "US", "USA"],
+  "parents": [
+    {"patterns": ["DEPUY"], "parent": "DEPUY SYNTHES (JOHNSON & JOHNSON)", "source": "DePuy is the orthopaedics company of Johnson & Johnson"},
+    {"patterns": ["ZIMMER", "BIOMET"], "parent": "ZIMMER BIOMET", "source": "Zimmer and Biomet merged in 2015"},
+    {"patterns": ["STRYKER", "HOWMEDICA"], "parent": "STRYKER", "source": "Howmedica Osteonics is Stryker's orthopaedic subsidiary"},
+    {"patterns": ["ST JUDE", "ABBOTT"], "parent": "ABBOTT", "source": "Abbott acquired St. Jude Medical in 2017"},
+    {"patterns": ["BOSTON SCIENTIFIC", "GUIDANT"], "parent": "BOSTON SCIENTIFIC", "source": "Boston Scientific acquired Guidant in 2006"},
+    {"patterns": ["MEDTRONIC", "MINIMED"], "parent": "MEDTRONIC", "source": "Medtronic acquired MiniMed in 2001"},
+    {"patterns": ["ROCHE", "DISETRONIC"], "parent": "ROCHE", "source": "Roche acquired Disetronic in 2003"},
+    {"patterns": ["SMITH & NEPHEW", "SMITH AND NEPHEW"], "parent": "SMITH & NEPHEW", "source": "name variants"},
+    {"patterns": ["MICROPORT"], "parent": "MICROPORT", "source": "name variants (MicroPort CRM, MicroPort Orthopedics)"},
+    {"patterns": ["ENCORE MEDICAL"], "parent": "ENCORE MEDICAL", "source": "name variants ('L.P.' / 'L.P' / 'LP')"},
+    {"patterns": ["TANDEM DIABETES"], "parent": "TANDEM DIABETES CARE", "source": "name variants"},
+    {"patterns": ["INSULET"], "parent": "INSULET", "source": "name variants"},
+    {"patterns": ["EXACTECH"], "parent": "EXACTECH", "source": "name variants"},
+    {"patterns": ["MANNKIND"], "parent": "MANNKIND", "source": "name variants ('MANNKIND CORPORATION - V-GO' with one or two spaces)"}
+  ]
+}

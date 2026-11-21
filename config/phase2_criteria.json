@@ -1,0 +1,43 @@
+{
+  "_about": "Phase 2 (PostgreSQL pipeline) success criteria, pre-registered 2026-11-21 before the first load. Judged by mdqc.verify_phase2. Anything decided after the first load is labelled post hoc in docs/PIPELINE.md.",
+  "design": {
+    "database": "PostgreSQL 17, database mdqc, login mdqc_app (created by mdqc.db_setup), schema core",
+    "tables": "dim_product_code, dim_manufacturer, dim_date, fact_report, report_device, report_problem, report_patient_problem, report_text, fact_recall, report_recall_link, quarantine, load_run",
+    "grain": "fact_report: one row per MAUDE report (mdr_report_key) under its scope product code; fact_recall: one row per recall record (product_res_number)",
+    "load": "one transaction per run: truncate core tables, COPY clean rows, write quarantine and a load_run row with the raw-file checksums; re-running gives the same table contents",
+    "privacy": "never loaded: every manufacturer_contact_* field, patient age, sex, weight, race and ethnicity. Loaded patient information is limited to FDA patient-problem terms (not identifying). Narratives are loaded (needed for the assistant) as FDA redacted them."
+  },
+  "rules": {
+    "report_quarantine": {
+      "R1": "mdr_report_key missing, or seen before in the same file",
+      "R2": "date_received not a valid YYYYMMDD date or outside 2022-01-01..2024-12-31",
+      "R3": "no device entry carries the scope product code",
+      "R4": "event_type not one of Malfunction, Injury, Death, Other, or blank (blank is loaded as 'Not provided')",
+      "R5": "no narrative text at all"
+    },
+    "report_flags_not_quarantine": "date_of_event invalid -> NULL with flag 'invalid'; event after receipt -> kept with flag 'after_received'",
+    "recall_quarantine": {
+      "Q1": "product_res_number missing or duplicated",
+      "Q2": "event_date_initiated invalid and not repairable by the repair rule"
+    },
+    "recall_date_repair": "if the initiation year is before 1976 and event_date_posted is valid: use the posted year with the original month and day; if that date is after the posted date use the year before; mark initiated_date_repaired = true. Expected: 1 record (JWH, '0013-11-26', posted 2013-12-13 -> 2013-11-26).",
+    "manufacturer": "config/manufacturer_aliases.json; the report's manufacturer is manufacturer_d_name of the first device entry with the scope product code (same as Phase 1); recalls map recalling_firm with the same rules",
+    "links": {
+      "510k": "report.pma_pmn_number (trimmed, upper-case) is one of the recall's k_numbers AND same product code (strong link: same cleared device family)",
+      "firm_window": "same product code AND same parent company AND date_received between 180 days before and 365 days after the recall's initiation date (weak link: candidate context, never proof)"
+    }
+  },
+  "criteria": {
+    "P1_accounted": "For every raw file: rows loaded + rows quarantined = raw records (events per code, recalls per code).",
+    "P2_cell_for_cell": "verify_phase2 rebuilds every loaded row of fact_report, report_device, report_problem, report_patient_problem, report_text and fact_recall from the raw files with separate code (no import of the loader) and compares all rows and columns with the database: 0 differences.",
+    "P3_privacy": "No column in schema core is named like a dropped field (contact, patient age/sex/weight/race/ethnicity); no dropped-field value from a 1,000-report sample appears in any loaded text column.",
+    "P4_idempotent": "Two consecutive loads give identical content fingerprints (md5 over ordered rows) for every table except load_run.",
+    "P5_planted_faults": "On a copy of the fixture with one planted fault per rule (R1-R5, Q1, Q2) loaded into a separate schema, each faulty record is quarantined with the right rule and every clean record still loads.",
+    "P6_manufacturers": "Every raw manufacturer/firm name maps to exactly one parent; the mapping in the database equals the verifier's own application of config/manufacturer_aliases.json.",
+    "P7_recall_dates": "Invalid recall initiation dates are repaired by the registered rule or quarantined; the verifier recomputes the repaired dates.",
+    "P8_links": "The verifier recomputes both link sets independently: exact equality with report_recall_link.",
+    "P9_phase1_reproduced": "SQL on the database reproduces Phase 1's published numbers: reports and recalls per code, monthly counts, event types, top-10 problem terms (once per report), top manufacturer per code.",
+    "P10_ci": "A CI job with a PostgreSQL service loads the fixture and runs the verifier (P1, P2, P3, P4, P5, P6, P7, P8 on the fixture)."
+  },
+  "phase_done_when": "P1-P9 pass on the full data (evidence committed), P10 green in CI, docs/PIPELINE.md generated from results, notebook 02 runs top to bottom and ends with the 'Why we did these tasks' table."
+}

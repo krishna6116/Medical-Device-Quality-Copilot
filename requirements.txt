@@ -7,6 +7,7 @@ pandas>=2.2
 numpy>=2.0
 matplotlib>=3.9
 pytest>=8.3
+psycopg[binary]>=3.2   # PostgreSQL driver (Phase 2)
 # notebooks (built and executed with nbclient)
 nbformat>=5.10
 nbclient>=0.10
