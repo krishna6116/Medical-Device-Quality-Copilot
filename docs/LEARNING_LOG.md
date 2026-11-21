@@ -2,7 +2,7 @@
 
 ## 2026-11-21: Phase 0 setup and Phase 1 start (openFDA access check)
 
-**Decided:** full version (11 phases, ~5-6 weeks), with a verification script per phase. Cost plan: free local tools while building; one capped Claude Opus 5.5 run for the final evaluation; the demo replays recorded answers.
+**Decided:** full version (10 phases, 0-9, ~5-6 weeks), laid out like the predictive maintenance project and reusing its patterns: pre-registered criteria and a verification script in CI for every phase, PostgreSQL pipeline, failure-mode grouping with a non-LLM baseline, safety + cost + drift monitoring, Streamlit + Power BI. Cost plan: free local tools while building; one capped Claude Opus 5.5 run for the final evaluation; the demo replays recorded answers.
 
 **Built:** the repo (`.gitignore` that blocks data, `.env`, weights and caches; `.gitattributes` for LF; `requirements.txt`; pytest; CI skeleton), `CLAUDE.md` and `docs/PLAN.md` with the phase plan, an openFDA client and an access-check script.
 
