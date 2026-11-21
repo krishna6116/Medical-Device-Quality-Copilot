@@ -1,6 +1,6 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phase 1 of 9). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+> Work in progress (Phase 0 setup done; 9 phases planned). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
 
 ## The problem
 
@@ -11,14 +11,14 @@ When a device starts failing in the field, a quality engineer has to answer ques
 - Answer investigation questions from openFDA device adverse-event reports and recalls, citing the exact report numbers.
 - Group reports into failure modes (non-LLM baselines first), show trends and statistical signals, and link them to recalls.
 - Remember each open investigation (product, hypotheses, what was ruled out and why, decisions), with a page to view and delete that memory.
-- Be evaluated honestly against a pre-registered question set: a free local model vs one capped run of Claude.
+- Run on Claude Haiku 5.5 (a few dollars for the whole project) and be evaluated honestly against a pre-registered question set, compared with one run of a stronger Claude model; the live demo replays recorded answers at no cost.
 
 ## Status
 
 | Phase | State |
 |---|---|
 | 0 Setup | done |
-| 1 Data + EDA | in progress: [openFDA access check](docs/OPENFDA_ACCESS.md) |
+| 1 Data + EDA | next (access already checked: [openFDA access check](docs/OPENFDA_ACCESS.md)) |
 | 2-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 
 ## Run locally
