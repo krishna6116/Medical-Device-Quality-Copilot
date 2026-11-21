@@ -1,0 +1,201 @@
+mdr_report_key,product_code,split,label,note
+13587992,JWH,validation,O_INTRAOP,fractured reusable provisional (trial/instrument)
+17546964,JWH,validation,O_INSTABILITY,
+14753805,JWH,validation,O_INFECTION,
+19437285,JWH,validation,O_INSTABILITY,
+17167575,JWH,validation,O_LOOSENING,
+14407147,JWH,validation,O_INSTABILITY,
+18684546,JWH,validation,O_INTRAOP,cam trial broke in surgery
+17974608,JWH,validation,O_OTHER,report sent in error; no allegation
+19116743,JWH,validation,O_INSTABILITY,"borderline: instability and wear, no causal link: priority"
+18842583,JWH,validation,O_OTHER,"legal, reason unknown"
+16184278,JWH,validation,O_INFECTION,septic loosening
+13196917,JWH,validation,O_LOOSENING,
+14186267,JWH,validation,O_OTHER,literature summary
+15598761,JWH,validation,O_INTRAOP,
+20570818,JWH,validation,O_INSTABILITY,
+18209053,JWH,validation,O_PAIN_STIFFNESS,
+17602733,JWH,validation,O_INTRAOP,fractured provisional
+18612979,JWH,validation,O_LOOSENING,
+14106970,JWH,validation,O_INSTABILITY,
+18702471,JWH,validation,O_OTHER,DVT
+17424186,JWH,test,O_WEAR,borderline: instability explicitly caused by accelerated wear: cause beats symptom
+17773621,JWH,test,O_INFECTION,
+14074191,JWH,test,O_OTHER,"legal claim, reason not stated in visible text"
+18231114,JWH,test,O_BONE_FRACTURE,
+19611244,JWH,test,O_OTHER,"legal, reason unconfirmed"
+16378115,JWH,test,O_INSTABILITY,"borderline: loosening, wear, subsidence, instability listed: priority"
+16272361,JWH,test,O_PAIN_STIFFNESS,
+16530178,JWH,test,O_OTHER,"legal, reason unknown"
+15051236,JWH,test,O_LOOSENING,"pain, stiffness, osteolysis, loose tray: priority"
+16956266,JWH,test,O_INTRAOP,fractured provisional
+14249882,JWH,test,O_PAIN_STIFFNESS,lacked full extension
+20348508,JWH,test,O_PAIN_STIFFNESS,
+17939864,JWH,test,O_INTRAOP,provisional fractured during trialing
+13474821,JWH,test,O_OTHER,patella resurfacing
+18346681,JWH,test,O_WEAR,
+16896366,JWH,test,O_PAIN_STIFFNESS,
+20555205,JWH,test,O_INSTABILITY,
+17728587,JWH,test,O_PAIN_STIFFNESS,
+15542763,JWH,test,O_PAIN_STIFFNESS,
+18769546,JWH,test,O_BONE_FRACTURE,
+20432844,LPH,validation,O_INSTABILITY,
+16993516,LPH,validation,O_INFECTION,
+19973642,LPH,validation,O_INTRAOP,
+16241237,LPH,validation,O_INFECTION,
+17965306,LPH,validation,O_WEAR,pain + metallosis: cause (metallosis) beats symptom
+20828147,LPH,validation,O_WEAR,
+16342081,LPH,validation,O_INSTABILITY,
+16985162,LPH,validation,O_INSTABILITY,
+19757631,LPH,validation,O_LOOSENING,
+15129627,LPH,validation,O_OTHER,literature summary
+15895523,LPH,validation,O_INSTABILITY,
+17343062,LPH,validation,O_WEAR,
+18777258,LPH,validation,O_INTRAOP,
+20177219,LPH,validation,O_INFECTION,
+18085544,LPH,validation,O_INSTABILITY,constrained liner dislocated
+20817633,LPH,validation,O_PAIN_STIFFNESS,"borderline: pain/swelling reported; infection elsewhere in body, not confirmed in hip"
+16712781,LPH,validation,O_INSTABILITY,
+19351935,LPH,validation,O_WEAR,
+20334402,LPH,validation,O_OTHER,ambulation difficulty only
+13222691,LPH,validation,O_BONE_FRACTURE,fall + periprosthetic fracture; loosening found: priority
+19838998,LPH,test,O_INFECTION,
+17773624,LPH,test,O_PAIN_STIFFNESS,pain from iliopsoas impingement
+17699934,LPH,test,O_INSTABILITY,
+15868756,LPH,test,O_WEAR,
+15183977,LPH,test,O_BONE_FRACTURE,fracture around stem caused loosening
+16961230,LPH,test,O_LOOSENING,"borderline: metallosis/ALTR and stem migration, no causal link: priority"
+15041905,LPH,test,O_OTHER,literature summary
+17653126,LPH,test,O_OTHER,borderline: squeaking/noise and discomfort
+18933549,LPH,test,O_LOOSENING,subsidence and loosening; infection only suspected
+16631806,LPH,test,O_LOOSENING,borderline: metal ions and loose cup: priority
+17031083,LPH,test,O_PAIN_STIFFNESS,
+21000876,LPH,test,O_DEVICE_FRACTURE,liner fractured or dissociated
+17652564,LPH,test,O_INSTABILITY,
+20351015,LPH,test,O_INSTABILITY,
+15484010,LPH,test,O_INFECTION,
+15080437,LPH,test,O_INSTABILITY,
+20443622,LPH,test,O_BONE_FRACTURE,
+17487427,LPH,test,O_DEVICE_FRACTURE,
+15555651,LPH,test,O_LOOSENING,
+17823921,LPH,test,O_DEVICE_FRACTURE,head dislodged from taper (dissociation)
+17882653,LWP,validation,C_BATTERY,no interrogation + premature battery depletion: priority
+16526938,LWP,validation,C_PREVENTIVE,
+19918510,LWP,validation,C_SENSING,
+19210035,LWP,validation,C_OTHER,"syncope; programming optimisation, no malfunction"
+17686208,LWP,validation,C_BATTERY,
+17058482,LWP,validation,C_SENSING,
+16377356,LWP,validation,C_PREVENTIVE,
+13259304,LWP,validation,C_INFECTION_POCKET,pocket redness / allergic reaction
+19978317,LWP,validation,C_BATTERY,
+16987470,LWP,validation,C_LEAD_CAPTURE,low impedance + oversensing: priority
+17337901,LWP,validation,C_LEAD_CAPTURE,
+15253459,LWP,validation,C_OTHER,unknown reason
+15777109,LWP,validation,C_PREVENTIVE,
+14067889,LWP,validation,C_INFECTION_POCKET,
+13262076,LWP,validation,C_TELEMETRY_SOFTWARE,safety mode
+15307424,LWP,validation,C_INFECTION_POCKET,
+13138360,LWP,validation,C_BATTERY,
+19747431,LWP,validation,C_TELEMETRY_SOFTWARE,safety mode
+15331775,LWP,validation,C_PREVENTIVE,
+19867623,LWP,validation,C_BATTERY,oversensing pauses; safety mode and early battery depletion: priority
+20708864,LWP,test,C_BATTERY,
+15380884,LWP,test,C_PREVENTIVE,
+17163889,LWP,test,C_PREVENTIVE,explanted per field safety notice
+17518574,LWP,test,C_INFECTION_POCKET,
+16372745,LWP,test,C_PREVENTIVE,
+19992486,LWP,test,C_TELEMETRY_SOFTWARE,diagnostics data discrepancy
+18213490,LWP,test,C_LEAD_CAPTURE,safety mode + high impedance: priority
+15098416,LWP,test,C_LEAD_CAPTURE,borderline: longevity drop caused by failed threshold tests / high output: cause beats symptom
+16843364,LWP,test,C_LEAD_CAPTURE,
+19193020,LWP,test,C_TELEMETRY_SOFTWARE,safety mode
+18074606,LWP,test,C_INFECTION_POCKET,
+14628936,LWP,test,C_INFECTION_POCKET,
+13139151,LWP,test,C_BATTERY,
+17558765,LWP,test,C_SENSING,
+18874567,LWP,test,C_INFECTION_POCKET,
+16387030,LWP,test,C_PREVENTIVE,
+17387773,LWP,test,C_LEAD_CAPTURE,
+16975485,LWP,test,C_INFECTION_POCKET,
+15845056,LWP,test,C_BATTERY,borderline: explant reason unknown; analysis found high current drain
+15785456,LWP,test,C_PREVENTIVE,
+19804113,LZG,validation,D_OCCLUSION_DELIVERY,
+15912779,LZG,validation,D_CANNULA_INSERTION,
+17333958,LZG,validation,D_ADHESIVE_DISLODGED,
+17602344,LZG,validation,D_ALARM_ELECTRONICS,
+17035699,LZG,validation,D_ALARM_ELECTRONICS,
+14236327,LZG,validation,D_CANNULA_INSERTION,
+14802137,LZG,validation,D_ALARM_ELECTRONICS,"battery and insulin gauges, time"
+15075480,LZG,validation,D_OTHER,"hyperglycemia, no device problem named"
+14956009,LZG,validation,D_ALARM_ELECTRONICS,
+14754470,LZG,validation,D_ADHESIVE_DISLODGED,
+20556595,LZG,validation,D_CANNULA_INSERTION,
+15720000,LZG,validation,D_CANNULA_INSERTION,
+16128083,LZG,validation,D_CANNULA_INSERTION,
+19606065,LZG,validation,D_ADHESIVE_DISLODGED,
+15284407,LZG,validation,D_ADHESIVE_DISLODGED,
+16711569,LZG,validation,D_ALARM_ELECTRONICS,
+18935448,LZG,validation,D_LEAK,"borderline: bent cannula and leak, no causal link: priority"
+19907344,LZG,validation,D_CANNULA_INSERTION,
+17691618,LZG,validation,D_ADHESIVE_DISLODGED,
+18036446,LZG,validation,D_OTHER,"hyperglycemia, no device problem named"
+17494042,LZG,test,D_OTHER,"hypoglycemia, no device problem named"
+18037335,LZG,test,D_OCCLUSION_DELIVERY,
+14071996,LZG,test,D_CANNULA_INSERTION,
+13950235,LZG,test,D_ALARM_ELECTRONICS,
+16661697,LZG,test,D_OCCLUSION_DELIVERY,
+15003368,LZG,test,D_CANNULA_INSERTION,
+17738487,LZG,test,D_SKIN,
+18290313,LZG,test,D_CANNULA_INSERTION,
+16460688,LZG,test,D_CANNULA_INSERTION,
+16583903,LZG,test,D_ALARM_ELECTRONICS,
+15011525,LZG,test,D_OCCLUSION_DELIVERY,
+18704027,LZG,test,D_CANNULA_INSERTION,
+13342893,LZG,test,D_CANNULA_INSERTION,
+20926336,LZG,test,D_OCCLUSION_DELIVERY,
+15428702,LZG,test,D_CANNULA_INSERTION,
+17490774,LZG,test,D_OCCLUSION_DELIVERY,
+16244638,LZG,test,D_ADHESIVE_DISLODGED,
+16006078,LZG,test,D_CANNULA_INSERTION,
+15233583,LZG,test,D_LEAK,borderline: leaking and bent cannula: priority
+14799704,LZG,test,D_CANNULA_INSERTION,needle not retracted
+18736081,MBH,validation,O_INFECTION,
+20169790,MBH,validation,O_INFECTION,
+20189526,MBH,validation,O_PAIN_STIFFNESS,
+20557138,MBH,validation,O_INSTABILITY,"borderline: pain, loosening of all components and instability: priority"
+19219438,MBH,validation,O_INFECTION,
+15536380,MBH,validation,O_LOOSENING,
+16946343,MBH,validation,O_INTRAOP,
+19823569,MBH,validation,O_PAIN_STIFFNESS,
+15127644,MBH,validation,O_INSTABILITY,
+16051991,MBH,validation,O_INTRAOP,
+16686625,MBH,validation,O_PAIN_STIFFNESS,
+20817982,MBH,validation,O_LOOSENING,borderline: loose baseplate; delamination from malalignment (no instability)
+15641265,MBH,validation,O_LOOSENING,
+18316651,MBH,validation,O_PAIN_STIFFNESS,
+18340833,MBH,validation,O_PAIN_STIFFNESS,
+13925278,MBH,validation,O_INFECTION,
+18184333,MBH,validation,O_PAIN_STIFFNESS,
+19028822,MBH,validation,O_INTRAOP,fractured provisional
+17277202,MBH,validation,O_PAIN_STIFFNESS,
+19672432,MBH,validation,O_INSTABILITY,
+19459322,MBH,test,O_INSTABILITY,pain etc.; joint laxity found: priority
+13844990,MBH,test,O_DEVICE_FRACTURE,stem dissociated
+17350630,MBH,test,O_PAIN_STIFFNESS,
+14186456,MBH,test,O_INSTABILITY,"knee gives out, feels too loose"
+17832271,MBH,test,O_PAIN_STIFFNESS,borderline: mild discomfort only
+19528877,MBH,test,O_DEVICE_FRACTURE,imbalance; poly broken: priority
+16742343,MBH,test,O_OTHER,hemarthrosis
+14278891,MBH,test,O_BONE_FRACTURE,
+18668774,MBH,test,O_INTRAOP,instruments fractured
+18300635,MBH,test,O_PAIN_STIFFNESS,
+17824981,MBH,test,O_OTHER,vague social-media complaint
+17234965,MBH,test,O_INFECTION,
+19552213,MBH,test,O_INTRAOP,impactor pads broke
+18893617,MBH,test,O_PAIN_STIFFNESS,fell; revised due to pain
+20000029,MBH,test,O_WEAR,borderline: revised for ROM/scar tissue; wear confirmed by manufacturer: priority
+19640956,MBH,test,O_DEVICE_FRACTURE,
+17938664,MBH,test,O_INTRAOP,
+16458079,MBH,test,O_INTRAOP,cemented component implanted without cement
+19706664,MBH,test,O_DEVICE_FRACTURE,failed junction; stem rotated/dislocated
+18095281,MBH,test,O_LOOSENING,borderline: patient says loose
