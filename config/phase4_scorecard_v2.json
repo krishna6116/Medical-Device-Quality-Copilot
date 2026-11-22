@@ -1,0 +1,10 @@
+{
+  "_about": "Phase 4 scorecard v2 (POST HOC, see config/phase4_amendment.json): what Phase 4 can prove without a paid model call. Written 2026-11-22 before any scripted or live run existed. Model-quality items (grounded and safe live answers) are judged in Phase 6.",
+  "items": {
+    "S1_tools_correct": {"criteria": ["B1"], "means": "all 8 database tools return exactly what a fresh run and independent SQL return"},
+    "S2_agent_loop_proven": {"criteria": ["B2"], "means": "the loop handles tool calls, budget stops, refusals and limits correctly (fake-model tests)"},
+    "S3_checkers_proven": {"criteria": ["B3"], "means": "the grounding and safety checkers accept good answers and catch planted bad ones"},
+    "S4_cost_ledger_proven": {"criteria": ["B4"], "means": "cost comes from the API's token counts, matches an independent formula, and is estimated before any paid call"},
+    "S5_replay_and_ci": {"criteria": ["B5"], "means": "recorded runs replay identically for free; tests and checks run in CI"}
+  }
+}

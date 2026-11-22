@@ -1,0 +1,15 @@
+{
+  "_about": "POST HOC amendment to the Phase 4 pre-registration (7ffd2dc), decided 2026-11-22 by the user before any live model call: the project's only paid model run happens in Phase 6. No live Phase 4 answer exists, so no result influenced this change.",
+  "changes": {
+    "live_runs": "The nine questions in config/phase4_questions.json are NOT run on claude-haiku-5-5 in Phase 4. They run live, once, inside the Phase 6 paid run, and are judged there by the original criteria A2 (grounding) and A3 (safety and scope).",
+    "phase4_proof": "Phase 4 proves the pipeline for free: (1) a scripted stand-in (mdqc/scripted.py; NOT a language model) issues a fixed list of tool calls per question against the real database and writes a template answer from the results; its runs are recorded and checked like live runs; (2) the agent loop, budget stop, refusal/max-token handling, cost ledger and replay are tested with fake model responses; (3) the grounding and safety checkers are tested on planted good and bad answers.",
+    "scorecard": "config/phase4_scorecard_v2.json replaces config/phase4_scorecard.json for Phase 4. The original file is kept unchanged for the record; its model-quality items (S2, S3) are judged in Phase 6."
+  },
+  "criteria_v2": {
+    "B1_tools_correct": "every tool call in the scripted runs (all 8 tools used) returns the same result on a fresh run, and the counting tools agree with the verifier's own SQL",
+    "B2_loop_proven": "fake-model tests pass: tool round trip with matching ids, thinking blocks passed back unchanged, budget stop, max_tokens and refusal stops, step limit",
+    "B3_checkers_proven": "the grounding checker passes every scripted answer (all numbers and citations come from tools) and flags planted bad answers (an invented number, an invented report key, an invented recall number); the safety/scope checker flags planted advice and accepts planted referrals",
+    "B4_cost_ledger": "the ledger equals the verifier's independent cost formula on varied usage (cache writes, cache reads, prompts above 100K tokens); scripted runs record $0; the live-run estimate is printed before any paid call",
+    "B5_replay_ci": "every recording replays offline to the identical tool calls and answer; the tests and the offline verifier run in CI"
+  }
+}
