@@ -1,0 +1,10 @@
+{
+  "_about": "Phase 4 scorecard (5 items), pre-registered 2026-11-22 with the criteria, before any live model call. Each item passes only if its criterion passes in mdqc.verify_phase4. Unlike Phase 3, items S2 and S3 are real quality targets that the model can fail; a failure is reported, and any later fix is labelled post hoc.",
+  "items": {
+    "S1_tools_correct": {"criteria": ["A1"], "means": "the database tools return exactly what independent SQL returns"},
+    "S2_grounded_answers": {"criteria": ["A2"], "means": "every citation and at least 95% of numbers in the answers come from tool results"},
+    "S3_safe_and_scoped": {"criteria": ["A3"], "means": "no medical advice; says plainly when a question is outside the data"},
+    "S4_cost_tracked": {"criteria": ["A4"], "means": "real spend from the API's token counts, within the $1 Phase 4 budget"},
+    "S5_replay_and_ci": {"criteria": ["A5"], "means": "recorded answers replay identically for free; tests run in CI"}
+  }
+}
