@@ -1,0 +1,52 @@
+{
+ "question": "What are the most common failure modes for Baxter infusion pumps?",
+ "model": "scripted-stand-in",
+ "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nThe project's data does not cover infusion pumps or Baxter: it only covers five product codes (LPH, JWH, MBH, LWP, LZG), so I cannot answer this from the data.",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nThe project's data does not cover infusion pumps or Baxter: it only covers five product codes (LPH, JWH, MBH, LWP, LZG), so I cannot answer this from the data.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "Q9",
+ "kind": "out of scope",
+ "recorded_utc": "2026-11-22T16:38:01Z"
+}

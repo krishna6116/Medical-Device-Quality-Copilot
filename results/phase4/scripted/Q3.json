@@ -1,0 +1,125 @@
+{
+ "question": "Which pacemaker (LWP) manufacturers have the most premature battery depletion reports, and did any early-warning signals fire?",
+ "model": "scripted-stand-in",
+ "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nPacemaker battery-depletion reports by company: BOSTON SCIENTIFIC 6,152 (83.3%); ABBOTT 938 (12.7%); MICROPORT 247 (3.3%). Early-warning signals: 3, most recent MICROPORT 2023-04 (115 reports), MICROPORT 2023-03 (18 reports), MICROPORT 2023-02 (31 reports). A signal is a prompt to look, not proof.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_Q3_0",
+   "name": "list_manufacturers",
+   "input": {
+    "product_code": "LWP",
+    "failure_mode": "C_BATTERY"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": null, \"failure_mode\": \"C_BATTERY\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"product_code\": \"LWP\", \"device\": \"pacemaker\", \"total_reports\": 7387, \"manufacturers\": [{\"manufacturer\": \"BOSTON SCIENTIFIC\", \"reports\": 6152, \"share\": 0.833}, {\"manufacturer\": \"ABBOTT\", \"reports\": 938, \"share\": 0.127}, {\"manufacturer\": \"MICROPORT\", \"reports\": 247, \"share\": 0.033}, {\"manufacturer\": \"MEDTRONIC\", \"reports\": 44, \"share\": 0.006}, {\"manufacturer\": \"(BLANK)\", \"reports\": 2, \"share\": 0.0}, {\"manufacturer\": \"BOSTON SCEINTIFIC\", \"reports\": 1, \"share\": 0.0}, {\"manufacturer\": \"SORIN CRM S A S\", \"reports\": 1, \"share\": 0.0}, {\"manufacturer\": \"UNK\", \"reports\": 1, \"share\": 0.0}, {\"manufacturer\": \"UNKNOWN\", \"reports\": 1, \"share\": 0.0}]}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_Q3_1",
+   "name": "signal_check",
+   "input": {
+    "product_code": "LWP",
+    "failure_mode": "C_BATTERY"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": null, \"failure_mode\": \"C_BATTERY\"}, \"signals_total\": 3, \"signals\": [{\"manufacturer\": \"MICROPORT\", \"failure_mode\": \"C_BATTERY\", \"month\": \"2023-04\", \"reports\": 115, \"expected\": 6.1}, {\"manufacturer\": \"MICROPORT\", \"failure_mode\": \"C_BATTERY\", \"month\": \"2023-03\", \"reports\": 18, \"expected\": 4.7}, {\"manufacturer\": \"MICROPORT\", \"failure_mode\": \"C_BATTERY\", \"month\": \"2023-02\", \"reports\": 31, \"expected\": 2.2}], \"rule\": \"A month is a signal if it has at least 5 reports and the chance of that many, given the previous 12 months' average, is below 0.1% (Poisson). Signals run 2023-01 to 2024-12.\", \"caution\": \"A signal is a prompt to look closer, not evidence of a defect. In a backtest, 15 of 38 recall events had a prior signal versus a 14% base rate.\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "id": "toolu_Q3_0",
+      "input": {
+       "product_code": "LWP",
+       "failure_mode": "C_BATTERY"
+      },
+      "name": "list_manufacturers",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_Q3_1",
+      "input": {
+       "product_code": "LWP",
+       "failure_mode": "C_BATTERY"
+      },
+      "name": "signal_check",
+      "type": "tool_use"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nPacemaker battery-depletion reports by company: BOSTON SCIENTIFIC 6,152 (83.3%); ABBOTT 938 (12.7%); MICROPORT 247 (3.3%). Early-warning signals: 3, most recent MICROPORT 2023-04 (115 reports), MICROPORT 2023-03 (18 reports), MICROPORT 2023-02 (31 reports). A signal is a prompt to look, not proof.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  },
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "Q3",
+ "kind": "companies + signals",
+ "recorded_utc": "2026-11-22T16:37:56Z"
+}

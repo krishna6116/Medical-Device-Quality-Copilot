@@ -12,6 +12,8 @@ psycopg[binary]>=3.2   # PostgreSQL driver (Phase 2)
 scipy>=1.13
 scikit-learn>=1.5
 rank-bm25==0.2.2      # exact: the verifier re-implements its BM25 formula
+# Phase 4: official Claude SDK (CI only replays recordings; no API key or calls in CI)
+anthropic>=2.12
 # notebooks (built and executed with nbclient)
 nbformat>=5.10
 nbclient>=0.10

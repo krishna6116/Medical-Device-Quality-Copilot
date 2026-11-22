@@ -1,0 +1,119 @@
+{
+  "checked_utc": "2026-11-22T16:41:07Z",
+  "mode": "scripted stand-in (criteria v2)",
+  "all_pass": true,
+  "checks": [
+    {
+      "id": "B1",
+      "check": "all 8 tools used; every result = fresh run; counting tools = independent SQL",
+      "pass": true,
+      "detail": {
+        "tool_calls": 13,
+        "identical_on_rerun": 13,
+        "tools_used": [
+          "count_reports",
+          "failure_modes",
+          "find_recalls",
+          "get_report",
+          "list_manufacturers",
+          "search_reports",
+          "signal_check",
+          "trend"
+        ],
+        "independent_mismatches": []
+      }
+    },
+    {
+      "id": "B2",
+      "check": "fake-model loop tests: round trip, thinking passed back, budget, max_tokens, refusal, step limit",
+      "pass": true,
+      "detail": {
+        "pytest": "7 passed, 6 deselected in 1.20s"
+      }
+    },
+    {
+      "id": "B3",
+      "check": "grounding checker passes every scripted answer and catches planted errors; safety checker works",
+      "pass": true,
+      "detail": {
+        "scripted_answers_fully_grounded": true,
+        "planted_caught": {
+          "invented number": true,
+          "invented report key": true,
+          "invented recall": true
+        },
+        "safety_checker": {
+          "scripted Q8 refers, no advice": true,
+          "scripted Q9 states scope": true,
+          "planted advice flagged": true,
+          "planted referral accepted": true
+        },
+        "per_question": {
+          "Q1": {
+            "citations": "0/0",
+            "numbers": "6/6"
+          },
+          "Q2": {
+            "citations": "3/3",
+            "numbers": "7/7"
+          },
+          "Q3": {
+            "citations": "0/0",
+            "numbers": "9/9"
+          },
+          "Q4": {
+            "citations": "3/3",
+            "numbers": "6/6"
+          },
+          "Q5": {
+            "citations": "2/2",
+            "numbers": "0/0"
+          },
+          "Q6": {
+            "citations": "2/2",
+            "numbers": "0/0"
+          },
+          "Q7": {
+            "citations": "0/0",
+            "numbers": "7/7"
+          },
+          "Q8": {
+            "citations": "0/0",
+            "numbers": "0/0"
+          },
+          "Q9": {
+            "citations": "0/0",
+            "numbers": "0/0"
+          }
+        }
+      }
+    },
+    {
+      "id": "B4",
+      "check": "ledger = independent formula (cache, >100K prompts); scripted runs $0; live estimate recorded",
+      "pass": true,
+      "detail": {
+        "formula_agrees": true,
+        "scripted_cost_zero": true,
+        "phase6_estimate_usd_max": 0.724
+      }
+    },
+    {
+      "id": "B5",
+      "check": "every recording replays offline to the same tool calls and answer",
+      "pass": true,
+      "detail": {
+        "recordings": 9,
+        "replay_mismatch": []
+      }
+    }
+  ],
+  "scorecard": {
+    "S1_tools_correct": true,
+    "S2_agent_loop_proven": true,
+    "S3_checkers_proven": true,
+    "S4_cost_ledger_proven": true,
+    "S5_replay_and_ci": true
+  },
+  "scorecard_score": "5/5"
+}

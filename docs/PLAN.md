@@ -42,7 +42,7 @@ Each phase lists what gets built, why, and what "done" means. "Verified" always 
 - **Why:** quality engineers think in failure modes; a non-LLM baseline shows whether an LLM adds anything (same honesty rule as "publish the winner even if it is not the deep model").
 - **Done:** method chosen on validation (agreement/F1, recall@k, bootstrap intervals, Holm), confirmed on test; verifier re-scores from saved labels and rankings.
 
-### Phase 4: Assistant with tools
+### Phase 4: Assistant with tools (done 2026-11-22: `docs/ASSISTANT.md`, scorecard v2 5/5, $0; live answers moved to the Phase 6 paid run, post hoc)
 - **Build:** a tool-using investigator: tools `search_reports`, `count_reports`, `trend`, `failure_modes`, `find_recalls`, `get_report`, `signal_check`, all reading PostgreSQL. Claude Haiku 5.5 drives the tool loop (official `anthropic` SDK), with a thin backend interface so the Phase 6 comparison models can be swapped in. Every answer cites report keys or recall numbers; numbers come from tools, never from the model's memory.
 - **Why:** the product a recruiter sees; grounding keeps it honest.
 - **Done:** scripted demo investigations run end to end locally; verifier checks that every number and citation in recorded answers appears in that answer's tool results.

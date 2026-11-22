@@ -1,0 +1,103 @@
+{
+ "question": "Summarise report 16005019 and any recalls linked to it.",
+ "model": "scripted-stand-in",
+ "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\n[MDR 16005019] insulin pump by INSULET, received 2022-12-19, Malfunction, failure mode D_CANNULA_INSERTION. Narrative: IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY WHEN THE POD WAS ACTIVATED; THIS INDICATES THAT A NEEDLE MECHANISM FAILURE OCCURRED. THE POD WAS NOT WORN. || ACCORDING TO THE COMPLAINANT THE DEVICE WIL Linked recalls: [Z-0154-2023] firm_window link.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_Q5_0",
+   "name": "get_report",
+   "input": {
+    "mdr_report_key": "16005019"
+   },
+   "result": "{\"mdr_report_key\": \"16005019\", \"report_number\": \"3004464228-2022-24070\", \"product_code\": \"LZG\", \"device\": \"insulin pump\", \"date_received\": \"2022-12-19\", \"date_of_event\": \"2022-11-13\", \"event_type\": \"Malfunction\", \"manufacturer\": \"INSULET\", \"manufacturer_as_reported\": \"INSULET CORPORATION\", \"brand_name\": \"OMNIPOD DASH¿ INSULIN MANAGEMENT SYSTEM\", \"generic_name\": \"PUMP, INFUSION, INSULIN\", \"model_number\": \"18320\", \"clearance_number\": \"K192659\", \"failure_mode\": \"D_CANNULA_INSERTION\", \"fda_device_problem_terms\": [\"Failure to Fire\"], \"fda_patient_problem_terms\": [\"No Clinical Signs, Symptoms or Conditions\"], \"narrative\": \"IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY WHEN THE POD WAS ACTIVATED; THIS INDICATES THAT A NEEDLE MECHANISM FAILURE OCCURRED. THE POD WAS NOT WORN. || ACCORDING TO THE COMPLAINANT THE DEVICE WILL NOT BE RETURNED FOR INVESTIGATION. WE ARE UNABLE TO CONFIRM OR DETERMINED THE NEEDLE MECHANISM FAILURE REPORTED. LOT RELEASE RECORDS WERE REVIEWED AND THE PRODUCT LOT MET ALL ACCEPTANCE CRITERIA. SPECIFICALLY, A POD IS PAIRED TO A PDM AND PUT THROUGH SIMULATED USE TESTING INCLUDING COMMUNICATING WITH THE PDM, DEPLOYMENT, DELIVERING FLUID, OCCLUSION DETECTION, AND FREEDOM FROM HAZARD ALARMS.\", \"recalls_within_a_year\": [{\"recall_number\": \"Z-0154-2023\", \"link\": \"firm_window\", \"days_from_recall_start\": 63, \"recall_started\": \"2022-10-17\", \"root_cause\": \"Device Design\", \"reason\": \"The firm has become aware of PDM battery issues, including battery swelling, fluid leaking from the battery, and extreme overheating, which may pose a fire hazard. The firm has received a complaint alleging fire as a result of thermal energy from a DASH PDM.\"}], \"note\": \"A link means same clearance number, or same company and product code close in time; it is context, not proof.\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "id": "toolu_Q5_0",
+      "input": {
+       "mdr_report_key": "16005019"
+      },
+      "name": "get_report",
+      "type": "tool_use"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\n[MDR 16005019] insulin pump by INSULET, received 2022-12-19, Malfunction, failure mode D_CANNULA_INSERTION. Narrative: IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY WHEN THE POD WAS ACTIVATED; THIS INDICATES THAT A NEEDLE MECHANISM FAILURE OCCURRED. THE POD WAS NOT WORN. || ACCORDING TO THE COMPLAINANT THE DEVICE WIL Linked recalls: [Z-0154-2023] firm_window link.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  },
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "Q5",
+ "kind": "single report",
+ "recorded_utc": "2026-11-22T16:38:01Z"
+}

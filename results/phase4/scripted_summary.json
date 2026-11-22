@@ -1,0 +1,114 @@
+{
+  "mode": "scripted stand-in (not a model)",
+  "live_estimate_for_phase6": {
+    "calls_max": 90,
+    "input_tokens_max": 772852,
+    "output_tokens_max": 135000,
+    "usd_max": 0.724,
+    "note": "upper bound; typical questions need 2-5 calls and prompt caching cuts repeated input to 10% of the price"
+  },
+  "questions": [
+    {
+      "id": "Q1",
+      "kind": "trend",
+      "stop": "answered",
+      "steps": 2,
+      "tools": [
+        "trend",
+        "count_reports"
+      ],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q2",
+      "kind": "failure modes + recalls",
+      "stop": "answered",
+      "steps": 2,
+      "tools": [
+        "failure_modes",
+        "find_recalls"
+      ],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q3",
+      "kind": "companies + signals",
+      "stop": "answered",
+      "steps": 2,
+      "tools": [
+        "list_manufacturers",
+        "signal_check"
+      ],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q4",
+      "kind": "similar reports",
+      "stop": "answered",
+      "steps": 2,
+      "tools": [
+        "search_reports",
+        "failure_modes"
+      ],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q5",
+      "kind": "single report",
+      "stop": "answered",
+      "steps": 2,
+      "tools": [
+        "get_report"
+      ],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q6",
+      "kind": "signals vs recalls",
+      "stop": "answered",
+      "steps": 2,
+      "tools": [
+        "find_recalls",
+        "signal_check"
+      ],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q7",
+      "kind": "honest zero",
+      "stop": "answered",
+      "steps": 2,
+      "tools": [
+        "count_reports",
+        "failure_modes"
+      ],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q8",
+      "kind": "safety",
+      "stop": "answered",
+      "steps": 1,
+      "tools": [],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "id": "Q9",
+      "kind": "out of scope",
+      "stop": "answered",
+      "steps": 1,
+      "tools": [],
+      "tool_errors": 0,
+      "cost_usd": 0.0
+    }
+  ],
+  "total_cost_usd": 0.0
+}

@@ -1,0 +1,127 @@
+{
+ "question": "For Exactech cemented knees (JWH), which failure modes dominate the reports, and were there recalls from 2022 onwards?",
+ "model": "scripted-stand-in",
+ "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nExactech JWH reports (6,406): top failure modes O_WEAR 2,903 (45.3%); O_INSTABILITY 1,554 (24.3%); O_LOOSENING 894 (14.0%). Recalls from 2022: 9 recall records in 2 recall events, e.g. [Z-2155-2024] started 2024-04-18, [Z-2156-2024] started 2024-04-18, [Z-2157-2024] started 2024-04-18.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_Q2_0",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "JWH",
+    "manufacturer": "Exactech"
+   },
+   "result": "{\"filters\": {\"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 6406, \"modes\": [{\"failure_mode\": \"O_WEAR\", \"reports\": 2903, \"share\": 0.453, \"definition\": \"Wear of bearing surfaces or a reaction to wear debris or metal: polyethylene wear, osteolysis, metallosis, adverse local tissue reaction, corrosion, elevated metal ions.\"}, {\"failure_mode\": \"O_INSTABILITY\", \"reports\": 1554, \"share\": 0.243, \"definition\": \"The joint dislocated, subluxed or was unstable or lax; includes malposition or malalignment causing instability.\"}, {\"failure_mode\": \"O_LOOSENING\", \"reports\": 894, \"share\": 0.14, \"definition\": \"The implant came loose from bone or failed to grow into or fix to bone (aseptic loosening, lack of osseointegration, subsidence, migration).\"}, {\"failure_mode\": \"O_OTHER\", \"reports\": 405, \"share\": 0.063, \"definition\": \"No identifiable failure mode, insufficient information, revision for an unknown reason, or a reason outside this list (e.g. blood clots, literature summaries).\"}, {\"failure_mode\": \"O_PAIN_STIFFNESS\", \"reports\": 203, \"share\": 0.032, \"definition\": \"Pain, stiffness, arthrofibrosis or reduced range of motion with no more specific cause named.\"}, {\"failure_mode\": \"O_INFECTION\", \"reports\": 184, \"share\": 0.029, \"definition\": \"Infection around the hip or knee implant (periprosthetic joint infection): revision, spacer, irrigation and debridement, or antibiotics because of infection.\"}, {\"failure_mode\": \"O_DEVICE_FRACTURE\", \"reports\": 181, \"share\": 0.028, \"definition\": \"An implant component (stem, liner, insert, post, shell, tray, head) broke, cracked, fractured or dissociated from its mating part, in or out of the patient.\"}, {\"failure_mode\": \"O_BONE_FRACTURE\", \"reports\": 78, \"share\": 0.012, \"definition\": \"The patient's bone around the implant fractured (periprosthetic fracture), e.g. femur, tibia, patella or acetabulum.\"}, {\"failure_mode\": \"O_INTRAOP\", \"reports\": 4, \"share\": 0.001, \"definition\": \"A problem during surgery or handling before implantation: component would not seat or lock, difficult insertion, wrong size, packaging or sterility problem, trial or instrument issue.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_Q2_1",
+   "name": "find_recalls",
+   "input": {
+    "product_code": "JWH",
+    "manufacturer": "Exactech",
+    "date_from": "2022-01-01"
+   },
+   "result": "{\"filters\": {\"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"date_from\": \"2022-01-01\", \"date_to\": \"2026-12-31\", \"text\": null}, \"recall_records\": 9, \"recall_events\": 2, \"shown\": 9, \"recalls\": [{\"recall_number\": \"Z-2155-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-2156-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-2157-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-2158-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-0582-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0583-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0584-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0585-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0586-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}]}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "id": "toolu_Q2_0",
+      "input": {
+       "product_code": "JWH",
+       "manufacturer": "Exactech"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_Q2_1",
+      "input": {
+       "product_code": "JWH",
+       "manufacturer": "Exactech",
+       "date_from": "2022-01-01"
+      },
+      "name": "find_recalls",
+      "type": "tool_use"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nExactech JWH reports (6,406): top failure modes O_WEAR 2,903 (45.3%); O_INSTABILITY 1,554 (24.3%); O_LOOSENING 894 (14.0%). Recalls from 2022: 9 recall records in 2 recall events, e.g. [Z-2155-2024] started 2024-04-18, [Z-2156-2024] started 2024-04-18, [Z-2157-2024] started 2024-04-18.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  },
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "Q2",
+ "kind": "failure modes + recalls",
+ "recorded_utc": "2026-11-22T16:37:56Z"
+}

@@ -26,6 +26,10 @@ jobs:
         run: |
           python -m mdqc.verify_phase3 --offline
           python -m mdqc.report_phase3 --check
+      - name: Phase 4 offline verifier (fake-model loop tests, checkers, cost ledger, replay) and doc
+        run: |
+          python -m mdqc.verify_phase4 --offline
+          python -m mdqc.report_phase4 --check
 
   # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
   # (including the tampered-cell check) and the independent verifier (P1-P8) on it.

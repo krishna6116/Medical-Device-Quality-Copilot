@@ -75,3 +75,20 @@
 - *Templates:* many reports share identical text, so similarity search needs duplicate collapsing.
 
 **Next:** Phase 4, the assistant with tools on Claude Haiku 5.5.
+
+## 2026-11-22: Phase 4 the investigation assistant (no paid call)
+
+**Decided:** the user wants a single paid run for the whole project, in Phase 6. Phase 4's nine pre-registered questions move into that run (a post hoc amendment, committed before any run), and Phase 4 proves the pipeline for free.
+
+**Built:** eight read-only database tools (the model never writes SQL), our own agent loop for Claude Haiku 5.5 with a cost ledger from the API's token counts and a hard budget stop, recordings ("cassettes") with offline replay, a scripted stand-in that drives the real loop and tools without a model, grounding and safety checkers, fake-model tests, and a verifier (scorecard v2 5/5).
+
+**Concepts:**
+- *Tool use:* the model asks for a named tool with arguments; our code runs it and returns JSON. The model only ever sees what the tools return.
+- *Agent loop:* ask, run tools, send results back, repeat; we keep the loop in our own code so we can meter, cap and record every call.
+- *Grounding:* every number and citation in an answer must appear in a tool result; the checker catches invented numbers, report keys and recall numbers.
+- *Prompt caching:* the long, unchanging part of each request (rules + tool list) is cached, so repeat calls pay about 10% for it.
+- *Cassettes and replay:* record once, replay forever for $0; CI and the demo never call the API.
+- *Honest substitution:* when the paid run moved, the change was written down before any run, and the stand-in's answers say they are not from a model.
+
+**Next:** Phase 5, investigation memory (remembering what was ruled out across sessions, with view and delete).
+

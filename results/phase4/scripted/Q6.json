@@ -1,0 +1,129 @@
+{
+ "question": "Did any early-warning signal come before Zimmer Biomet's hip implant (LPH) recalls that started in 2023?",
+ "model": "scripted-stand-in",
+ "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nZimmer Biomet LPH recalls started in 2023: [Z-1294-2023] started 2023-02-27; [Z-1284-2023] started 2023-02-06. Signals for Zimmer Biomet LPH: 2024-12 O_INTRAOP, 2024-12 O_LOOSENING, 2024-12 O_PAIN_STIFFNESS, 2024-12 O_INFECTION, 2024-10 O_PAIN_STIFFNESS, 2024-10 O_INFECTION. Compare the signal months with the recall start dates; a signal is a prompt to look, not proof.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_Q6_0",
+   "name": "find_recalls",
+   "input": {
+    "product_code": "LPH",
+    "manufacturer": "Zimmer Biomet",
+    "date_from": "2023-01-01",
+    "date_to": "2023-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LPH\", \"manufacturer\": \"ZIMMER BIOMET\", \"date_from\": \"2023-01-01\", \"date_to\": \"2023-12-31\", \"text\": null}, \"recall_records\": 2, \"recall_events\": 2, \"shown\": 2, \"recalls\": [{\"recall_number\": \"Z-1294-2023\", \"recall_event\": \"91842\", \"product_code\": \"LPH\", \"manufacturer\": \"ZIMMER BIOMET\", \"started\": \"2023-02-27\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Update the compatibility matrix as referred to in the Instructions for Use (IFU) for the CoCr Femoral Head XS- removes the compatibility with the Epsilon Durasul Constrained Acetabular Liners from the matrix due to the range of motion in flexion/extension being less than 100 degrees as recommended p\"}, {\"recall_number\": \"Z-1284-2023\", \"recall_event\": \"91866\", \"product_code\": \"LPH\", \"manufacturer\": \"ZIMMER BIOMET\", \"started\": \"2023-02-06\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"The outer package labeling and product etch are a 40 mm Size D liner, however, the implant is a 38 mm Size C liner.\"}]}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_Q6_1",
+   "name": "signal_check",
+   "input": {
+    "product_code": "LPH",
+    "manufacturer": "Zimmer Biomet"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LPH\", \"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": null}, \"signals_total\": 17, \"signals\": [{\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_INTRAOP\", \"month\": \"2024-12\", \"reports\": 30, \"expected\": 12.7}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_LOOSENING\", \"month\": \"2024-12\", \"reports\": 22, \"expected\": 6.2}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_PAIN_STIFFNESS\", \"month\": \"2024-12\", \"reports\": 22, \"expected\": 7.8}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_INFECTION\", \"month\": \"2024-12\", \"reports\": 17, \"expected\": 5.8}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_PAIN_STIFFNESS\", \"month\": \"2024-10\", \"reports\": 19, \"expected\": 7.3}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_INFECTION\", \"month\": \"2024-10\", \"reports\": 19, \"expected\": 5.3}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_INSTABILITY\", \"month\": \"2024-07\", \"reports\": 50, \"expected\": 23.4}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_OTHER\", \"month\": \"2024-05\", \"reports\": 44, \"expected\": 16.6}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_BONE_FRACTURE\", \"month\": \"2024-04\", \"reports\": 10, \"expected\": 2.2}, {\"manufacturer\": \"ZIMMER BIOMET\", \"failure_mode\": \"O_PAIN_STIFFNESS\", \"month\": \"2024-03\", \"reports\": 19, \"expected\": 5.8}], \"rule\": \"A month is a signal if it has at least 5 reports and the chance of that many, given the previous 12 months' average, is below 0.1% (Poisson). Signals run 2023-01 to 2024-12.\", \"caution\": \"A signal is a prompt to look closer, not evidence of a defect. In a backtest, 15 of 38 recall events had a prior signal versus a 14% base rate.\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "id": "toolu_Q6_0",
+      "input": {
+       "product_code": "LPH",
+       "manufacturer": "Zimmer Biomet",
+       "date_from": "2023-01-01",
+       "date_to": "2023-12-31"
+      },
+      "name": "find_recalls",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_Q6_1",
+      "input": {
+       "product_code": "LPH",
+       "manufacturer": "Zimmer Biomet"
+      },
+      "name": "signal_check",
+      "type": "tool_use"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nZimmer Biomet LPH recalls started in 2023: [Z-1294-2023] started 2023-02-27; [Z-1284-2023] started 2023-02-06. Signals for Zimmer Biomet LPH: 2024-12 O_INTRAOP, 2024-12 O_LOOSENING, 2024-12 O_PAIN_STIFFNESS, 2024-12 O_INFECTION, 2024-10 O_PAIN_STIFFNESS, 2024-10 O_INFECTION. Compare the signal months with the recall start dates; a signal is a prompt to look, not proof.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  },
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "Q6",
+ "kind": "signals vs recalls",
+ "recorded_utc": "2026-11-22T16:38:01Z"
+}

@@ -32,8 +32,12 @@ MAX_TOKENS, BATCH, CHUNK = 256, 64, 10000
 
 
 def load_model():
+    """Load from the local Hugging Face cache when present (no network call); download only the first time."""
     from sentence_transformers import SentenceTransformer
-    model = SentenceTransformer(MODEL_NAME, device="cpu")
+    try:
+        model = SentenceTransformer(MODEL_NAME, device="cpu", local_files_only=True)
+    except Exception:  # noqa: BLE001 - not cached yet: download once (~135 MB)
+        model = SentenceTransformer(MODEL_NAME, device="cpu")
     model.max_seq_length = MAX_TOKENS
     return model
 

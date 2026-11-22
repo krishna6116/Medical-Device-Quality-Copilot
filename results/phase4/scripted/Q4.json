@@ -1,0 +1,125 @@
+{
+ "question": "Find insulin pump reports similar to 'the needle did not deploy when the pod was activated' and tell me how common that failure mode is.",
+ "model": "scripted-stand-in",
+ "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nMost similar reports: [MDR 18507584] similarity 0.89, D_CANNULA_INSERTION; [MDR 17877501] similarity 0.885, D_CANNULA_INSERTION; [MDR 15105330] similarity 0.879, D_CANNULA_INSERTION. Cannula/insertion failures are 24,876 of 68,425 insulin pump reports (36.4%).",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_Q4_0",
+   "name": "search_reports",
+   "input": {
+    "query": "the needle did not deploy when the pod was activated",
+    "product_code": "LZG",
+    "limit": 5
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"query\": \"the needle did not deploy when the pod was activated\", \"matches_considered\": 68425, \"results\": [{\"mdr_report_key\": \"18507584\", \"similarity\": 0.89, \"date_received\": \"2024-01-12\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_CANNULA_INSERTION\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY AT POD ACTIVATION. || ACCORDING TO THE COMPLAINANT THE DEVICE WILL NOT BE RETURNED FOR INVESTIGATION. WE ARE UNABLE TO CONFIRM THE REPORTED NEEDLE MECHANISM FAILURE OR TO DETERMINE ITS ROOT CAUSE. NO LOT RELEASE RECORDS WERE REVIEWED, AS THE PRODUCT LOT\", \"identical_reports\": 4}, {\"mdr_report_key\": \"17877501\", \"similarity\": 0.885, \"date_received\": \"2023-10-05\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_CANNULA_INSERTION\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY AT POD ACTIVATION AS INTENDED. || ACCORDING TO THE COMPLAINANT THE DEVICE WILL NOT BE RETURNED FOR INVESTIGATION. WE ARE UNABLE TO CONFIRM THE REPORTED NEEDLE MECHANISM FAILURE OR TO DETERMINE ITS ROOT CAUSE. NO LOT RELEASE RECORDS WERE REVIEWED, AS THE\", \"identical_reports\": 2}, {\"mdr_report_key\": \"15105330\", \"similarity\": 0.879, \"date_received\": \"2022-07-26\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_CANNULA_INSERTION\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY WHEN THE POD WAS ACTIVATED; THIS INDICATES A NEEDLE MECHANISM FAILURE OCCURRED. || ACCORDING TO THE COMPLAINANT THE DEVICE WILL NOT BE RETURNED FOR INVESTIGATION. WE ARE UNABLE TO CONFIRM THE REPORTED NEEDLE MECHANISM FAILURE OR DETERMINE ITS ROOT CAUSE\", \"identical_reports\": 0}, {\"mdr_report_key\": \"14454055\", \"similarity\": 0.878, \"date_received\": \"2022-05-20\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_CANNULA_INSERTION\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY WHEN THE POD WAS ACTIVATED; THIS INDICATES A NEEDLE MECHANISM FAILURE OCCURRED. || ACCORDING TO THE COMPLAINANT THE DEVICE WILL NOT BE RETURNED FOR INVESTIGATION. WE ARE UNABLE TO CONFIRM THE REPORTED NEEDLE MECHANISM FAILURE OR TO DETERMINE ITS ROOT CA\", \"identical_reports\": 1}, {\"mdr_report_key\": \"20063003\", \"similarity\": 0.876, \"date_received\": \"2024-08-26\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_CANNULA_INSERTION\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THAT THE NEEDLE DID NOT DEPLOY AT POD ACTIVATION. THE PATIENT REMOVED THE POD AFTER A COUPLE OF MINUTES AND THAT IS WHEN THE CANNULA DEPLOYED. || ACCORDING TO THE COMPLAINANT THE DEVICE WILL NOT BE RETURNED FOR INVESTIGATION. WE ARE UNABLE TO CONFIRM THE REPORTED NEEDLE MECHANISM FAI\", \"identical_reports\": 0}], \"note\": \"identical_reports = further reports among the top matches with the same opening text (templates).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_Q4_1",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "LZG"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 68425, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 24876, \"share\": 0.364, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 15873, \"share\": 0.232, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 12149, \"share\": 0.178, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 7426, \"share\": 0.109, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 3689, \"share\": 0.054, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_OCCLUSION_DELIVERY\", \"reports\": 3190, \"share\": 0.047, \"definition\": \"Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 1222, \"share\": 0.018, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "id": "toolu_Q4_0",
+      "input": {
+       "query": "the needle did not deploy when the pod was activated",
+       "product_code": "LZG",
+       "limit": 5
+      },
+      "name": "search_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_Q4_1",
+      "input": {
+       "product_code": "LZG"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nMost similar reports: [MDR 18507584] similarity 0.89, D_CANNULA_INSERTION; [MDR 17877501] similarity 0.885, D_CANNULA_INSERTION; [MDR 15105330] similarity 0.879, D_CANNULA_INSERTION. Cannula/insertion failures are 24,876 of 68,425 insulin pump reports (36.4%).",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  },
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "Q4",
+ "kind": "similar reports",
+ "recorded_utc": "2026-11-22T16:38:01Z"
+}
