@@ -107,3 +107,11 @@
 
 **Next:** Phase 6, the evaluation set and the single paid run (needs the Claude API key saved in `.env`).
 
+## 2026-11-22 (night): full audit of Phases 0-5
+
+**What was checked:** every verifier in full (with the live openFDA cross-checks), all 78 tests, all five notebooks re-executed from scratch, every generated document against its results, the database state, secrets and personal data across the whole git history, and each phase against the written plan.
+
+**Result:** no wrong number and no failing check. The audit found documentation gaps, now closed: Phase 3's differences from the plan (sample split by report inside each code, no embedding clustering, MRR instead of recall@k, why no multiple-comparison correction, no paid labelling) were explained only in code, not in the doc; the plan's Phase 6 did not yet say it now carries Phase 4's nine live questions and the memory evaluation; the README's run instructions stopped at Phase 2.
+
+**Concept:** a plan written before the work and criteria committed during it can drift apart; when they do, follow the committed criteria and say so in the public write-up, not only in the code.
+

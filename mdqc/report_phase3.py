@@ -170,6 +170,20 @@ def render() -> str:
         a("Recall events with a prior signal: " + "; ".join(f"{e['code']} {e['parent']} (event {e['event']}, initiated "
                                                            f"{e['initiated']})" for e in hits[:10]) + ".\n")
 
+    a("## Differences from the project plan (and why)\n")
+    a("`docs/PLAN.md` was written before Phase 3's criteria. Where they differ, the committed criteria "
+      "(`config/phase3_criteria.json`) were followed:\n")
+    a("- **Sample split by report, not by product code.** The project convention is to split by product code, but "
+      "every method here is rule-based or zero-shot and nothing is trained on the labels; the labels only choose among "
+      "a few pre-registered settings. Splitting by code would have put whole device families only in validation or "
+      "only in test, so the 20/20 split is made inside each code instead (`mdqc/phase3_sample.py`).")
+    a("- **No embedding *clustering* method.** The plan listed it; the registered methods (M1-M5) used embeddings "
+      "for matching reports to mode definitions (M3) and clustering only with TF-IDF (M5).")
+    a("- **MRR and precision@5 instead of recall@k** for similar-report search, as registered.")
+    a("- **No multiple-comparison correction needed:** one pre-registered comparison per question (chosen method vs "
+      "FDA terms; chosen search vs BM25), so Holm's correction does not change anything.")
+    a("- **No Claude labelling in Phase 3:** the user chose to keep this phase free; the project's only paid run is Phase 6.\n")
+
     a("## Checks\n")
     a(table(["Criterion", "What was checked", "Result"],
             [[c["id"], c["check"], "pass" if c["pass"] else "**FAIL**"] for c in sorted(ver["checks"], key=lambda c: c["id"])]) + "\n")

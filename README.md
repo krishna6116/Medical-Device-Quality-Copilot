@@ -39,6 +39,15 @@ python -m venv .venv
 .venv\Scripts\python -m mdqc.db_setup        # once: PostgreSQL database + login (password into .env)
 .venv\Scripts\python -m mdqc.load
 .venv\Scripts\python -m mdqc.verify_phase2
+.venv\Scripts\python -m pip install -r requirements-embed.txt   # Phase 3 embedding model (CPU PyTorch first: see the file)
+.venv\Scripts\python -m mdqc.embed            # ~2.4 h on a laptop CPU, once
+.venv\Scripts\python -m mdqc.run_phase3
+.venv\Scripts\python -m mdqc.verify_phase3
+.venv\Scripts\python -m mdqc.run_phase4 --scripted   # free pipeline proof (no model)
+.venv\Scripts\python -m mdqc.verify_phase4
+.venv\Scripts\python -m mdqc.replay Q1             # replay a recorded investigation for free
+.venv\Scripts\python -m mdqc.run_phase5
+.venv\Scripts\python -m mdqc.verify_phase5
 .venv\Scripts\python -m mdqc.memory list           # investigation memory: list | show | export | delete-item | delete
 ```
 

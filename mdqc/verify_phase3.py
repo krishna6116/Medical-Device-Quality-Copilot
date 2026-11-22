@@ -359,7 +359,7 @@ def main(offline: bool, evidence: Path | None) -> int:
         con.close()
 
     if not offline:  # F8 = CI; locally it means the unit tests pass
-        tests = subprocess.run([sys.executable, "-m", "pytest", "-q", "tests/test_phase3.py"], cwd=ROOT,
+        tests = subprocess.run([sys.executable, "-m", "pytest", "tests/test_phase3.py"], cwd=ROOT,
                                capture_output=True, text=True)
         check("F8", "Phase 3 unit tests pass (CI runs them plus the offline verifier)", tests.returncode == 0,
               {"pytest": tests.stdout.strip().splitlines()[-1] if tests.stdout.strip() else tests.stderr[-200:]})
