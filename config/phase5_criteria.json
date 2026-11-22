@@ -1,0 +1,23 @@
+{
+  "_about": "Phase 5 (investigation memory) criteria and design, pre-registered 2026-11-22 before any memory code, data or scenario existed. Judged by mdqc.verify_phase5. No paid model call in this phase (the project's only paid run is Phase 6); multi-session behaviour is exercised with the scripted stand-in, and Phase 6 measures whether the real model uses memory well.",
+  "design": {
+    "store": "PostgreSQL schema `memory` (created if missing, never dropped by the data loader): investigation (title, product code, manufacturer, status), memory_item (kind, text, evidence citations, status, session, source), session (start/end), memory_event (audit trail WITHOUT content: item id, kind, action, time)",
+    "kinds": "hypothesis, ruled_out, decision, open_question, note",
+    "write_path": "only through explicit calls: the assistant's memory tools (remember, recall, update_memory, forget) or the user's API/CLI; every save returns a confirmation that is shown to the user",
+    "read_path": "at the start of every session the investigation's current memory is rendered into a block added to the system prompt; recall returns the same content on demand",
+    "guardrails": "an item needs an open investigation; text 5-500 characters; evidence may only cite report keys and recall numbers that exist in core.fact_report / core.fact_recall; text with an email address or phone number is rejected; at most 200 items per investigation",
+    "deletion": "forget / delete_item removes the row; delete_investigation removes the investigation with its items and sessions; the audit trail keeps only ids, kinds, actions and times, never text; export writes everything that is stored, so the user can see there is nothing else"
+  },
+  "scenarios": {
+    "S_A": "Insulet pods (LZG): session 1 investigates adhesive failures and saves a ruled-out item, a hypothesis and an open question; session 2 starts with that memory in context and answers 'what have we ruled out?' from it; the user deletes the hypothesis; session 3's context and recall no longer contain it",
+    "S_B": "Exactech knees (JWH): saves a decision citing a real recall and a ruled-out item citing a real report; an attempt to cite an invented report key and one with a phone number are rejected; the user edits the decision; export matches the database",
+    "S_C": "two investigations kept apart: session for investigation B never sees investigation A's items; deleting investigation A removes all of its rows"
+  },
+  "criteria": {
+    "M1_store_correct": "API create/read/edit/delete/export round trips are exact (unit tests on a real PostgreSQL), constraints hold (kinds, lengths, one investigation per item), and the schema survives a data reload of `core`",
+    "M2_cross_session": "in every scenario, each session's memory block contains exactly the investigation's items that exist at that session's start (none missing, none deleted, none from another investigation); the verifier rebuilds the expected block from its own SQL and compares",
+    "M3_deletion_real": "after each deletion the verifier scans every text and jsonb column of every table in schema `memory` for the deleted text: zero hits; deleted ids are absent; the audit trail holds no text; deleting an investigation leaves zero rows that reference it",
+    "M4_guardrails": "invented evidence, email/phone text, empty or over-long text, wrong kind, closed or missing investigation are all rejected with an error result (never stored); every successful save returns a confirmation the answer shows",
+    "M5_export_ci": "export (JSON and Markdown) equals the database content exactly; memory tests run in CI against a PostgreSQL service; the scripted multi-session recordings replay offline"
+  }
+}

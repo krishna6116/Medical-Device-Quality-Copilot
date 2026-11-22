@@ -1,0 +1,10 @@
+{
+  "_about": "Phase 5 scorecard (5 items), pre-registered 2026-11-22 with the criteria, before any memory code existed. Each item passes only if its criterion passes in mdqc.verify_phase5.",
+  "items": {
+    "S1_memory_store_correct": {"criteria": ["M1"], "means": "saving, reading, editing, deleting and exporting memory work exactly, and survive a data reload"},
+    "S2_remembers_across_sessions": {"criteria": ["M2"], "means": "each new session starts with exactly what the investigation has stored, nothing more or less"},
+    "S3_deletion_is_real": {"criteria": ["M3"], "means": "deleted memory is gone from every table; no hidden copy, the audit trail stores no text"},
+    "S4_guardrails_hold": {"criteria": ["M4"], "means": "invented evidence and personal data are refused; every save is confirmed to the user"},
+    "S5_export_and_ci": {"criteria": ["M5"], "means": "the export shows everything stored; tests run in CI on a real database"}
+  }
+}
