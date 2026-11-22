@@ -128,3 +128,44 @@ def test_scripted_stand_in_is_labelled():
 @pytest.mark.skipif(not any((ROOT / "results" / "phase4" / "scripted").glob("Q*.json")), reason="no scripted recordings yet")
 def test_committed_scripted_recordings_offline():
     assert v4.main_scripted(offline=True, evidence=None) == 0
+
+
+def test_tool_input_validation_without_database():
+    """Checks that run before any query (re-check 2026-11-22): unknown arguments, bad limits, recall dates,
+    failure modes from another device family."""
+    from mdqc.tools import _limit, _mode, run_tool
+
+    class NoDB:  # any query would fail loudly
+        def execute(self, *a, **k):
+            raise AssertionError("no query expected")
+
+        def rollback(self):
+            pass
+
+    out, err = run_tool(NoDB(), "count_reports", {"product_code": "LZG", "bogus": 1})
+    assert err and "unknown argument" in out
+    out, err = run_tool(NoDB(), "no_such_tool", {})
+    assert err and "unknown tool" in out
+    assert _limit("7") == 7 and _limit(99) == 10 and _limit(None) == 5
+    with pytest.raises(ToolError):
+        _limit("five")
+    assert _date("2015-03-01", "1976-01-01", lo="1976-01-01", hi="2026-12-31") == "2015-03-01"  # recalls: not clamped to 2022
+    assert _mode("c_battery", "LWP") == "C_BATTERY"
+    with pytest.raises(ToolError):
+        _mode("O_INFECTION", "LWP")
+
+
+def test_tool_never_raises_on_unexpected_errors():
+    from mdqc.tools import run_tool
+
+    class BrokenDB:
+        rolled_back = False
+
+        def execute(self, *a, **k):
+            raise RuntimeError("database went away")
+
+        def rollback(self):
+            BrokenDB.rolled_back = True
+
+    out, err = run_tool(BrokenDB(), "signal_check", {"product_code": "LWP"})
+    assert err and "failed (RuntimeError)" in out and BrokenDB.rolled_back

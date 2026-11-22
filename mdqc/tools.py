@@ -41,31 +41,50 @@ def _code(v, required=True):
     return v
 
 
-def _date(v, default):
-    v = (v or default).strip()
+def _date(v, default, lo=WINDOW[0], hi=WINDOW[1]):
+    """Parse YYYY-MM-DD and clamp it to [lo, hi] (reports: 2022-2024; recalls: any year 1976-2026)."""
+    v = str(v or default).strip()
     try:
         d = date.fromisoformat(v)
     except ValueError as exc:
         raise ToolError(f"dates must be YYYY-MM-DD, got {v!r}") from exc
-    lo, hi = date.fromisoformat(WINDOW[0]), date.fromisoformat(WINDOW[1])
-    return max(lo, min(hi, d)).isoformat()
+    return max(date.fromisoformat(lo), min(date.fromisoformat(hi), d)).isoformat()
 
 
-def _mode(v):
+FAMILY_OF_CODE = {c: f for f, v in CODEBOOK["families"].items() for c in v["codes"]}
+FAMILY_OF_MODE = {m: f for f, v in CODEBOOK["families"].items() for m in v["modes"]}
+
+
+def _mode(v, code=None):
     if v is None:
         return None
-    v = v.strip().upper()
+    v = str(v).strip().upper()
     if v not in MODES:
         raise ToolError(f"failure_mode must be one of {sorted(MODES)}")
+    if code and FAMILY_OF_MODE[v] != FAMILY_OF_CODE[code]:
+        allowed = sorted(m for m, f in FAMILY_OF_MODE.items() if f == FAMILY_OF_CODE[code])
+        raise ToolError(f"{v} is not a failure mode for {code} ({CODES[code]}); use one of {allowed}")
     return v
+
+
+def _limit(v, default=5):
+    try:
+        n = int(v) if v is not None else default
+    except (TypeError, ValueError) as exc:
+        raise ToolError(f"limit must be a whole number from 1 to {MAX_ROWS}, got {v!r}") from exc
+    return max(1, min(n, MAX_ROWS))
 
 
 def _maker(con, v):
     """Resolve a free-text company name to exactly one parent company (case-insensitive substring)."""
     if v is None:
         return None
+    v = str(v)
+    if len(v.strip()) < 2:
+        raise ToolError("manufacturer must be at least 2 characters; call list_manufacturers to see names")
+    pattern = "%" + v.strip().replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%"
     rows = [r[0] for r in con.execute("SELECT DISTINCT parent_company FROM core.dim_manufacturer "
-                                      "WHERE parent_company ILIKE %s ORDER BY 1", (f"%{v.strip()}%",)).fetchall()]
+                                      "WHERE parent_company ILIKE %s ORDER BY 1", (pattern,)).fetchall()]
     if not rows:
         raise ToolError(f"no manufacturer matches {v!r}; call list_manufacturers first")
     exact = [r for r in rows if r.lower() == v.strip().lower()]
@@ -78,7 +97,7 @@ def _filters(con, args, alias="r"):
     """WHERE clause + params shared by the counting tools."""
     code = _code(args.get("product_code"), required=False)
     maker = _maker(con, args.get("manufacturer"))
-    mode = _mode(args.get("failure_mode"))
+    mode = _mode(args.get("failure_mode"), code)
     d0, d1 = _date(args.get("date_from"), WINDOW[0]), _date(args.get("date_to"), WINDOW[1])
     if d0 > d1:
         raise ToolError("date_from is after date_to")
@@ -169,7 +188,7 @@ def search_reports(con, args):
     if len(query) < 3:
         raise ToolError("query must describe what to look for")
     where, params, echo = _filters(con, args)
-    limit = max(1, min(int(args.get("limit") or 5), MAX_ROWS))
+    limit = _limit(args.get("limit"))
     keys = [k for (k,) in con.execute(f"SELECT r.mdr_report_key FROM {FROM} WHERE {where}", params).fetchall()]
     if not keys:
         return {"filters": echo, "query": query, "matches_considered": 0, "results": []}
@@ -230,8 +249,10 @@ def get_report(con, args):
 def find_recalls(con, args):
     code = _code(args.get("product_code"), required=False)
     maker = _maker(con, args.get("manufacturer"))
-    d0 = _date(args.get("date_from"), "1976-01-01") if args.get("date_from") else "1976-01-01"
-    d1 = args.get("date_to") or "2026-12-31"
+    d0 = _date(args.get("date_from"), "1976-01-01", lo="1976-01-01", hi="2026-12-31")
+    d1 = _date(args.get("date_to"), "2026-12-31", lo="1976-01-01", hi="2026-12-31")
+    if d0 > d1:
+        raise ToolError("date_from is after date_to")
     where, params = ["c.event_date_initiated BETWEEN %s AND %s"], [d0, d1]
     if code:
         where.append("c.product_code = %s")
@@ -258,7 +279,7 @@ def find_recalls(con, args):
 def signal_check(con, args):
     code = _code(args.get("product_code"))
     maker = _maker(con, args.get("manufacturer"))
-    mode = _mode(args.get("failure_mode"))
+    mode = _mode(args.get("failure_mode"), code)
     where, params = ["product_code = %s"], [code]
     if maker:
         where.append("parent_company = %s")
@@ -309,7 +330,7 @@ TOOL_SPECS = [
      _schema({"mdr_report_key": {"type": "string", "description": "The report's MDR report key, e.g. '16005019'"}}, ["mdr_report_key"])),
     ("find_recalls", find_recalls, "List recall records (most recent first) by product code, company, start date range or words in the recall reason.",
      _schema({"product_code": _COMMON["product_code"], "manufacturer": _COMMON["manufacturer"],
-              "date_from": {"type": "string", "description": "YYYY-MM-DD, recall started on or after"},
+              "date_from": {"type": "string", "description": "YYYY-MM-DD, recall started on or after (recalls cover all years, unlike reports)"},
               "date_to": {"type": "string", "description": "YYYY-MM-DD, recall started on or before"},
               "text": {"type": "string", "description": "Words to find in the recall reason or product description"}})),
     ("signal_check", signal_check, "Early-warning signals (months with unusually many reports) for a product code, optionally one company and failure mode.",
@@ -317,13 +338,24 @@ TOOL_SPECS = [
 ]
 TOOLS = {name: fn for name, fn, _, _ in TOOL_SPECS}
 TOOL_DEFINITIONS = [{"name": n, "description": d, "input_schema": s} for n, _, d, s in TOOL_SPECS]
+SCHEMAS = {n: s for n, _, _, s in TOOL_SPECS}
 
 
 def run_tool(con, name: str, args: dict) -> tuple[str, bool]:
-    """Execute a tool; returns (JSON text, is_error). Argument problems come back as errors, not exceptions."""
+    """Execute a tool; returns (JSON text, is_error). Never raises: argument problems and unexpected failures
+    come back as error results the model can read, and the database connection is reset after a failed query."""
     if name not in TOOLS:
-        return json.dumps({"error": f"unknown tool {name!r}"}), True
+        return json.dumps({"error": f"unknown tool {name!r}; tools: {sorted(TOOLS)}"}), True
+    args = dict(args or {})
+    allowed = set(SCHEMAS[name]["properties"])
+    unknown = sorted(set(args) - allowed)
+    if unknown:
+        return json.dumps({"error": f"unknown argument(s) {unknown} for {name}; allowed: {sorted(allowed)}"}), True
     try:
-        return json.dumps(TOOLS[name](con, dict(args or {})), default=str, ensure_ascii=False), False
+        return json.dumps(TOOLS[name](con, args), default=str, ensure_ascii=False), False
     except ToolError as exc:
+        con.rollback()
         return json.dumps({"error": str(exc)}), True
+    except Exception as exc:  # noqa: BLE001 - a tool must never crash the investigation
+        con.rollback()
+        return json.dumps({"error": f"{name} failed ({type(exc).__name__}); check the arguments"}), True

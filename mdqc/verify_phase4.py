@@ -219,6 +219,23 @@ def main_live(offline: bool, evidence: Path | None, cass: Path = CASS) -> int:
 
 
 SCRIPTED = ROOT / "results" / "phase4" / "scripted"
+STRESS = [  # each must come back as an error result (not a crash, not a silent answer)
+    ("find_recalls", {"product_code": "JWH", "date_to": "garbage"}),
+    ("find_recalls", {"date_from": "2020-01-01", "date_to": "2019-01-01"}),
+    ("search_reports", {"query": "pod fell off", "limit": "five"}),
+    ("search_reports", {"query": ""}),
+    ("count_reports", {"manufacturer": "%"}),
+    ("count_reports", {"product_code": "LZG", "bogus_arg": 1}),
+    ("count_reports", {"product_code": "FRN"}),
+    ("count_reports", {"product_code": "LZG", "date_from": "2024-12-31", "date_to": "2022-01-01"}),
+    ("trend", {"product_code": "LZG", "granularity": "week"}),
+    ("failure_modes", {"product_code": "LZG", "failure_mode": "D_LEAK"}),
+    ("signal_check", {"product_code": "LWP", "failure_mode": "O_INFECTION"}),
+    ("list_manufacturers", {"product_code": "MBH", "failure_mode": "D_LEAK"}),
+    ("list_manufacturers", {"product_code": "MBH", "manufacturer": "Stryker"}),
+    ("get_report", {"mdr_report_key": "1; DROP TABLE x"}),
+    ("no_such_tool", {}),
+]
 ALL_TOOLS = {"list_manufacturers", "count_reports", "trend", "failure_modes", "search_reports", "get_report",
              "find_recalls", "signal_check"}
 REFER = re.compile(r"physician|doctor|cardiologist|clinician|healthcare provider|health care provider", re.I)
@@ -278,9 +295,28 @@ def main_scripted(offline: bool, evidence: Path | None) -> int:
             calls = [t for r in recs.values() for t in r["tool_calls"]]
             same = sum(json.loads(run_tool(con, t["name"], t["input"])[0]) == json.loads(t["result"]) for t in calls)
             bad = independent_counts(con, recs)
-        check("B1", "all 8 tools used; every result = fresh run; counting tools = independent SQL",
-              complete and used == ALL_TOOLS and same == len(calls) and not any(t["is_error"] for t in calls) and not bad,
-              {"tool_calls": len(calls), "identical_on_rerun": same, "tools_used": sorted(used), "independent_mismatches": bad})
+            # stress suite (added on the Phase 4 re-check, post hoc): odd inputs must give error results, never
+            # crash, never silently change the question, and leave the connection usable
+            stress = {}
+            for name, args in STRESS:
+                try:
+                    out, err = run_tool(con, name, args)
+                    stress[f"{name} {json.dumps(args)}"] = "error result" if err else "ok"
+                except Exception as exc:  # noqa: BLE001
+                    stress[f"{name} {json.dumps(args)}"] = f"CRASH {type(exc).__name__}"
+            usable = con.execute("SELECT 1").fetchone() == (1,)
+            old = json.loads(run_tool(con, "find_recalls", {"product_code": "LPH", "manufacturer": "Zimmer Biomet",
+                                                            "date_from": "2015-01-01", "date_to": "2016-12-31"})[0])
+            n_old = con.execute("SELECT count(*) FROM core.fact_recall c, core.dim_manufacturer d WHERE c.manufacturer_id = d.manufacturer_id "
+                                "AND c.product_code = 'LPH' AND d.parent_company = 'ZIMMER BIOMET' "
+                                "AND c.event_date_initiated BETWEEN '2015-01-01' AND '2016-12-31'").fetchone()[0]
+        stress_ok = all(v == "error result" for v in stress.values()) and usable and old["recall_records"] == n_old
+        check("B1", "all 8 tools used; every result = fresh run; counting tools = independent SQL; stress suite safe",
+              complete and used == ALL_TOOLS and same == len(calls) and not any(t["is_error"] for t in calls) and not bad and stress_ok,
+              {"tool_calls": len(calls), "identical_on_rerun": same, "tools_used": sorted(used), "independent_mismatches": bad,
+               "stress_inputs": len(stress), "stress_all_error_results": all(v == "error result" for v in stress.values()),
+               "connection_usable_after": usable, "old_recalls_2015_16": [old["recall_records"], n_old],
+               "stress": {k: v for k, v in stress.items() if v != "error result"}})
 
     tests = subprocess.run([sys.executable, "-m", "pytest", "tests/test_phase4.py", "-k", "loop or budget or stop or thinking or steps or replay"],
                            cwd=ROOT, capture_output=True, text=True)

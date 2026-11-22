@@ -1,11 +1,11 @@
 {
-  "checked_utc": "2026-11-22T16:41:07Z",
+  "checked_utc": "2026-11-22T16:52:55Z",
   "mode": "scripted stand-in (criteria v2)",
   "all_pass": true,
   "checks": [
     {
       "id": "B1",
-      "check": "all 8 tools used; every result = fresh run; counting tools = independent SQL",
+      "check": "all 8 tools used; every result = fresh run; counting tools = independent SQL; stress suite safe",
       "pass": true,
       "detail": {
         "tool_calls": 13,
@@ -20,7 +20,15 @@
           "signal_check",
           "trend"
         ],
-        "independent_mismatches": []
+        "independent_mismatches": [],
+        "stress_inputs": 15,
+        "stress_all_error_results": true,
+        "connection_usable_after": true,
+        "old_recalls_2015_16": [
+          19,
+          19
+        ],
+        "stress": {}
       }
     },
     {
@@ -28,7 +36,7 @@
       "check": "fake-model loop tests: round trip, thinking passed back, budget, max_tokens, refusal, step limit",
       "pass": true,
       "detail": {
-        "pytest": "7 passed, 6 deselected in 1.20s"
+        "pytest": "7 passed, 8 deselected in 1.30s"
       }
     },
     {

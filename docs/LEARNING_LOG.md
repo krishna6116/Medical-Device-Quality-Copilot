@@ -92,3 +92,5 @@
 
 **Next:** Phase 5, investigation memory (remembering what was ruled out across sessions, with view and delete).
 
+**Phase 4 re-check (same day):** a stress test with odd inputs (the kind a real model will sometimes send) found problems the well-formed scripted run could not: a malformed date or limit crashed a tool and left the database connection broken; a pacemaker question with a hip failure mode returned a silent 0; and recall searches before 2022 were silently moved into the report window, giving a wrong answer with no error. All fixed; tools now never raise, and a 15-input stress suite is part of the verifier. *Concept:* test the unhappy path. A tool used by a model must turn every bad input into a clear error the model can correct, and must never quietly answer a different question.
+

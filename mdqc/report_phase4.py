@@ -73,6 +73,14 @@ def render() -> str:
             [[c["id"], c["check"], "pass" if c["pass"] else "**FAIL**"] for c in sorted(ver["checks"], key=lambda c: c["id"])]) + "\n")
     a(table(["Scorecard item", "Meaning", "Result"],
             [[k, v["means"], "pass" if ver["scorecard"][k] else "**FAIL**"] for k, v in load("config/phase4_scorecard_v2.json")["items"].items()]) + "\n")
+    b1 = chk["B1"]["detail"]
+    if "stress_inputs" in b1:
+        a(f"*Re-check (post hoc, 2026-11-22):* a stress test with odd inputs found that the tools could crash on a "
+          "malformed date or limit, accepted failure modes from another device family, and silently moved recall "
+          "dates before 2022 into the report window (a wrong answer with no error). All were fixed and B1 now includes "
+          f"a {b1['stress_inputs']}-input stress suite: every odd input returns an error result the model can act on, "
+          f"nothing crashes, the database connection stays usable, and an older-recall question returns "
+          f"{b1['old_recalls_2015_16'][0]} records, equal to independent SQL.\n")
     b3 = chk["B3"]["detail"]
     a("The grounding checker accepted every scripted answer and caught every planted error ("
       + ", ".join(k for k, v in b3["planted_caught"].items() if v) + "). The safety checker flagged planted advice and "
