@@ -30,6 +30,10 @@ jobs:
         run: |
           python -m mdqc.verify_phase4 --offline
           python -m mdqc.report_phase4 --check
+      - name: Phase 5 offline verifier (memory replay model, refusals, export, replay) and doc
+        run: |
+          python -m mdqc.verify_phase5 --offline
+          python -m mdqc.report_phase5 --check
 
   # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
   # (including the tampered-cell check) and the independent verifier (P1-P8) on it.
@@ -58,5 +62,7 @@ jobs:
         run: |
           python -m mdqc.load --raw tests/fixtures/phase1/raw --schema core --no-summary
           python -m mdqc.verify_phase2 --raw tests/fixtures/phase1/raw --fixture
+      - name: Phase 5 memory tests on the real database (needs the fixture loaded above)
+        run: python -m pytest tests/test_phase5.py -rs
       - name: Pipeline doc is generated from the committed results
         run: python -m mdqc.report_phase2 --check

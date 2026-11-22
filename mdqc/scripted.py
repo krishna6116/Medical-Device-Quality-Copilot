@@ -112,3 +112,23 @@ class ScriptedClient:
         last = kw["messages"][-1]["content"] if calls else []
         results = [json.loads(b["content"]) for b in last] if calls else []
         return _msg([{"type": "text", "text": compose(self.qid, results)}], "end_turn")
+
+
+class StepClient:
+    """Multi-step scripted stand-in (Phase 5 scenarios). steps: a list of ("tools", [(name, args), ...]) or
+    ("answer", fn). args may be a function of the tool results so far (e.g. cite a recall returned earlier);
+    fn(results) builds the final text. Still NOT a model; answers carry the scripted header."""
+
+    def __init__(self, steps):
+        self.steps, self.i, self.results = steps, 0, []
+
+    def create(self, **kw):
+        if self.i > 0 and kw["messages"][-1]["role"] == "user" and isinstance(kw["messages"][-1]["content"], list):
+            self.results += [json.loads(b["content"]) for b in kw["messages"][-1]["content"]]
+        kind, payload = self.steps[self.i]
+        self.i += 1
+        if kind == "tools":
+            calls = [(n, a(self.results) if callable(a) else a) for n, a in payload]
+            return _msg([{"type": "tool_use", "id": f"toolu_s{self.i}_{j}", "name": n, "input": a}
+                         for j, (n, a) in enumerate(calls)], "tool_use")
+        return _msg([{"type": "text", "text": HEADER + "\n" + payload(self.results)}], "end_turn")

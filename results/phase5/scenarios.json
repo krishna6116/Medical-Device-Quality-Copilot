@@ -1,0 +1,976 @@
+{
+ "schema": "memory_scenarios",
+ "model": "scripted-stand-in",
+ "log": [
+  {
+   "type": "create",
+   "scenario": "S_A",
+   "investigation_id": 1,
+   "title": "Insulet pod adhesive failures",
+   "product_code": "LZG",
+   "manufacturer": "INSULET"
+  },
+  {
+   "type": "session",
+   "scenario": "S_A",
+   "investigation_id": 1,
+   "session_id": 1,
+   "question": "Are Insulet pod adhesive failures rising? Save what we conclude.",
+   "memory_block": "INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\nNothing saved yet.",
+   "tool_calls": [
+    {
+     "step": 0,
+     "id": "toolu_s1_0",
+     "name": "trend",
+     "input": {
+      "product_code": "LZG",
+      "manufacturer": "Insulet",
+      "failure_mode": "D_ADHESIVE_DISLODGED",
+      "granularity": "year"
+     },
+     "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"granularity\": \"year\", \"series\": [{\"period\": \"2022\", \"reports\": 5068}, {\"period\": \"2023\", \"reports\": 5608}, {\"period\": \"2024\", \"reports\": 4846}], \"note\": \"Counts by the date FDA received the report; the latest months fill in later as late reports arrive.\", \"first_to_last_change\": -0.044}",
+     "is_error": false
+    },
+    {
+     "step": 1,
+     "id": "toolu_s2_0",
+     "name": "remember",
+     "input": {
+      "kind": "ruled_out",
+      "text": "Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%)."
+     },
+     "result": "{\"saved\": true, \"item_id\": 1, \"kind\": \"ruled_out\", \"text\": \"Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\", \"evidence\": [], \"confirmation\": \"Saved to investigation 1 memory as ruled_out (item 1): \\\"Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\\\". You can view, edit or delete it at any time.\"}",
+     "is_error": false
+    },
+    {
+     "step": 1,
+     "id": "toolu_s2_1",
+     "name": "remember",
+     "input": {
+      "kind": "hypothesis",
+      "text": "Dislodged pods may relate to wear time over 48 hours; check the narratives."
+     },
+     "result": "{\"saved\": true, \"item_id\": 2, \"kind\": \"hypothesis\", \"text\": \"Dislodged pods may relate to wear time over 48 hours; check the narratives.\", \"evidence\": [], \"confirmation\": \"Saved to investigation 1 memory as hypothesis (item 2): \\\"Dislodged pods may relate to wear time over 48 hours; check the narratives.\\\". You can view, edit or delete it at any time.\"}",
+     "is_error": false
+    },
+    {
+     "step": 1,
+     "id": "toolu_s2_2",
+     "name": "remember",
+     "input": {
+      "kind": "open_question",
+      "text": "Do cannula insertion failures rise in the same months as dislodged pods?"
+     },
+     "result": "{\"saved\": true, \"item_id\": 3, \"kind\": \"open_question\", \"text\": \"Do cannula insertion failures rise in the same months as dislodged pods?\", \"evidence\": [], \"confirmation\": \"Saved to investigation 1 memory as open_question (item 3): \\\"Do cannula insertion failures rise in the same months as dislodged pods?\\\". You can view, edit or delete it at any time.\"}",
+     "is_error": false
+    }
+   ],
+   "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nAdhesive failures are not rising. Saved to investigation 1 memory as ruled_out (item 1): \"Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\". You can view, edit or delete it at any time. Saved to investigation 1 memory as hypothesis (item 2): \"Dislodged pods may relate to wear time over 48 hours; check the narratives.\". You can view, edit or delete it at any time. Saved to investigation 1 memory as open_question (item 3): \"Do cannula insertion failures rise in the same months as dislodged pods?\". You can view, edit or delete it at any time.",
+   "calls": [
+    {
+     "step": 0,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s1_0",
+        "input": {
+         "product_code": "LZG",
+         "manufacturer": "Insulet",
+         "failure_mode": "D_ADHESIVE_DISLODGED",
+         "granularity": "year"
+        },
+        "name": "trend",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 1,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s2_0",
+        "input": {
+         "kind": "ruled_out",
+         "text": "Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%)."
+        },
+        "name": "remember",
+        "type": "tool_use"
+       },
+       {
+        "id": "toolu_s2_1",
+        "input": {
+         "kind": "hypothesis",
+         "text": "Dislodged pods may relate to wear time over 48 hours; check the narratives."
+        },
+        "name": "remember",
+        "type": "tool_use"
+       },
+       {
+        "id": "toolu_s2_2",
+        "input": {
+         "kind": "open_question",
+         "text": "Do cannula insertion failures rise in the same months as dislodged pods?"
+        },
+        "name": "remember",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 2,
+     "stop_reason": "end_turn",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nAdhesive failures are not rising. Saved to investigation 1 memory as ruled_out (item 1): \"Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\". You can view, edit or delete it at any time. Saved to investigation 1 memory as hypothesis (item 2): \"Dislodged pods may relate to wear time over 48 hours; check the narratives.\". You can view, edit or delete it at any time. Saved to investigation 1 memory as open_question (item 3): \"Do cannula insertion failures rise in the same months as dislodged pods?\". You can view, edit or delete it at any time.",
+        "type": "text"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "type": "session",
+   "scenario": "S_A",
+   "investigation_id": 1,
+   "session_id": 2,
+   "question": "What have we ruled out so far?",
+   "memory_block": "INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\nRuled out:\n- [item 1, open] Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\nHypotheses:\n- [item 2, open] Dislodged pods may relate to wear time over 48 hours; check the narratives.\nOpen questions:\n- [item 3, open] Do cannula insertion failures rise in the same months as dislodged pods?",
+   "tool_calls": [
+    {
+     "step": 0,
+     "id": "toolu_s1_0",
+     "name": "recall",
+     "input": {},
+     "result": "{\"memory\": \"INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\\nRuled out:\\n- [item 1, open] Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\\nHypotheses:\\n- [item 2, open] Dislodged pods may relate to wear time over 48 hours; check the narratives.\\nOpen questions:\\n- [item 3, open] Do cannula insertion failures rise in the same months as dislodged pods?\"}",
+     "is_error": false
+    }
+   ],
+   "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nFrom this investigation's memory: - [item 1, open] Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).",
+   "calls": [
+    {
+     "step": 0,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s1_0",
+        "input": {},
+        "name": "recall",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 1,
+     "stop_reason": "end_turn",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nFrom this investigation's memory: - [item 1, open] Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).",
+        "type": "text"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "type": "user",
+   "scenario": "S_A",
+   "action": "delete",
+   "args": {
+    "item_id": 2
+   },
+   "result": {
+    "deleted": true,
+    "item_id": 2,
+    "confirmation": "Deleted memory item 2; it is no longer stored anywhere."
+   }
+  },
+  {
+   "type": "session",
+   "scenario": "S_A",
+   "investigation_id": 1,
+   "session_id": 3,
+   "question": "Remind me of our open hypotheses.",
+   "memory_block": "INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\nRuled out:\n- [item 1, open] Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\nOpen questions:\n- [item 3, open] Do cannula insertion failures rise in the same months as dislodged pods?",
+   "tool_calls": [
+    {
+     "step": 0,
+     "id": "toolu_s1_0",
+     "name": "recall",
+     "input": {},
+     "result": "{\"memory\": \"INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\\nRuled out:\\n- [item 1, open] Rising adhesive failures ruled out for 2022-2024: yearly reports 5,068 -> 5,608 -> 4,846 (change -4.4%).\\nOpen questions:\\n- [item 3, open] Do cannula insertion failures rise in the same months as dislodged pods?\"}",
+     "is_error": false
+    }
+   ],
+   "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nHypotheses in memory: none.",
+   "calls": [
+    {
+     "step": 0,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s1_0",
+        "input": {},
+        "name": "recall",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 1,
+     "stop_reason": "end_turn",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nHypotheses in memory: none.",
+        "type": "text"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "type": "create",
+   "scenario": "S_B",
+   "investigation_id": 2,
+   "title": "Exactech knee insert wear",
+   "product_code": "JWH",
+   "manufacturer": "EXACTECH"
+  },
+  {
+   "type": "session",
+   "scenario": "S_B",
+   "investigation_id": 2,
+   "session_id": 4,
+   "question": "Which Exactech knee recalls should we focus on? Save our decision.",
+   "memory_block": "INVESTIGATION MEMORY (investigation 2: Exactech knee insert wear; product JWH; manufacturer EXACTECH; open)\nNothing saved yet.",
+   "tool_calls": [
+    {
+     "step": 0,
+     "id": "toolu_s1_0",
+     "name": "find_recalls",
+     "input": {
+      "product_code": "JWH",
+      "manufacturer": "Exactech",
+      "date_from": "2022-01-01"
+     },
+     "result": "{\"filters\": {\"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"date_from\": \"2022-01-01\", \"date_to\": \"2026-12-31\", \"text\": null}, \"recall_records\": 9, \"recall_events\": 2, \"shown\": 9, \"recalls\": [{\"recall_number\": \"Z-2155-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-2156-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-2157-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-2158-2024\", \"recall_event\": \"94409\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2024-04-18\", \"status\": \"Open, Classified\", \"root_cause\": \"Under Investigation by firm\", \"reason\": \"Exactech is recalling all affected UHMWPE (ultra-high molecular weight polyethylene) knee patella components packaged in out of specification vacuum bags.\"}, {\"recall_number\": \"Z-0582-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0583-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0584-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0585-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}, {\"recall_number\": \"Z-0586-2024\", \"recall_event\": \"93507\", \"product_code\": \"JWH\", \"manufacturer\": \"EXACTECH\", \"started\": \"2023-11-21\", \"status\": \"Open, Classified\", \"root_cause\": \"Packaging change control\", \"reason\": \"Exactech has received 3 complaints for 4 devices related to a loss of vacuum in the inner-most vacuum bag.\"}]}",
+     "is_error": false
+    },
+    {
+     "step": 1,
+     "id": "toolu_s2_0",
+     "name": "remember",
+     "input": {
+      "kind": "decision",
+      "text": "Focus the review on the most recent Exactech JWH recall.",
+      "evidence": [
+       "Z-2155-2024"
+      ]
+     },
+     "result": "{\"saved\": true, \"item_id\": 4, \"kind\": \"decision\", \"text\": \"Focus the review on the most recent Exactech JWH recall.\", \"evidence\": [{\"type\": \"recall\", \"id\": \"Z-2155-2024\"}], \"confirmation\": \"Saved to investigation 2 memory as decision (item 4): \\\"Focus the review on the most recent Exactech JWH recall.\\\". You can view, edit or delete it at any time.\"}",
+     "is_error": false
+    },
+    {
+     "step": 1,
+     "id": "toolu_s2_1",
+     "name": "remember",
+     "input": {
+      "kind": "ruled_out",
+      "text": "Packaging damage ruled out as the cause in the reviewed wear report.",
+      "evidence": [
+       "MDR 13159742"
+      ]
+     },
+     "result": "{\"saved\": true, \"item_id\": 5, \"kind\": \"ruled_out\", \"text\": \"Packaging damage ruled out as the cause in the reviewed wear report.\", \"evidence\": [{\"type\": \"report\", \"id\": \"13159742\"}], \"confirmation\": \"Saved to investigation 2 memory as ruled_out (item 5): \\\"Packaging damage ruled out as the cause in the reviewed wear report.\\\". You can view, edit or delete it at any time.\"}",
+     "is_error": false
+    },
+    {
+     "step": 1,
+     "id": "toolu_s2_2",
+     "name": "remember",
+     "input": {
+      "kind": "note",
+      "text": "Example report to compare against.",
+      "evidence": [
+       "MDR 99999999"
+      ]
+     },
+     "result": "{\"error\": \"refused: evidence 'MDR 99999999': no such report in the project data\"}",
+     "is_error": true
+    },
+    {
+     "step": 1,
+     "id": "toolu_s2_3",
+     "name": "remember",
+     "input": {
+      "kind": "note",
+      "text": "Ask the surgeon on 555-123-4567 about the revision."
+     },
+     "result": "{\"error\": \"refused: memory must not contain personal contact details (email address or phone number)\"}",
+     "is_error": true
+    }
+   ],
+   "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nSaved to investigation 2 memory as decision (item 4): \"Focus the review on the most recent Exactech JWH recall.\". You can view, edit or delete it at any time. Saved to investigation 2 memory as ruled_out (item 5): \"Packaging damage ruled out as the cause in the reviewed wear report.\". You can view, edit or delete it at any time. Refused: 2 save(s) (invented evidence or personal data).",
+   "calls": [
+    {
+     "step": 0,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s1_0",
+        "input": {
+         "product_code": "JWH",
+         "manufacturer": "Exactech",
+         "date_from": "2022-01-01"
+        },
+        "name": "find_recalls",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 1,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s2_0",
+        "input": {
+         "kind": "decision",
+         "text": "Focus the review on the most recent Exactech JWH recall.",
+         "evidence": [
+          "Z-2155-2024"
+         ]
+        },
+        "name": "remember",
+        "type": "tool_use"
+       },
+       {
+        "id": "toolu_s2_1",
+        "input": {
+         "kind": "ruled_out",
+         "text": "Packaging damage ruled out as the cause in the reviewed wear report.",
+         "evidence": [
+          "MDR 13159742"
+         ]
+        },
+        "name": "remember",
+        "type": "tool_use"
+       },
+       {
+        "id": "toolu_s2_2",
+        "input": {
+         "kind": "note",
+         "text": "Example report to compare against.",
+         "evidence": [
+          "MDR 99999999"
+         ]
+        },
+        "name": "remember",
+        "type": "tool_use"
+       },
+       {
+        "id": "toolu_s2_3",
+        "input": {
+         "kind": "note",
+         "text": "Ask the surgeon on 555-123-4567 about the revision."
+        },
+        "name": "remember",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 2,
+     "stop_reason": "end_turn",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nSaved to investigation 2 memory as decision (item 4): \"Focus the review on the most recent Exactech JWH recall.\". You can view, edit or delete it at any time. Saved to investigation 2 memory as ruled_out (item 5): \"Packaging damage ruled out as the cause in the reviewed wear report.\". You can view, edit or delete it at any time. Refused: 2 save(s) (invented evidence or personal data).",
+        "type": "text"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "type": "user",
+   "scenario": "S_B",
+   "action": "edit",
+   "args": {
+    "item_id": 4,
+    "text": "Focus the review on the most recent Exactech JWH recall and its lot ranges.",
+    "status": "confirmed"
+   },
+   "result": {
+    "edited": true,
+    "item_id": 4,
+    "confirmation": "Updated memory item 4."
+   }
+  },
+  {
+   "type": "create",
+   "scenario": "S_C",
+   "investigation_id": 3,
+   "title": "Boston Scientific pacemaker battery",
+   "product_code": "LWP",
+   "manufacturer": "BOSTON SCIENTIFIC"
+  },
+  {
+   "type": "create",
+   "scenario": "S_C",
+   "investigation_id": 4,
+   "title": "Abbott pacemaker battery",
+   "product_code": "LWP",
+   "manufacturer": "ABBOTT"
+  },
+  {
+   "type": "session",
+   "scenario": "S_C",
+   "investigation_id": 3,
+   "session_id": 5,
+   "question": "Note the battery hypothesis for Boston Scientific.",
+   "memory_block": "INVESTIGATION MEMORY (investigation 3: Boston Scientific pacemaker battery; product LWP; manufacturer BOSTON SCIENTIFIC; open)\nNothing saved yet.",
+   "tool_calls": [
+    {
+     "step": 0,
+     "id": "toolu_s1_0",
+     "name": "remember",
+     "input": {
+      "kind": "hypothesis",
+      "text": "Boston Scientific battery reports may follow one device family."
+     },
+     "result": "{\"saved\": true, \"item_id\": 6, \"kind\": \"hypothesis\", \"text\": \"Boston Scientific battery reports may follow one device family.\", \"evidence\": [], \"confirmation\": \"Saved to investigation 3 memory as hypothesis (item 6): \\\"Boston Scientific battery reports may follow one device family.\\\". You can view, edit or delete it at any time.\"}",
+     "is_error": false
+    }
+   ],
+   "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nSaved to investigation 3 memory as hypothesis (item 6): \"Boston Scientific battery reports may follow one device family.\". You can view, edit or delete it at any time.",
+   "calls": [
+    {
+     "step": 0,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s1_0",
+        "input": {
+         "kind": "hypothesis",
+         "text": "Boston Scientific battery reports may follow one device family."
+        },
+        "name": "remember",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 1,
+     "stop_reason": "end_turn",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nSaved to investigation 3 memory as hypothesis (item 6): \"Boston Scientific battery reports may follow one device family.\". You can view, edit or delete it at any time.",
+        "type": "text"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "type": "session",
+   "scenario": "S_C",
+   "investigation_id": 4,
+   "session_id": 6,
+   "question": "Note the Abbott question, then delete item 6.",
+   "memory_block": "INVESTIGATION MEMORY (investigation 4: Abbott pacemaker battery; product LWP; manufacturer ABBOTT; open)\nNothing saved yet.",
+   "tool_calls": [
+    {
+     "step": 0,
+     "id": "toolu_s1_0",
+     "name": "remember",
+     "input": {
+      "kind": "open_question",
+      "text": "Are Abbott battery reports concentrated in 2022?"
+     },
+     "result": "{\"saved\": true, \"item_id\": 7, \"kind\": \"open_question\", \"text\": \"Are Abbott battery reports concentrated in 2022?\", \"evidence\": [], \"confirmation\": \"Saved to investigation 4 memory as open_question (item 7): \\\"Are Abbott battery reports concentrated in 2022?\\\". You can view, edit or delete it at any time.\"}",
+     "is_error": false
+    },
+    {
+     "step": 0,
+     "id": "toolu_s1_1",
+     "name": "forget",
+     "input": {
+      "item_id": 6
+     },
+     "result": "{\"error\": \"refused: memory item 6 is not part of this investigation\"}",
+     "is_error": true
+    }
+   ],
+   "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nSaved to investigation 4 memory as open_question (item 7): \"Are Abbott battery reports concentrated in 2022?\". You can view, edit or delete it at any time. refused: memory item 6 is not part of this investigation",
+   "calls": [
+    {
+     "step": 0,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s1_0",
+        "input": {
+         "kind": "open_question",
+         "text": "Are Abbott battery reports concentrated in 2022?"
+        },
+        "name": "remember",
+        "type": "tool_use"
+       },
+       {
+        "id": "toolu_s1_1",
+        "input": {
+         "item_id": 6
+        },
+        "name": "forget",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 1,
+     "stop_reason": "end_turn",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nSaved to investigation 4 memory as open_question (item 7): \"Are Abbott battery reports concentrated in 2022?\". You can view, edit or delete it at any time. refused: memory item 6 is not part of this investigation",
+        "type": "text"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    }
+   ]
+  },
+  {
+   "type": "user",
+   "scenario": "S_C",
+   "action": "delete_investigation",
+   "args": {
+    "inv": 3
+   },
+   "result": {
+    "deleted_investigation": 3,
+    "deleted_items": 1
+   }
+  },
+  {
+   "type": "session",
+   "scenario": "S_C",
+   "investigation_id": 4,
+   "session_id": 7,
+   "question": "What is in this investigation's memory?",
+   "memory_block": "INVESTIGATION MEMORY (investigation 4: Abbott pacemaker battery; product LWP; manufacturer ABBOTT; open)\nOpen questions:\n- [item 7, open] Are Abbott battery reports concentrated in 2022?",
+   "tool_calls": [
+    {
+     "step": 0,
+     "id": "toolu_s1_0",
+     "name": "recall",
+     "input": {},
+     "result": "{\"memory\": \"INVESTIGATION MEMORY (investigation 4: Abbott pacemaker battery; product LWP; manufacturer ABBOTT; open)\\nOpen questions:\\n- [item 7, open] Are Abbott battery reports concentrated in 2022?\"}",
+     "is_error": false
+    }
+   ],
+   "answer": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nINVESTIGATION MEMORY (investigation 4: Abbott pacemaker battery; product LWP; manufacturer ABBOTT; open)\nOpen questions:\n- [item 7, open] Are Abbott battery reports concentrated in 2022?",
+   "calls": [
+    {
+     "step": 0,
+     "stop_reason": "tool_use",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "id": "toolu_s1_0",
+        "input": {},
+        "name": "recall",
+        "type": "tool_use"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    },
+    {
+     "step": 1,
+     "stop_reason": "end_turn",
+     "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0
+     },
+     "response": {
+      "id": "msg_scripted",
+      "content": [
+       {
+        "text": "[Scripted stand-in, not a language model: template answer built from the tool results below.]\nINVESTIGATION MEMORY (investigation 4: Abbott pacemaker battery; product LWP; manufacturer ABBOTT; open)\nOpen questions:\n- [item 7, open] Are Abbott battery reports concentrated in 2022?",
+        "type": "text"
+       }
+      ],
+      "model": "scripted-stand-in",
+      "role": "assistant",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "type": "message",
+      "usage": {
+       "input_tokens": 0,
+       "output_tokens": 0
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "export_S_B": {
+  "investigation_id": 2,
+  "title": "Exactech knee insert wear",
+  "product_code": "JWH",
+  "manufacturer": "EXACTECH",
+  "status": "open",
+  "items": [
+   {
+    "item_id": 4,
+    "kind": "decision",
+    "text": "Focus the review on the most recent Exactech JWH recall and its lot ranges.",
+    "evidence": [
+     {
+      "id": "Z-2155-2024",
+      "type": "recall"
+     }
+    ],
+    "status": "confirmed",
+    "source": "assistant",
+    "session_id": 4,
+    "created_at": "2026-11-22T18:46:44.755778-05:00",
+    "updated_at": "2026-11-22T18:46:44.768206-05:00"
+   },
+   {
+    "item_id": 5,
+    "kind": "ruled_out",
+    "text": "Packaging damage ruled out as the cause in the reviewed wear report.",
+    "evidence": [
+     {
+      "id": "13159742",
+      "type": "report"
+     }
+    ],
+    "status": "open",
+    "source": "assistant",
+    "session_id": 4,
+    "created_at": "2026-11-22T18:46:44.763533-05:00",
+    "updated_at": "2026-11-22T18:46:44.763533-05:00"
+   }
+  ],
+  "sessions": [
+   {
+    "session_id": 4,
+    "started_at": "2026-11-22T18:46:44.754170-05:00",
+    "ended_at": "2026-11-22T18:46:44.767438-05:00"
+   }
+  ],
+  "audit_trail": [
+   {
+    "event_id": 9,
+    "item_id": null,
+    "kind": null,
+    "action": "investigation_created",
+    "actor": "user",
+    "at": "2026-11-22T18:46:44.753672-05:00"
+   },
+   {
+    "event_id": 10,
+    "item_id": null,
+    "kind": null,
+    "action": "session_started",
+    "actor": "user",
+    "at": "2026-11-22T18:46:44.754170-05:00"
+   },
+   {
+    "event_id": 11,
+    "item_id": 4,
+    "kind": "decision",
+    "action": "item_created",
+    "actor": "assistant",
+    "at": "2026-11-22T18:46:44.755778-05:00"
+   },
+   {
+    "event_id": 12,
+    "item_id": 5,
+    "kind": "ruled_out",
+    "action": "item_created",
+    "actor": "assistant",
+    "at": "2026-11-22T18:46:44.763533-05:00"
+   },
+   {
+    "event_id": 13,
+    "item_id": 4,
+    "kind": "decision",
+    "action": "item_edited",
+    "actor": "user",
+    "at": "2026-11-22T18:46:44.768206-05:00"
+   }
+  ],
+  "note": "This is everything stored about this investigation. The audit trail holds no text."
+ }
+}

@@ -1,0 +1,92 @@
+{
+  "checked_utc": "2026-11-22T23:50:26Z",
+  "all_pass": true,
+  "checks": [
+    {
+      "id": "M1",
+      "check": "memory API round trips, constraints and survival of a data reload (tests on PostgreSQL)",
+      "pass": true,
+      "detail": {
+        "pytest": "5 passed in 0.69s"
+      }
+    },
+    {
+      "id": "M2",
+      "check": "each session's memory block = independent replay of all saves/edits/deletes; final DB = model",
+      "pass": true,
+      "detail": {
+        "sessions": 7,
+        "blocks_matching_model": 7,
+        "mismatch_sessions": [],
+        "final_database_equals_model": true
+      }
+    },
+    {
+      "id": "M3",
+      "check": "deleted and refused texts appear in no column of any memory table; ids and investigations gone; audit holds no text; scanner catches a planted copy",
+      "pass": true,
+      "detail": {
+        "scanner_self_test": {
+          "clean_after_delete": true,
+          "planted_partial_copy_caught": true
+        },
+        "texts_scanned": 4,
+        "patterns_scanned": 12,
+        "columns_scanned": 12,
+        "hits": [],
+        "deleted_ids_left": 0,
+        "rows_referencing_deleted_investigations": 0,
+        "audit_text_columns": [
+          "action",
+          "actor",
+          "kind"
+        ]
+      }
+    },
+    {
+      "id": "M4",
+      "check": "invented evidence, personal data, bad text/kind, closed/missing investigation refused; saves confirmed",
+      "pass": true,
+      "detail": {
+        "scenarios": {
+          "invented evidence refused": true,
+          "phone number refused": true,
+          "cross-investigation forget refused": true,
+          "every save confirmed in the answer": true
+        },
+        "api_probe": {
+          "invented report": "refused",
+          "invented recall": "refused",
+          "malformed evidence": "refused",
+          "email": "refused",
+          "phone": "refused",
+          "empty": "refused",
+          "too long": "refused",
+          "wrong kind": "refused",
+          "closed investigation": "refused",
+          "missing investigation": "refused",
+          "valid save confirmed": true,
+          "only the valid item stored": true
+        }
+      }
+    },
+    {
+      "id": "M5",
+      "check": "export (JSON, Markdown) = database; recorded sessions replay offline",
+      "pass": true,
+      "detail": {
+        "export_items": 2,
+        "markdown_has_every_item": true,
+        "replay_mismatch": []
+      }
+    }
+  ],
+  "scorecard": {
+    "S1_memory_store_correct": true,
+    "S2_remembers_across_sessions": true,
+    "S3_deletion_is_real": true,
+    "S4_guardrails_hold": true,
+    "S5_export_and_ci": true
+  },
+  "scorecard_score": "5/5"
+}

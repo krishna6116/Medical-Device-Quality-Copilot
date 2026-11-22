@@ -47,7 +47,7 @@ Each phase lists what gets built, why, and what "done" means. "Verified" always 
 - **Why:** the product a recruiter sees; grounding keeps it honest.
 - **Done:** scripted demo investigations run end to end locally; verifier checks that every number and citation in recorded answers appears in that answer's tool results.
 
-### Phase 5: Investigation memory
+### Phase 5: Investigation memory (done 2026-11-22: `docs/MEMORY.md`, scorecard 5/5, $0)
 - **Build:** a memory store (PostgreSQL schema `memory`) per investigation: product, hypotheses, ruled out (with the evidence), decisions, open questions, timeline. Written only by explicit memory tools, shown to the user when saved, loaded at the start of the next session. View / edit / delete / export; deletion really removes the item and anything derived from it.
 - **Why:** real investigations run for weeks; the user must see and control what is remembered.
 - **Done:** multi-session scenario tests (session 2 recalls what session 1 ruled out; a deleted item is never used again); verifier inspects the database after deletion.

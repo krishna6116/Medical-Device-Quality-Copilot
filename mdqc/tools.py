@@ -359,3 +359,63 @@ def run_tool(con, name: str, args: dict) -> tuple[str, bool]:
     except Exception as exc:  # noqa: BLE001 - a tool must never crash the investigation
         con.rollback()
         return json.dumps({"error": f"{name} failed ({type(exc).__name__}); check the arguments"}), True
+
+
+# ---- Phase 5: memory tools (bound to one investigation and session) --------------------------------------
+MEMORY_TOOL_SPECS = [
+    ("remember", "Save a conclusion to this investigation's memory so later sessions know it. Use only for things the "
+                 "user has agreed or asked to keep. kind: ruled_out (with why), hypothesis, decision, open_question or note. "
+                 "Evidence may only cite report keys ('MDR 16005019') or recall numbers ('Z-2155-2024') from tool results. "
+                 "Tell the user what you saved.",
+     _schema({"kind": {"type": "string", "enum": ["hypothesis", "ruled_out", "decision", "open_question", "note"]},
+              "text": {"type": "string", "description": "One or two sentences, 5-500 characters, no personal data"},
+              "evidence": {"type": "array", "items": {"type": "string"}, "description": "Report keys or recall numbers"}},
+             ["kind", "text"])),
+    ("recall", "Read this investigation's memory (everything saved so far).", _schema({})),
+    ("update_memory", "Change a saved item's text, status (open, confirmed, rejected, done) or evidence.",
+     _schema({"item_id": {"type": "integer"}, "text": {"type": "string"},
+              "status": {"type": "string", "enum": ["open", "confirmed", "rejected", "done"]},
+              "evidence": {"type": "array", "items": {"type": "string"}}}, ["item_id"])),
+    ("forget", "Delete a saved item from this investigation's memory (only when the user asks).",
+     _schema({"item_id": {"type": "integer"}}, ["item_id"])),
+]
+MEMORY_TOOL_DEFINITIONS = [{"name": n, "description": d, "input_schema": s} for n, d, s in MEMORY_TOOL_SPECS]
+MEMORY_SCHEMAS = {n: s for n, _, s in MEMORY_TOOL_SPECS}
+
+
+def make_runner(con, investigation_id: int | None = None, session_id: int | None = None, schema: str = "memory"):
+    """A tool runner for one session: database tools as in Phase 4, plus memory tools bound to this
+    investigation (the model cannot choose another investigation's memory)."""
+    from mdqc import memory as mem
+
+    def run(name: str, args: dict) -> tuple[str, bool]:
+        if name not in MEMORY_SCHEMAS:
+            return run_tool(con, name, args)
+        if investigation_id is None:
+            return json.dumps({"error": "no investigation is open, so memory tools are unavailable"}), True
+        args = dict(args or {})
+        unknown = sorted(set(args) - set(MEMORY_SCHEMAS[name]["properties"]))
+        if unknown:
+            return json.dumps({"error": f"unknown argument(s) {unknown} for {name}"}), True
+        try:
+            if name == "remember":
+                out = mem.add_item(con, investigation_id, args.get("kind"), args.get("text"), args.get("evidence") or [],
+                                   source="assistant", session_id=session_id, schema=schema)
+            elif name == "recall":
+                out = {"memory": mem.memory_block(con, investigation_id, schema)}
+            else:
+                item = args.get("item_id")
+                owner = con.execute(f"SELECT investigation_id FROM {schema}.memory_item WHERE item_id = %s", (item,)).fetchone()
+                if not owner or owner[0] != investigation_id:
+                    raise mem.MemoryRefused(f"memory item {item} is not part of this investigation")
+                out = (mem.edit_item(con, item, args.get("text"), args.get("status"), args.get("evidence"), "assistant", schema)
+                       if name == "update_memory" else mem.delete_item(con, item, "assistant", schema))
+            return json.dumps(out, default=str, ensure_ascii=False), False
+        except mem.MemoryRefused as exc:
+            con.rollback()
+            return json.dumps({"error": f"refused: {exc}"}), True
+        except Exception as exc:  # noqa: BLE001
+            con.rollback()
+            return json.dumps({"error": f"{name} failed ({type(exc).__name__})"}), True
+
+    return run

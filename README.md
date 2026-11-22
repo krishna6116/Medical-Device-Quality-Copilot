@@ -1,6 +1,6 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phases 0-4 done; 5 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+> Work in progress (Phases 0-5 done; 4 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
 
 ## The problem
 
@@ -22,8 +22,9 @@ When a device starts failing in the field, a quality engineer has to answer ques
 | 2 Pipeline (PostgreSQL) | done: star schema, 1 record quarantined, 305 maker names -> 101 companies, report-recall links; [pipeline](docs/PIPELINE.md), verifier 10/10 |
 | 3 Failure modes | done: FDA terms mapped by a codebook beat text methods (70% on test); 214 early-warning signals, 15/38 recalls preceded by one; [failure modes](docs/FAILURE_MODES.md), scorecard 5/5 |
 | 4 Assistant | done: 8 read-only database tools, Claude Haiku 5.5 agent loop with cost ledger, budget stop and free replay; proven with a scripted stand-in, live answers in Phase 6; [assistant](docs/ASSISTANT.md), scorecard 5/5 |
-| 5 Memory | next |
-| 6-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
+| 5 Memory | done: remembers each investigation across sessions (ruled out, hypotheses, decisions, questions); view, edit, export and real delete; refuses invented evidence and personal data; [memory](docs/MEMORY.md), scorecard 5/5 |
+| 6 Evaluation (paid run) | next |
+| 7-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 
 ## Run locally
 
@@ -38,6 +39,7 @@ python -m venv .venv
 .venv\Scripts\python -m mdqc.db_setup        # once: PostgreSQL database + login (password into .env)
 .venv\Scripts\python -m mdqc.load
 .venv\Scripts\python -m mdqc.verify_phase2
+.venv\Scripts\python -m mdqc.memory list           # investigation memory: list | show | export | delete-item | delete
 ```
 
 ## Data and limits

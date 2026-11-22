@@ -94,3 +94,16 @@
 
 **Phase 4 re-check (same day):** a stress test with odd inputs (the kind a real model will sometimes send) found problems the well-formed scripted run could not: a malformed date or limit crashed a tool and left the database connection broken; a pacemaker question with a hip failure mode returned a silent 0; and recall searches before 2022 were silently moved into the report window, giving a wrong answer with no error. All fixed; tools now never raise, and a 15-input stress suite is part of the verifier. *Concept:* test the unhappy path. A tool used by a model must turn every bad input into a clear error the model can correct, and must never quietly answer a different question.
 
+## 2026-11-22 (late): Phase 5 investigation memory ($0)
+
+**Built:** a separate `memory` schema (investigations, sessions, memory items, and an audit trail that stores no text), an API and CLI to view, edit, export and delete memory, four memory tools for the assistant bound to the current investigation, memory loaded into the assistant's instructions at the start of every session, three multi-session scenarios run through the real loop with the scripted stand-in, and a verifier.
+
+**Concepts:**
+- *Session memory vs. chat history:* the model forgets between sessions; memory is a deliberate, small, structured record (ruled out, hypotheses, decisions, questions) loaded at the start of each session.
+- *Explicit writes:* memory is written only through tools or the user, and every save is confirmed, so nothing is remembered behind the user's back.
+- *Guardrails:* evidence must point to real reports or recalls (no invented citations) and personal contact details are refused before anything is stored.
+- *Real deletion:* remove the row, keep the audit trail content-free, and prove it by scanning every column for the deleted text.
+- *A check must be able to fail:* the first deletion scan searched only for whole texts and missed a planted partial copy; it now searches the start and end of each text and plants a copy to test itself on every run.
+
+**Next:** Phase 6, the evaluation set and the single paid run (needs the Claude API key saved in `.env`).
+
