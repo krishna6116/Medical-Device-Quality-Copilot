@@ -1,0 +1,53 @@
+{
+ "question": "For report 13139233: which company made the device, what was the event type, and which failure mode was it assigned?",
+ "model": "scripted-stand-in",
+ "memory_block": null,
+ "answer": "Made by Insulet; event type Injury; failure mode D_CANNULA_INSERTION.",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "Made by Insulet; event type Injury; failure mode D_CANNULA_INSERTION.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "E54",
+ "category": "report",
+ "recorded_utc": "2026-11-23T00:41:55Z"
+}

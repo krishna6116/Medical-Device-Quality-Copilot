@@ -1,0 +1,158 @@
+{
+ "question": "Please save this as a hypothesis in our investigation: pod dislodgement complaints may be linked to wear time over 48 hours.",
+ "model": "claude-opus-5-5",
+ "memory_block": "INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\nNothing saved yet.",
+ "answer": "I saved it as a hypothesis (item 1) in investigation 1:\n\n> \"Pod dislodgement complaints (D_ADHESIVE_DISLODGED) may be linked to wear time over 48 hours.\"\n\nIt's open and has no evidence attached yet. You can view, edit or delete it any time.\n\nMAUDE reports don't have a field for wear time. The only way to test this is to search the report narratives for mentions of how long the pod was worn, like \"day 2\", \"after 48 hours\" or \"third day.\" That will miss reports that don't say. Do you want me to run that search on Insulet's adhesive and dislodgement reports and attach any matching reports as evidence?",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01G1r8P1D99181pcTGCeGD3a",
+   "name": "remember",
+   "input": {
+    "kind": "hypothesis",
+    "text": "Pod dislodgement complaints (D_ADHESIVE_DISLODGED) may be linked to wear time over 48 hours."
+   },
+   "result": "{\"saved\": true, \"item_id\": 1, \"kind\": \"hypothesis\", \"text\": \"Pod dislodgement complaints (D_ADHESIVE_DISLODGED) may be linked to wear time over 48 hours.\", \"evidence\": [], \"confirmation\": \"Saved to investigation 1 memory as hypothesis (item 1): \\\"Pod dislodgement complaints (D_ADHESIVE_DISLODGED) may be linked to wear time over 48 hours.\\\". You can view, edit or delete it at any time.\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 206,
+    "cache_creation_input_tokens": 5983,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJxxSKKQyw7H8BbJKkpf",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSzgYKEAgUGAI4AUIIdGhpbmtpbmcSDC5eBVUJl9oi1whHERoMBF3FxfAp1bKz5Kh9IjBz7HNITk6FryvhfRnHPyWFZoB1gO+Xv7yY8dEP4f5HA+68pIR81L9jJHg2x6Kjpakq6wVh7/hoNqY1mnTufK3Y77YEo7A7RIVVNbIKOlsxtkc7lQ25EY/EUrNJTm+ilh1DFufjz2+lWBgWtUd0yXrNoRkCwJ+6HgmN50qS2elzQYLmQKII/bRlGII5JddRjcGcUtr7XQjgtHq4zTTERpgWD6PwxccpDOU/stWfrrp+JKfgfDJHJDGhCsezwquOSg8hDr27mH3GogxlNW5WdfNrkgLK/2i8ySExVYVgVhMv+ZWB3zciMwTMu7eiJ002e/tryKnZCNQfDLhx6Zm0a5MssNZVihVKEeX6844QORPLFIM4HcYoERNgcEUp+wKIxWF+R0kPFxOcZ9kihyTkkFGkajZGFnbPUNDLd6AKW4WBfl/F1R9qt7c2Zy5LAlHPuuSSDTkFZMgdOEH+LUaMNmeFvvHG5qE6uTb70dh/mm01FOxHhnjWY0rWi9UHGlp6M+ry0/zZccxT8JH6S71LULc78LmCdCspbxAmrJ8F7F0CiQnBB7kdFlm43dpVWWW54cNUkceRreaO3Hmx6zof36O7lGLDy1OvKr0upb06WbaUfzZV9ceKjFnf8A9gpPVlCqyacCB3K0OPJBUhKTrGfmpjhUz5IZfKmM639YexQRu6v91H1TPQiLlxIIZgq46I61DVBhWuoUAA5SHUBQt7mGsd6EWLSmM0WNuGJaMw0VoIwDYoj/LfRinUH+S7D0y08vyRsToCBRroGibxhYTbXpUc9Bd541sX4Gm+rqV4S0ETSkmWUwNKmKiXWayoqJ0+CqrNPP1yIBKp1Y5V+jIzSp5wCFDTUhiS0hfXiV/nM6UQ65aDbAzdOOV5kBlaNws3lZtbbZEiwuP4Rl2FutVOCfXlS93dFbxD9ISdR3BxIBQdZ0kWU098H5MwNVlrFnjfGn3+v+67dpOAZbAEPjbhfXRYCddQVIzRjud7DXa/qUBfx0vJZHDpFGhXykSP6bozHWqFSqONcHnLVi/0x7JIq9cn+W6ul/cPB76gvg3kRAkYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01G1r8P1D99181pcTGCeGD3a",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "kind": "hypothesis",
+       "text": "Pod dislodgement complaints (D_ADHESIVE_DISLODGED) may be linked to wear time over 48 hours."
+      },
+      "name": "remember",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5983
+     },
+     "cache_creation_input_tokens": 5983,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 206,
+     "output_tokens_details": {
+      "thinking_tokens": 90
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 216,
+    "cache_creation_input_tokens": 388,
+    "cache_read_input_tokens": 5983
+   },
+   "response": {
+    "id": "msg_011ChJxxeRq91uzmBR9tx33m",
+    "container": null,
+    "content": [
+     {
+      "text": "I saved it as a hypothesis (item 1) in investigation 1:\n\n> \"Pod dislodgement complaints (D_ADHESIVE_DISLODGED) may be linked to wear time over 48 hours.\"\n\nIt's open and has no evidence attached yet. You can view, edit or delete it any time.\n\nMAUDE reports don't have a field for wear time. The only way to test this is to search the report narratives for mentions of how long the pod was worn, like \"day 2\", \"after 48 hours\" or \"third day.\" That will miss reports that don't say. Do you want me to run that search on Insulet's adhesive and dislodgement reports and attach any matching reports as evidence?",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 388
+     },
+     "cache_creation_input_tokens": 388,
+     "cache_read_input_tokens": 5983,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 216,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.042712,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 206,
+   "cache_creation_input_tokens": 5983,
+   "cache_read_input_tokens": 0,
+   "usd": 0.034051
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 216,
+   "cache_creation_input_tokens": 388,
+   "cache_read_input_tokens": 5983,
+   "usd": 0.0086612
+  }
+ ],
+ "memory_before": [],
+ "memory_after": [
+  {
+   "item_id": 1,
+   "kind": "hypothesis",
+   "text": "Pod dislodgement complaints (D_ADHESIVE_DISLODGED) may be linked to wear time over 48 hours.",
+   "evidence": [],
+   "status": "open",
+   "source": "assistant",
+   "session_id": 1,
+   "created_at": "2026-11-22T20:08:14.430567-05:00",
+   "updated_at": "2026-11-22T20:08:14.430567-05:00"
+  }
+ ],
+ "id": "E71",
+ "category": "memory",
+ "recorded_utc": "2026-11-23T01:08:20Z"
+}

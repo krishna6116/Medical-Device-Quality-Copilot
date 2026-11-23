@@ -1,0 +1,144 @@
+{
+ "question": "Which manufacturer has the most insulin pumps (LZG) reports about insulin leaks?",
+ "model": "claude-opus-5-5",
+ "memory_block": null,
+ "answer": "**Insulet** has by far the most. It accounts for 3,423 of the 3,689 insulin pump (LZG) reports coded as leaks received in 2022–2024, or 92.8%.\n\n**Leak reports by company (D_LEAK):**\n- Insulet: 3,423 reports (92.8%)\n- Roche: 260 (7.0%)\n- MannKind: 2 (0.1%)\n- Medtronic: 2 (0.1%)\n- Tandem Diabetes Care: 1 (0.0%)\n- No company listed: 1\n\n**How to read this:**\n- These are counts of reports, not failure rates. The data has no number of pumps in use, so a company that sells more pumps or files more reports will show higher counts.\n- A report means a pump may have been involved. It doesn't prove the pump caused the problem.\n- Reports are sorted into \"leak\" by mapping FDA problem terms to categories. That mapping matches reference labels about 70% of the time, so some reports may be in the wrong category.\n\nI can also look at the trend over time, check for unusual spikes in Insulet leak reports, or find related recalls.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_011n6UjaWcQQZpEAV9MAYRmh",
+   "name": "list_manufacturers",
+   "input": {
+    "product_code": "LZG",
+    "failure_mode": "D_LEAK"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": null, \"failure_mode\": \"D_LEAK\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"product_code\": \"LZG\", \"device\": \"insulin pump\", \"total_reports\": 3689, \"manufacturers\": [{\"manufacturer\": \"INSULET\", \"reports\": 3423, \"share\": 0.928}, {\"manufacturer\": \"ROCHE\", \"reports\": 260, \"share\": 0.07}, {\"manufacturer\": \"MANNKIND\", \"reports\": 2, \"share\": 0.001}, {\"manufacturer\": \"MEDTRONIC\", \"reports\": 2, \"share\": 0.001}, {\"manufacturer\": \"(BLANK)\", \"reports\": 1, \"share\": 0.0}, {\"manufacturer\": \"TANDEM DIABETES CARE\", \"reports\": 1, \"share\": 0.0}]}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 85,
+    "cache_creation_input_tokens": 5061,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJxC6tYi9SuFdUGNDsyt",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_011n6UjaWcQQZpEAV9MAYRmh",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "failure_mode": "D_LEAK"
+      },
+      "name": "list_manufacturers",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5061
+     },
+     "cache_creation_input_tokens": 5061,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 85,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 395,
+    "cache_creation_input_tokens": 398,
+    "cache_read_input_tokens": 5061
+   },
+   "response": {
+    "id": "msg_011ChJxCC18MDG3FAHMK595f",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSpAUKEAgUGAI4AUIIdGhpbmtpbmcSDIjReTTmPSS6cl67BBoMdqf6g/KWzyTaHRCvIjDWInt60XPqvtuTTVz2uCtTdA/nECEsIpPFiA36GA9JrDOEQ+p2fKzK5sREZAMhlRcqwQSRLBahLstthGkBMeGZ/0/lmeb6XryA0bdjQKU4Aj3vTjxuXGWNmnARKXuWZtwOIM2upNzjL7zhWczuv2zu0WhS1lIbK0V0bisLsXVHOD77p3BumgW7seTXujYS9ce8nVqe3gALvrk+sBqI6IpGy4K9VTrbNGWnmZzMHhfAFaXuwNnXtD5c+67MOrWSq3g4oDm9h2xMUEruP1a0I5FRuVrGsqi9RRVw52QPcCpiT0e4Q7FeqKrN7QS26yuwMounmTOGWTSt8e3AlaWzXycxuXlA8kRfJY70okPAEAV2LPzou5VFiBeiojHgCVv+0QhX4H6dPB9+Gp2vad+y2zEnpAk1Pede192cgfK+O1TQHLPrNRNy7CHDewr4VXxbKjEURRRYMPzacYVgVo7ehONN5AaNguspS2yRlbfEP3YDsamS5uEE99/42CFFwBNfrZ1Cb2IE8NFobRhpYndaj6QH2XfzxZAAohad3Lc+DAOq8sAEv6W+Fx/BiVba4YgKJg3Cq343+IyaFfKui3K0V72mfJtape4HTaTfJKagi5H3IS0sxuUynLcptmHRB22OpS9btm472V63rTfX6gskca10DLJilcuXuXc+anR2Tg2MwqTqGWR6r3pA5JQC3fBFvo/0dgRRjG1C7BxKUVc7F+NCdejfkOUl3jxmmj4LI7scsCZvM7/17nwhV90Jils0HJ3PuR69mK4DqpdOgUDQ28eye2AYyiL0Vd5O8v/f/hVHFMLxZKeI46ON2bWu3OsS9HBjSaClGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**Insulet** has by far the most. It accounts for 3,423 of the 3,689 insulin pump (LZG) reports coded as leaks received in 2022–2024, or 92.8%.\n\n**Leak reports by company (D_LEAK):**\n- Insulet: 3,423 reports (92.8%)\n- Roche: 260 (7.0%)\n- MannKind: 2 (0.1%)\n- Medtronic: 2 (0.1%)\n- Tandem Diabetes Care: 1 (0.0%)\n- No company listed: 1\n\n**How to read this:**\n- These are counts of reports, not failure rates. The data has no number of pumps in use, so a company that sells more pumps or files more reports will show higher counts.\n- A report means a pump may have been involved. It doesn't prove the pump caused the problem.\n- Reports are sorted into \"leak\" by mapping FDA problem terms to categories. That mapping matches reference labels about 70% of the time, so some reports may be in the wrong category.\n\nI can also look at the trend over time, check for unusual spikes in Insulet leak reports, or find related recalls.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 398
+     },
+     "cache_creation_input_tokens": 398,
+     "cache_read_input_tokens": 5061,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 395,
+     "output_tokens_details": {
+      "thinking_tokens": 27
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.038943,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 85,
+   "cache_creation_input_tokens": 5061,
+   "cache_read_input_tokens": 0,
+   "usd": 0.027021
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 395,
+   "cache_creation_input_tokens": 398,
+   "cache_read_input_tokens": 5061,
+   "usd": 0.0119224
+  }
+ ],
+ "id": "E31",
+ "category": "company",
+ "recorded_utc": "2026-11-23T00:58:18Z"
+}

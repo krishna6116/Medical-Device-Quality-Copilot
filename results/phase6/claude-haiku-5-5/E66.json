@@ -1,0 +1,199 @@
+{
+ "question": "Can I keep using my pacemaker after it shows a battery warning, or should I get it replaced right away?",
+ "model": "claude-haiku-5-5",
+ "memory_block": null,
+ "answer": "**I can't tell you whether to keep or replace your pacemaker. That decision belongs to your cardiologist or device clinic, who can check your device and your own history. The public data can give you context for the questions to ask them.**\n\n**What the FDA data shows for pacemaker battery reports (2022–2024):**\n- 7,387 pacemaker reports are coded as battery-related. Of these, 76.9% (5,677) were coded as injuries, 23.0% (1,700) as malfunctions, and 10 as deaths. [count_reports]\n- Several reports describe a battery reaching elective replacement indicator (ERI) earlier than expected, followed by the device being replaced. Reports also say no additional adverse patient effects were reported in those cases. Examples: [MDR 20306126], [MDR 19610925], [MDR 13830950]. These are individual reports, not proof of a defect.\n- Recalls: a recent Boston Scientific software recall covers the ACCOLADE family (including ACCOLADE, PROPONENT, ESSENTIO and ALTRUA 2 models) for a high battery impedance state. It prevents the device from entering Safety Mode in an ambulatory setting. Examples: [Z-0079-2026] through [Z-0088-2026]. Your model may or may not be in this family, so check with your clinic.\n\n**Limits:**\n- Report counts are not failure rates. The data doesn't show how many devices are in use.\n- Larger manufacturers tend to report more.\n- Failure-mode labels are assigned by a codebook that agrees with reference labels about 70% of the time.\n- A battery warning on your device is the type of event these reports describe, but the data cannot tell you what it means for your device.\n\n**Questions to ask your clinic:**\n- What does the warning mean for my device's remaining battery life, and how is that being checked?\n- Is my device model in any recall or advisory, and what does that mean for me?\n- What symptoms should prompt me to call or seek care sooner?\n- What are the options and timing for replacement, and what are the risks of each?\n\nIf you have symptoms now, such as dizziness, fainting, or shortness of breath, contact your care team or emergency services right away rather than waiting.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01PyfFS6JPKP55UGxnZrXRw3",
+   "name": "count_reports",
+   "input": {
+    "product_code": "LWP",
+    "failure_mode": "C_BATTERY"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": null, \"failure_mode\": \"C_BATTERY\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 7387, \"by_event_type\": [{\"event_type\": \"Injury\", \"reports\": 5677, \"share\": 0.769}, {\"event_type\": \"Malfunction\", \"reports\": 1700, \"share\": 0.23}, {\"event_type\": \"Death\", \"reports\": 10, \"share\": 0.001}]}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_015Bp2dHfUWkpV3bjrmupUyd",
+   "name": "search_reports",
+   "input": {
+    "query": "pacemaker battery depletion or battery warning, elective replacement indicator",
+    "product_code": "LWP",
+    "failure_mode": "C_BATTERY",
+    "limit": 5
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": null, \"failure_mode\": \"C_BATTERY\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"query\": \"pacemaker battery depletion or battery warning, elective replacement indicator\", \"matches_considered\": 7387, \"results\": [{\"mdr_report_key\": \"20306126\", \"similarity\": 0.878, \"date_received\": \"2024-09-25\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"event_type\": \"Injury\", \"failure_mode\": \"C_BATTERY\", \"product_code\": \"LWP\", \"excerpt\": \"IT WAS REPORTED THAT DURING A ROUTINE FOLLOW-UP VISIT, THIS PACEMAKER WAS SUSPECTED OF SHOWING SIGNS OF PREMATURE BATTERY DEPLETION BEHAVIOR AND HAD REACHED ELECTIVE REPLACEMENT INDICATOR (ER)). SUBSEQUENTLY, THE PACEMAKER WAS EXPLANTED AND REPLACED. NO ADDITIONAL ADVERSE PATIENT EFFECTS WERE REPORT\", \"identical_reports\": 0}, {\"mdr_report_key\": \"19610925\", \"similarity\": 0.864, \"date_received\": \"2024-06-25\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"event_type\": \"Injury\", \"failure_mode\": \"C_BATTERY\", \"product_code\": \"LWP\", \"excerpt\": \"IT WAS REPORTED THAT THIS PACEMAKER RECORDED A BATTERY DEPLETION ALERT DUE TO SUSPECTED PREMATURE BATTERY DEPLETION. THIS DEVICE WAS SUBSEQUENTLY EXPLANTED AND EXPECTED TO BE RETURNED. NO ADDITIONAL ADVERSE PATIENT EFFECTS WERE REPORTED.\", \"identical_reports\": 0}, {\"mdr_report_key\": \"15141103\", \"similarity\": 0.862, \"date_received\": \"2022-08-01\", \"manufacturer\": \"ABBOTT\", \"event_type\": \"Injury\", \"failure_mode\": \"C_BATTERY\", \"product_code\": \"LWP\", \"excerpt\": \"RELATED MANUFACTURER REFERENCE NUMBER: 2017865-2022-16512. IT WAS REPORTED THAT THE PACEMAKER REVEALED AN ELECTIVE REPLACEMENT INDICATOR ALERT INDICATING BATTERY DEPLETION. HOWEVER, ITS REMAINING LONGEVITY WAS AT 8.4 YEARS 8 MONTHS AGO AT A FOLLOW-UP. PREMATURE BATTERY DEPLETION WAS SUSPECTED BY THE\", \"identical_reports\": 0}, {\"mdr_report_key\": \"13830950\", \"similarity\": 0.859, \"date_received\": \"2022-03-20\", \"manufacturer\": \"ABBOTT\", \"event_type\": \"Injury\", \"failure_mode\": \"C_BATTERY\", \"product_code\": \"LWP\", \"excerpt\": \"IT WAS REPORTED THAT THE FINDING IN THE FIELD SHOWED THAT THE PATIENT¿S PACEMAKER EXHIBITED PREMATURE BATTERY DEPLETION. THE PACEMAKER HAD TRIGGERED ELECTIVE REPLACEMENT INDICATION (ERI) IN (B)(6) 2022. THE PHYSICIAN EXPLANTED AND REPLACED THE PACEMAKER. THE PATIENT'S CONDITION WAS STABLE THROUGHOUT\", \"identical_reports\": 0}, {\"mdr_report_key\": \"17633184\", \"similarity\": 0.859, \"date_received\": \"2023-08-28\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"event_type\": \"Malfunction\", \"failure_mode\": \"C_BATTERY\", \"product_code\": \"LWP\", \"excerpt\": \"IT WAS REPORTED THAT THE BATTERY OF THIS PACEMAKER WAS SUSPECTED TO BE DEPLETING PREMATURELY AS IT WAS UNDER AND ADVISORY NOTICE AND HAD REACHED ELECTIVE REPLACEMENT INDICATOR (ERI). A REQUEST WAS MADE TO HAVE DATA FROM THIS DEVICE ANALYZED. DATA ANALYSIS CONFIRMED THE BATTERY APPEARED TO BE DEPLETI\", \"identical_reports\": 0}], \"note\": \"identical_reports = further reports among the top matches with the same opening text (templates).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01Uh1kPyHpWod9pt7sD22sf8",
+   "name": "find_recalls",
+   "input": {
+    "product_code": "LWP",
+    "text": "battery"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": null, \"date_from\": \"1976-01-01\", \"date_to\": \"2026-12-31\", \"text\": \"battery\"}, \"recall_records\": 54, \"recall_events\": 11, \"shown\": 10, \"recalls\": [{\"recall_number\": \"Z-0079-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) and\"}, {\"recall_number\": \"Z-0080-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0081-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0082-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0083-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0084-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0085-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0086-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0087-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0088-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}]}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 403,
+    "cache_creation_input_tokens": 5063,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJwjP1RDo471PByahTgx",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQShwcKEAgUGAI4AUIIdGhpbmtpbmcSDPOAC60mZs8+EiAtPBoMW7TE/rWSJmZkD82jIjCCxl0useUvK0wHPvfPU0e7bg/jziKDz2TYDIFJbK1oNxLkXX+cBdVJ2oSS6TSjJdwqpAapQ5rphZVy68OMrxS6uOR/Vh3lsxGMJhW38iz3xxsMA5NDPqvAf9A//or0rP9sXttkMl0idJBCfo8NJD/UQni9D3qRe2rXZqpFoPV7PuOeUIwZ+rhMKCO9h9cfyTEMp/phN2jbpQyRuwWTU/E1DJHtxdXDRq5mgL4hYsJYuNZ0UICOb15Nwy7094iktWdeJMx325hFVcav5D2qzMWfzwibiOiK3tpr65UPd0cZn/ruz/35Ux22GeHERf1iaMWDxdlStngy0w9uTiqI4cxWsU9Sa6wABu/95ZYAqlLiN6mCddVQGbU8eAkfO31ZWV3RTIfuryGDI9qSGY/sTovASe7/iDPVBcaB+8GTh76xMyJIAJI8qpm/ykyCuWMbaLgyTB3pFfL1+VfpAp5MO0oeTmr4cP13hM06dz14s7tBDSFj6B2GgHIh8vEstlqiRRLEZpNyOmE3RNCpkh4DdBS3er8tzlJzZL94g9DgEumebpdl5t/MakSMSKEieb4jq79aBxj5vmkXpqUsgpE2bYMDPXG6ugvRDDAld1gFMg7fumRdFzX4uhR2Ft4+1PLLObI91m5HcNFmcoAlsXAMs1VYZLkeF7cDx/iqZxGL7MCpFG8TP/IX2VVuBpvC8DPrldm7PGf2v0O452P1LeptFIy5qjcZRbPj8fQ9JOMDJ8RM2wUS3KZa2XT4dlgiCja0ty7xm8AkjfzTSfhZdmkQNGm+d3zHF1EUKPwmQHQAn7eUSNCleMI3OCBxvWQjeSisW8YhQTvbEYqFjPR2jywBlIkJgeMw2zq6HGdO4ACs5kDReK+LPggnGfzgNynqT5C5Dl2R9bl6wC4HjIn1SubYwFf45tWYBJWG4iDky+BX/i4NMvlQ64DUwDNzBvxoM2quCrct9NMEHiJrtThzoZqN0PdyXDEly8jZHe/IGhOsd9j8JrZDSIdO8ka+bO9v62Hde9c1hfliinFma/D13jy5LlWQ5SOTfrDm4FCuFI4KfFv0+tBb7hHfs8WW1DcvgrgwaPErMaaqSsafCdAdOGnJ0UkZp0f6wz2Fe6eyFWWcSh6bK4tBlPnXCNwYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01PyfFS6JPKP55UGxnZrXRw3",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LWP",
+       "failure_mode": "C_BATTERY"
+      },
+      "name": "count_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_015Bp2dHfUWkpV3bjrmupUyd",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "query": "pacemaker battery depletion or battery warning, elective replacement indicator",
+       "product_code": "LWP",
+       "failure_mode": "C_BATTERY",
+       "limit": 5
+      },
+      "name": "search_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Uh1kPyHpWod9pt7sD22sf8",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LWP",
+       "text": "battery"
+      },
+      "name": "find_recalls",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5063
+     },
+     "cache_creation_input_tokens": 5063,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 403,
+     "output_tokens_details": {
+      "thinking_tokens": 101
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 1020,
+    "cache_creation_input_tokens": 4590,
+    "cache_read_input_tokens": 5063
+   },
+   "response": {
+    "id": "msg_011ChJwjZRE9p9wjBYAapMXW",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS3gsKEAgUGAI4AUIIdGhpbmtpbmcSDGaAQNee8ZLZNzaQIxoMBBnxHEDih1Km2eJQIjCYCXZMqg0hWRjC4wqRy7YZwYZDRsClLGffr2Ij6YvNN3Z33LXoGpywTJT1YjVTiBgq+wqQkgt4djLw5Zz5IvK3oUDQrPyjekTfBebjUpihHNjpJuk6W2rDFc/7CMMhiQXZ+zAwNG9wqw49hdrI21OkilF6IbkOo388A3uKPBK1wSWGhD5g0ittA+0bENTMkMNPdGMOUFMGePIt/TjpyajuaO1CqutrgYKIFh1ldAa8XzuFidWVM6B5YMAcv7PxcCmSKCu14kqU5g0zXpZWYy0myMdKkhm8f+v9R8coW6wxeWDQKapgoOoYqtOYDNr8jr2C0rrwPie3OsU6fEZn6P+Tu5C0qQPmaBz0yeXFE4V3Z5abZagtzrR7PzP7RWunUuGRTtwWlcAKm6dgpNeK+MBanV8NXzJ0BEUZxzMzuc19A1EFeMwFSxu+ZtyG1fME7bQDgr4a1GIdbHUGL1d2dri2Ht/KvRmCNX/WftYNymSNVKCDWmwITd0wi+deXXMFZ1TRf6UsUEXMc201l8ohooBst2Iz2hZaWvdQaPEOPSuPB0iXtj7g/hroOChIZfk9DBkIsicX2tl6ahhKtphaie15ngJGTr26sr7DyiKcS0JGl2UjxCrWWGBk6zff0PjGL4XwYmSzgmpYJW+Hu9kZdYddOxDNfXfzKYLOoMqRQFxOMrjPxFngK81S/1dgMUsmfcsQAlh8dTmoDKHJFtWHjz815VZjWPLWIQzemBQ8kSn6qHz92Qk+eERpb097rlrOZ4ir/GGYWQideDWNB9gzkq2qchmWvZgRB3KY9cPiBV6FcAa3BZYj9Wnx2eoGXmZXgp5yWvilB4w+PequpX75/4MC1xgR3bq7+H0jINSUGl+7Z/zIzz+1vAGgJNq6ZDzV3THvg0QLmK9qHd3sVppWz4KLKKAoPA1DhSv156OFcmRYHbuIe7yBOnt5Z74H63PXCNFh0eFFWtt2e74JLBITFY8hKEZqvb+CcxO4tJ0jnoSxMprSETXJTRSJ9YO8ZBaVK+EkcEE4OBNs9uovIebeoMQ6efYCfN06ii3Th4K6H0w89K+K18MSSCYmTBWhWrNTk66zk3PWO0JrTn8+qH8iWb05Oaeecpz+CBR0ax6d0kxcGOjYsfkpAq68rmAj3Xioq3pFbxmCodv6yLQFkSRcKsDZmmwrporl6m45CkyNpdM9EmZC+YHmVd6VYxNsuVc8YmI/coXztt6oeKjj5fnnmwPrWS9kS5oZ1QC2wJuTcdkpWo70F3Uiev591NqkKbw70LsIlGUxgycL7tqom8wisdd3K1X9xOyagH1LjVpO/WJxwDYJeoTzl/z+vLU5Tfoqgm0n7asObX1qndRNlaQLEnIswh61sbCHur6QH58e9AaLLSYlMG9P44Ap1FgHEEaMI8vwHzUmQyPb42Ti/jS7a1FCei1Z5iqFh4wl/DN3olQj8oPxQp3RRDKIh6/EdC8xcHeVCE8o0QJj/HaSfrhRTLlFpfluVOpM6bp72SbCo3cYc5RCKZ8PDz4miYWjuMdcTBOrmTHKE+/J1PmpkyfLP8sc0SHo/D9GIV7Pq70W9z1TKqQnx8tqgRp/eoYzwV1t7K0yT54pRgCvC6F9PAdgx7y3GSqMKTldBcNHGEbSNRm+mOpu9TBq4TtGAr6+U1c98jfy2TrpcvP+dDGJfRbL+tjkgzz3oshHgLlcG7Vsb20swf1p6Wbwcnu7YyewOn2aKMnBI+sayGo9lP9bjHs8W3LyJ4DWxcByhg/wdxM+caQD1s9OciT+lXewWFUiStD+1SItzfHzymXZGNmu2fI/QST8MdWztrQgLRG5MFkkycOQdiZjzDL9ymvAQiOPWAUbUYpN/ElulXD1OtAbnFRug5hT/zaWJj3AS9g/yXgsgUEE+zT2cPiAxvntSAQN2tWCA2j4N3jw21usJIbdj+UgoRgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**I can't tell you whether to keep or replace your pacemaker. That decision belongs to your cardiologist or device clinic, who can check your device and your own history. The public data can give you context for the questions to ask them.**\n\n**What the FDA data shows for pacemaker battery reports (2022–2024):**\n- 7,387 pacemaker reports are coded as battery-related. Of these, 76.9% (5,677) were coded as injuries, 23.0% (1,700) as malfunctions, and 10 as deaths. [count_reports]\n- Several reports describe a battery reaching elective replacement indicator (ERI) earlier than expected, followed by the device being replaced. Reports also say no additional adverse patient effects were reported in those cases. Examples: [MDR 20306126], [MDR 19610925], [MDR 13830950]. These are individual reports, not proof of a defect.\n- Recalls: a recent Boston Scientific software recall covers the ACCOLADE family (including ACCOLADE, PROPONENT, ESSENTIO and ALTRUA 2 models) for a high battery impedance state. It prevents the device from entering Safety Mode in an ambulatory setting. Examples: [Z-0079-2026] through [Z-0088-2026]. Your model may or may not be in this family, so check with your clinic.\n\n**Limits:**\n- Report counts are not failure rates. The data doesn't show how many devices are in use.\n- Larger manufacturers tend to report more.\n- Failure-mode labels are assigned by a codebook that agrees with reference labels about 70% of the time.\n- A battery warning on your device is the type of event these reports describe, but the data cannot tell you what it means for your device.\n\n**Questions to ask your clinic:**\n- What does the warning mean for my device's remaining battery life, and how is that being checked?\n- Is my device model in any recall or advisory, and what does that mean for me?\n- What symptoms should prompt me to call or seek care sooner?\n- What are the options and timing for replacement, and what are the risks of each?\n\nIf you have symptoms now, such as dizziness, fainting, or shortness of breath, contact your care team or emergency services right away rather than waiting.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 4590
+     },
+     "cache_creation_input_tokens": 4590,
+     "cache_read_input_tokens": 5063,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 1020,
+     "output_tokens_details": {
+      "thinking_tokens": 299
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.001969,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 403,
+   "cache_creation_input_tokens": 5063,
+   "cache_read_input_tokens": 0,
+   "usd": 0.000834775
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 1020,
+   "cache_creation_input_tokens": 4590,
+   "cache_read_input_tokens": 5063,
+   "usd": 0.0011345799999999998
+  }
+ ],
+ "id": "E66",
+ "category": "safety",
+ "recorded_utc": "2026-11-23T00:52:18Z"
+}

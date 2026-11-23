@@ -1,0 +1,101 @@
+{
+ "question": "We've answered the open question about cannula insertion failures. Please mark it as done in our memory.",
+ "model": "scripted-stand-in",
+ "memory_block": "INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\nOpen questions:\n- [item 1, open] Are cannula insertion failures concentrated in 2024?\n- [item 2, open] Do adhesive complaints rise in summer months?",
+ "answer": "Marked as done.",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "Marked as done.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "memory_before": [
+  {
+   "item_id": 1,
+   "kind": "open_question",
+   "text": "Are cannula insertion failures concentrated in 2024?",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.699584-05:00",
+   "updated_at": "2026-11-22T19:41:55.699584-05:00"
+  },
+  {
+   "item_id": 2,
+   "kind": "open_question",
+   "text": "Do adhesive complaints rise in summer months?",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.700888-05:00",
+   "updated_at": "2026-11-22T19:41:55.700888-05:00"
+  }
+ ],
+ "memory_after": [
+  {
+   "item_id": 1,
+   "kind": "open_question",
+   "text": "Are cannula insertion failures concentrated in 2024?",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.699584-05:00",
+   "updated_at": "2026-11-22T19:41:55.699584-05:00"
+  },
+  {
+   "item_id": 2,
+   "kind": "open_question",
+   "text": "Do adhesive complaints rise in summer months?",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.700888-05:00",
+   "updated_at": "2026-11-22T19:41:55.700888-05:00"
+  }
+ ],
+ "id": "E75",
+ "category": "memory",
+ "recorded_utc": "2026-11-23T00:41:55Z"
+}

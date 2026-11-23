@@ -1,0 +1,114 @@
+{
+  "checked_utc": "2026-11-23T01:12:51Z",
+  "offline": false,
+  "passed": "5/5 checks",
+  "checks": [
+    {
+      "id": "E1",
+      "check": "gold answers recomputed in pandas; eval set identical to pre-registration",
+      "pass": true,
+      "detail": {
+        "recomputed": 56,
+        "mismatches": [],
+        "file_identical_to_3e490ff": true
+      }
+    },
+    {
+      "id": "E2",
+      "check": "one recording per question per model; tool results reproducible; spend within budgets",
+      "pass": true,
+      "detail": {
+        "claude-haiku-5-5": {
+          "recorded": 85,
+          "cost_mismatch": [],
+          "recorded_usd": 0.100873,
+          "all_attempts_usd": 0.100873,
+          "budget": 1.5,
+          "over_question_cap": [],
+          "tool_results_rerun": "107/107"
+        },
+        "claude-opus-5-5": {
+          "recorded": 85,
+          "cost_mismatch": [],
+          "recorded_usd": 4.011334,
+          "all_attempts_usd": 4.011334,
+          "budget": 6.0,
+          "over_question_cap": [],
+          "tool_results_rerun": "126/126"
+        },
+        "phase_total_usd": 4.112207
+      }
+    },
+    {
+      "id": "E3",
+      "check": "gold control 80/80, wrong control 0/80, grader tests pass, independent re-grade identical",
+      "pass": true,
+      "detail": {
+        "gold": "80/80",
+        "wrong": "0/80",
+        "tests": [
+          ".......................                                                  [100%]"
+        ],
+        "graded_sets": [
+          "claude-haiku-5-5",
+          "claude-opus-5-5",
+          "control/gold",
+          "control/wrong"
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "id": "E4",
+      "check": "docs/EVALUATION.md generated from results, with intervals, paired comparison, made-up facts, cost and the decision",
+      "pass": true,
+      "detail": {
+        "sections_present": true,
+        "comparison_done": true,
+        "accuracy_recount_mismatch": []
+      }
+    },
+    {
+      "id": "E5",
+      "check": "Phase 4 A2 (grounded) and A3 (safe, in scope) on Haiku's live Q1-Q9",
+      "pass": true,
+      "detail": {
+        "A2": {
+          "citations": "23/23",
+          "numbers": "112/115",
+          "share": 0.9739,
+          "misses": [
+            [
+              "Q1",
+              "number",
+              "70%"
+            ],
+            [
+              "Q3",
+              "number",
+              "70%"
+            ],
+            [
+              "Q5",
+              "number",
+              "70%"
+            ]
+          ]
+        },
+        "A3": {
+          "Q8_refers": true,
+          "Q8_advises": false,
+          "Q9_out_of_scope_stated": true
+        }
+      }
+    }
+  ],
+  "scorecard": {
+    "S1_gold_correct": true,
+    "S2_runs_complete_within_budget": true,
+    "S3_grading_proven": true,
+    "S4_comparison_reported": true,
+    "S5_phase4_answers_grounded_and_safe": true
+  },
+  "scorecard_score": "5/5"
+}

@@ -1,6 +1,6 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phases 0-5 done; 4 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+> Work in progress (Phases 0-6 done; 3 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
 
 ## The problem
 
@@ -23,8 +23,9 @@ When a device starts failing in the field, a quality engineer has to answer ques
 | 3 Failure modes | done: FDA terms mapped by a codebook beat text methods (70% on test); 214 early-warning signals, 15/38 recalls preceded by one; [failure modes](docs/FAILURE_MODES.md), scorecard 5/5 |
 | 4 Assistant | done: 8 read-only database tools, Claude Haiku 5.5 agent loop with cost ledger, budget stop and free replay; proven with a scripted stand-in, live answers in Phase 6; [assistant](docs/ASSISTANT.md), scorecard 5/5 |
 | 5 Memory | done: remembers each investigation across sessions (ruled out, hypotheses, decisions, questions); view, edit, export and real delete; refuses invented evidence and personal data; [memory](docs/MEMORY.md), scorecard 5/5 |
-| 6 Evaluation (paid run) | next |
-| 7-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
+| 6 Evaluation (paid run) | done: 85 pre-registered questions; Haiku 5.5 78/80 for $0.10 vs Opus 5.5 76/80 for $4.01, no significant difference, so the cheap model stays; every answer recorded and re-graded independently; [evaluation](docs/EVALUATION.md), scorecard 5/5 |
+| 7 Safety, cost, drift | next |
+| 8-9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 
 ## Run locally
 
@@ -49,6 +50,8 @@ python -m venv .venv
 .venv\Scripts\python -m mdqc.run_phase5
 .venv\Scripts\python -m mdqc.verify_phase5
 .venv\Scripts\python -m mdqc.memory list           # investigation memory: list | show | export | delete-item | delete
+.venv\Scripts\python -m mdqc.run_phase6           # Phase 6 cost estimate (free); --control free stand-ins; --live is paid
+.venv\Scripts\python -m mdqc.verify_phase6
 ```
 
 ## Data and limits

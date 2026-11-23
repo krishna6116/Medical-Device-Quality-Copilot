@@ -1,0 +1,53 @@
+{
+ "question": "Apart from reports with no identifiable failure mode, which failure mode is most common in Abbott's reports for pacemakers (LWP)?",
+ "model": "scripted-stand-in",
+ "memory_block": null,
+ "answer": "The most common identifiable failure mode is C_PREVENTIVE.",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "The most common identifiable failure mode is C_PREVENTIVE.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "E39",
+ "category": "failure_mode",
+ "recorded_utc": "2026-11-23T00:41:55Z"
+}

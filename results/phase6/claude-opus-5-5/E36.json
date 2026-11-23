@@ -1,0 +1,137 @@
+{
+ "question": "Apart from reports with no identifiable failure mode, which failure mode is most common for pacemakers (LWP)?",
+ "model": "claude-opus-5-5",
+ "memory_block": null,
+ "answer": "For pacemakers (LWP), the most common failure mode after setting aside \"no identifiable mode\" is **lead/capture problems (C_LEAD_CAPTURE)**. It's only slightly ahead of battery problems.\n\nThese figures cover 37,413 LWP reports received from 2022 to 2024:\n- **Lead/capture:** 7,673 reports (20.5%). This means pacing isn't reaching the heart, for example from an impedance problem, loss of capture, a lead that has moved or broken, or a header or connection fault.\n- **Battery:** 7,387 reports (19.7%). This covers batteries running down early or reaching end of life early.\n- **Infection or problems at the implant site (pocket):** 4,515 reports (12.1%).\n- **Telemetry or software:** 3,823 reports (10.2%).\n- **Sensing:** 2,632 reports (7.0%).\n- **No identifiable mode (excluded):** 11,383 reports (30.4%).\n\nSome limits to keep in mind:\n- **The top two are very close.** These categories come from FDA problem terms sorted by a codebook that matched reference labels about 70% of the time. That's not accurate enough to say for sure which of the two is really first.\n- **Counts aren't failure rates.** A report means a device may have been involved, not that it caused the problem. There's also no data on how many devices are in use, so these numbers can't be turned into rates.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_0182LNebJqzDLMQXd9R2TnM8",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "LWP"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 37413, \"modes\": [{\"failure_mode\": \"C_OTHER\", \"reports\": 11383, \"share\": 0.304, \"definition\": \"No identifiable failure mode, insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"C_LEAD_CAPTURE\", \"reports\": 7673, \"share\": 0.205, \"definition\": \"Pacing not reaching the heart: high or low impedance, loss of capture, high threshold, lead dislodgement or fracture, header or connection problem, no pacing.\"}, {\"failure_mode\": \"C_BATTERY\", \"reports\": 7387, \"share\": 0.197, \"definition\": \"Battery depleting early, reaching ERI/end of life early, or an unexpected battery or longevity reading.\"}, {\"failure_mode\": \"C_INFECTION_POCKET\", \"reports\": 4515, \"share\": 0.121, \"definition\": \"Infection, pocket erosion, hematoma or sepsis related to the implant site.\"}, {\"failure_mode\": \"C_TELEMETRY_SOFTWARE\", \"reports\": 3823, \"share\": 0.102, \"definition\": \"Communication, interrogation, telemetry, programming, software or firmware problem, unexpected reset or back-up mode, wrong data or display.\"}, {\"failure_mode\": \"C_SENSING\", \"reports\": 2632, \"share\": 0.07, \"definition\": \"The device sensed the wrong signals: over-sensing, under-sensing, noise or artifact, leading to wrong pacing or inappropriate therapy.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 53,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 5067
+   },
+   "response": {
+    "id": "msg_011ChJxTE9H6yHZgp91TgMCV",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_0182LNebJqzDLMQXd9R2TnM8",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LWP"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+     },
+     "cache_creation_input_tokens": 0,
+     "cache_read_input_tokens": 5067,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 53,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 467,
+    "cache_creation_input_tokens": 684,
+    "cache_read_input_tokens": 5067
+   },
+   "response": {
+    "id": "msg_011ChJxTKBecfbdY7Kb1w9mc",
+    "container": null,
+    "content": [
+     {
+      "text": "For pacemakers (LWP), the most common failure mode after setting aside \"no identifiable mode\" is **lead/capture problems (C_LEAD_CAPTURE)**. It's only slightly ahead of battery problems.\n\nThese figures cover 37,413 LWP reports received from 2022 to 2024:\n- **Lead/capture:** 7,673 reports (20.5%). This means pacing isn't reaching the heart, for example from an impedance problem, loss of capture, a lead that has moved or broken, or a header or connection fault.\n- **Battery:** 7,387 reports (19.7%). This covers batteries running down early or reaching end of life early.\n- **Infection or problems at the implant site (pocket):** 4,515 reports (12.1%).\n- **Telemetry or software:** 3,823 reports (10.2%).\n- **Sensing:** 2,632 reports (7.0%).\n- **No identifiable mode (excluded):** 11,383 reports (30.4%).\n\nSome limits to keep in mind:\n- **The top two are very close.** These categories come from FDA problem terms sorted by a codebook that matched reference labels about 70% of the time. That's not accurate enough to say for sure which of the two is really first.\n- **Counts aren't failure rates.** A report means a device may have been involved, not that it caused the problem. There's also no data on how many devices are in use, so these numbers can't be turned into rates.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 684
+     },
+     "cache_creation_input_tokens": 684,
+     "cache_read_input_tokens": 5067,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 467,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.017898,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 53,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 5067,
+   "usd": 0.0031028
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 467,
+   "cache_creation_input_tokens": 684,
+   "cache_read_input_tokens": 5067,
+   "usd": 0.014794799999999999
+  }
+ ],
+ "id": "E36",
+ "category": "failure_mode",
+ "recorded_utc": "2026-11-23T01:01:44Z"
+}

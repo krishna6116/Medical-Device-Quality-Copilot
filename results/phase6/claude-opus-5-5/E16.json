@@ -1,0 +1,173 @@
+{
+ "question": "How many insulin pump (LZG) reports from 2022 to 2024 were classified as adhesive failure or a dislodged pod or set?",
+ "model": "claude-opus-5-5",
+ "memory_block": null,
+ "answer": "**15,873 LZG insulin pump reports** received from 2022 through 2024 were classified as adhesive failure or a dislodged pod or set (D_ADHESIVE_DISLODGED).\n\n- **Event type:** 15,619 were malfunctions (98.4%) and 254 were injuries (1.6%). None were reported as deaths.\n- **Share of all LZG reports:** 23.2% of the 68,425 LZG reports in this period. That makes it the second most common failure mode. The most common was cannula or needle insertion problems, at 24,876 reports (36.4%).\n- **What the category covers:** the pod or infusion set came off the body. This includes adhesive that failed or peeled, and pods or sets that fell off or were knocked off.\n\nKeep in mind:\n- **Accuracy:** failure modes come from FDA problem terms sorted by a codebook. It matched reference labels on about 70% of test reports, so treat the count as an estimate.\n- **Counts, not rates:** these are report counts, not failure rates. There's no data on how many devices are in use, and companies with more devices on the market tend to file more reports.\n- **Not proof of cause:** a report means a device may have been involved, not that it caused the event.\n\nI can break this down by company or show the trend over time if that helps.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_0128UcwmLKcGRfyvNVGKe5vA",
+   "name": "count_reports",
+   "input": {
+    "product_code": "LZG",
+    "failure_mode": "D_ADHESIVE_DISLODGED",
+    "date_from": "2022-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": null, \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 15873, \"by_event_type\": [{\"event_type\": \"Malfunction\", \"reports\": 15619, \"share\": 0.984}, {\"event_type\": \"Injury\", \"reports\": 254, \"share\": 0.016}]}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_011mBbw16i4vhLhvo2U5S4Tv",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "LZG",
+    "date_from": "2022-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 68425, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 24876, \"share\": 0.364, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 15873, \"share\": 0.232, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 12149, \"share\": 0.178, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 7426, \"share\": 0.109, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 3689, \"share\": 0.054, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_OCCLUSION_DELIVERY\", \"reports\": 3190, \"share\": 0.047, \"definition\": \"Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 1222, \"share\": 0.018, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 254,
+    "cache_creation_input_tokens": 5075,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJx5RJ8vArcyktwan9Pc",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_0128UcwmLKcGRfyvNVGKe5vA",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "failure_mode": "D_ADHESIVE_DISLODGED",
+       "date_from": "2022-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "count_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_011mBbw16i4vhLhvo2U5S4Tv",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "date_from": "2022-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5075
+     },
+     "cache_creation_input_tokens": 5075,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 254,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 431,
+    "cache_creation_input_tokens": 1177,
+    "cache_read_input_tokens": 5075
+   },
+   "response": {
+    "id": "msg_011ChJx5dNfLt6YfbLvfMaK9",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS+AQKEAgUGAI4AUIIdGhpbmtpbmcSDCsO4sL7v29gpRAsfRoMt+INYqpYevd7mNPHIjCMQ+phKeHJmJOIhLKKsoF62zYg4vl6JavZdQUxwHijU8V5XiWRyTyplP2X+jnnM5cqlQRnGkf82WiUDLw2Vp/snaGshIlhwZwOyE4xSA3I/ZS91m7GFuH/og2HygbGL6s9BF+aK5X5Dda/FwU3KuSMUW/Jw3sB89x9TMarCiBMKr5DZwoOFetLIJL27/pgbb/4shmRfjPJI36vXdCNrfNmGl0OYFCvXbURnLGI0pn6ErHulaMdL0aVLEOGJ1C7UgqeKGWQLsC8BBSrI6I3RM4dTqHTGnlrEc6h9P9IE3mOp6bG5184ZQEm8sIDgiOpcyiEF82ormntPQo42teKRJq/Pyg39aq0+Dgz7Yrdq2G85xZHucuHGhI/qo5QM6n8+QPJoIgRRcH26MbL5He1q20/IwQ+EcMt/BBPIu70nU8YHXIcLBQtVQu7w3eSvmb7j6KLDQD7OLMPOcMOr+tHsLHL89CmnMKF+FDe9ETD+MsW28aT8t/rCzehej2mC5ghy0/U8/UGzVS70JELeWew7jP+JZRcRUL7/jbbiMCL8YtHwDAEfW30+rT4NQWdeRh7gCeZg1xje4qFT6ny2ytG9E88RrbHNBT0O+z6c0bTGxdBaBuCeUBzf9ZmDRvj7sP86jY2qmYCsgN6ndzN7943PaGUP7nNc3d08mvSiVrUSeQGvIVs7lO8A0M/YQiXDvLrHcBE5hx56WOIS57sXc8CitRu7AcsR4fxBPuPOhziG2t9xaM1WGhO87l+Y7RbNY1yqKW3o0ITFGRGkRgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**15,873 LZG insulin pump reports** received from 2022 through 2024 were classified as adhesive failure or a dislodged pod or set (D_ADHESIVE_DISLODGED).\n\n- **Event type:** 15,619 were malfunctions (98.4%) and 254 were injuries (1.6%). None were reported as deaths.\n- **Share of all LZG reports:** 23.2% of the 68,425 LZG reports in this period. That makes it the second most common failure mode. The most common was cannula or needle insertion problems, at 24,876 reports (36.4%).\n- **What the category covers:** the pod or infusion set came off the body. This includes adhesive that failed or peeled, and pods or sets that fell off or were knocked off.\n\nKeep in mind:\n- **Accuracy:** failure modes come from FDA problem terms sorted by a codebook. It matched reference labels on about 70% of test reports, so treat the count as an estimate.\n- **Counts, not rates:** these are report counts, not failure rates. There's no data on how many devices are in use, and companies with more devices on the market tend to file more reports.\n- **Not proof of cause:** a report means a device may have been involved, not that it caused the event.\n\nI can break this down by company or show the trend over time if that helps.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 1177
+     },
+     "cache_creation_input_tokens": 1177,
+     "cache_read_input_tokens": 5075,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 431,
+     "output_tokens_details": {
+      "thinking_tokens": 9
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.047014,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 254,
+   "cache_creation_input_tokens": 5075,
+   "cache_read_input_tokens": 0,
+   "usd": 0.030471
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 431,
+   "cache_creation_input_tokens": 1177,
+   "cache_read_input_tokens": 5075,
+   "usd": 0.016543
+  }
+ ],
+ "id": "E16",
+ "category": "count",
+ "recorded_utc": "2026-11-23T00:56:49Z"
+}

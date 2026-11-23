@@ -1,0 +1,53 @@
+{
+ "question": "Summarise report 16005019 and any recalls linked to it.",
+ "model": "scripted-stand-in",
+ "memory_block": null,
+ "answer": "Stand-in answer (not graded for accuracy).",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "Stand-in answer (not graded for accuracy).",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "Q5",
+ "category": "phase4",
+ "recorded_utc": "2026-11-23T00:41:55Z"
+}

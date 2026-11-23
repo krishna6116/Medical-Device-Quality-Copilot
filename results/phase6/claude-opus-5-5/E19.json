@@ -1,0 +1,148 @@
+{
+ "question": "By what percentage did yearly report counts for uncemented knee implants (MBH) change from 2022 to 2024, and was it a rise or a fall?",
+ "model": "claude-opus-5-5",
+ "memory_block": null,
+ "answer": "Yearly reports for uncemented knee implants (MBH) **rose by 18.7%** from 2022 to 2024.\n\n- **2022:** 1,261 reports\n- **2023:** 1,263 reports, about the same as 2022\n- **2024:** 1,497 reports, so almost all of the rise came in the last year\n\n**Limits of these numbers:**\n- They count reports, not failure rates. There's no count of how many devices are in use, so a rise could reflect more implants, changes in reporting, or a real increase in problems.\n- Years are counted by when FDA received the report, and late reports still trickle in. The 2024 figure may grow a little.\n\nI can split the 2024 rise by company or failure mode, or run a signal check to see which months stand out.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01EAnuRE6iQSPqd5fq6w46KQ",
+   "name": "trend",
+   "input": {
+    "product_code": "MBH",
+    "granularity": "year",
+    "date_from": "2022-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"MBH\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"granularity\": \"year\", \"series\": [{\"period\": \"2022\", \"reports\": 1261}, {\"period\": \"2023\", \"reports\": 1263}, {\"period\": \"2024\", \"reports\": 1497}], \"note\": \"Counts by the date FDA received the report; the latest months fill in later as late reports arrive.\", \"first_to_last_change\": 0.187}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 129,
+    "cache_creation_input_tokens": 5078,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJx6eUBAz4vbDDZstNta",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_01EAnuRE6iQSPqd5fq6w46KQ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "MBH",
+       "granularity": "year",
+       "date_from": "2022-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "trend",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5078
+     },
+     "cache_creation_input_tokens": 5078,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 129,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 256,
+    "cache_creation_input_tokens": 309,
+    "cache_read_input_tokens": 5078
+   },
+   "response": {
+    "id": "msg_011ChJx6qsGphiUpHKEJ9ASY",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS6wQKEAgUGAI4AUIIdGhpbmtpbmcSDD4/Yji1200DT7+Y3BoMo3hR49ng/xOkVtvwIjAZPsZw4Se+AsNkly/qDe5dZ8mQqxih3LW1wYBzLKWN9pB4jL9BCG15RuwJx9ft9PcqiARMU+DYn3hF/RS2qU4ALUnHrRGOB4h82BNn7i+ErCKcAa3VOXAkISzic6LU5EDO6C+sAE09S06PiSiqEMLgN20pqTVzm9PbJiUITPqJTkA8w1zpJjm1jk5q3TW015OHxN9FOxUysvdSY94lzrHKCmm41a0Riz7pxQh3ch1wInSE4paOmZJUDcAEoxxV5BIKU3WSYl5c40Bvc/TfmKomsAIgxNiych7AwAG+LDOSa7mfP8hgBe30sHEV6r5lc0plgjAk+0Uwo5xoh/9/M4vH0PN6DDF76zGb9iuUVOmDiYk2lizFfDI0DNu+NIF/EaYIzH6Hebcc9S1bFk7uSDhTTahfLtxENLFaA2f6EIQDrmc0F2sW8V3gyQEmIwr7E2Auyet73oeh1Rvhse45J7nECHNqzIlIbXiPUHjzIo47xmCCBgMQbz+/1D8ZdHDocqKJlhvFXP9/CqQ2Aq/+sg/K3djj+64j5W5l76H5mC64IwkIlYHAo+9lW/R1Bk9+NftZW4gsA8Kb5UXA4dwlSSSUnvVlGP1xQ20qnmvVpr0kpNYvA4lzaC8DVz+jH8V90Xh8yf2BH8s0omP6c9JOwcguqpVg5F90cGsW12vtwm++r5Y8ZRv50FQRXagdtgZwXeYGNs/HHfOqFSitKV14LYfm2strn+QegP4my2KBwV9B4PlwxPPbL7IIkXxAGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "Yearly reports for uncemented knee implants (MBH) **rose by 18.7%** from 2022 to 2024.\n\n- **2022:** 1,261 reports\n- **2023:** 1,263 reports, about the same as 2022\n- **2024:** 1,497 reports, so almost all of the rise came in the last year\n\n**Limits of these numbers:**\n- They count reports, not failure rates. There's no count of how many devices are in use, so a rise could reflect more implants, changes in reporting, or a real increase in problems.\n- Years are counted by when FDA received the report, and late reports still trickle in. The 2024 figure may grow a little.\n\nI can split the 2024 rise by company or failure mode, or run a signal check to see which months stand out.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 309
+     },
+     "cache_creation_input_tokens": 309,
+     "cache_read_input_tokens": 5078,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 256,
+     "output_tokens_details": {
+      "thinking_tokens": 12
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.03669,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 129,
+   "cache_creation_input_tokens": 5078,
+   "cache_read_input_tokens": 0,
+   "usd": 0.027986
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 256,
+   "cache_creation_input_tokens": 309,
+   "cache_read_input_tokens": 5078,
+   "usd": 0.0087042
+  }
+ ],
+ "id": "E19",
+ "category": "trend",
+ "recorded_utc": "2026-11-23T00:57:04Z"
+}

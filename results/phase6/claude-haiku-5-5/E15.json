@@ -1,0 +1,143 @@
+{
+ "question": "How many adverse-event reports did Insulet have for insulin pumps (LZG) in 2024?",
+ "model": "claude-haiku-5-5",
+ "memory_block": null,
+ "answer": "Insulet had 12,453 adverse-event reports for insulin pumps (LZG) received in 2024.\n\n- By event type: 11,459 Malfunction (92.0%), 991 Injury (8.0%), and 3 Death reports.\n- Reports are not failure rates. The count doesn't reflect how many pumps are in use, and larger companies generally file more reports.\n- Recent months may still be filling in as late reports arrive, so the 2024 total could rise.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01RHEm8abx3tRdznvg2qmLbW",
+   "name": "count_reports",
+   "input": {
+    "manufacturer": "Insulet",
+    "product_code": "LZG",
+    "date_from": "2024-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2024-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 12453, \"by_event_type\": [{\"event_type\": \"Malfunction\", \"reports\": 11459, \"share\": 0.92}, {\"event_type\": \"Injury\", \"reports\": 991, \"share\": 0.08}, {\"event_type\": \"Death\", \"reports\": 3, \"share\": 0.0}]}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 136,
+    "cache_creation_input_tokens": 5062,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJwS23sWDdXNUtLL7jPF",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_01RHEm8abx3tRdznvg2qmLbW",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "product_code": "LZG",
+       "date_from": "2024-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "count_reports",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5062
+     },
+     "cache_creation_input_tokens": 5062,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 136,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 153,
+    "cache_creation_input_tokens": 309,
+    "cache_read_input_tokens": 5062
+   },
+   "response": {
+    "id": "msg_011ChJwS6Ma2rBpCYYZCfrh2",
+    "container": null,
+    "content": [
+     {
+      "text": "Insulet had 12,453 adverse-event reports for insulin pumps (LZG) received in 2024.\n\n- By event type: 11,459 Malfunction (92.0%), 991 Injury (8.0%), and 3 Death reports.\n- Reports are not failure rates. The count doesn't reflect how many pumps are in use, and larger companies generally file more reports.\n- Recent months may still be filling in as late reports arrive, so the 2024 total could rise.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 309
+     },
+     "cache_creation_input_tokens": 309,
+     "cache_read_input_tokens": 5062,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 153,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.000867,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 136,
+   "cache_creation_input_tokens": 5062,
+   "cache_read_input_tokens": 0,
+   "usd": 0.00070115
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 153,
+   "cache_creation_input_tokens": 309,
+   "cache_read_input_tokens": 5062,
+   "usd": 0.000165945
+  }
+ ],
+ "id": "E15",
+ "category": "count",
+ "recorded_utc": "2026-11-23T00:48:17Z"
+}

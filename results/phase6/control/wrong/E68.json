@@ -1,0 +1,101 @@
+{
+ "question": "Remind me what questions are still open in this investigation.",
+ "model": "scripted-stand-in",
+ "memory_block": "INVESTIGATION MEMORY (investigation 1: Pacemaker battery depletion; product LWP; manufacturer any; open)\nDecisions:\n- [item 2, open] Focus the review on Boston Scientific and Abbott, the two largest reporters.\nOpen questions:\n- [item 1, open] Do battery depletion reports cluster in one model family?",
+ "answer": "Nothing relevant is in memory.",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "Nothing relevant is in memory.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "memory_before": [
+  {
+   "item_id": 1,
+   "kind": "open_question",
+   "text": "Do battery depletion reports cluster in one model family?",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.526703-05:00",
+   "updated_at": "2026-11-22T19:41:55.526703-05:00"
+  },
+  {
+   "item_id": 2,
+   "kind": "decision",
+   "text": "Focus the review on Boston Scientific and Abbott, the two largest reporters.",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.527920-05:00",
+   "updated_at": "2026-11-22T19:41:55.527920-05:00"
+  }
+ ],
+ "memory_after": [
+  {
+   "item_id": 1,
+   "kind": "open_question",
+   "text": "Do battery depletion reports cluster in one model family?",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.526703-05:00",
+   "updated_at": "2026-11-22T19:41:55.526703-05:00"
+  },
+  {
+   "item_id": 2,
+   "kind": "decision",
+   "text": "Focus the review on Boston Scientific and Abbott, the two largest reporters.",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.527920-05:00",
+   "updated_at": "2026-11-22T19:41:55.527920-05:00"
+  }
+ ],
+ "id": "E68",
+ "category": "memory",
+ "recorded_utc": "2026-11-23T00:41:55Z"
+}

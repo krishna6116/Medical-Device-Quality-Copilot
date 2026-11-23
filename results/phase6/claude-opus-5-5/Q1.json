@@ -1,0 +1,304 @@
+{
+ "question": "Are complaints about Insulet insulin pods coming off the skin (adhesive failure or dislodged pods) rising from 2022 to 2024?",
+ "model": "claude-opus-5-5",
+ "memory_block": null,
+ "answer": "**Not in absolute numbers. As a share of Insulet's reports, yes.** Insulet adhesive/dislodgement reports stayed about flat: up in 2023, then down in 2024, ending 4.4% below 2022. Over the same period Insulet's total reports fell sharply, so these complaints became a much larger share of what gets reported.\n\n**Insulet pod adhesive/dislodgement reports (LZG) by year received:**\n- 2022: 5,068\n- 2023: 5,608\n- 2024: 4,846 (−4.4% from 2022 to 2024)\n\n**Compared with all Insulet reports:**\n- Total Insulet LZG reports went from 21,360 in 2022 to 12,453 in 2024 (−41.7%).\n- Adhesive/dislodgement's share grew from 23.7% to 38.9%. It's now close to cannula/insertion problems, which fell from 55.4% to 43.5% and are still the top category.\n\n**Unusually high months:** there were 8 monthly spikes, all in summer and early autumn:\n- June to October 2023 (peak of 731 reports in June 2023, against about 446 expected)\n- July to September 2024 (648 reports in July 2024, against about 440 expected)\n\nThat repeating timing could mean more pods come off in hot, sweaty or active months. That's only a guess. A spike is a reason to look closer, not proof of a defect. You could test the guess by reading the report narratives from those months, which I can pull if useful.\n\n**Limits of this data:**\n- Report counts aren't failure rates, because there's no figure for how many pods are in use.\n- The rising share may simply reflect fewer reports of other problems, not more adhesive failures.\n- Failure categories come from FDA problem terms sorted by a lookup table, which matched reference labels about 70% of the time.\n- Late 2024 counts may still go up as late reports arrive.",
+ "stop": "answered",
+ "steps": 3,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_012eiGvW5AuVSbZhYeArffrY",
+   "name": "trend",
+   "input": {
+    "product_code": "LZG",
+    "manufacturer": "Insulet",
+    "failure_mode": "D_ADHESIVE_DISLODGED",
+    "granularity": "year"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"granularity\": \"year\", \"series\": [{\"period\": \"2022\", \"reports\": 5068}, {\"period\": \"2023\", \"reports\": 5608}, {\"period\": \"2024\", \"reports\": 4846}], \"note\": \"Counts by the date FDA received the report; the latest months fill in later as late reports arrive.\", \"first_to_last_change\": -0.044}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01UCmgrPMZTu5bNCm8TJMFKT",
+   "name": "trend",
+   "input": {
+    "product_code": "LZG",
+    "manufacturer": "Insulet",
+    "granularity": "year"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"granularity\": \"year\", \"series\": [{\"period\": \"2022\", \"reports\": 21360}, {\"period\": \"2023\", \"reports\": 16651}, {\"period\": \"2024\", \"reports\": 12453}], \"note\": \"Counts by the date FDA received the report; the latest months fill in later as late reports arrive.\", \"first_to_last_change\": -0.417}",
+   "is_error": false
+  },
+  {
+   "step": 1,
+   "id": "toolu_01Gy6tup7uP3wHgJrLxJLuZs",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "LZG",
+    "manufacturer": "Insulet",
+    "date_from": "2022-01-01",
+    "date_to": "2022-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2022-12-31\"}, \"reports\": 21360, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 11841, \"share\": 0.554, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 5068, \"share\": 0.237, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 2039, \"share\": 0.095, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 1323, \"share\": 0.062, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 571, \"share\": 0.027, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 511, \"share\": 0.024, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}, {\"failure_mode\": \"D_OCCLUSION_DELIVERY\", \"reports\": 7, \"share\": 0.0, \"definition\": \"Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 1,
+   "id": "toolu_01D7PLmUxM8GctUSkSxW4Wcj",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "LZG",
+    "manufacturer": "Insulet",
+    "date_from": "2024-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2024-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 12453, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 5413, \"share\": 0.435, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 4846, \"share\": 0.389, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 899, \"share\": 0.072, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 813, \"share\": 0.065, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 296, \"share\": 0.024, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 186, \"share\": 0.015, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 1,
+   "id": "toolu_01MXzLwMuHB1uyDP9BdVPcw2",
+   "name": "signal_check",
+   "input": {
+    "product_code": "LZG",
+    "manufacturer": "Insulet",
+    "failure_mode": "D_ADHESIVE_DISLODGED"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\"}, \"signals_total\": 8, \"signals\": [{\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2024-09\", \"reports\": 547, \"expected\": 446.4}, {\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2024-08\", \"reports\": 595, \"expected\": 446.1}, {\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2024-07\", \"reports\": 648, \"expected\": 440.4}, {\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2023-10\", \"reports\": 612, \"expected\": 446.6}, {\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2023-09\", \"reports\": 621, \"expected\": 439.3}, {\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2023-08\", \"reports\": 591, \"expected\": 449.0}, {\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2023-07\", \"reports\": 580, \"expected\": 460.9}, {\"manufacturer\": \"INSULET\", \"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"month\": \"2023-06\", \"reports\": 731, \"expected\": 445.9}], \"rule\": \"A month is a signal if it has at least 5 reports and the chance of that many, given the previous 12 months' average, is below 0.1% (Poisson). Signals run 2023-01 to 2024-12.\", \"caution\": \"A signal is a prompt to look closer, not evidence of a defect. In a backtest, 15 of 38 recall events had a prior signal versus a 14% base rate.\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 239,
+    "cache_creation_input_tokens": 5078,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJxzcfEazQvyQ9vGTgQA",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_012eiGvW5AuVSbZhYeArffrY",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "manufacturer": "Insulet",
+       "failure_mode": "D_ADHESIVE_DISLODGED",
+       "granularity": "year"
+      },
+      "name": "trend",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01UCmgrPMZTu5bNCm8TJMFKT",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "manufacturer": "Insulet",
+       "granularity": "year"
+      },
+      "name": "trend",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5078
+     },
+     "cache_creation_input_tokens": 5078,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 239,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 497,
+    "cache_creation_input_tokens": 665,
+    "cache_read_input_tokens": 5078
+   },
+   "response": {
+    "id": "msg_011ChJxznUaVVMRQnveAP8RW",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS7AYKEAgUGAI4AUIIdGhpbmtpbmcSDAcIQCqbQMZ0bWo37BoMm4HVKBvaU4vVPIPBIjDn2qf+IiWQMuA89y+e5a0fraSEjmDOpCNi1BEtmNPvm2DYr//7UQgWFtLwPkzMrRkqiQavxZCAS98hGrDU8nd8YCB52hQWJ5hA+VbtD1tJOok/Q/QHEZD3jxrYkE4RRG4Is9Ij4ktpnMF+3+DQ2+e5FBdyiPv2oL5IA5RdEkD5Q8rjJYmBdHtH7lHlxQhc0rsnPTJHDbuxUjOia8VP2Zc4O46qJu++YC0LnuZfnX29y4DbcntymMpW4+pU35t/SEYvULqI3gSQObrwn3/Qx6xdNZO3bx9h8gEhaDYVNLqwfnoUmKkG0wO88fwUQZ7RxEV3SuVssKCA+cmMs3dyW5ymYpABgmi/09DrPE14CV0ML1KhymSRyfWsAqIRnl4humtwFdxsRZGjOTFatkpDsuFQMxWFV4pLRLe7wWGGMIH3+x1Cprphj2FDogLUfl/wUeypO4oHH0BncCPUoArJGrg3eU6I16e+fsSIu7J/LrkKtbs7/Qc2ChGVTGuXhrulPC3Y0FYilwUdD1KUbB5ZicDZfaPz91fzK5RdcT2lZcQAxhn+XzUujy1/ezCnNWtgE7Lk/+kVzwGyDzsBItyOkT6wgaQCbIxzB0SZvi6oy/6yOeTJ++RlRL7D+SuHxASx+mljM4H/ucBUCu5ZaJ3SGJaVxnk85dCsNLBwvOb5AFzyytSKf/XkPaQ+n3remtSg3JIwTo9sabpBeuyKf7RtlbXij7bI6cVGH905jmw/r7cK5mBgG2phdiu0gD5fvQRfstd1KXCmr+PTr0rqymT4EBl4dVgDgxXsC0wYnrAEOc6W87nLjtdK/ic+XZ0y9CgjTuUJ0d4+kJz+qBvMoHO2U1x/Raf86YWvJZyVUXrZyobtzP2UXSG27rM6gCwgmlMzg9fkE4pmjjo2eVaDsLnRnNM60lLXF0GpWgb2LhpTJqqO5inPxu9hg0AA5mWLU3RgFBphHyaDktMUKSpSKQI+K5oIQH6m7xMc7FXqE3nU1jvauXrZD7iDUug36U9rKXBCFDp6Ma2qepfDvlXqvi8y5flc3SHozgULEKafI5atxuDeB/7X4iatRWQfrOfRpUE+qGzanf0kqYg38LVRFooYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01Gy6tup7uP3wHgJrLxJLuZs",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "manufacturer": "Insulet",
+       "date_from": "2022-01-01",
+       "date_to": "2022-12-31"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01D7PLmUxM8GctUSkSxW4Wcj",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "manufacturer": "Insulet",
+       "date_from": "2024-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01MXzLwMuHB1uyDP9BdVPcw2",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "manufacturer": "Insulet",
+       "failure_mode": "D_ADHESIVE_DISLODGED"
+      },
+      "name": "signal_check",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 665
+     },
+     "cache_creation_input_tokens": 665,
+     "cache_read_input_tokens": 5078,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 497,
+     "output_tokens_details": {
+      "thinking_tokens": 108
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 2,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 754,
+    "cache_creation_input_tokens": 2630,
+    "cache_read_input_tokens": 5743
+   },
+   "response": {
+    "id": "msg_011ChJy17LQ2JVzs2XkZwgu6",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS5gcKEAgUGAI4AUIIdGhpbmtpbmcSDG1+uIm7Rd1+7af4QhoMBOqTrHLGEp/URjgLIjCu5RNH7qH+FvlzS7qk0U/5KORuzIxzC5qULxHvC88rfRZmUakec5EcUh6aBuiGTIwqgwclLySPS1Prmg6FOnuUYBH/nk54aa1ivd97uzjo5martXJzm4sU67l6fmxh7snz1OaHUCmogL20lM5i8vdu5GG2qKyrEbZh3oXk4pWRdnhJmcCIm/4KS3xnm0G5SM9MWgV50ci5blKr/frshpRoMu07FegYBP8m3isgohFlj6yMtbLAHcLF8/pSqiF6E4Hgyd5yP1O6pIBG4Q9rr1keLnD0b1jqvrxnXWYYqkJ5g1YZ6LIVaIhwp7VnAmar/s8Prho5JdH+RaxJNbygjNT3U11N9Eah662XqUHEPgglq5npcg0euXnS+WBvqo16FfK2L5pZ6x1t+r2FAY9Hf+fVYOI/Zt9N+Dse49joCf1vxSEGW3D5ZTTf8pC+4K0LY9s8zcndrjihkQNWdrgFq+p81HygTyzdr+12jtrNInN9PblCyWUsy4D+WfCKMX13zWBKKIT+D3xxqxrZUxGXAEQ9elSh10s+lP+n2i/mvC3drfgJ425iGrRQp8wga/+T4rCCyAzHpSzjXXZYDY7zH1IJC/Zjpeg1+JxWFyvGmTphQ8e0AKz0GtUOHxrEY7919r8j7gwy9LpegKOFPcBTKr6WRmP3D4R+xZSzZ5ZfoNyVvotGPxuQQuCclvoc5uMLdpqmMospMNSYWrsRgDoG8QderTDqD+MGWrtDEmdaB5rQ09NdCMEtAQmr3+ADl+SyoNHVTRBlyd6hXMC/55dB+7W22rlui9vYZ/MHLX9vGhEd2qeABt0g3XfisybhBl0thlRLTFZL5LX9NHK9pjU8bkRdY6oMbXuQ2c5926h4kR1X98n7Rm4007tNmpTQVGZCLpJM0XLm2LEd0tCkZG1ni+BByt3BoYSYxaogji/Glm5UTf/iKPGDXnCzhcxfyaSAJA70E2ngtBrcpMqc2IbnP+AwuDGkgOJd+66JSRaApjDoMpWoMX8AfX/TUE0dW2B7mTPbn/CGwycSXy2GLKdve4Kuibw4wnwb/io9gzs8eq6d3OJthhghPhC/UJ9XHJg3937GCNu6+U2c9xTB1Rz9FCrNhk7C5XSkj2WxoR51HFXiinJ4b5kEuXXt61oq8Bzi0a5u+Khj1tAvlaepVLywTS2pVrWYXCDCRmFhLnr5ZsO7OTWAdcmc3dDs1UJjjlFf5JrIF/IW6mIp4rS0G+e3zsE2UylfJXuFny+KbkKhl4aWmYWGpS3LPhgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**Not in absolute numbers. As a share of Insulet's reports, yes.** Insulet adhesive/dislodgement reports stayed about flat: up in 2023, then down in 2024, ending 4.4% below 2022. Over the same period Insulet's total reports fell sharply, so these complaints became a much larger share of what gets reported.\n\n**Insulet pod adhesive/dislodgement reports (LZG) by year received:**\n- 2022: 5,068\n- 2023: 5,608\n- 2024: 4,846 (−4.4% from 2022 to 2024)\n\n**Compared with all Insulet reports:**\n- Total Insulet LZG reports went from 21,360 in 2022 to 12,453 in 2024 (−41.7%).\n- Adhesive/dislodgement's share grew from 23.7% to 38.9%. It's now close to cannula/insertion problems, which fell from 55.4% to 43.5% and are still the top category.\n\n**Unusually high months:** there were 8 monthly spikes, all in summer and early autumn:\n- June to October 2023 (peak of 731 reports in June 2023, against about 446 expected)\n- July to September 2024 (648 reports in July 2024, against about 440 expected)\n\nThat repeating timing could mean more pods come off in hot, sweaty or active months. That's only a guess. A spike is a reason to look closer, not proof of a defect. You could test the guess by reading the report narratives from those months, which I can pull if useful.\n\n**Limits of this data:**\n- Report counts aren't failure rates, because there's no figure for how many pods are in use.\n- The rising share may simply reflect fewer reports of other problems, not more adhesive failures.\n- Failure categories come from FDA problem terms sorted by a lookup table, which matched reference labels about 70% of the time.\n- Late 2024 counts may still go up as late reports arrive.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 2630
+     },
+     "cache_creation_input_tokens": 2630,
+     "cache_read_input_tokens": 5743,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 754,
+     "output_tokens_details": {
+      "thinking_tokens": 132
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.076025,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 239,
+   "cache_creation_input_tokens": 5078,
+   "cache_read_input_tokens": 0,
+   "usd": 0.030186
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 497,
+   "cache_creation_input_tokens": 665,
+   "cache_read_input_tokens": 5078,
+   "usd": 0.0153042
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 754,
+   "cache_creation_input_tokens": 2630,
+   "cache_read_input_tokens": 5743,
+   "usd": 0.030535200000000002
+  }
+ ],
+ "id": "Q1",
+ "category": "phase4",
+ "recorded_utc": "2026-11-23T01:08:59Z"
+}

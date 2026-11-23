@@ -34,6 +34,10 @@ jobs:
         run: |
           python -m mdqc.verify_phase5 --offline
           python -m mdqc.report_phase5 --check
+      - name: Phase 6 offline verifier (eval set unchanged, recorded spend, controls, independent re-grade, Phase 4 A2/A3) and doc
+        run: |
+          python -m mdqc.verify_phase6 --offline
+          python -m mdqc.report_phase6 --check
 
   # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
   # (including the tampered-cell check) and the independent verifier (P1-P8) on it.

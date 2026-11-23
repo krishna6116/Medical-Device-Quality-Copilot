@@ -1,0 +1,144 @@
+{
+ "question": "By what percentage did yearly report counts for insulin pumps (LZG) change from 2022 to 2024, and was it a rise or a fall?",
+ "model": "claude-opus-5-5",
+ "memory_block": null,
+ "answer": "Yearly reports for insulin pumps (LZG) **fell by 35.4%** from 2022 to 2024.\n\n- 2022: 28,225 reports\n- 2023: 21,972 reports\n- 2024: 18,228 reports\n\nThe drop happened in both years, not just one.\n\n**Limits:**\n- These are report counts, not failure rates. The data doesn't include how many pumps were in use, so a drop doesn't necessarily mean the pumps became more reliable. Changes in how companies report, which products are on the market, or how many people use them could all affect the numbers.\n- Reports are counted by the date FDA received them. Late reports are still arriving, so the 2024 figure may rise a little.\n\nI can break the trend down by company or failure mode if that would help.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01TEcrKpKy8WeyUrQBeU3wWS",
+   "name": "trend",
+   "input": {
+    "product_code": "LZG",
+    "granularity": "year"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"granularity\": \"year\", \"series\": [{\"period\": \"2022\", \"reports\": 28225}, {\"period\": \"2023\", \"reports\": 21972}, {\"period\": \"2024\", \"reports\": 18228}], \"note\": \"Counts by the date FDA received the report; the latest months fill in later as late reports arrive.\", \"first_to_last_change\": -0.354}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 73,
+    "cache_creation_input_tokens": 5076,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJx7NMq9jLwfjnqBirFe",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_01TEcrKpKy8WeyUrQBeU3wWS",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "granularity": "year"
+      },
+      "name": "trend",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5076
+     },
+     "cache_creation_input_tokens": 5076,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 73,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 258,
+    "cache_creation_input_tokens": 253,
+    "cache_read_input_tokens": 5076
+   },
+   "response": {
+    "id": "msg_011ChJx7VsHJYFNiR2L7eYj2",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS6wQKEAgUGAI4AUIIdGhpbmtpbmcSDEFw0sperCU47GNNBhoMOMrU9TgGUogWC4cRIjAF1ZQDQTITX+MrInl+1axiZ1GIemAnBn0LeMqpuPUzt2Y+gMX+wf+07gzut8YPS+MqiAT+Pe2D4fSonjdYyqsASpHNkE8JFwOXFNF6NxAnoEcKp/fO7w6xpHJZAWcXoZyu5ZPJcOND9a6SAb5CH9jG3V08d7884V5IsJXSc0Q9AeMVPkOHNrGtm8cUgq5vZYvzZ/ZXoCQCqg/WCAj3Trfrq/Bx6THvh88DUkLcFxIi3ATSir0kC3gT0mjuHTOCJcibPHo86vaV8LsiV78z16KQVHyb4Uvyfwix3SW5DBPFxVU2GUBkUZCqWcQru7F/tHuOF1I8JMas5eaNLnkBhv3WxJ/LcMZTZm+xv/2tUIxFH0bHKQLO7VMrMqlgre3EH8h6bFDmW5ULQWQKYt0M3GcfyIVzor2t7RUPGO7arky1RRNFEIEAJaRqX2v8LkCQ8htzugpML/LZIIPFHl6YvCOwdfODedF5Mj8bs1PMdLzpaQNyyTsbfo5GnKVKqlWSGvEKuDZQWb5jHu6j7cUgZsYgsO2faoXl4+ZDsY0Wz0md6IabGsLCdjQvlw7Ppu2aIipbfYsWrQChvJ0NzXHxEHNi1tq6oI4oSKgrZ/LcMmfw9CBAKWXijITm1skdp4593V5zjwpZ5dWsqodEok2spK06L1N/GqhNYOpVRdDWNwQlrmN91FTLjWgKSwduAdsGuU2ouzD0ObdUlGRGYZaL0Omj7TgXEIv0envjKEX8n8DejIQDDz0Sxih6/b8qGAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "Yearly reports for insulin pumps (LZG) **fell by 35.4%** from 2022 to 2024.\n\n- 2022: 28,225 reports\n- 2023: 21,972 reports\n- 2024: 18,228 reports\n\nThe drop happened in both years, not just one.\n\n**Limits:**\n- These are report counts, not failure rates. The data doesn't include how many pumps were in use, so a drop doesn't necessarily mean the pumps became more reliable. Changes in how companies report, which products are on the market, or how many people use them could all affect the numbers.\n- Reports are counted by the date FDA received them. Late reports are still arriving, so the 2024 figure may rise a little.\n\nI can break the trend down by company or failure mode if that would help.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 253
+     },
+     "cache_creation_input_tokens": 253,
+     "cache_read_input_tokens": 5076,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 258,
+     "output_tokens_details": {
+      "thinking_tokens": 12
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.035319,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 73,
+   "cache_creation_input_tokens": 5076,
+   "cache_read_input_tokens": 0,
+   "usd": 0.026856
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 258,
+   "cache_creation_input_tokens": 253,
+   "cache_read_input_tokens": 5076,
+   "usd": 0.0084634
+  }
+ ],
+ "id": "E21",
+ "category": "trend",
+ "recorded_utc": "2026-11-23T00:57:14Z"
+}

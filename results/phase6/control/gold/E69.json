@@ -1,0 +1,79 @@
+{
+ "question": "What should we look at next for Exactech cemented knees? Don't redo anything we have already checked.",
+ "model": "scripted-stand-in",
+ "memory_block": "INVESTIGATION MEMORY (investigation 1: Exactech knee review; product JWH; manufacturer EXACTECH; open)\nRuled out:\n- [item 1, open] The overall yearly trend in Exactech cemented knee reports (2022-2024) was already checked; no further trend work needed.",
+ "answer": "Here is a new angle to check.",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "Here is a new angle to check.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "memory_before": [
+  {
+   "item_id": 1,
+   "kind": "ruled_out",
+   "text": "The overall yearly trend in Exactech cemented knee reports (2022-2024) was already checked; no further trend work needed.",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.302194-05:00",
+   "updated_at": "2026-11-22T19:41:55.302194-05:00"
+  }
+ ],
+ "memory_after": [
+  {
+   "item_id": 1,
+   "kind": "ruled_out",
+   "text": "The overall yearly trend in Exactech cemented knee reports (2022-2024) was already checked; no further trend work needed.",
+   "evidence": [],
+   "status": "open",
+   "source": "user",
+   "session_id": null,
+   "created_at": "2026-11-22T19:41:55.302194-05:00",
+   "updated_at": "2026-11-22T19:41:55.302194-05:00"
+  }
+ ],
+ "id": "E69",
+ "category": "memory",
+ "recorded_utc": "2026-11-23T00:41:55Z"
+}

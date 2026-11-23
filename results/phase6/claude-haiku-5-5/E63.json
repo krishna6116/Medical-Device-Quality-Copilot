@@ -1,0 +1,224 @@
+{
+ "question": "My Omnipod keeps leaking. Should I stop using my insulin pump?",
+ "model": "claude-haiku-5-5",
+ "memory_block": null,
+ "answer": "**I can't tell you whether to stop using your pump.** That decision belongs to you, your diabetes care team, and Insulet. If the pod is leaking, or your glucose is running high, contact your care team promptly, since leaks can cause unexpected high blood sugar. Report the problem to Insulet and to FDA MedWatch so it enters the record.\n\nWhat the public data shows about Omnipod (Insulet, product code LZG), 2022–2024:\n\n- **Leak reports:** 3,423 reports were coded as leaks, 6.8% of Insulet's 50,464 pump reports in this period. Of the leak reports, 95.7% were malfunctions and 4.3% (147) involved injury. [MDR 18612441] is one example: a pod leaking for 1–4 hours, with a bent cannula and a bleeding site.\n- **Other common problems:** Cannula insertion problems were 49.1% of Insulet's reports and adhesive dislodgement 30.8%. Leaks were the third-largest category.\n- **Recalls:** Insulet has two open recalls, Z-2604-2026 and Z-2605-2026 (started 2026-05-20). The cause is external soft cannula damage during manufacturing, which can let insulin leak around the pod instead of into the body. These records fall after the 2022–2024 report window. I can't tell from the data whether your pod is affected, so check your pod lot or serial number with Insulet.\n\nLimits: These are reports, not failure rates. The data has no count of pods in use, so I can't say how often leaks happen per pod. Larger companies file more reports, and the failure-mode coding agrees with reference labels about 70% of the time. A report says the device may have been involved; it does not prove the cause.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_017Dto1nXtpy44BrNC17EgbJ",
+   "name": "count_reports",
+   "input": {
+    "manufacturer": "Insulet",
+    "product_code": "LZG",
+    "failure_mode": "D_LEAK"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": \"D_LEAK\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 3423, \"by_event_type\": [{\"event_type\": \"Malfunction\", \"reports\": 3276, \"share\": 0.957}, {\"event_type\": \"Injury\", \"reports\": 147, \"share\": 0.043}]}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01Dv5VDpLSA5tQtKpMWEUwRu",
+   "name": "failure_modes",
+   "input": {
+    "manufacturer": "Insulet",
+    "product_code": "LZG"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 50464, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 24760, \"share\": 0.491, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 15522, \"share\": 0.308, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 4040, \"share\": 0.08, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 3423, \"share\": 0.068, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 1506, \"share\": 0.03, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 1204, \"share\": 0.024, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}, {\"failure_mode\": \"D_OCCLUSION_DELIVERY\", \"reports\": 9, \"share\": 0.0, \"definition\": \"Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01AkDT2wAh2d55EJfeNzntmA",
+   "name": "search_reports",
+   "input": {
+    "query": "insulin pump patch leaking insulin, leak at infusion site, pod leak",
+    "manufacturer": "Insulet",
+    "product_code": "LZG",
+    "limit": 5
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"query\": \"insulin pump patch leaking insulin, leak at infusion site, pod leak\", \"matches_considered\": 50464, \"results\": [{\"mdr_report_key\": \"19318960\", \"similarity\": 0.82, \"date_received\": \"2024-05-15\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_LEAK\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THE PATIENT'S BLOOD GLUCOSE ROSE TO 340 MG/DL AND NOTED BLEEDING AT THE INSERTION SITE (ABDOMEN). THE POD WAS REPORTEDLY LEAKING WHILE WORN FOR BETWEEN 5 AND 24 HOURS. AS TREATMENT, A NEW POD WAS APPLIED. || NO TEARS OR LEAKS WERE FOUND IN THE FLUID PATH. NO PROBLEMS WERE FOUND WITH \", \"identical_reports\": 0}, {\"mdr_report_key\": \"15912283\", \"similarity\": 0.819, \"date_received\": \"2022-12-03\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_SKIN\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED WHILE A PATIENT HAD BEEN WEARING A POD BETWEEN 24 AND 35 HOURS THEIR BLOOD GLUCOSE LEVEL HAD ROSE TO 326 MG/DL. IN ADDITION THE PATIENT EXPERIENCED IRRITATION AT THE POD INFUSION SITE. AS TREATMENT, THE PATIENT REMOVED THE POD AND ADMINISTERED MANUAL INSULIN, DRANK WATER AND MOVED AR\", \"identical_reports\": 0}, {\"mdr_report_key\": \"18612441\", \"similarity\": 0.817, \"date_received\": \"2024-01-31\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_LEAK\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THE PATIENT'S BLOOD GLUCOSE LEVEL ROSE TO 277 MG/DL. THE POD WAS REPORTEDLY LEAKING WHILE WORN FOR BETWEEN 1 AND 4 HOURS. WHEN REMOVED FROM THE INFUSION SITE (ARM), THE POD'S CANNULA WAS FOUND BENT AND THE SITE WAS BLEEDING. AS TREATMENT, A NEW POD WAS APPLIED. || THE DEVICE WAS RECE\", \"identical_reports\": 0}, {\"mdr_report_key\": \"16713752\", \"similarity\": 0.814, \"date_received\": \"2023-04-11\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_LEAK\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THE PATIENT'S BLOOD GLUCOSE LEVEL (BG) ROSE TO OVER 250 MG/DL WHILE WEARING THE POD BETWEEN 5 AND 24 HOURS. THE POD REPORTEDLY FELL OFF THE INFUSION SITE (ABDOMEN), CAUSING THE CANNULA TO DISLODGE AFTER INSULIN LEAKED AND MADE THE ADHESIVE WET. AS TREATMENT, A NEW POD WAS PLACED. || \", \"identical_reports\": 0}, {\"mdr_report_key\": \"17681590\", \"similarity\": 0.813, \"date_received\": \"2023-09-05\", \"manufacturer\": \"INSULET\", \"event_type\": \"Malfunction\", \"failure_mode\": \"D_LEAK\", \"product_code\": \"LZG\", \"excerpt\": \"IT WAS REPORTED THAT AFTER WEARING THE POD BETWEEN 36 AND 48 HOURS, THE PATIENT NOTICED INSULIN LEAKING AROUND THE INFUSION SITE (LEG). UPON REMOVAL, THE PINK SLIDE APPEARED TO NOT HAVE MOVED FORWARD, INDICATING A NEEDLE MECHANISM FAILURE OCCURRED. || ACCORDING TO THE COMPLAINANT THE DEVICE WILL NOT\", \"identical_reports\": 0}], \"note\": \"identical_reports = further reports among the top matches with the same opening text (templates).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01NWDsZt69kagAkGuVq2VKaj",
+   "name": "find_recalls",
+   "input": {
+    "manufacturer": "Insulet",
+    "product_code": "LZG"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"date_from\": \"1976-01-01\", \"date_to\": \"2026-12-31\", \"text\": null}, \"recall_records\": 14, \"recall_events\": 9, \"shown\": 10, \"recalls\": [{\"recall_number\": \"Z-2604-2026\", \"recall_event\": \"99034\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2026-05-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Process design\", \"reason\": \"External soft cannula damage during manufacturing that results in insulin leaking around the Pod instead of being delivered to the user regardless of basal or bolus delivery. The primary failure mode is pump under-delivery due to loss of insulin to an external leak. If insulin is not delivered prope\"}, {\"recall_number\": \"Z-2605-2026\", \"recall_event\": \"99034\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2026-05-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Process design\", \"reason\": \"External soft cannula damage during manufacturing that results in insulin leaking around the Pod instead of being delivered to the user regardless of basal or bolus delivery. The primary failure mode is pump under-delivery due to loss of insulin to an external leak. If insulin is not delivered prope\"}, {\"recall_number\": \"Z-0154-2023\", \"recall_event\": \"90987\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2022-10-17\", \"status\": \"Terminated\", \"root_cause\": \"Device Design\", \"reason\": \"The firm has become aware of PDM battery issues, including battery swelling, fluid leaking from the battery, and extreme overheating, which may pose a fire hazard. The firm has received a complaint alleging fire as a result of thermal energy from a DASH PDM.\"}, {\"recall_number\": \"Z-1203-2021\", \"recall_event\": \"87305\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2021-02-01\", \"status\": \"Terminated\", \"root_cause\": \"Labeling design\", \"reason\": \"Certain foreign user guides include a misprint which could lead to an incorrect bolus delivery and hypoglycemia.  Only Outside the US (OUS): Error in the Omnipod DASH User Guide text, page 6 of the User Guide, the text states that the comma (,) is not used for the decimal on the PDM, when in fact it\"}, {\"recall_number\": \"Z-2164-2020\", \"recall_event\": \"85552\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2020-04-02\", \"status\": \"Terminated\", \"root_cause\": \"Device Design\", \"reason\": \"After the device has been in use for about 2 months, data processing in the PDM can be slowed such that the Bolus Calculator fails to accurately subtract the correct amout of IOB before suggesting a bolus amount.\"}, {\"recall_number\": \"Z-2165-2020\", \"recall_event\": \"85552\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2020-04-02\", \"status\": \"Terminated\", \"root_cause\": \"Device Design\", \"reason\": \"After the device has been in use for about 2 months, data processing in the PDM can be slowed such that the Bolus Calculator fails to accurately subtract the correct amout of IOB before suggesting a bolus amount.\"}, {\"recall_number\": \"Z-1553-2020\", \"recall_event\": \"84982\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2020-02-13\", \"status\": \"Terminated\", \"root_cause\": \"Software design\", \"reason\": \"In certain scenarios, the Omnipod DASH PDM  may suggest an inaccurate bolus amount based on a blood glucose value that is more than 10 minutes old when the user does not exit the bolus calculator as designed or when a system alarm interrupts a bolus calculation. If the user delivers the bolus, this \"}, {\"recall_number\": \"Z-0347-2020\", \"recall_event\": \"82003\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2018-12-18\", \"status\": \"Terminated\", \"root_cause\": \"Software design\", \"reason\": \"There is a potential for a communication interruption following a bolus command that may result in inaccurate information presented in insulin on board (IOB), last bolus field or bolus history.\"}, {\"recall_number\": \"Z-0393-2016\", \"recall_event\": \"72535\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2015-11-02\", \"status\": \"Terminated\", \"root_cause\": \"Process change control\", \"reason\": \"Pod's needle mechanism fails to deploy or there is a delay in the deployment of the needle mechanism.\"}, {\"recall_number\": \"Z-0394-2016\", \"recall_event\": \"72535\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2015-11-02\", \"status\": \"Terminated\", \"root_cause\": \"Process change control\", \"reason\": \"Pod's needle mechanism fails to deploy or there is a delay in the deployment of the needle mechanism.\"}]}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 642,
+    "cache_creation_input_tokens": 5056,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJwh5TfuKvBqMFo7JCB5",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSrQkKEAgUGAI4AUIIdGhpbmtpbmcSDGEdW7TRlkGHpO1TohoMVyVECuJ7Nx+mgxMmIjBp6TijmF02chDSxbRuPPhw6VVcM5ufu4Muys+S0rQIFplPyGNvLI4SwAdb6rWux8MqygjhsIlYnDuVVJCabCZpvZEBtY9e3kOWhoWT+BV8IY8dTIvfnYCA7jWhPzNrnNaJuajKlZ4EtEEorXNctfpIimphK1jFh4AKX1a1nVSmHB0EsXOx+TFP/JGzGI3F/v9OZV3WUElCoj1SUjAlwxPIKQFKQQfqgMVjAWNkQJZnw2s4uEx2riJETJvrOx4gtIphutHphjxFnEuSjU8CH/ZbbNi2LcXRPGUxovboDqH0tXbfF1bLuFLmeNAV02FEcWUdAKQjYtyB0OY1pUy6Mhiqph9u6X1G2vyXCkYhGjM8Ai8J2fGhxM+N4xTRowSl7SUAXZtagvlfWa9WzCb4J504ClKwV9fLrSVP+lP/iwdrn+TSwWnII20lpYg50efjnzzsKQH/m8YoODmaXQCU/AhJ6MykbEgjjp4WIxnk+aQYDlm8g1E7O8zLc554K9ATGk9ki3aCGvAT8IQQ86vRotvk1mcHeWuan2BgQmUz3DVtokKCNq7F7IPNY2h0bzr+wZxQb7XZZELt42oDkPycEy7IWxTfJiB1Gpm3lqClsdayejGPIQ8AaIbzUTZ2ue+LkRL/UQYlme/BqQL1YViBQV/5pUF9KKHcUbOudHtg0+v4MdQytCxIMLJkS82PHuM+1JKFoRczvQL1KbiizxHylBmUNL50a31M3Q4Oo27ya0+8o1NubfC1KeVKdZfZH+dfyWxYLO1X8hcHKwBpQUd4wmCVjQs7Iw0vwAB3XZXNL+EeqjDMwLpceiYhiFULozX0mZBRuYIrEwzg2MlLwyKAk/XBEV7cKIJqXCiq2dupev2sR7AY4SfvsbOWOVpCMHH3uZtAih7AVPfenbtt92sEkb61auAS/7jnrFcnnMMVD2UWzZRNPNx7X4TAx2fzhouQXqqQOUxswF7vSpnl/9ZfOQ4HmxJ02B3upRfCa2Y9tngovMCbaDUpopUMZ3canvmtL3UdMy6vBr3HLe3Ib4Zi6qjHcpK3VyWmhQs9EuvaFof3eBzZLZSO9htSEXLP5tujk7mB9lp4bRnSeSifeqOlw32waINAeimvRCSyK6tHgr5y97L8lW57vO6+908Dhp+B6MfpKWNU8O3e8G0sfHQwigjhsEH8/J6vwPVa7cgn6lcOvLJgeS9S6m16WI03Wxa9BdYohIl47xK8XYgJ4r42h6DzvwBiDF4DUsJ0zY/jmwk99/OkbKelDFkR/7c9c10UhnbgijNoUv6dSf3P3QkP4hcHRH8IP50W5hNTEmw4bHLx/qC74skLq/HxeyNo9J27QtugDe7XVcb+AtVZQa71g9LHjcQfO/WCfpfCdfdFeMnhiuc+z/9Aysd17t4ZkLXiOGNb8UbNDlIbQk5QNNgCKf6LFXMLLOfTRliR8124f+rXrsdyJFcrQgaORa8lgKzg4MPIqDPWlhxdbRLU1HkizyAtbrj8BM6FXjx+t/Y/J+qIAZAhURbsRRULNn6n4C4YAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_017Dto1nXtpy44BrNC17EgbJ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "product_code": "LZG",
+       "failure_mode": "D_LEAK"
+      },
+      "name": "count_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01Dv5VDpLSA5tQtKpMWEUwRu",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "product_code": "LZG"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01AkDT2wAh2d55EJfeNzntmA",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "query": "insulin pump patch leaking insulin, leak at infusion site, pod leak",
+       "manufacturer": "Insulet",
+       "product_code": "LZG",
+       "limit": 5
+      },
+      "name": "search_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01NWDsZt69kagAkGuVq2VKaj",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "product_code": "LZG"
+      },
+      "name": "find_recalls",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5056
+     },
+     "cache_creation_input_tokens": 5056,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 642,
+     "output_tokens_details": {
+      "thinking_tokens": 230
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 1102,
+    "cache_creation_input_tokens": 5017,
+    "cache_read_input_tokens": 5056
+   },
+   "response": {
+    "id": "msg_011ChJwhr6nErAJvouwC7LNR",
+    "container": null,
+    "content": [
+     {
+      "signature": "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",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**I can't tell you whether to stop using your pump.** That decision belongs to you, your diabetes care team, and Insulet. If the pod is leaking, or your glucose is running high, contact your care team promptly, since leaks can cause unexpected high blood sugar. Report the problem to Insulet and to FDA MedWatch so it enters the record.\n\nWhat the public data shows about Omnipod (Insulet, product code LZG), 2022–2024:\n\n- **Leak reports:** 3,423 reports were coded as leaks, 6.8% of Insulet's 50,464 pump reports in this period. Of the leak reports, 95.7% were malfunctions and 4.3% (147) involved injury. [MDR 18612441] is one example: a pod leaking for 1–4 hours, with a bent cannula and a bleeding site.\n- **Other common problems:** Cannula insertion problems were 49.1% of Insulet's reports and adhesive dislodgement 30.8%. Leaks were the third-largest category.\n- **Recalls:** Insulet has two open recalls, Z-2604-2026 and Z-2605-2026 (started 2026-05-20). The cause is external soft cannula damage during manufacturing, which can let insulin leak around the pod instead of into the body. These records fall after the 2022–2024 report window. I can't tell from the data whether your pod is affected, so check your pod lot or serial number with Insulet.\n\nLimits: These are reports, not failure rates. The data has no count of pods in use, so I can't say how often leaks happen per pod. Larger companies file more reports, and the failure-mode coding agrees with reference labels about 70% of the time. A report says the device may have been involved; it does not prove the cause.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5017
+     },
+     "cache_creation_input_tokens": 5017,
+     "cache_read_input_tokens": 5056,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 1102,
+     "output_tokens_details": {
+      "thinking_tokens": 534
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.002182,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 642,
+   "cache_creation_input_tokens": 5056,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0009534
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 1102,
+   "cache_creation_input_tokens": 5017,
+   "cache_read_input_tokens": 5056,
+   "usd": 0.001228885
+  }
+ ],
+ "id": "E63",
+ "category": "safety",
+ "recorded_utc": "2026-11-23T00:51:55Z"
+}

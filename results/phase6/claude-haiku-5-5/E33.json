@@ -1,0 +1,142 @@
+{
+ "question": "Apart from reports with no identifiable failure mode, which failure mode is most common for uncemented hip implants (LPH)?",
+ "model": "claude-haiku-5-5",
+ "memory_block": null,
+ "answer": "The most common failure mode for uncemented hip implants (LPH) is **instability** (dislocation, subluxation, or laxity), at 26.3% of reports.\n\n- Instability: 4,267 of 16,196 LPH reports from 2022–2024, a 26.3% share. This is the top mode after excluding \"Other / no identifiable failure mode\" (11.5%, 1,855 reports).\n- Next most common: infection at 19.3% (3,121 reports), then wear at 13.0% (2,101 reports).\n\nLimits: these modes come from FDA problem terms mapped by a codebook that agreed with reference labels on about 70% of test reports, so some assignments may be wrong. Report counts are not failure rates, since the data has no count of implants in use, and larger manufacturers file more reports. A high count is a reason to look closer, not proof of a defect.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_018tSHHR65GhRXPsE8HxYs4s",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "LPH"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LPH\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 16196, \"modes\": [{\"failure_mode\": \"O_INSTABILITY\", \"reports\": 4267, \"share\": 0.263, \"definition\": \"The joint dislocated, subluxed or was unstable or lax; includes malposition or malalignment causing instability.\"}, {\"failure_mode\": \"O_INFECTION\", \"reports\": 3121, \"share\": 0.193, \"definition\": \"Infection around the hip or knee implant (periprosthetic joint infection): revision, spacer, irrigation and debridement, or antibiotics because of infection.\"}, {\"failure_mode\": \"O_WEAR\", \"reports\": 2101, \"share\": 0.13, \"definition\": \"Wear of bearing surfaces or a reaction to wear debris or metal: polyethylene wear, osteolysis, metallosis, adverse local tissue reaction, corrosion, elevated metal ions.\"}, {\"failure_mode\": \"O_OTHER\", \"reports\": 1855, \"share\": 0.115, \"definition\": \"No identifiable failure mode, insufficient information, revision for an unknown reason, or a reason outside this list (e.g. blood clots, literature summaries).\"}, {\"failure_mode\": \"O_PAIN_STIFFNESS\", \"reports\": 1478, \"share\": 0.091, \"definition\": \"Pain, stiffness, arthrofibrosis or reduced range of motion with no more specific cause named.\"}, {\"failure_mode\": \"O_DEVICE_FRACTURE\", \"reports\": 1144, \"share\": 0.071, \"definition\": \"An implant component (stem, liner, insert, post, shell, tray, head) broke, cracked, fractured or dissociated from its mating part, in or out of the patient.\"}, {\"failure_mode\": \"O_LOOSENING\", \"reports\": 1096, \"share\": 0.068, \"definition\": \"The implant came loose from bone or failed to grow into or fix to bone (aseptic loosening, lack of osseointegration, subsidence, migration).\"}, {\"failure_mode\": \"O_INTRAOP\", \"reports\": 645, \"share\": 0.04, \"definition\": \"A problem during surgery or handling before implantation: component would not seat or lock, difficult insertion, wrong size, packaging or sterility problem, trial or instrument issue.\"}, {\"failure_mode\": \"O_BONE_FRACTURE\", \"reports\": 489, \"share\": 0.03, \"definition\": \"The patient's bone around the implant fractured (periprosthetic fracture), e.g. femur, tibia, patella or acetabulum.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 53,
+    "cache_creation_input_tokens": 5070,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJwWBi9qMwY1m7E4mbvV",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_018tSHHR65GhRXPsE8HxYs4s",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LPH"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5070
+     },
+     "cache_creation_input_tokens": 5070,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 53,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 382,
+    "cache_creation_input_tokens": 1009,
+    "cache_read_input_tokens": 5070
+   },
+   "response": {
+    "id": "msg_011ChJwWEx7RwMyixUfs33Sv",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS1AYKEAgUGAI4AUIIdGhpbmtpbmcSDG0rIbnPz2EWYiM3uBoMdTWegRVP4b5T6+cNIjD1zp6gFdP+dUh6K5KO95sXci0FlqXj+0/O2A8SRIEGOClF/qa6K7JMqJzk9DNQ9acq8QWjzyvem2tIw+CVzNURzVC2Lr5ZqaYwUkXHnJyuiUsH+IM7BU4RdaPMjC5O/3uT2kW5w8eK8ZECK1PbYR/vn5FVHpBQuv6qARc4CmbTm2qdaJOvhkMCwYMTIZR8LPQ2+P0DjINlhaSP7YLlZADR5eiT+R5QT/ektLrQWo/K5LwfdSmptpgG2NdK2/TZjk070Vsy+CNXBO3Yb6fi1YJq9IlJXOBeq2lytt0zS+lM/s0hwRk+ZBdz6+CJ3uNLJB4tNXXdQBq2VnjMfR54XBiDxD2waFF8MFbssW4nkmajdo4zq4g36Mx4iZWtaghI2s8XJ8uFFNMitbec+RvYw+svv+qSZk17tymdo7Xk9h7TTAaaQa33MGtJwErs0Yjy9qMGPLG9luksDTXKJCzTNF9rxoglZ8I7cIgg1o6ip5c+cBVSLKyG1GVbRuDniVaZYbWNRNWCpn/QW99bfEHQqJ5gsg7ttdjtpQGbds/tnAXGgoFTup1I+3ezxfTqmLcRbMwYbg1LkA6yJjYrvtppvDyJx5jhz2JQvyePiMv/3NTfuPlC2O+33Ty+MNV4H+84qvovgwDcQtsAAYxLSZbOae6NS1lYyhRjQLiExSasjw21TlP1HvqzIm3Gpe1Fe1tXG3IyXoWkt0gfU3s6dxUZh7lDXQwpylIqbnjwkpyXgKf3u9JkrqxMgtdJljwl/RI34Yi9PZtVAPm0MR9lPlb4canwGN57kvBFCNwnDWqtIXuxAWO79Z3Fl1f9hIpDvKLeOhrUFayTSd6p/wbPGzIAPt5o+BS1U8sDvHRw2QT1XmPWCxohkeW62fevn4hrikCuujvurTMUXuNY81ORQ/Gt5GxN0kflRm6SxYNCTEc6rYC1y5cNmvSOLpY6p3fPbNCK27w6mjyovl2KkiKgowjOKM7d4LHIfFP4+uaW/+fIlUCLrVPL8A+TCAbY6pUQyMD+9TJjAOei9y92i4Eq0SUvQ4w6vnvb7W+GRDEb2/FKx8qgxZ3PirAYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "The most common failure mode for uncemented hip implants (LPH) is **instability** (dislocation, subluxation, or laxity), at 26.3% of reports.\n\n- Instability: 4,267 of 16,196 LPH reports from 2022–2024, a 26.3% share. This is the top mode after excluding \"Other / no identifiable failure mode\" (11.5%, 1,855 reports).\n- Next most common: infection at 19.3% (3,121 reports), then wear at 13.0% (2,101 reports).\n\nLimits: these modes come from FDA problem terms mapped by a codebook that agreed with reference labels on about 70% of test reports, so some assignments may be wrong. Report counts are not failure rates, since the data has no count of implants in use, and larger manufacturers file more reports. A high count is a reason to look closer, not proof of a defect.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 1009
+     },
+     "cache_creation_input_tokens": 1009,
+     "cache_read_input_tokens": 5070,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 382,
+     "output_tokens_details": {
+      "thinking_tokens": 101
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.001029,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 53,
+   "cache_creation_input_tokens": 5070,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0006606499999999999
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 382,
+   "cache_creation_input_tokens": 1009,
+   "cache_read_input_tokens": 5070,
+   "usd": 0.00036802499999999996
+  }
+ ],
+ "id": "E33",
+ "category": "failure_mode",
+ "recorded_utc": "2026-11-23T00:49:14Z"
+}

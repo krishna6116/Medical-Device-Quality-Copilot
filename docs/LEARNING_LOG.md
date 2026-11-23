@@ -115,3 +115,18 @@
 
 **Concept:** a plan written before the work and criteria committed during it can drift apart; when they do, follow the committed criteria and say so in the public write-up, not only in the code.
 
+## 2026-11-22 (night): Phase 6 evaluation, the project's only paid run ($4.11)
+
+**Built:** an 85-question evaluation set with gold answers computed from the database, committed with its grading rules and a decision rule before any grader or model answer existed; a grader proven on two free stand-ins (answers from the gold must all pass, planted wrong answers must all fail); one recorded run per model (Haiku 5.5, then Opus 5.5, the user's choice after a cost estimate calibrated on Haiku's real token counts); an independent verifier and a generated report.
+
+**Result:** Haiku 78/80, Opus 76/80; the difference is not significant, so Haiku stays (pre-registered rule). Haiku cost 40 times less ($0.10 vs $4.01).
+
+**Concepts:**
+- *Pre-registration:* fixing questions, answers and rules first means the result cannot be steered after seeing answers.
+- *Positive and negative controls:* a grader that only ever says yes proves nothing; it must also catch planted mistakes.
+- *Paired comparison:* both models answer the same questions, so we compare them question by question (McNemar test, paired bootstrap).
+- *Literal graders have blind spots:* all six misses were correct answers the rules did not recognise (negations like 'did not rise', a 'care team' referral). The grades stay as pre-registered, and a labelled hand review explains each one.
+- *Ceiling effects:* when the cheap model is already near 100%, a stronger model cannot show a meaningful gain on this set.
+
+**Next:** Phase 7, safety guardrails, cost tracking and drift monitoring (write negation-aware checks and test them on planted negated answers).
+

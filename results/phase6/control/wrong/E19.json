@@ -1,0 +1,53 @@
+{
+ "question": "By what percentage did yearly report counts for uncemented knee implants (MBH) change from 2022 to 2024, and was it a rise or a fall?",
+ "model": "scripted-stand-in",
+ "memory_block": null,
+ "answer": "Yearly reports fell by 18.7% from 2022 to 2024.",
+ "stop": "answered",
+ "steps": 1,
+ "tool_calls": [],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_scripted",
+    "content": [
+     {
+      "text": "Yearly reports fell by 18.7% from 2022 to 2024.",
+      "type": "text"
+     }
+    ],
+    "model": "scripted-stand-in",
+    "role": "assistant",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "input_tokens": 0,
+     "output_tokens": 0
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.0,
+ "ledger": [
+  {
+   "model": "scripted-stand-in",
+   "input_tokens": 0,
+   "output_tokens": 0,
+   "cache_creation_input_tokens": 0,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0
+  }
+ ],
+ "id": "E19",
+ "category": "trend",
+ "recorded_utc": "2026-11-23T00:41:55Z"
+}

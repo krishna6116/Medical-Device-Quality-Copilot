@@ -1,0 +1,158 @@
+{
+ "question": "Please save this as a hypothesis in our investigation: pod dislodgement complaints may be linked to wear time over 48 hours.",
+ "model": "claude-haiku-5-5",
+ "memory_block": "INVESTIGATION MEMORY (investigation 1: Insulet pod adhesive failures; product LZG; manufacturer INSULET; open)\nNothing saved yet.",
+ "answer": "I saved this to investigation 1 as a hypothesis (item 1):\n\n\"Pod dislodgement complaints may be linked to wear time over 48 hours. Not yet tested against report data.\"\n\nI added \"not yet tested\" because no tool results support it yet, so it has no evidence attached. You can view, edit, or delete it at any time.\n\nI can test it next by searching the adhesive and dislodgement reports for mentions of wear time or days worn, then comparing how often over-48-hour wear appears. Keep in mind that a match would only be a prompt to look closer, not proof of cause.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01PkbeHno4qCwkkFiZV7pg6u",
+   "name": "remember",
+   "input": {
+    "kind": "hypothesis",
+    "text": "Pod dislodgement complaints may be linked to wear time over 48 hours. Not yet tested against report data."
+   },
+   "result": "{\"saved\": true, \"item_id\": 1, \"kind\": \"hypothesis\", \"text\": \"Pod dislodgement complaints may be linked to wear time over 48 hours. Not yet tested against report data.\", \"evidence\": [], \"confirmation\": \"Saved to investigation 1 memory as hypothesis (item 1): \\\"Pod dislodgement complaints may be linked to wear time over 48 hours. Not yet tested against report data.\\\". You can view, edit or delete it at any time.\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 275,
+    "cache_creation_input_tokens": 5983,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJwn4rqS5Fq4xCcP6aVk",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSrAgKEAgUGAI4AUIIdGhpbmtpbmcSDBmQJKEU73F4gqt11xoMM9IKCtvXjOCnR9Z4IjBJa20jbuto8/e6IT1uc166Ug5QKLJ8NImTXi3COSVfS1FEHUyrnL/PjgLDMzvtCsIqyQeIk2RBdlBQnBhhHMIis7WN48FWKJmE4s8sBMJVoRNEE6S9p8f7POIq1OsNGZpFYlNM/4VKyoT/tHlICjDi1gSfF9RsF0m/cbENU5lJo7qrDYSJlLZdqpvb3uzJgxxgaFSn4vIluY5B7o15QZQxro29i0DgsikJ5Rk0tfiEcpjzkCpbg8WByfDHb0bTDRm73fvhLGxdnZcsf19iV5LgRySFcBtyd7y6HtPKlGBfWPoNJ+xo/KBSjdKqFB+GuBWsGSvzQNxCveX1+NNpEczL8jTzYElNhWPZdBDHq+OXsPLgr6bBDC/rDWNtsSioeThYJ4PCvto0m5Y8QLvdFmM0oqJBb2e3KxbvV0lA1J3RYo7J90FknjvwthueGWJccDa4ILLzxt86NVzzQ8pn/yLkfaTVuqHNcV0ZJ5d9gAanqgymYKydpJG93QGPqCd8Z9tZK5dAgQAY4yrnUZQqSdawvZ5Rnsi3axi06Bj6G2CFDQMKnl6HFJSPF0mPI32itNy9LAb3PsI/YrkOUoBAj8Jp+X1IzQIyqmYuY+4lze2gpZocpySkeAF0r/eaaMbzq1h3dUi/sTCi2uQT7ouYxDiQv/BDLF8qTLENVnfR04TYDnaChffCva6OuRxi6ikPPGyIaVI4KRYcgRHdA6Zb0sP4Rrd8x38e/StyYS/lm8+4j5AUoZfKGHnRTaXGMJ3kevSD2wSVhrMIaE2GfTcmFxEIMwlP1YlTA25BMswJBdWUp0ZsTnDjZWc2Aa6+UJleqSmiSZJ59u+mNkKlRA8lNqg5/qbpRzszyzECHsumE63UBoUY/x0GqkUXxXlx7Z0MetJ0Nr+6arVuKxvxx5rf4iiZjPic13TCBFOkLM9VOCr+lBH0YGG+iFMLo/keiyjFVa93jWJWrs9BwN6boKFasq4g184NqYaYNQsP721zzR0TCdYHAHFnBDVr0ggC6573YtascdgA7qxs6+Yz6h98+tquGAyRWnEiB/6XH0y7FCP/BNltlRJH5jYWaYL2Cq+vlGXdsJQG/Gm35xf1MC/ctzgpjptLo7O4jT/FL7bbIGkUMkwy/z2gXiNF0qxZN7N47UuknqGxGX3KsE8WDvsqXXKL2FcHIO5O+eQxjlZULjjCCPv10noaiCc2vRh7F+tptI5KOG0tDto4h712ZJNOK+D5x3ROFdLVjhQbtSICTtU8pk+EZwRY7SJGpyxPPGnljoPACIysd9Y7Ivg0Q3z77qT3EvakmgUNS9c6hNmWxAM0308RXPgv0ESp2BkoUxwbtVwcn892N4OBDue/SDgYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01PkbeHno4qCwkkFiZV7pg6u",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "kind": "hypothesis",
+       "text": "Pod dislodgement complaints may be linked to wear time over 48 hours. Not yet tested against report data."
+      },
+      "name": "remember",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5983
+     },
+     "cache_creation_input_tokens": 5983,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 275,
+     "output_tokens_details": {
+      "thinking_tokens": 167
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 188,
+    "cache_creation_input_tokens": 441,
+    "cache_read_input_tokens": 5983
+   },
+   "response": {
+    "id": "msg_011ChJwnC7AiMBjLum4rpzdX",
+    "container": null,
+    "content": [
+     {
+      "text": "I saved this to investigation 1 as a hypothesis (item 1):\n\n\"Pod dislodgement complaints may be linked to wear time over 48 hours. Not yet tested against report data.\"\n\nI added \"not yet tested\" because no tool results support it yet, so it has no evidence attached. You can view, edit, or delete it at any time.\n\nI can test it next by searching the adhesive and dislodgement reports for mentions of wear time or days worn, then comparing how often over-48-hour wear appears. Keep in mind that a match would only be a prompt to look closer, not proof of cause.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 441
+     },
+     "cache_creation_input_tokens": 441,
+     "cache_read_input_tokens": 5983,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 188,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.001095,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 275,
+   "cache_creation_input_tokens": 5983,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0008857750000000001
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 188,
+   "cache_creation_input_tokens": 441,
+   "cache_read_input_tokens": 5983,
+   "usd": 0.00020915500000000004
+  }
+ ],
+ "memory_before": [],
+ "memory_after": [
+  {
+   "item_id": 1,
+   "kind": "hypothesis",
+   "text": "Pod dislodgement complaints may be linked to wear time over 48 hours. Not yet tested against report data.",
+   "evidence": [],
+   "status": "open",
+   "source": "assistant",
+   "session_id": 1,
+   "created_at": "2026-11-22T19:52:46.930868-05:00",
+   "updated_at": "2026-11-22T19:52:46.930868-05:00"
+  }
+ ],
+ "id": "E71",
+ "category": "memory",
+ "recorded_utc": "2026-11-23T00:52:50Z"
+}

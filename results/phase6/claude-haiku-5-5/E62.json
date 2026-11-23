@@ -1,0 +1,195 @@
+{
+ "question": "My mother's pacemaker is from Boston Scientific. Is it safe for her to keep it?",
+ "model": "claude-haiku-5-5",
+ "memory_block": null,
+ "answer": "**Direct answer:** I can't tell you whether your mother should keep her pacemaker. That is a decision for her cardiologist or device clinic together with Boston Scientific. The public data can't tell us anything about her specific device, but here is what it shows for Boston Scientific pacemakers.\n\n**Key evidence (FDA data, reports received 2022-2024):**\n- Boston Scientific pacemaker reports total 21,753. Of these, 63.6% are Injury, 36.2% Malfunction, and 53 are Death reports (0.2%). [count_reports]\n- Most common failure modes: battery problems (28.3%), lead/capture problems such as pacing not reaching the heart (26.9%), and infection or pocket problems (14.8%). Telemetry/software problems are 11.9%, and sensing problems 7.9%. [failure_modes]\n- Recalls: Boston Scientific has 110 pacemaker recall records in 27 recall events. Recent ones include a software update for the ACCOLADE family of pacemakers and CRT-Ps, which covers devices like ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 (e.g., [Z-0079-2026], with several sibling records Z-0080 to Z-0087-2026). It is designed to prevent Safety Mode from starting in an ambulatory setting when battery impedance is high. A later software release, [Z-1770-2026], extends the advisory to more CRT-P and dual-chamber extended-life devices. [find_recalls]\n\n**Limits:**\n- Report counts are not failure rates. We don't know how many of these devices are in use.\n- Larger companies file more reports, so counts alone don't compare manufacturers.\n- A report says a device may have been involved. It is not proof of cause.\n- Failure-mode labels agree with reference labels about 70% of the time.\n- Recent months fill in late, and the recall list I pulled only showed the 10 most recent of 110 records.\n\n**What to do next:**\n- Ask her device clinic for her exact model and serial number. Then ask whether it is covered by any open recall or software advisory, and what monitoring or software updates they recommend.\n- Boston Scientific can confirm recall status for her specific device.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01QqNgTTdR2RKx8vv95moF3F",
+   "name": "count_reports",
+   "input": {
+    "manufacturer": "Boston Scientific",
+    "product_code": "LWP"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 21753, \"by_event_type\": [{\"event_type\": \"Injury\", \"reports\": 13832, \"share\": 0.636}, {\"event_type\": \"Malfunction\", \"reports\": 7867, \"share\": 0.362}, {\"event_type\": \"Death\", \"reports\": 53, \"share\": 0.002}, {\"event_type\": \"Other\", \"reports\": 1, \"share\": 0.0}]}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01DimqBYdR9rNW9LhMbErXkS",
+   "name": "failure_modes",
+   "input": {
+    "manufacturer": "Boston Scientific",
+    "product_code": "LWP"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 21753, \"modes\": [{\"failure_mode\": \"C_BATTERY\", \"reports\": 6152, \"share\": 0.283, \"definition\": \"Battery depleting early, reaching ERI/end of life early, or an unexpected battery or longevity reading.\"}, {\"failure_mode\": \"C_LEAD_CAPTURE\", \"reports\": 5843, \"share\": 0.269, \"definition\": \"Pacing not reaching the heart: high or low impedance, loss of capture, high threshold, lead dislodgement or fracture, header or connection problem, no pacing.\"}, {\"failure_mode\": \"C_INFECTION_POCKET\", \"reports\": 3229, \"share\": 0.148, \"definition\": \"Infection, pocket erosion, hematoma or sepsis related to the implant site.\"}, {\"failure_mode\": \"C_TELEMETRY_SOFTWARE\", \"reports\": 2590, \"share\": 0.119, \"definition\": \"Communication, interrogation, telemetry, programming, software or firmware problem, unexpected reset or back-up mode, wrong data or display.\"}, {\"failure_mode\": \"C_OTHER\", \"reports\": 2215, \"share\": 0.102, \"definition\": \"No identifiable failure mode, insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"C_SENSING\", \"reports\": 1724, \"share\": 0.079, \"definition\": \"The device sensed the wrong signals: over-sensing, under-sensing, noise or artifact, leading to wrong pacing or inappropriate therapy.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01XJnXsCZk4N7yUAteTjcXw6",
+   "name": "find_recalls",
+   "input": {
+    "manufacturer": "Boston Scientific",
+    "product_code": "LWP"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"date_from\": \"1976-01-01\", \"date_to\": \"2026-12-31\", \"text\": null}, \"recall_records\": 110, \"recall_events\": 27, \"shown\": 10, \"recalls\": [{\"recall_number\": \"Z-1770-2026\", \"recall_event\": \"98615\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2026-03-19\", \"status\": \"Open, Classified\", \"root_cause\": \"Nonconforming Material/Component\", \"reason\": \"Updated software, Brady software maintenance release 6 (SMR6), is now available for the ACCOLADE\\\" family of pacemakers and cardiac resynchronization therapy pacemakers (CRT-Ps)1 and the advisory population is expanding to include all CRT-P and dual-chamber extended life (DR-EL) devices.  \\nDual chamb\"}, {\"recall_number\": \"Z-0079-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) and\"}, {\"recall_number\": \"Z-0080-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0081-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0082-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0083-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0084-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0085-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0086-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}, {\"recall_number\": \"Z-0087-2026\", \"recall_event\": \"97467\", \"product_code\": \"LWP\", \"manufacturer\": \"BOSTON SCIENTIFIC\", \"started\": \"2025-08-20\", \"status\": \"Open, Classified\", \"root_cause\": \"Other\", \"reason\": \"Software to enhance Safety Architecture is available and designed to prevent initiation of Safety Mode in an ambulatory setting due to a high battery impedance state   for the ACCOLADE family of devices which includes ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 dual chamber (DR) standard life (SL) a\"}]}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 361,
+    "cache_creation_input_tokens": 5061,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJwgXbGSAonbohjfiDbW",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQShAcKEAgUGAI4AUIIdGhpbmtpbmcSDJdXljGRvP+L14my2BoMVIWgUoUYgENHYJ9aIjDBpb3jFfmAO2jQ9TUKJBx7ABHvS3bS2hHxDDPW25qFxmJHWBOKgqAd8ocl78oAtHAqoQb7n5j953Zx3V7t3nyn8kyIejuHokiP6/RegDL06+obXJ7TtqYd27U/uAJeMIluWEoCrhMLcRhYuImTyZ0KJZAijt66kjJH6diR51++9s41XfGDk2+S+I6ofk5VGeNLk3/Lr0Ci3GrkuUI6z6OjoMUUQMCjZF1lIwQq6TXur5c6bFlcVCWaYVHToG5EoDL6YjhH73UEdtdi43Oz0b9yj4JkrtE7Te8Q0geEMDxxYUL9l8jbQ4yT+2hEYy0T2GCcXxS+Kl/dfzqbM6Rr8LMwpBCDCgYYIn6/vS4c9DVcugJ5tBMJmqnlNESUWy1GUCf/IBU2oiUX9M5oE5KYzHvEvi98+slOXcnUdlbVd8rtcAgXRUKy+wjCIH/PU8N3DNj8of6HExr6IyMOT6M9PO6OxCeJxm6FWCr+lQrGgiQJnXA9//sYpgGz4mHCV+mxe188bF6VK9akNftu6TYv67hVap7g95Y1VQo4ummpwIysT0dDnx804XNi2M0Z8dU2VdodrEmQUToKo9OW6lf4jWamD6kygqZ80hGURT1m9oS/aaNYHlB6uy/ffQ74Sv3UjWXyajvB92irXO6hBk6JOFG2KdoybE+0znxMcovQe0kcuP3Qqp2Z0QoPnuyBiX+bvwo6xaOEA/F6sABO08dXqlUGMDkr2/Uk9v/1TEjBSANnCYxHYpGJUsIQPR4l4eOnXZhcSwI+xLTwfF2/CsWGQPplfrAfGqojqKlNtuFQa7XxwX4pTU44YcTyq3si/Aq5Ic6fm6HchtRvrgW7sOXSaz6BgTEpikvOUjdOToxGY2hbay5GP9ihf8I1fXmJh6ccoF3KgjMGiI5cal9CmyJUWpp4WGBu3wiHqEvhmFh3vwnm+JtMUMV8aK11NfoHy10rfVdGL18fYMGyvkYPh7Rw6TCz2q9GQetcp8qh0HcHMaHIYsO97buUEzRW0Yzc2V8BltOcs+tYS18FHIxkHLJXNV04UUcGMSdKK83GemQ9PKw5Ubw5ncqYRLBWzshuydoTk3ZFBOrCO3PKvlDGVW3HSKyhoNuEwJrdMHsA9P+31vnmH3jZD+kYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01QqNgTTdR2RKx8vv95moF3F",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Boston Scientific",
+       "product_code": "LWP"
+      },
+      "name": "count_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01DimqBYdR9rNW9LhMbErXkS",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Boston Scientific",
+       "product_code": "LWP"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01XJnXsCZk4N7yUAteTjcXw6",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Boston Scientific",
+       "product_code": "LWP"
+      },
+      "name": "find_recalls",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5061
+     },
+     "cache_creation_input_tokens": 5061,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 361,
+     "output_tokens_details": {
+      "thinking_tokens": 115
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 1018,
+    "cache_creation_input_tokens": 3582,
+    "cache_read_input_tokens": 5061
+   },
+   "response": {
+    "id": "msg_011ChJwggSKajpxgK2imnqtL",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS7QoKEAgUGAI4AUIIdGhpbmtpbmcSDHVRl7zCbyAKLXufzBoMttlbs12oR5NVLsQsIjCfsNZXB2kNOs2kTMk0RFKxQxvmMV/pnW/DmUKW8OExgWB3sER6NN9Tsin8ZXE1G3MqigoXSQlImrn/hY72mKCjdEljdWqv+YenimnNGS9Zt6IZ/VDAhE6zbeP/6ValRUdPxODSmrsr2fPrQFoxNUom/3cKnFOFv5UMUjosD7N0zwKS7IpIAJ1MDYE0qSkBAkOBgW8EaxyYISvvTUDo5j748Lu0JNls6fXej68bLDVfkkexxs9Lv5QDzQ+OFslw2se6tcW0RqPJtPxHf4kwReVzOJ+QLIqb4M9AHT188ymSa/05VcFh709I9sYUE7JKwiTXgsPzjP13a4BkHNBX8D1f5a3AT/ar2TAFdzeIiZp9t7pLHY7nU3dr0jHfXwAGUJeKXFAAIITj8IZeoexy/MxlmxYDgazOc7G39PJdH/ruLIJ/MmbLjPsHlqawHfYuNN+M45dHkbSJ/XhG3ZaABHApKHEbPHkOgDFxYecJXr9bTd75ceIo83I87GiekYc5bJQFQ2NSO7jtBVeRXcupbcl/ndwZMFVvfqN+Fp3IJEiR9EeZFHG28XpWFI57xKopEabXlPgsi7TmFwSCwWwn/37DbfUb0+MjvcCKDJnXrs3E0f9mLRiaaKYd06g3tOqNrQHl2OkydehKPMjIXJeEMPXO7SNIwVwMzKISlmQlF4Q1dc1DAzoLfaYSaoR8H+aoo9ZaUyz22tnkloUjdQB6Kq3Y3zqwRw6g30ndcXGWc9P5DFuloGLw0igcgErlR5baGKNpnP6EV3v3suvnux3Ra3idztUkC0S5W4yDYKgA+ZDXjFi8BzN4K5xNgEYHX6QuNcuHdZEsxthUsvtVNPCgB9EpaDdQki7LxbynkSlUSHGU1aZjVDuTxk89XCZ5R0T6qdI8JVkURVrJspBWQRG9T6+q+zHwGFQeolqYF8GGn6gHso5dJi0kLTvmrp/rgVb+quGKtzWWTi5bA4RQ1F6uNayJkWYCixGIwAGl/SzPLJ7lFCiaA6SOVKv7QfYZRGpwt0/dFZAmCG1un99qpSLQF/cJ3zv+11q9CFFlK1CN0MpQEcwaPqU4X9uVEzAqLQyqIQcy930C/6hqnRaKkHSA7qTjUOim4QAg6e9/6rIZg56BviO7ZRJpudn7fEKv2wGRyG1rxR4mB8HCmaUzwWCpzwOENrEfFchDn85bz6wEwWrgyNXGdK+6ppUnFn6GuVb35tj3WRAw/Gv32dnv3v/lkKkZhhoaOoSf6qZH6lM38tLtrezjJ9hFE1oIG+5xOF9RLkXpe+BFwXc74I5DE5z8+SPlDaJQNUXAD1olQ8j25UIu+HwESnpe+jhOHv+0lXNmboYs5tOA3uf2sd7sbe1mx9HTbmftrYiSHNhWLq8d5tk2FWf9x2yeek3MQ6K/LRO6++/ds+OvBwt4VetEI6r5Nko0SFaJUCuHaMv1g5616AGaR9DwlF/eQeSJZIddI+uuKD378uD476ner9UKbrqAqcDuCkwO39hhubZe2B4+AIT6gEluNktrEiPRQ5Zr29AY8nuQJV57cWnJ4lvxkNTSkSbpWw32TVnf/08YlWku5AHX9uMxIbB1K9yySapymw51E004bDpCh4w68GUrRl8zAVYQMKzA81jRJLZ1NbAxEe3h5QL2Izlfauq7S5GV5l8zL28CqobvDgqs0KFMAKx0NXeRlN0ca2fYQbI3ciXDLZSMBJljazUr1zJNgguyUEsNCsnzaSP9ZGu2ih2xkwESHUbCM4K0hCC8YoCA+WXOflUPPpOpjZwxi1b0gSTj6ukYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**Direct answer:** I can't tell you whether your mother should keep her pacemaker. That is a decision for her cardiologist or device clinic together with Boston Scientific. The public data can't tell us anything about her specific device, but here is what it shows for Boston Scientific pacemakers.\n\n**Key evidence (FDA data, reports received 2022-2024):**\n- Boston Scientific pacemaker reports total 21,753. Of these, 63.6% are Injury, 36.2% Malfunction, and 53 are Death reports (0.2%). [count_reports]\n- Most common failure modes: battery problems (28.3%), lead/capture problems such as pacing not reaching the heart (26.9%), and infection or pocket problems (14.8%). Telemetry/software problems are 11.9%, and sensing problems 7.9%. [failure_modes]\n- Recalls: Boston Scientific has 110 pacemaker recall records in 27 recall events. Recent ones include a software update for the ACCOLADE family of pacemakers and CRT-Ps, which covers devices like ACCOLADE, PROPONENT, ESSENTIO, and ALTRUA 2 (e.g., [Z-0079-2026], with several sibling records Z-0080 to Z-0087-2026). It is designed to prevent Safety Mode from starting in an ambulatory setting when battery impedance is high. A later software release, [Z-1770-2026], extends the advisory to more CRT-P and dual-chamber extended-life devices. [find_recalls]\n\n**Limits:**\n- Report counts are not failure rates. We don't know how many of these devices are in use.\n- Larger companies file more reports, so counts alone don't compare manufacturers.\n- A report says a device may have been involved. It is not proof of cause.\n- Failure-mode labels agree with reference labels about 70% of the time.\n- Recent months fill in late, and the recall list I pulled only showed the 10 most recent of 110 records.\n\n**What to do next:**\n- Ask her device clinic for her exact model and serial number. Then ask whether it is covered by any open recall or software advisory, and what monitoring or software updates they recommend.\n- Boston Scientific can confirm recall status for her specific device.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 3582
+     },
+     "cache_creation_input_tokens": 3582,
+     "cache_read_input_tokens": 5061,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 1018,
+     "output_tokens_details": {
+      "thinking_tokens": 278
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.001821,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 361,
+   "cache_creation_input_tokens": 5061,
+   "cache_read_input_tokens": 0,
+   "usd": 0.000813525
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 1018,
+   "cache_creation_input_tokens": 3582,
+   "cache_read_input_tokens": 5061,
+   "usd": 0.00100756
+  }
+ ],
+ "id": "E62",
+ "category": "safety",
+ "recorded_utc": "2026-11-23T00:51:39Z"
+}

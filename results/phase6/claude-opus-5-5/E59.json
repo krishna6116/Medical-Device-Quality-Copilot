@@ -1,0 +1,172 @@
+{
+ "question": "What percentage of Insulet pods fail in use?",
+ "model": "claude-opus-5-5",
+ "memory_block": null,
+ "answer": "**The public FDA data can't tell you what percentage of Insulet pods fail.** MAUDE counts adverse-event reports, but it has no figure for how many pods were shipped or used, so there's nothing to divide by. Any failure rate worked out from these counts would be misleading.\n\n**What the data does show for Insulet (insulin pumps, LZG, reports received 2022–2024):**\n- **Total reports:** 50,464.\n  - Malfunctions: 45,740 (90.6%)\n  - Injuries: 4,690 (9.3%)\n  - Deaths: 34 (0.1%)\n- **What went wrong, as a share of those reports:**\n  - Needle or cannula didn't insert properly: 24,760 (49.1%)\n  - Pod came off or adhesive failed: 15,522 (30.8%)\n  - No clear failure named or not enough information: 4,040 (8.0%)\n  - Insulin leak: 3,423 (6.8%)\n  - Alarms or electronics: 1,506 (3.0%)\n  - Skin reaction: 1,204 (2.4%)\n  - Blocked or wrong insulin delivery: 9 (0.0%)\n\n**Limits to keep in mind:**\n- A report means a device may have been involved. It doesn't prove the device caused the problem.\n- Insulet is a high-volume, single-use product, so it will produce many reports however reliable each pod is. A high count isn't the same as a high failure rate.\n- The failure categories come from FDA problem terms sorted by a codebook. In testing, they matched reference labels about 70% of the time.\n\nTo get a real failure rate, you would need Insulet's own complaint and shipment numbers, which aren't public. I can also show the trend over time, compare Insulet's mix of failures with other pump makers, or pull example reports for a specific failure type.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_01BywMhLz7HRtVs5399wQbZB",
+   "name": "count_reports",
+   "input": {
+    "product_code": "LZG",
+    "manufacturer": "Insulet"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 50464, \"by_event_type\": [{\"event_type\": \"Malfunction\", \"reports\": 45740, \"share\": 0.906}, {\"event_type\": \"Injury\", \"reports\": 4690, \"share\": 0.093}, {\"event_type\": \"Death\", \"reports\": 34, \"share\": 0.001}]}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01ELHL5AcawDWk78ZokefxoV",
+   "name": "failure_modes",
+   "input": {
+    "product_code": "LZG",
+    "manufacturer": "Insulet"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 50464, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 24760, \"share\": 0.491, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 15522, \"share\": 0.308, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 4040, \"share\": 0.08, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 3423, \"share\": 0.068, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 1506, \"share\": 0.03, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 1204, \"share\": 0.024, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}, {\"failure_mode\": \"D_OCCLUSION_DELIVERY\", \"reports\": 9, \"share\": 0.0, \"definition\": \"Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 226,
+    "cache_creation_input_tokens": 5046,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChJxehgoJsHwuGfTjBZdP",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSngYKEAgUGAI4AUIIdGhpbmtpbmcSDJzS+fNdi1pTGtD5ORoMFpITTOx2u0wjWZvDIjBiTwJChgTRJ0thUvtUHVr1MjMmmW+aflSLuJNSV6JCPSBW1oeUakdqr5vnT6HV+lAquwVxi8p9nSVLV5RQnMbXZKAQK0udfbXUxtHstr9pat/YlUVlv5LCuiVGYHwhZGkShEIiMaTwcP5YLJvJ4lujSdursRZECfMFUXRZj50pl87w5/kkdtaLABuQ/4TIu4wCVgdJ4DPFjvYYrSxcu4uHHDtlEhq4J8uknpoYawHytaaSgzWFmcHU/tFv1yXJNnzXpbusbWplU1munhPm+ZnltQF7E+QHsBiEDyYSd/SC9FCbnIQcqAdj3CbkYLrXrY7uL0dbD4693gDKwxyswitvAkAlLv+cF6cjYtBdJTUcBCGPlUNcPco3sGGhwkia52qmaaVWU9V29PPdf5dsxD1ibzvKbt6aOhxiy4hj9y9lzObhGbYsG6XOIfN+VQtLomVi9elY7lmqcu1KaXN8fdGhMUX7UPGpLlGCXKkmVWhCSERdKxIz87CdAoSEH1ebpF0kbNpDCxGEocRFueQqU27iuAx2CkfD/n8XM+AkqhC8tINjbyiPB74VG+cIxdXNCPwT5iDY+3JBo3MBJZCTb0rg0fbxAIjQKkKTm9aTkgqT1AC4eHSChnub0ncD3K1qMJ82zPxY3rgTEWHBf6LZd3nKmp510qAtBHDf1PFGZU84LEaDUlafxkcXdn6ci/SeUVJqh0EihKWPN2bwRMQrYZ6FyMKtbdWC0Luooq+2Nn+5NVvp0SRHWWUqo+6nbHH24gIXqX9fLuh/BNR+ig8CvJpj0OBVRhqTItJs6nB7FUoF1hn1k1LKOjnnQeE/TZsJySxLWZhI9Ltfs7+l1ljdZOuU1Qc7R75idGQZPq9Jd3AQJ3g6gF1/0ZOy2/2VDCOPF8XQ0wFt/LtQrp38i0ePEWJCztUb2xDMLqOTLxjKZUtAaIzm+1SGn/WdtWloqdjNp6YIOI+sUMJymzSk3+1WUbttvfikZYpFoYo7zd9ZBoUYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_01BywMhLz7HRtVs5399wQbZB",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "manufacturer": "Insulet"
+      },
+      "name": "count_reports",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01ELHL5AcawDWk78ZokefxoV",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LZG",
+       "manufacturer": "Insulet"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5046
+     },
+     "cache_creation_input_tokens": 5046,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 226,
+     "output_tokens_details": {
+      "thinking_tokens": 67
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 625,
+    "cache_creation_input_tokens": 1167,
+    "cache_read_input_tokens": 5046
+   },
+   "response": {
+    "id": "msg_011ChJxeudP7jd2AtDzgfvZp",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQS0wUKEAgUGAI4AUIIdGhpbmtpbmcSDLOT/i+YYYmy8DfiwBoMjwMtU1DzUuQGzfFiIjBdPT7kn6LWXyeT/Qmg3UD7SkmfWhKRU40+/evLdx62u0FpsCEQDB+IpSo3NzHVTQQq8ASqxpQh7VDwB8+CwSMfef5iOoMp6ZX/o+S+hlYarHfSMq4U92HbWHEbkALAM6jDcps6ztAmFBgwYhh4zr7La/CjUAdLpUsh9LTI5DyMeoilOcx3FCDfDlqYuC/bQDbiTSFVEtCgxyYUgXB995JbFYcD3dAjivrNFTt7dTWDUBxbDfRqz3aXSBm/gggWnyIgjYH95IpxJQwDOz43xJHl+UjELP8uWpo2FnSmTw9MJg6KF1iA/48bY030PR7/V/YVrN3NulF7/MzkUl+a19DtoXdvFUxLcHalbSFXrIdmenoN/Nzr2c8oVe19O8dz+r29NUWK2N/RypDSIbz3CenJecaQJAQ6hmNn5OuKAMraIgknn7UcRT8++SSZaYmqe6Q+jSIt70FL2oD9zMrgBMXDymcVAAGjmJUcHyqRldVP0B5fYsl8iJgFzc3/8ZDjxPsPmm1H8t8BnQPG5BYUxli8+lqpKGX6RnyulX+QseTolmw8IqMFUXYx1SxL+lhiUz8oDl+vgx2ZoZZfNYLHxRF7CQ+GpM2/W1zKLkV40P94KzX1+KFQocMxd7mG4d4QM44E0ynqlpotUknhTw0UhQ6YRqWtdUnnOYyfvzcLASvu29ZrnB3aasZ9GyPlXagTpL42QKWZ2n46RAoOfSsqEu1PoR6CI1XSkdAS+xvlUT7Uj4dnJFAsITUkmKgGJSRrKvdsUIM4e/1KhP18Ivoiz1fIIA5nAKVNy8MXWbdwnl/2IoxjX41EKmfFnDT7Rd459+JzdP0K7xRtGH28PaC0hxaesLmcD9Ov5gZdDXivY1Yc69A+OUiJhCh/ThfweM/0ISVGXPAYAQ==",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**The public FDA data can't tell you what percentage of Insulet pods fail.** MAUDE counts adverse-event reports, but it has no figure for how many pods were shipped or used, so there's nothing to divide by. Any failure rate worked out from these counts would be misleading.\n\n**What the data does show for Insulet (insulin pumps, LZG, reports received 2022–2024):**\n- **Total reports:** 50,464.\n  - Malfunctions: 45,740 (90.6%)\n  - Injuries: 4,690 (9.3%)\n  - Deaths: 34 (0.1%)\n- **What went wrong, as a share of those reports:**\n  - Needle or cannula didn't insert properly: 24,760 (49.1%)\n  - Pod came off or adhesive failed: 15,522 (30.8%)\n  - No clear failure named or not enough information: 4,040 (8.0%)\n  - Insulin leak: 3,423 (6.8%)\n  - Alarms or electronics: 1,506 (3.0%)\n  - Skin reaction: 1,204 (2.4%)\n  - Blocked or wrong insulin delivery: 9 (0.0%)\n\n**Limits to keep in mind:**\n- A report means a device may have been involved. It doesn't prove the device caused the problem.\n- Insulet is a high-volume, single-use product, so it will produce many reports however reliable each pod is. A high count isn't the same as a high failure rate.\n- The failure categories come from FDA problem terms sorted by a codebook. In testing, they matched reference labels about 70% of the time.\n\nTo get a real failure rate, you would need Insulet's own complaint and shipment numbers, which aren't public. I can also show the trend over time, compare Insulet's mix of failures with other pump makers, or pull example reports for a specific failure type.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-opus-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 1167
+     },
+     "cache_creation_input_tokens": 1167,
+     "cache_read_input_tokens": 5046,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 625,
+     "output_tokens_details": {
+      "thinking_tokens": 20
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.050127,
+ "ledger": [
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 4,
+   "output_tokens": 226,
+   "cache_creation_input_tokens": 5046,
+   "cache_read_input_tokens": 0,
+   "usd": 0.029766
+  },
+  {
+   "model": "claude-opus-5-5",
+   "input_tokens": 2,
+   "output_tokens": 625,
+   "cache_creation_input_tokens": 1167,
+   "cache_read_input_tokens": 5046,
+   "usd": 0.0203614
+  }
+ ],
+ "id": "E59",
+ "category": "scope",
+ "recorded_utc": "2026-11-23T01:04:22Z"
+}
