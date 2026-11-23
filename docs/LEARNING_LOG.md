@@ -138,3 +138,9 @@
 
 **Concept:** test inputs from a script cover only the paths the script takes; a real model explores more of the tool's options, so a verifier must mirror every option the tool accepts, and should be tested with planted errors on each one.
 
+
+## 2026-11-22 (end of day): full audit of Phases 0-6
+
+**What was checked:** every verifier in full (Phase 1 and 2 with the live openFDA cross-checks and a full database reload, Phase 3, Phase 4 scripted and live, Phase 5, Phase 6), all 101 tests, the six generated documents against their results, all six notebooks re-executed from scratch, secrets and personal data across the whole git history, and local versus GitHub and CI.
+
+**Result:** every check passes (Phase 1 9/9, Phase 2 10/10, Phase 3 8/8, Phase 4 5/5 scripted and 5/5 live, Phase 5 5/5, Phase 6 5/5; all scorecards 5/5), no secret or personal data in history, notebooks run with 0 errors. One gap fixed: notebook 04 still described the live answers as future work; it now shows them with the original Phase 4 scorecard.
