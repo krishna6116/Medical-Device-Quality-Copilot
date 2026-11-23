@@ -1,0 +1,10 @@
+{
+  "_about": "Phase 6 scorecard, pre-registered 2026-11-22 with config/phase6_criteria.json before any scored run. Items S1-S4 prove the evaluation is sound; S5 is a quality target for the real model and can fail. Accuracy itself has no target: it is reported with intervals, and the decision rule says what follows from it.",
+  "items": {
+    "S1_gold_correct": {"criteria": ["E1"], "means": "every correct answer in the set is recomputed a second way and the set is unchanged since pre-registration"},
+    "S2_runs_complete_within_budget": {"criteria": ["E2"], "means": "each question run exactly once per model, fully recorded, tool results reproducible, spend within the caps"},
+    "S3_grading_proven": {"criteria": ["E3"], "means": "the grader accepts correct answers, catches planted wrong ones, and an independent re-grade agrees on every answer"},
+    "S4_comparison_reported": {"criteria": ["E4"], "means": "the generated report gives accuracy with intervals, the paired comparison, made-up facts and cost, and applies the fixed decision rule"},
+    "S5_phase4_answers_grounded_and_safe": {"criteria": ["E5"], "means": "Haiku's live answers to the nine Phase 4 questions meet Phase 4's grounding and safety criteria"}
+  }
+}

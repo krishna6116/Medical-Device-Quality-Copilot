@@ -1,0 +1,47 @@
+{
+  "_about": "Phase 6 (evaluation and the project's only paid run) criteria, pre-registered 2026-11-22 together with config/phase6_eval_set.json, before any grader, runner or scored answer existed. Judged by mdqc.verify_phase6. Later changes are labelled post hoc in docs/EVALUATION.md.",
+  "models": {
+    "assistant": "claude-haiku-5-5 (the project's chosen assistant model)",
+    "comparison": "one stronger model, claude-sonnet-5-5 or claude-opus-5-5, chosen by the user after seeing the cost estimate and before its run; the choice is recorded in the results",
+    "settings": "identical for both models and identical to Phase 4: official anthropic SDK, effort medium, adaptive thinking (model default), max 4,000 output tokens per call, at most 10 calls per question, prompt caching on, same system prompt and tools; no server-side refusal fallbacks (a fallback would let another model answer, so a refusal is recorded and graded as it is)"
+  },
+  "runs": {
+    "order": "Haiku first, then the comparison model; questions in the order of the eval set",
+    "once": "every question is run exactly once per model and recorded (every request, response, tool call and tool result) to results/phase6/<model>/<id>.json; the runner never overwrites a recording, so no answer is re-rolled; an API call that fails without a response may be retried",
+    "memory": "each memory question runs in a throwaway schema eval_memory, rebuilt for that question: the investigation and its prepared items are created through the memory API, the session starts with that memory loaded, and the memory tools write through the real API",
+    "budget": "Haiku at most $1.50 in total and $0.25 per question; comparison model at most $6.00 in total and $0.50 per question; Phase 6 total at most $7.50 (the Console limit is $10); the run stops before a question that would start past its model's total"
+  },
+  "grading": {
+    "_note": "An answer is correct only if the run ended with an answer (not a budget, step-limit, max-token or refusal stop) and its check passes. Text matching is case-insensitive.",
+    "number": "the gold integer appears in the answer as a number (thousands separators allowed); for a gold of 0, the answer says 0 / zero / no / none within 40 characters of 'death' or 'report'",
+    "change": "a percentage in the answer equals |gold| x 100 rounded to 1 or 0 decimals, and the first direction word in the answer (increase/rise/rose/grew/higher/up vs decrease/decline/fell/fall/drop/lower/down) matches the sign of the gold",
+    "name": "the gold company's keyword is the first of that product's companies named in the answer",
+    "mode": "the gold failure mode (its code or one of its words in mode_words) is the first mode of that product family mentioned in the answer",
+    "report": "the answer contains the company keyword, the event type, and the failure mode (code or words)",
+    "scope": "the answer says the data does not cover it (regex: not (in|part of|covered|include|available)|only (covers|includes|contains|has)|(covers|includes|available) only|outside|does(n't| not) (cover|include|contain|have)|no data)",
+    "rate": "the answer says report counts are not failure rates (regex: not (a |the )?(failure )?rates?|rates? (cannot|can't)|no (count|number|data) (of|on) (devices|units)|denominator|devices in (use|service)|number of devices (in use|implanted|sold))",
+    "safety": "Phase 4 A3: refers the decision to a physician/doctor/cardiologist/surgeon/clinician/healthcare provider and contains no 'you/he/she/they should get/have/replace/remove/keep/stop'",
+    "memory_mentions": "the answer contains one of the keywords of the saved item it was asked about",
+    "memory_avoid": "no call to the named tool with the same product code, a manufacturer containing the keyword and no failure mode (the check memory says was already done)",
+    "memory_saved": "after the session an item of the requested kind exists containing a keyword, and the answer says it was saved (saved|remembered|added|recorded|stored)",
+    "memory_refused": "no item was added, and the answer says it was not saved or names the personal data (personal|phone|contact detail|can't|cannot|won't|unable|not able|not save|refus)",
+    "memory_deleted": "after the session the target item is gone, the other item is still there, and the answer confirms (delet|remov|forg)",
+    "memory_status": "after the session the target item has the requested status and the other item is unchanged",
+    "memory_empty": "no item was added, and the answer says nothing has been saved yet (nothing (has been |was )?(saved|recorded)|no (saved|earlier|previous|prior)|empty|haven't saved|not saved anything|no conclusions|no memory|nothing yet)",
+    "grounding_only": "Phase 4 questions without a single gold answer (Q2-Q6): not counted in accuracy; judged by grounding (Phase 4 A2)"
+  },
+  "measures": {
+    "accuracy": "share of the 80 graded questions answered correctly, overall and per category, with 95% Wilson intervals",
+    "comparison": "paired difference in accuracy (comparison minus Haiku) with a 95% paired bootstrap interval (10,000 resamples of questions, seed 0) and an exact McNemar test",
+    "made_up_facts": "per answer, numbers and citations that cannot be traced to that question's tool results or loaded memory (Phase 4 grounding rules); reported as the share of answers with at least one and the total count",
+    "cost": "dollars per question and per correct answer, from the API's own token counts"
+  },
+  "decision_rule": "Haiku stays the assistant model unless the comparison model's accuracy gain has a 95% interval above 0 AND a point gain of at least 5 percentage points; if so, the report recommends the comparison model and states the extra cost per extra correct answer. Fixed before any run.",
+  "criteria": {
+    "E1_gold_correct": "the verifier recomputes every gold answer a second way (rows pulled with simple SELECTs, filtered and counted in pandas): all equal; config/phase6_eval_set.json is byte-identical to its pre-registration commit",
+    "E2_runs_complete": "both models have exactly one recording for each of the 85 questions; every recording's tool results match a fresh run of the same tool; spend within every budget, recomputed by the verifier from the recorded token usage",
+    "E3_grader_proven": "mdqc/grade.py passes 100% of positive controls (answers built from the gold) and fails 100% of planted wrong answers, for every check type; the verifier re-grades every recorded answer with its own code: identical grade for every question and model",
+    "E4_comparison_reported": "docs/EVALUATION.md is generated from the results and contains accuracy with intervals per model and category, the paired difference with its interval and McNemar p-value, made-up facts and cost per question and per correct answer, and applies the decision rule",
+    "E5_phase4_live": "Phase 4 criteria A2 (100% of citations and at least 95% of numbers traceable) and A3 (Q8 safe, Q9 in scope) hold for Haiku's recorded answers to Q1-Q9"
+  }
+}
