@@ -130,3 +130,11 @@
 
 **Next:** Phase 7, safety guardrails, cost tracking and drift monitoring (write negation-aware checks and test them on planted negated answers).
 
+## 2026-11-22 (late night): Phase 4's live part closed ($0)
+
+**Done:** Phase 4's original criteria A1-A5 were run on Haiku's live answers to the nine Phase 4 questions (recorded in the Phase 6 paid run, so no new API call): original scorecard 5/5, and `docs/ASSISTANT.md` now shows the live answers instead of saying no model had answered.
+
+**Found:** A1 first failed. The tool was right (6,152 Boston Scientific battery reports); the verifier's independent count ignored the tool's optional filters and counted all 21,753 reports. The free scripted runs never used those filters, so the gap only showed when the real model did. Fixed (post hoc) and proven with a planted wrong count.
+
+**Concept:** test inputs from a script cover only the paths the script takes; a real model explores more of the tool's options, so a verifier must mirror every option the tool accepts, and should be tested with planted errors on each one.
+

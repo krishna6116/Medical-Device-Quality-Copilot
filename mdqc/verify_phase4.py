@@ -146,10 +146,16 @@ def main_live(offline: bool, evidence: Path | None, cass: Path = CASS) -> int:
                     if n != tool_n:
                         indep_bad.append((qid, t["name"], n, tool_n))
                 if t["name"] == "list_manufacturers":
+                    # POST HOC (2026-11-22, after the live run): apply the tool's optional failure-mode and date filters.
+                    # The original check counted all of a company's reports, which only matched when no filter was used.
+                    f = res["filters"]
                     for m in res["manufacturers"]:
-                        n = con.execute("SELECT count(*) FROM core.fact_report r, core.dim_manufacturer d WHERE "
-                                        "r.manufacturer_id = d.manufacturer_id AND r.product_code = %s AND d.parent_company = %s",
-                                        (res["product_code"], m["manufacturer"])).fetchone()[0]
+                        n = con.execute("SELECT count(*) FROM core.fact_report r, core.dim_manufacturer d, analytics.report_failure_mode x "
+                                        "WHERE r.manufacturer_id = d.manufacturer_id AND x.mdr_report_key = r.mdr_report_key "
+                                        "AND r.product_code = %s AND d.parent_company = %s AND r.date_received BETWEEN %s AND %s "
+                                        "AND (%s::text IS NULL OR x.mode = %s)",
+                                        (res["product_code"], m["manufacturer"], f["date_from"], f["date_to"],
+                                         f["failure_mode"], f["failure_mode"])).fetchone()[0]
                         if n != m["reports"]:
                             indep_bad.append((qid, "list_manufacturers", m["manufacturer"], n, m["reports"]))
         con.close()
@@ -381,6 +387,9 @@ if __name__ == "__main__":
     ap.add_argument("--offline", action="store_true")
     ap.add_argument("--live", action="store_true", help="original criteria A1-A5 on live recordings (Phase 6)")
     ap.add_argument("--evidence", type=Path, default=None)
+    # The live answers were recorded inside the Phase 6 paid run (config/phase4_amendment.json), not in results/phase4/cassettes.
+    ap.add_argument("--cassettes", type=Path, default=ROOT / "results" / "phase6" / "claude-haiku-5-5",
+                    help="folder with the live Q1-Q9 recordings (default: the Phase 6 Haiku run)")
     a = ap.parse_args()
     ev = a.evidence or (None if a.offline else ROOT / "results" / "phase4" / ("verify_phase4_live.json" if a.live else "verify_phase4.json"))
-    sys.exit(main_live(a.offline, ev) if a.live else main_scripted(a.offline, ev))
+    sys.exit(main_live(a.offline, ev, a.cassettes) if a.live else main_scripted(a.offline, ev))

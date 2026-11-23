@@ -1,5 +1,5 @@
 {
-  "checked_utc": "2026-11-22T16:52:55Z",
+  "checked_utc": "2026-11-23T01:17:58Z",
   "mode": "scripted stand-in (criteria v2)",
   "all_pass": true,
   "checks": [
@@ -36,7 +36,7 @@
       "check": "fake-model loop tests: round trip, thinking passed back, budget, max_tokens, refusal, step limit",
       "pass": true,
       "detail": {
-        "pytest": "7 passed, 8 deselected in 1.30s"
+        "pytest": "7 passed, 8 deselected in 1.40s"
       }
     },
     {

@@ -29,6 +29,7 @@ jobs:
       - name: Phase 4 offline verifier (fake-model loop tests, checkers, cost ledger, replay) and doc
         run: |
           python -m mdqc.verify_phase4 --offline
+          python -m mdqc.verify_phase4 --live --offline
           python -m mdqc.report_phase4 --check
       - name: Phase 5 offline verifier (memory replay model, refusals, export, replay) and doc
         run: |
