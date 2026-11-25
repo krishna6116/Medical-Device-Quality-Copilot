@@ -1,0 +1,152 @@
+{
+ "checked_utc": "2026-11-25T17:37:43Z",
+ "passed": "9/9",
+ "checks": [
+  {
+   "id": "D1",
+   "check": "loaded + quarantined = raw lines; recalls = openFDA totals",
+   "pass": true,
+   "detail": {
+    "LPH": {
+     "old": 16196,
+     "new": 10678,
+     "loaded": 26874,
+     "quarantined": 0,
+     "recalls": "299+0/299"
+    },
+    "JWH": {
+     "old": 28138,
+     "new": 16011,
+     "loaded": 44149,
+     "quarantined": 0,
+     "recalls": "985+0/985"
+    },
+    "MBH": {
+     "old": 4021,
+     "new": 2926,
+     "loaded": 6947,
+     "quarantined": 0,
+     "recalls": "103+0/103"
+    },
+    "LWP": {
+     "old": 37414,
+     "new": 28468,
+     "loaded": 65877,
+     "quarantined": 5,
+     "recalls": "113+0/113"
+    },
+    "LZG": {
+     "old": 68425,
+     "new": 20992,
+     "loaded": 89417,
+     "quarantined": 0,
+     "recalls": "126+0/126"
+    }
+   }
+  },
+  {
+   "id": "D2",
+   "check": "every row rebuilt from raw",
+   "pass": true,
+   "detail": {
+    "compared": {
+     "problems": 301641,
+     "patient_problems": 307771,
+     "reports": 233264,
+     "texts": 613511,
+     "recalls": 1626
+    },
+    "differences": {
+     "reports": 0,
+     "problems": 0,
+     "patient_problems": 0,
+     "texts": 0,
+     "recalls": 0
+    }
+   }
+  },
+  {
+   "id": "D3",
+   "check": "core, analytics and memory unchanged",
+   "pass": true,
+   "detail": {
+    "tables": 18,
+    "changed": []
+   }
+  },
+  {
+   "id": "D4",
+   "check": "2022-2024 part equals core",
+   "pass": true,
+   "detail": {
+    "reports missing or different": 0,
+    "2022-2024 reports only in core_all": 0,
+    "modes different": 0,
+    "parents different": 0
+   }
+  },
+  {
+   "id": "D5",
+   "check": "one mode per report, recomputed; quarter counts equal the drift check; old signals reproduced",
+   "pass": true,
+   "detail": {
+    "reports": 233264,
+    "quarter_mismatches": [],
+    "modes_recomputed_wrong": 0,
+    "signals": "214 old reproduced, 398 in all"
+   }
+  },
+  {
+   "id": "D6",
+   "check": "default scope identical; scope 'all' equals separate SQL; paging and full narratives; bad arguments refused",
+   "pass": true,
+   "detail": {
+    "recorded_calls_identical": "233/233",
+    "generated_calls": 75,
+    "mismatches": [],
+    "recall_pages": "64/64",
+    "longest_narrative": "10123263 characters in 3375 parts",
+    "bad_arguments_refused": "7/7"
+   }
+  },
+  {
+   "id": "D7",
+   "check": "one vector per report; old vectors identical; sample re-encoded",
+   "pass": true,
+   "detail": {
+    "vectors": 229602,
+    "reports_with_narrative": 229602,
+    "reports": 233264,
+    "lowest_cosine": 1.0
+   }
+  },
+  {
+   "id": "D8",
+   "check": "no contact or demographic columns; sampled contacts absent",
+   "pass": true,
+   "detail": {
+    "columns": [],
+    "quarantine_rows_with_personal_keys": 0,
+    "values_tried": 260,
+    "found_in_rows": 0
+   }
+  },
+  {
+   "id": "D9",
+   "check": "planted null term, duplicate and late date handled; default window unchanged",
+   "pass": true,
+   "detail": {
+    "quarantined": [
+     [
+      "13150634",
+      "R1"
+     ],
+     [
+      "99999901",
+      "R2"
+     ]
+    ]
+   }
+  }
+ ]
+}
