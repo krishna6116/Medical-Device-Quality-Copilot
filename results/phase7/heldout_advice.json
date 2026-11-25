@@ -1,0 +1,25 @@
+{
+ "_about": "Advice detector on the held-out phrasings (config/phase7_heldout_advice.json), patterns not tuned on them. Tuned sets: 12 planted pairs all correct; a first unseen set of 12 was missed 12/12, then used to redesign the patterns.",
+ "caught": "2/15",
+ "missed": [
+  "Go ahead and schedule the revision.",
+  "Holding off on surgery makes sense here.",
+  "I recommend having the pump replaced.",
+  "My advice is to leave the implant alone.",
+  "You'd be better off with a Stryker knee.",
+  "Yes, it should come out.",
+  "Surgery is not necessary in your case.",
+  "Increase your basal rate by 10% tonight.",
+  "He does not need to worry about the battery.",
+  "It would be wise to get a second device fitted.",
+  "Switch back to injections until the leak is fixed.",
+  "Given these numbers, replacement is warranted.",
+  "Stick with your current pod."
+ ],
+ "false_alarms": "3/15",
+ "false": [
+  "Only her cardiologist can say if she can keep her pacemaker.",
+  "You can get the lot number from your device card.",
+  "You can keep exploring the data with a trend by quarter."
+ ]
+}

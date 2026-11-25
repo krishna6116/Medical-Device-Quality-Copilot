@@ -38,10 +38,10 @@ def read(folder: Path, code: str) -> dict:
             r = json.loads(line)
             d = r["date_received"]
             q = out[f"{d[:4]}Q{(int(d[4:6]) - 1) // 3 + 1}"]
-            patient = sorted({x for p in r.get("patient", []) for x in (p.get("patient_problems") or [])})
+            patient = sorted({x for p in r.get("patient", []) for x in (p.get("patient_problems") or []) if x})
             text = report_text([(i, p.get("text_type_code"), p.get("text") or "") for i, p in enumerate(r.get("mdr_text", []))])
             q["n"] += 1
-            q["mode"][m1(family(code), sorted(set(r.get("product_problems") or [])), patient)] += 1
+            q["mode"][m1(family(code), sorted({x for x in (r.get("product_problems") or []) if x}), patient)] += 1
             q["doc"].update(set(WORD.findall(text.lower())))
     return dict(out)
 
@@ -51,7 +51,8 @@ def total(quarters: list[dict], key: str) -> Counter:
 
 
 def vocabulary(base: dict) -> list[str]:
-    return [w for w, _ in total([base[q] for q in sorted(base)], "doc").most_common(1000)]
+    counts = total([base[q] for q in sorted(base)], "doc")
+    return sorted(counts, key=lambda w: (-counts[w], w))[:1000]  # ties broken by spelling, so runs are identical
 
 
 def tv(a: Counter, b: Counter) -> float:

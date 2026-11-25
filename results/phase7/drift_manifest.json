@@ -1,0 +1,53 @@
+{
+ "window": [
+  "20250101",
+  "20261231"
+ ],
+ "events": {
+  "LPH": {
+   "server_total": 10678,
+   "server_last_updated": "2026-11-18",
+   "downloaded": 10678,
+   "distinct_keys": 10678,
+   "bytes": 5624975,
+   "sha256": "a48c4e87fe73f78802bfa96e3b46d13ba690eb2adfcd999c75781d09a46c10d7",
+   "finished_utc": "2026-11-25T14:34:30Z"
+  },
+  "JWH": {
+   "server_total": 16011,
+   "server_last_updated": "2026-11-18",
+   "downloaded": 16011,
+   "distinct_keys": 16011,
+   "bytes": 9251288,
+   "sha256": "eb2428c6eaf63403d5c0ad61d7c32eaa1c291b815feb84cddf1e39f6edad2415",
+   "finished_utc": "2026-11-25T14:34:59Z"
+  },
+  "MBH": {
+   "server_total": 2926,
+   "server_last_updated": "2026-11-18",
+   "downloaded": 2926,
+   "distinct_keys": 2926,
+   "bytes": 1775087,
+   "sha256": "181777cc9cfca29fe6a024313c2fb7ccb00bc67dda900377ffc0eda913670729",
+   "finished_utc": "2026-11-25T14:35:05Z"
+  },
+  "LWP": {
+   "server_total": 28468,
+   "server_last_updated": "2026-11-18",
+   "downloaded": 28468,
+   "distinct_keys": 28468,
+   "bytes": 14181474,
+   "sha256": "b24341c34d15a785aa130a34cbe200122438d1efbaa14ca6932d235db5b20810",
+   "finished_utc": "2026-11-25T14:35:46Z"
+  },
+  "LZG": {
+   "server_total": 20992,
+   "server_last_updated": "2026-11-18",
+   "downloaded": 20992,
+   "distinct_keys": 20992,
+   "bytes": 6051288,
+   "sha256": "aa618d4e16d4419b635ca637dcacefc32ec9dd3bbfa0e7b67c8a9736e809aa57",
+   "finished_utc": "2026-11-25T14:36:18Z"
+  }
+ }
+}

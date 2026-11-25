@@ -149,3 +149,14 @@
 
 - The Phase 6 hand review explained Opus's Q1 answer without that answer having been opened, and concluded both models got all 80 right. Only answers graded wrong were read, so that conclusion was unsupported. `results/phase6/hand_review.json` and `docs/EVALUATION.md` are corrected; no grade changed.
 - The 2026-11-22 audit said no personal data was in the git history, but its scan did not search for phone numbers. A fuller scan on 2026-11-25 (phones, emails, keys, database URLs) found only invented 555 test numbers, example.com addresses and a CI-only password.
+
+## 2026-11-25: Phase 7 started (pre-registration 96daae4; $0; database blocked by Windows Smart App Control)
+
+**Drift:** 79,075 reports received 2025-2026 downloaded (totals match the server). 105 checks, 5 flags. Pacemakers: volume +62% (2025Q4), +64% (2026Q1), +45% (2026Q2), and the 2025Q4 failure-mode mix; battery reports rose from 434 in 2025Q3 to 1,996 in 2025Q4, 1,904 of them Boston Scientific. Insulin pumps: volume -34% (2025Q2). The cause is not known from the data (a recall, bulk reporting or a real change are all possible). Near misses: pacemaker mix 2026Q1 0.244 and vocabulary 2025Q4 0.066, just under their limits.
+
+**Weak checks found:** the vocabulary check cannot see one word added to 60% of reports (2/40, about its false-alarm level); volume x1.2 is caught 7/40. Because references roll, a lasting shift stops being flagged after about a year (pacemakers 2026Q3).
+
+**After the pre-registration (post hoc):** empty (null) FDA problem terms, 2 new hip reports and none in the baseline, are skipped; ties in the 1,000-word list are broken by spelling so runs are identical. Neither changed a flag. `mdqc/load.py` would still fail on null terms if new data were loaded into the database.
+
+**Guardrails:** the text-pattern advice detector passes its 12 planted pairs but caught only 2 of 15 held-out bad phrasings and wrongly flagged 3 of 15 good ones. Concept: a checker tested on examples its author tuned it on looks perfect; only unseen examples show what it can do. The detector is not good enough to be the judge, so the paid run waits for a better one.
+

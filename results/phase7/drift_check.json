@@ -1,0 +1,1091 @@
+{
+ "thresholds": {
+  "volume": 0.3079968329374505,
+  "mode_mix": 0.24514594224160446,
+  "vocabulary": 0.06728952834227132
+ },
+ "checks": 105,
+ "flags": {
+  "volume": 4,
+  "mode_mix": 1,
+  "vocabulary": 0
+ },
+ "not_tested_incomplete": {
+  "LPH": {
+   "2026Q4": 443
+  },
+  "JWH": {
+   "2026Q4": 730
+  },
+  "MBH": {
+   "2026Q4": 123
+  },
+  "LWP": {
+   "2026Q4": 1498
+  },
+  "LZG": {
+   "2026Q4": 739
+  }
+ },
+ "rows": [
+  {
+   "code": "LPH",
+   "quarter": "2025Q1",
+   "reports": 1259,
+   "previous_four": [
+    "2024Q1",
+    "2024Q2",
+    "2024Q3",
+    "2024Q4"
+   ],
+   "volume": 0.10518834399431409,
+   "volume_change": -0.10518834399431409,
+   "mode_mix": 0.06182818461871964,
+   "vocabulary": 0.01619986167439584,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_PAIN_STIFFNESS",
+     -0.0263
+    ],
+    [
+     "O_INSTABILITY",
+     0.0255
+    ],
+    [
+     "O_INTRAOP",
+     0.0235
+    ]
+   ]
+  },
+  {
+   "code": "LPH",
+   "quarter": "2025Q2",
+   "reports": 1585,
+   "previous_four": [
+    "2024Q2",
+    "2024Q3",
+    "2024Q4",
+    "2025Q1"
+   ],
+   "volume": 0.14564510299963862,
+   "volume_change": 0.14564510299963862,
+   "mode_mix": 0.09009712257692339,
+   "vocabulary": 0.010709680261630276,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_INSTABILITY",
+     0.0648
+    ],
+    [
+     "O_OTHER",
+     -0.0341
+    ],
+    [
+     "O_INTRAOP",
+     0.0209
+    ]
+   ]
+  },
+  {
+   "code": "LPH",
+   "quarter": "2025Q3",
+   "reports": 1740,
+   "previous_four": [
+    "2024Q3",
+    "2024Q4",
+    "2025Q1",
+    "2025Q2"
+   ],
+   "volume": 0.24753540060942814,
+   "volume_change": 0.24753540060942814,
+   "mode_mix": 0.02665970295010229,
+   "vocabulary": 0.011355756892305667,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_DEVICE_FRACTURE",
+     -0.0195
+    ],
+    [
+     "O_OTHER",
+     0.0105
+    ],
+    [
+     "O_INFECTION",
+     0.0067
+    ]
+   ]
+  },
+  {
+   "code": "LPH",
+   "quarter": "2025Q4",
+   "reports": 1664,
+   "previous_four": [
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3"
+   ],
+   "volume": 0.1060152874709206,
+   "volume_change": 0.1060152874709206,
+   "mode_mix": 0.10818226410512057,
+   "vocabulary": 0.009022483199590751,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_WEAR",
+     0.0549
+    ],
+    [
+     "O_OTHER",
+     0.0476
+    ],
+    [
+     "O_INFECTION",
+     -0.0472
+    ]
+   ]
+  },
+  {
+   "code": "LPH",
+   "quarter": "2026Q1",
+   "reports": 1221,
+   "previous_four": [
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4"
+   ],
+   "volume": 0.21830985915492962,
+   "volume_change": -0.21830985915492962,
+   "mode_mix": 0.07031150869179037,
+   "vocabulary": 0.013186940497996541,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_OTHER",
+     0.0311
+    ],
+    [
+     "O_INFECTION",
+     -0.0238
+    ],
+    [
+     "O_WEAR",
+     -0.0222
+    ]
+   ]
+  },
+  {
+   "code": "LPH",
+   "quarter": "2026Q2",
+   "reports": 1415,
+   "previous_four": [
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1"
+   ],
+   "volume": 0.08856682769726243,
+   "volume_change": -0.08856682769726243,
+   "mode_mix": 0.08594083405882454,
+   "vocabulary": 0.016712128598559552,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_WEAR",
+     0.0587
+    ],
+    [
+     "O_OTHER",
+     -0.0389
+    ],
+    [
+     "O_INSTABILITY",
+     -0.0251
+    ]
+   ]
+  },
+  {
+   "code": "LPH",
+   "quarter": "2026Q3",
+   "reports": 1351,
+   "previous_four": [
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2"
+   ],
+   "volume": 0.10529801324503307,
+   "volume_change": -0.10529801324503307,
+   "mode_mix": 0.09171621707736725,
+   "vocabulary": 0.02710209065089526,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_INTRAOP",
+     0.0662
+    ],
+    [
+     "O_WEAR",
+     -0.0443
+    ],
+    [
+     "O_INFECTION",
+     0.022
+    ]
+   ]
+  },
+  {
+   "code": "JWH",
+   "quarter": "2025Q1",
+   "reports": 2688,
+   "previous_four": [
+    "2024Q1",
+    "2024Q2",
+    "2024Q3",
+    "2024Q4"
+   ],
+   "volume": 0.007018840044329511,
+   "volume_change": -0.007018840044329511,
+   "mode_mix": 0.10278892795574084,
+   "vocabulary": 0.021251722446713257,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_WEAR",
+     -0.0682
+    ],
+    [
+     "O_OTHER",
+     0.0351
+    ],
+    [
+     "O_PAIN_STIFFNESS",
+     0.0306
+    ]
+   ]
+  },
+  {
+   "code": "JWH",
+   "quarter": "2025Q2",
+   "reports": 2356,
+   "previous_four": [
+    "2024Q2",
+    "2024Q3",
+    "2024Q4",
+    "2025Q1"
+   ],
+   "volume": 0.16807909604519777,
+   "volume_change": -0.16807909604519777,
+   "mode_mix": 0.14798330143976673,
+   "vocabulary": 0.03222860454562949,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_WEAR",
+     -0.0937
+    ],
+    [
+     "O_PAIN_STIFFNESS",
+     0.0663
+    ],
+    [
+     "O_INSTABILITY",
+     -0.0475
+    ]
+   ]
+  },
+  {
+   "code": "JWH",
+   "quarter": "2025Q3",
+   "reports": 2186,
+   "previous_four": [
+    "2024Q3",
+    "2024Q4",
+    "2025Q1",
+    "2025Q2"
+   ],
+   "volume": 0.18668030880848296,
+   "volume_change": -0.18668030880848296,
+   "mode_mix": 0.11372256441516577,
+   "vocabulary": 0.0314597265837418,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_WEAR",
+     -0.0589
+    ],
+    [
+     "O_INFECTION",
+     0.0581
+    ],
+    [
+     "O_OTHER",
+     0.0544
+    ]
+   ]
+  },
+  {
+   "code": "JWH",
+   "quarter": "2025Q4",
+   "reports": 2199,
+   "previous_four": [
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3"
+   ],
+   "volume": 0.1312592592592593,
+   "volume_change": -0.1312592592592593,
+   "mode_mix": 0.07032556886126691,
+   "vocabulary": 0.021534576523300184,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_WEAR",
+     -0.0363
+    ],
+    [
+     "O_OTHER",
+     -0.0246
+    ],
+    [
+     "O_INSTABILITY",
+     0.0235
+    ]
+   ]
+  },
+  {
+   "code": "JWH",
+   "quarter": "2026Q1",
+   "reports": 1758,
+   "previous_four": [
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4"
+   ],
+   "volume": 0.2542157174673878,
+   "volume_change": -0.2542157174673878,
+   "mode_mix": 0.09755340524132759,
+   "vocabulary": 0.016329751306467875,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_PAIN_STIFFNESS",
+     -0.0444
+    ],
+    [
+     "O_OTHER",
+     0.0402
+    ],
+    [
+     "O_INFECTION",
+     0.0339
+    ]
+   ]
+  },
+  {
+   "code": "JWH",
+   "quarter": "2026Q2",
+   "reports": 2186,
+   "previous_four": [
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1"
+   ],
+   "volume": 0.02882692081421334,
+   "volume_change": 0.02882692081421334,
+   "mode_mix": 0.08934698415087207,
+   "vocabulary": 0.015433590034675534,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_OTHER",
+     0.0685
+    ],
+    [
+     "O_LOOSENING",
+     -0.0297
+    ],
+    [
+     "O_PAIN_STIFFNESS",
+     -0.022
+    ]
+   ]
+  },
+  {
+   "code": "JWH",
+   "quarter": "2026Q3",
+   "reports": 1908,
+   "previous_four": [
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2"
+   ],
+   "volume": 0.08368351542802255,
+   "volume_change": -0.08368351542802255,
+   "mode_mix": 0.04980363373860069,
+   "vocabulary": 0.02682933007205098,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_OTHER",
+     0.023
+    ],
+    [
+     "O_DEVICE_FRACTURE",
+     -0.0224
+    ],
+    [
+     "O_INSTABILITY",
+     0.0168
+    ]
+   ]
+  },
+  {
+   "code": "MBH",
+   "quarter": "2025Q1",
+   "reports": 297,
+   "previous_four": [
+    "2024Q1",
+    "2024Q2",
+    "2024Q3",
+    "2024Q4"
+   ],
+   "volume": 0.2064128256513026,
+   "volume_change": -0.2064128256513026,
+   "mode_mix": 0.0960304447278395,
+   "vocabulary": 0.01872094504627102,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_DEVICE_FRACTURE",
+     0.0449
+    ],
+    [
+     "O_INTRAOP",
+     0.0447
+    ],
+    [
+     "O_OTHER",
+     -0.0417
+    ]
+   ]
+  },
+  {
+   "code": "MBH",
+   "quarter": "2025Q2",
+   "reports": 391,
+   "previous_four": [
+    "2024Q2",
+    "2024Q3",
+    "2024Q4",
+    "2025Q1"
+   ],
+   "volume": 0.13251267197682837,
+   "volume_change": 0.13251267197682837,
+   "mode_mix": 0.11460430282367016,
+   "vocabulary": 0.02018025341830188,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_INSTABILITY",
+     0.0553
+    ],
+    [
+     "O_OTHER",
+     -0.0405
+    ],
+    [
+     "O_PAIN_STIFFNESS",
+     -0.0389
+    ]
+   ]
+  },
+  {
+   "code": "MBH",
+   "quarter": "2025Q3",
+   "reports": 427,
+   "previous_four": [
+    "2024Q3",
+    "2024Q4",
+    "2025Q1",
+    "2025Q2"
+   ],
+   "volume": 0.21479374110953064,
+   "volume_change": 0.21479374110953064,
+   "mode_mix": 0.08235864361835026,
+   "vocabulary": 0.01190716997787394,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_INFECTION",
+     0.037
+    ],
+    [
+     "O_LOOSENING",
+     -0.0311
+    ],
+    [
+     "O_INSTABILITY",
+     0.026
+    ]
+   ]
+  },
+  {
+   "code": "MBH",
+   "quarter": "2025Q4",
+   "reports": 461,
+   "previous_four": [
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3"
+   ],
+   "volume": 0.2220013253810471,
+   "volume_change": 0.2220013253810471,
+   "mode_mix": 0.14481728572886612,
+   "vocabulary": 0.016836279311996542,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_PAIN_STIFFNESS",
+     -0.079
+    ],
+    [
+     "O_DEVICE_FRACTURE",
+     0.0745
+    ],
+    [
+     "O_INSTABILITY",
+     0.0624
+    ]
+   ]
+  },
+  {
+   "code": "MBH",
+   "quarter": "2026Q1",
+   "reports": 364,
+   "previous_four": [
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4"
+   ],
+   "volume": 0.07614213197969544,
+   "volume_change": -0.07614213197969544,
+   "mode_mix": 0.07112874435209458,
+   "vocabulary": 0.023787421618346332,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_DEVICE_FRACTURE",
+     0.043
+    ],
+    [
+     "O_INFECTION",
+     -0.0297
+    ],
+    [
+     "O_PAIN_STIFFNESS",
+     0.0282
+    ]
+   ]
+  },
+  {
+   "code": "MBH",
+   "quarter": "2026Q2",
+   "reports": 444,
+   "previous_four": [
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1"
+   ],
+   "volume": 0.08094948265368229,
+   "volume_change": 0.08094948265368229,
+   "mode_mix": 0.18192111770931005,
+   "vocabulary": 0.03596270188585272,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_OTHER",
+     0.1543
+    ],
+    [
+     "O_INSTABILITY",
+     -0.0692
+    ],
+    [
+     "O_INFECTION",
+     -0.0511
+    ]
+   ]
+  },
+  {
+   "code": "MBH",
+   "quarter": "2026Q3",
+   "reports": 419,
+   "previous_four": [
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2"
+   ],
+   "volume": 0.011792452830188704,
+   "volume_change": -0.011792452830188704,
+   "mode_mix": 0.05263120862791014,
+   "vocabulary": 0.05183572489662238,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "O_OTHER",
+     -0.0263
+    ],
+    [
+     "O_INTRAOP",
+     0.0191
+    ],
+    [
+     "O_INSTABILITY",
+     -0.0176
+    ]
+   ]
+  },
+  {
+   "code": "LWP",
+   "quarter": "2025Q1",
+   "reports": 2602,
+   "previous_four": [
+    "2024Q1",
+    "2024Q2",
+    "2024Q3",
+    "2024Q4"
+   ],
+   "volume": 0.008289661743687504,
+   "volume_change": -0.008289661743687504,
+   "mode_mix": 0.03959756833073398,
+   "vocabulary": 0.00673549501177893,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "C_LEAD_CAPTURE",
+     -0.0308
+    ],
+    [
+     "C_OTHER",
+     0.0156
+    ],
+    [
+     "C_BATTERY",
+     0.0129
+    ]
+   ]
+  },
+  {
+   "code": "LWP",
+   "quarter": "2025Q2",
+   "reports": 2674,
+   "previous_four": [
+    "2024Q2",
+    "2024Q3",
+    "2024Q4",
+    "2025Q1"
+   ],
+   "volume": 0.028956228956228847,
+   "volume_change": 0.028956228956228847,
+   "mode_mix": 0.04453258589384243,
+   "vocabulary": 0.006936395059228873,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "C_OTHER",
+     0.0297
+    ],
+    [
+     "C_BATTERY",
+     -0.0206
+    ],
+    [
+     "C_LEAD_CAPTURE",
+     0.0149
+    ]
+   ]
+  },
+  {
+   "code": "LWP",
+   "quarter": "2025Q3",
+   "reports": 2551,
+   "previous_four": [
+    "2024Q3",
+    "2024Q4",
+    "2025Q1",
+    "2025Q2"
+   ],
+   "volume": 0.018185317040315563,
+   "volume_change": -0.018185317040315563,
+   "mode_mix": 0.013279865307526291,
+   "vocabulary": 0.0068729193979457995,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "C_LEAD_CAPTURE",
+     -0.0108
+    ],
+    [
+     "C_BATTERY",
+     0.0108
+    ],
+    [
+     "C_OTHER",
+     0.0015
+    ]
+   ]
+  },
+  {
+   "code": "LWP",
+   "quarter": "2025Q4",
+   "reports": 4248,
+   "previous_four": [
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3"
+   ],
+   "volume": 0.6201372997711669,
+   "volume_change": 0.6201372997711669,
+   "mode_mix": 0.3093990657065164,
+   "vocabulary": 0.06605195340247076,
+   "flags": [
+    "volume",
+    "mode_mix"
+   ],
+   "largest_mode_moves": [
+    [
+     "C_BATTERY",
+     0.3094
+    ],
+    [
+     "C_LEAD_CAPTURE",
+     -0.1102
+    ],
+    [
+     "C_OTHER",
+     -0.0904
+    ]
+   ]
+  },
+  {
+   "code": "LWP",
+   "quarter": "2026Q1",
+   "reports": 4951,
+   "previous_four": [
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4"
+   ],
+   "volume": 0.6400828157349896,
+   "volume_change": 0.6400828157349896,
+   "mode_mix": 0.2436543133055915,
+   "vocabulary": 0.05300992737845813,
+   "flags": [
+    "volume"
+   ],
+   "largest_mode_moves": [
+    [
+     "C_BATTERY",
+     0.2437
+    ],
+    [
+     "C_LEAD_CAPTURE",
+     -0.079
+    ],
+    [
+     "C_OTHER",
+     -0.0712
+    ]
+   ]
+  },
+  {
+   "code": "LWP",
+   "quarter": "2026Q2",
+   "reports": 5222,
+   "previous_four": [
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1"
+   ],
+   "volume": 0.4481419855795896,
+   "volume_change": 0.4481419855795896,
+   "mode_mix": 0.19068327437589125,
+   "vocabulary": 0.05925943208160928,
+   "flags": [
+    "volume"
+   ],
+   "largest_mode_moves": [
+    [
+     "C_BATTERY",
+     0.1907
+    ],
+    [
+     "C_OTHER",
+     -0.057
+    ],
+    [
+     "C_LEAD_CAPTURE",
+     -0.0538
+    ]
+   ]
+  },
+  {
+   "code": "LWP",
+   "quarter": "2026Q3",
+   "reports": 4722,
+   "previous_four": [
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2"
+   ],
+   "volume": 0.112891821824181,
+   "volume_change": 0.112891821824181,
+   "mode_mix": 0.09347084162738382,
+   "vocabulary": 0.037610831665000274,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "C_BATTERY",
+     0.0935
+    ],
+    [
+     "C_TELEMETRY_SOFTWARE",
+     -0.0413
+    ],
+    [
+     "C_LEAD_CAPTURE",
+     -0.0195
+    ]
+   ]
+  },
+  {
+   "code": "LZG",
+   "quarter": "2025Q1",
+   "reports": 3321,
+   "previous_four": [
+    "2024Q1",
+    "2024Q2",
+    "2024Q3",
+    "2024Q4"
+   ],
+   "volume": 0.2712310730743911,
+   "volume_change": -0.2712310730743911,
+   "mode_mix": 0.06414984620184876,
+   "vocabulary": 0.012720619046114276,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "D_ADHESIVE_DISLODGED",
+     -0.0349
+    ],
+    [
+     "D_CANNULA_INSERTION",
+     0.0343
+    ],
+    [
+     "D_LEAK",
+     0.0161
+    ]
+   ]
+  },
+  {
+   "code": "LZG",
+   "quarter": "2025Q2",
+   "reports": 2798,
+   "previous_four": [
+    "2024Q2",
+    "2024Q3",
+    "2024Q4",
+    "2025Q1"
+   ],
+   "volume": 0.33880782182312286,
+   "volume_change": -0.33880782182312286,
+   "mode_mix": 0.056732473502982765,
+   "vocabulary": 0.008109360921989847,
+   "flags": [
+    "volume"
+   ],
+   "largest_mode_moves": [
+    [
+     "D_ADHESIVE_DISLODGED",
+     -0.0325
+    ],
+    [
+     "D_OTHER",
+     0.0318
+    ],
+    [
+     "D_ALARM_ELECTRONICS",
+     -0.0194
+    ]
+   ]
+  },
+  {
+   "code": "LZG",
+   "quarter": "2025Q3",
+   "reports": 2980,
+   "previous_four": [
+    "2024Q3",
+    "2024Q4",
+    "2025Q1",
+    "2025Q2"
+   ],
+   "volume": 0.22299719705364707,
+   "volume_change": -0.22299719705364707,
+   "mode_mix": 0.09957389265682304,
+   "vocabulary": 0.01983260396542344,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "D_ADHESIVE_DISLODGED",
+     -0.0498
+    ],
+    [
+     "D_CANNULA_INSERTION",
+     -0.0467
+    ],
+    [
+     "D_OTHER",
+     0.0362
+    ]
+   ]
+  },
+  {
+   "code": "LZG",
+   "quarter": "2025Q4",
+   "reports": 3052,
+   "previous_four": [
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3"
+   ],
+   "volume": 0.06214949681186144,
+   "volume_change": -0.06214949681186144,
+   "mode_mix": 0.07890752500183497,
+   "vocabulary": 0.027007163055221804,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "D_ADHESIVE_DISLODGED",
+     -0.0582
+    ],
+    [
+     "D_OCCLUSION_DELIVERY",
+     0.0399
+    ],
+    [
+     "D_LEAK",
+     0.0307
+    ]
+   ]
+  },
+  {
+   "code": "LZG",
+   "quarter": "2026Q1",
+   "reports": 2447,
+   "previous_four": [
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4"
+   ],
+   "volume": 0.19446959098016625,
+   "volume_change": -0.19446959098016625,
+   "mode_mix": 0.07657064354051595,
+   "vocabulary": 0.02635813796637848,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "D_OCCLUSION_DELIVERY",
+     0.0716
+    ],
+    [
+     "D_ADHESIVE_DISLODGED",
+     -0.071
+    ],
+    [
+     "D_LEAK",
+     0.0047
+    ]
+   ]
+  },
+  {
+   "code": "LZG",
+   "quarter": "2026Q2",
+   "reports": 2653,
+   "previous_four": [
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1"
+   ],
+   "volume": 0.05896958410924891,
+   "volume_change": -0.05896958410924891,
+   "mode_mix": 0.0767506562379869,
+   "vocabulary": 0.042542575107329034,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "D_ADHESIVE_DISLODGED",
+     -0.0514
+    ],
+    [
+     "D_OTHER",
+     0.0298
+    ],
+    [
+     "D_OCCLUSION_DELIVERY",
+     0.0284
+    ]
+   ]
+  },
+  {
+   "code": "LZG",
+   "quarter": "2026Q3",
+   "reports": 3002,
+   "previous_four": [
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2"
+   ],
+   "volume": 0.07869205892921305,
+   "volume_change": 0.07869205892921305,
+   "mode_mix": 0.04572122597391653,
+   "vocabulary": 0.04634807270914484,
+   "flags": [],
+   "largest_mode_moves": [
+    [
+     "D_CANNULA_INSERTION",
+     -0.0457
+    ],
+    [
+     "D_ALARM_ELECTRONICS",
+     0.0143
+    ],
+    [
+     "D_LEAK",
+     0.014
+    ]
+   ]
+  }
+ ]
+}
