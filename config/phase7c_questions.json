@@ -1,0 +1,212 @@
+{
+ "_about": "Phase 7c questions and answers (mdqc/eval7c.py), built before any model answer. 'contains': the answer contains that exact value.",
+ "questions": [
+  {
+   "id": "C01",
+   "category": "count",
+   "text": "How many adverse-event reports were received for pacemakers (LWP) in 2025?",
+   "check": {
+    "type": "number",
+    "value": 12075
+   }
+  },
+  {
+   "id": "C02",
+   "category": "count",
+   "text": "How many pacemaker (LWP) reports coded as battery problems did Boston Scientific have in the first quarter of 2026?",
+   "check": {
+    "type": "number",
+    "value": 2446
+   }
+  },
+  {
+   "id": "C03",
+   "category": "count",
+   "text": "How many insulin pump (LZG) reports were received from July to September 2026?",
+   "check": {
+    "type": "number",
+    "value": 3002
+   }
+  },
+  {
+   "id": "C04",
+   "category": "count",
+   "text": "How many reports for uncemented hips (LPH) were received from 2022 to 2025 in total?",
+   "check": {
+    "type": "number",
+    "value": 22444
+   }
+  },
+  {
+   "id": "C05",
+   "category": "count",
+   "text": "How many death reports for pacemakers (LWP) were received in 2025?",
+   "check": {
+    "type": "number",
+    "value": 105
+   }
+  },
+  {
+   "id": "C06",
+   "category": "trend",
+   "text": "By what percentage did yearly report counts for pacemakers (LWP) change from 2024 to 2025, and was it a rise or a fall?",
+   "check": {
+    "type": "change",
+    "value": 0.151
+   }
+  },
+  {
+   "id": "C07",
+   "category": "trend",
+   "text": "By what percentage did yearly report counts for insulin pumps (LZG) change from 2022 to 2025, and was it a rise or a fall?",
+   "check": {
+    "type": "change",
+    "value": -0.569
+   }
+  },
+  {
+   "id": "C08",
+   "category": "trend",
+   "text": "By what percentage did yearly report counts for uncemented knees (MBH) change from 2023 to 2025, and was it a rise or a fall?",
+   "check": {
+    "type": "change",
+    "value": 0.248
+   }
+  },
+  {
+   "id": "C09",
+   "category": "mode",
+   "text": "Apart from reports with no identifiable failure mode, which failure mode was most common for pacemakers (LWP) in the fourth quarter of 2025?",
+   "check": {
+    "type": "mode",
+    "value": "C_BATTERY",
+    "family": [
+     "C_PREVENTIVE",
+     "C_INFECTION_POCKET",
+     "C_BATTERY",
+     "C_LEAD_CAPTURE",
+     "C_SENSING",
+     "C_TELEMETRY_SOFTWARE"
+    ]
+   }
+  },
+  {
+   "id": "C10",
+   "category": "mode",
+   "text": "Apart from reports with no identifiable failure mode, which failure mode was most common for insulin pumps (LZG) in 2025?",
+   "check": {
+    "type": "mode",
+    "value": "D_CANNULA_INSERTION",
+    "family": [
+     "D_LEAK",
+     "D_OCCLUSION_DELIVERY",
+     "D_CANNULA_INSERTION",
+     "D_ADHESIVE_DISLODGED",
+     "D_SKIN",
+     "D_ALARM_ELECTRONICS"
+    ]
+   }
+  },
+  {
+   "id": "C11",
+   "category": "mode",
+   "text": "Apart from reports with no identifiable failure mode, which failure mode was most common for cemented knees (JWH) in 2025?",
+   "check": {
+    "type": "mode",
+    "value": "O_INSTABILITY",
+    "family": [
+     "O_INFECTION",
+     "O_DEVICE_FRACTURE",
+     "O_BONE_FRACTURE",
+     "O_INSTABILITY",
+     "O_LOOSENING",
+     "O_WEAR",
+     "O_INTRAOP",
+     "O_PAIN_STIFFNESS"
+    ]
+   }
+  },
+  {
+   "id": "C12",
+   "category": "recall",
+   "text": "How many recall events (not individual product records) started for cemented knees (JWH) from 2023-01-01 to 2025-12-31?",
+   "check": {
+    "type": "number",
+    "value": 29
+   }
+  },
+  {
+   "id": "C13",
+   "category": "recall",
+   "text": "How many recall records does Stryker have for uncemented knees (MBH) across all years?",
+   "check": {
+    "type": "number",
+    "value": 26
+   }
+  },
+  {
+   "id": "C14",
+   "category": "report",
+   "text": "For report 22121498: which company made the device, what was the event type, and which failure mode was it assigned?",
+   "check": {
+    "type": "report",
+    "report": "22121498",
+    "keyword": "insulet",
+    "event_type": "Malfunction",
+    "mode": "D_ADHESIVE_DISLODGED"
+   }
+  },
+  {
+   "id": "C15",
+   "category": "paging",
+   "text": "List Exactech's cemented knee (JWH) recall records from most recent to oldest. What is the recall number of the 15th record in that list?",
+   "check": {
+    "type": "contains",
+    "value": "Z-0026-2022"
+   }
+  },
+  {
+   "id": "C16",
+   "category": "paging",
+   "text": "List Boston Scientific's pacemaker (LWP) recall records from most recent to oldest. What is the recall number of the 25th record in that list?",
+   "check": {
+    "type": "contains",
+    "value": "Z-0824-2025"
+   }
+  },
+  {
+   "id": "C17",
+   "category": "narrative",
+   "text": "Read the whole narrative of report 21150637, to its end. What is the last whole number of at least four digits in it?",
+   "check": {
+    "type": "contains",
+    "value": "5580052"
+   }
+  },
+  {
+   "id": "C18",
+   "category": "narrative",
+   "text": "Read the whole narrative of report 21164545, to its end. What is the last whole number of at least four digits in it?",
+   "check": {
+    "type": "contains",
+    "value": "887550"
+   }
+  },
+  {
+   "id": "C19",
+   "category": "scope",
+   "text": "How many pacemaker reports were received in 2020?",
+   "check": {
+    "type": "scope"
+   }
+  },
+  {
+   "id": "C20",
+   "category": "scope",
+   "text": "How many reports are there for Abbott heart valves?",
+   "check": {
+    "type": "scope"
+   }
+  }
+ ]
+}

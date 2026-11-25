@@ -1,24 +1,24 @@
 {
- "run_id": "load-20261125T155140Z",
+ "run_id": "load-20261125T155413Z",
  "schema": "core_all",
  "counts": {
   "dim_product_code": 5,
   "dim_manufacturer": 411,
-  "fact_report": 229602,
-  "report_device": 230089,
-  "report_problem": 296828,
-  "report_patient_problem": 304002,
+  "fact_report": 233264,
+  "report_device": 233751,
+  "report_problem": 301641,
+  "report_patient_problem": 307771,
   "report_text": 613511,
   "fact_recall": 1626,
-  "report_recall_link": 1115086,
-  "quarantine": 3667,
+  "report_recall_link": 1135978,
+  "quarantine": 5,
   "links_by_type": {
-   "510k": 426764,
-   "firm_window": 688322
+   "510k": 430003,
+   "firm_window": 705975
   },
   "quarantine_by_rule": {
    "R3": 4,
-   "R5": 3663
+   "R5": 1
   },
   "raw_records": {
    "events_LPH.jsonl.gz": 26874,
