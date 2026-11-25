@@ -202,3 +202,11 @@ Loaded 233,264 reports (2022 to mid-November 2026) into `core_all`, leaving `cor
 
 **Concepts:** ask why records are rejected before accepting a count; recent data is incomplete in different ways for different fields; read the passes, not only the failures.
 
+
+## 2026-11-25: audit of Phases 0-7c, stopped part-way at the user's request
+
+**Passed, re-run from scratch:** Phase 1 9/9 and Phase 2 9/9 (both with the live openFDA comparison; Phase 2's reload test skipped so that `core` keeps its load record), Phase 3 8/8, Phase 4 5/5 scripted and 5/5 live, Phase 5 5/5, Phase 6 5/5, Phase 7 evidence 5/5 (scorecard stays 4/5), Phase 7b 13/13. Git history: no keys, only invented phones and addresses.
+
+**Not re-run yet:** Phase 7c (passed 9/9 earlier the same day), all tests, every document check, every notebook.
+
+**Fixed:** the plan did not say that Phase 7 has no scheduled pull of new reports (a one-off download was delivered) and compares drift with the previous four quarters; README run commands for Phases 7-7c were missing; three README lines were outdated or too strong.
