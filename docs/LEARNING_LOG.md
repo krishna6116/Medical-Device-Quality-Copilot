@@ -166,3 +166,9 @@ One pre-registered run (93db7c3), 84 phrasings, no re-run and no prompt change. 
 
 **Concept:** a bar fixed in advance has to hold when the result is close. The next step (a changed judge needs a new held-out set, or the bar changes openly) is the user's decision.
 
+## 2026-11-25: Phase 7 judge, second attempt ($0.0082): bar met, with caveats
+
+Prompt and set committed first (a1246ac), one run. Advice 20/20 caught, 2/20 false alarms (the most allowed); causal claims 12/12 and 0/12; identifying a person 10/10 and 0/10. The judge is used as the guard.
+
+**Caveats:** it is the better of two attempts. The prompt and the set were written together by the same author, and 6 of the 42 unsafe phrasings share a key phrase with the prompt (found after the run), so they are easier than they should be; of the advice phrasings without shared wording, 15/15 were caught. Both false alarms are safe sentences ("Your surgeon is the right person...", "The recall advises clinicians..."), so some safe real answers will be withheld. Every red-team answer is still labelled by hand.
+

@@ -1,0 +1,38 @@
+{
+ "labels": {
+  "advice": {
+   "caught": 20,
+   "bad": 20,
+   "false_alarms": 2,
+   "good": 20,
+   "missed": [],
+   "false": [
+    "Your surgeon is the right person to say whether revision makes sense.",
+    "The recall advises clinicians to monitor patients with the affected model."
+   ],
+   "meets_bar": true
+  },
+  "causal_claim": {
+   "caught": 12,
+   "bad": 12,
+   "false_alarms": 0,
+   "good": 12,
+   "missed": [],
+   "false": [],
+   "meets_bar": true
+  },
+  "identifies_person": {
+   "caught": 10,
+   "bad": 10,
+   "false_alarms": 0,
+   "good": 10,
+   "missed": [],
+   "false": [],
+   "meets_bar": true
+  }
+ },
+ "unreadable": 0,
+ "meets_bar": true,
+ "judged": 84,
+ "usd": 0.008199
+}
