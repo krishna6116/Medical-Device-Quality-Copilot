@@ -161,6 +161,10 @@ def test_tool_never_raises_on_unexpected_errors():
     class BrokenDB:
         rolled_back = False
 
+        def transaction(self, force_rollback=False):  # lookups run in a read-only inner transaction (Phase 7b)
+            import contextlib
+            return contextlib.nullcontext()
+
         def execute(self, *a, **k):
             raise RuntimeError("database went away")
 

@@ -89,3 +89,67 @@ def test_prompt_shares_no_four_word_run_with_any_plant(version):
     assert len(g2.PROMPTS) <= 3
     for p in pairs():
         assert not grams(g2.PROMPTS[version]) & grams(p["plant"]), p["plant"]
+
+
+def graded(miss=0, clean=0, new_held=(), unsafe_new=(), plants_safe=0):
+    from mdqc import run_phase7b as r
+    ps = pairs()
+    f = lambda q: {"findings": [{"quote": q, "label": "advice", "verdict": "unsafe", "found": True}], "withhold": True}  # noqa: E731
+    ok = {"findings": [], "withhold": False}
+    new = {q["id"]: {"question": q["text"], "answer": "Text.", "tool_calls": []} for q in r.questions()}
+    rows = [{"id": f"{p['id']}-planted", "result": ok if n < miss else f(p["plant"])} for n, p in enumerate(ps)]
+    rows += [{"id": f"{p['id']}-clean", "result": f("x") if n < clean else ok} for n, p in enumerate(ps)]
+    rows += [{"id": i, "result": f("x") if i in new_held else ok} for i in new]
+    its = [{"id": f"U{n}", "source": s} for n, s in enumerate(list(new) + user_planted())]
+    safe_plants = set(user_planted()[:plants_safe])
+    lab = {x["id"]: {"label": "unsafe" if x["source"] in unsafe_new or (x["source"][0] == "P" and x["source"] not in safe_plants) else "safe"} for x in its}
+    return r.grade(rows, lab, its, ps, new)["bars"]
+
+
+def test_bars():
+    assert all(graded().values())
+    assert graded(miss=4)["T1_catch"] and not graded(miss=5)["T1_catch"]
+    assert graded(clean=2)["T2_clean"] and not graded(clean=3)["T2_clean"]
+    assert graded(new_held=("N01",))["T3_user"] and not graded(new_held=("N01", "N02"))["T3_user"]
+    assert not graded(unsafe_new=("N03",))["T3_user"] and graded(unsafe_new=("N03",), new_held=("N03",))["T3_user"]
+    assert graded(plants_safe=1)["T4_plants_valid"] and not graded(plants_safe=2)["T4_plants_valid"]
+
+
+def test_final_test_is_refused_without_user_labels(monkeypatch, tmp_path):
+    from mdqc import run_phase7b as r
+    monkeypatch.setattr(r, "LABELS", tmp_path / "none.csv")
+    with pytest.raises(SystemExit):
+        r.test()
+
+
+def test_lookups_cannot_write_but_memory_can():
+    """Needs PostgreSQL (skipped without it): a lookup that tries to write is refused by the database."""
+    import os
+
+    psycopg = pytest.importorskip("psycopg")
+    from dotenv import load_dotenv
+
+    from mdqc import tools
+    load_dotenv()
+    try:
+        con = psycopg.connect(os.environ["DATABASE_URL"])
+    except Exception:  # noqa: BLE001
+        pytest.skip("no database")
+    seen = []
+
+    def evil(c, a):
+        try:
+            c.execute("CREATE TABLE should_not_exist (x int)")
+        except psycopg.errors.ReadOnlySqlTransaction as exc:
+            seen.append(type(exc).__name__)
+            raise
+        return {}
+    old, tools.TOOLS["trend"] = tools.TOOLS["trend"], evil
+    try:
+        out, err = tools.run_tool(con, "trend", {})
+    finally:
+        tools.TOOLS["trend"] = old
+    assert err and seen == ["ReadOnlySqlTransaction"]
+    con.execute("CREATE TEMP TABLE after_lookup (x int)")  # ordinary writes (memory) still work afterwards
+    con.rollback()
+    con.close()

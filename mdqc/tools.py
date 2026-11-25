@@ -352,7 +352,10 @@ def run_tool(con, name: str, args: dict) -> tuple[str, bool]:
     if unknown:
         return json.dumps({"error": f"unknown argument(s) {unknown} for {name}; allowed: {sorted(allowed)}"}), True
     try:
-        return json.dumps(TOOLS[name](con, args), default=str, ensure_ascii=False), False
+        # PostgreSQL itself refuses writes while a lookup runs; the setting ends with this inner transaction
+        with con.transaction(force_rollback=True):
+            con.execute("SET LOCAL transaction_read_only = on")
+            return json.dumps(TOOLS[name](con, args), default=str, ensure_ascii=False), False
     except ToolError as exc:
         con.rollback()
         return json.dumps({"error": str(exc)}), True
