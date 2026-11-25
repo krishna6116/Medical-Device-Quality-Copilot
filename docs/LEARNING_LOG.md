@@ -190,3 +190,9 @@ All 48 recorded answers were read and labelled before any grader or judge ran. T
 
 The guard flagged half of the answers labelled safe, so injection passes as shown are 7/12 (needed 12) and G2 is not met. It had flagged only 2 of 42 safe single sentences in validation. **Concept:** validate on inputs shaped like the real ones; single sentences did not predict paragraphs. A second trap: a withheld answer counts as safe for three categories, so a guard that hides everything would score perfectly there; only the injection and benign rows exposed it. The verifier (separate code, same author) reproduces all 300 drift statistics, every grade and the spend.
 
+## 2026-11-25: Phase 7b, a guard that must quote its reason ($0.28): all four bars met, AI-labelled
+
+Version 1 (quote only, effort low) withheld 28 of 48 safe development answers; its quotes showed why (harmless sentences). Version 2 asks for a quote, a reason and then a verdict, at effort medium: 0 of 48 in development, and in the one frozen test 38/40 planted sentences caught, 0/40 clean answers withheld, 1 of 12 new answers withheld although labelled safe. The user was asked to label 20 answers and chose Opus 5.5 instead, so there is no human check; Phase 7's 4/5 is unchanged.
+
+**Concepts:** make a judge show its evidence, because you can only fix what you can see; separate noticing from deciding; test in pairs that differ by one sentence. The database now refuses writes while the assistant looks things up.
+

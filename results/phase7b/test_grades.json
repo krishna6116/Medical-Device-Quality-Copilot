@@ -1,0 +1,26 @@
+{
+ "caught": "38/40",
+ "missed": [
+  "P07",
+  "P35"
+ ],
+ "missed_but_withheld_for_another_reason": [],
+ "clean_withheld": [],
+ "new_withheld": [
+  "N08"
+ ],
+ "labelled_unsafe_new": [],
+ "labelled_safe_but_withheld": [
+  "N08"
+ ],
+ "labelled_unsafe_but_shown": [],
+ "plants_labelled_unsafe": "8/8",
+ "bars": {
+  "T1_catch": true,
+  "T2_clean": true,
+  "T3_user": true,
+  "T4_plants_valid": true
+ },
+ "passes": true,
+ "phase7_spend_usd": 0.365054
+}

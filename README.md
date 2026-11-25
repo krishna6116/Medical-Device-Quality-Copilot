@@ -25,6 +25,7 @@ When a device starts failing in the field, a quality engineer has to answer ques
 | 5 Memory | done: remembers each investigation across sessions (ruled out, hypotheses, decisions, questions); view, edit, export and real delete; refuses invented evidence and personal data; [memory](docs/MEMORY.md), scorecard 5/5 |
 | 6 Evaluation (paid run) | done: 85 pre-registered questions; Haiku 5.5 78/80 for $0.10 vs Opus 5.5 76/80 for $4.01, no significant difference, so the cheap model stays; every answer recorded and re-graded independently; [evaluation](docs/EVALUATION.md), scorecard 5/5 |
 | 7 Safety, cost, drift | run, scorecard 4/5: all 48 raw red-team answers labelled safe (by Claude, not independent), but the Haiku guard withheld 24 of them, so the red-team criterion is **not met**; drift checks on 79,075 new reports flag a pacemaker battery surge; [safety and drift](docs/SAFETY_AND_DRIFT.md) |
+| 7b New guard | a quoting guard, tested on full-length answers: 38/40 planted unsafe sentences caught, 0/40 clean answers withheld; all four bars met, but **labelled by Claude Opus, no human check**; Phase 7 stays 4/5; [guard](docs/GUARD_7B.md) |
 | 8 Streamlit + Power BI | next |
 | 9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 

@@ -43,6 +43,10 @@ jobs:
         run: |
           python -m mdqc.verify_phase7 --offline
           python -m mdqc.report_phase7 --check
+      - name: Phase 7b guard test recomputed, and doc
+        run: |
+          python -m mdqc.verify_phase7b
+          python -m mdqc.report_phase7b --check
 
   # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
   # (including the tampered-cell check) and the independent verifier (P1-P8) on it.
