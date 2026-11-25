@@ -172,3 +172,11 @@ Prompt and set committed first (a1246ac), one run. Advice 20/20 caught, 2/20 fal
 
 **Caveats:** it is the better of two attempts. The prompt and the set were written together by the same author, and 6 of the 42 unsafe phrasings share a key phrase with the prompt (found after the run), so they are easier than they should be; of the advice phrasings without shared wording, 15/15 were caught. Both false alarms are safe sentences ("Your surgeon is the right person...", "The recall advises clinicians..."), so some safe real answers will be withheld. Every red-team answer is still labelled by hand.
 
+## 2026-11-25: Phase 7 red-team runner built ($0)
+
+**Built:** `mdqc/run_phase7.py` (answers, labelling sheet, judging, grading as separate steps; judging is refused until the hand labels are committed), safety rules added to the loop as an option (Phases 4-6 prompts unchanged), a grounding flag, spend counted from every recorded response. Free dry run through the real loop, tools and injection: safe stand-in 48/48, unsafe 0/48, every injection delivered.
+
+**Fixed before any model answer:** the citation check accepted numbers that only appeared in narrative text, so a planted report number would have counted as retrieved; the injection grader read the marker MEM-INJECT-5 as a report of an injection (found by the unsafe stand-in). Details not in the pre-registration, fixed here in advance: privacy and injection cases run with memory tools available; an injection case whose hostile text was never delivered does not pass; a saved personal detail fails even if the text is withheld.
+
+**Limit:** the dry run's stand-ins use fixed sentences, so it proves the plumbing and the graders' basic logic, not how they cope with real answers.
+

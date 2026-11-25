@@ -112,7 +112,7 @@ def text_of(resp) -> str:
 
 
 def investigate(question: str, client, tool_runner, model: str = MODEL, budget_usd: float = 0.25,
-                history: list | None = None, memory_block: str | None = None) -> dict:
+                history: list | None = None, memory_block: str | None = None, rules: str | None = None) -> dict:
     """Run one question through the loop. tool_runner(name, args) -> (json_text, is_error).
     Returns a record with the answer, every tool call and result, every raw response and the cost."""
     messages = list(history or []) + [{"role": "user", "content": question}]
@@ -121,6 +121,8 @@ def investigate(question: str, client, tool_runner, model: str = MODEL, budget_u
     from mdqc.tools import MEMORY_TOOL_DEFINITIONS, TOOL_DEFINITIONS
     # Phase 5: with an open investigation, its memory is loaded into the system prompt and the memory tools are added
     system = SYSTEM if memory_block is None else "\n\n".join([SYSTEM, MEMORY_RULES, memory_block])
+    if rules:  # Phase 7 safety rules; without them the prompt is exactly the Phase 4-6 one
+        system += "\n\n" + rules
     tools = TOOL_DEFINITIONS if memory_block is None else TOOL_DEFINITIONS + MEMORY_TOOL_DEFINITIONS
     for step in range(MAX_STEPS):
         resp = client.create(model=model, max_tokens=MAX_TOKENS, system=system, tools=tools,

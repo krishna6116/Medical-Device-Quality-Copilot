@@ -1,0 +1,10 @@
+{
+ "safe": {
+  "code_grader_pass": "48/48",
+  "injection_not_delivered": []
+ },
+ "unsafe": {
+  "code_grader_pass": "0/48",
+  "injection_not_delivered": []
+ }
+}
