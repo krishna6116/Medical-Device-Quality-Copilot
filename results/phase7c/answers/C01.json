@@ -1,0 +1,144 @@
+{
+ "question": "How many adverse-event reports were received for pacemakers (LWP) in 2025?",
+ "model": "claude-haiku-5-5",
+ "memory_block": null,
+ "answer": "There were **12,075** adverse-event reports for pacemakers (LWP) received in 2025.\n\nBy event type:\n- Injury: 6,942 (57.5%)\n- Malfunction: 5,027 (41.6%)\n- Death: 105 (0.9%)\n- Other: 1\n\nLimits:\n- These are report counts, not failure rates. The data has no count of pacemakers in use.\n- A report means a device may have been involved. It does not show that the device caused the event.\n- 2025 is recent, so some reports may still be arriving.",
+ "stop": "answered",
+ "steps": 2,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_011mM7zCXmgsnLT3ozwvxVC4",
+   "name": "count_reports",
+   "input": {
+    "product_code": "LWP",
+    "date_from": "2025-01-01",
+    "date_to": "2025-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": \"LWP\", \"manufacturer\": null, \"failure_mode\": null, \"date_from\": \"2025-01-01\", \"date_to\": \"2025-12-31\"}, \"reports\": 12075, \"by_event_type\": [{\"event_type\": \"Injury\", \"reports\": 6942, \"share\": 0.575}, {\"event_type\": \"Malfunction\", \"reports\": 5027, \"share\": 0.416}, {\"event_type\": \"Death\", \"reports\": 105, \"share\": 0.009}, {\"event_type\": \"Other\", \"reports\": 1, \"share\": 0.0}]}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 108,
+    "cache_creation_input_tokens": 5574,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChQ4X3AZzvGzJf7ANccQE",
+    "container": null,
+    "content": [
+     {
+      "id": "toolu_011mM7zCXmgsnLT3ozwvxVC4",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "product_code": "LWP",
+       "date_from": "2025-01-01",
+       "date_to": "2025-12-31"
+      },
+      "name": "count_reports",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5574
+     },
+     "cache_creation_input_tokens": 5574,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 108,
+     "output_tokens_details": {
+      "thinking_tokens": 0
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 257,
+    "cache_creation_input_tokens": 304,
+    "cache_read_input_tokens": 5574
+   },
+   "response": {
+    "id": "msg_011ChQ4X6w2t3j74gL1jZkdB",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSzAYKEAgUGAI4AUIIdGhpbmtpbmcSDD0obI9reLdjzFuHOxoMj2qAFmBZBqOOk2ixIjDGaxvQpzN0sTVIpgMtnEeIUkBbgzixoMse4vbUMUKjFK3QhEN6jkG7EjOqATI5Pbkq6QVbdXCWwip2x+FznnIs0jCswRr1jGdkYhxrd9naMxuymUneXnwb4kz4ZaMo0eL3Ju0bZL90sHY08eJKuPZr3G37Jhfpw93kjwBW6QIyV7n3kTXzTQU5O0euR/9SaTZEKh+QirytJxBjG7oEyVCGLTaVdpN0n+MhwSUuORDCo9cl5BE2ySmzdyvrF7tkC3GpYIU1iKEeKol8N3Bagbbu3YOh77lFirMqiIhwC6o8U5KfOJb74CCtgtW+niuhb3YcowYkbEcuGOvhhDqykC2oTJDrvE5sgF9FfVtywelOnhTjgMcSGVfT/9bxMxGVKZZm533d8E7mGbJz97YRff+ofSOfri+becksPDbJPYdJReRtcz6HpQeoBVtESm4Ck6iaXj15mZNZeR7Dh8bC0XxLdiIigxQKTuwZThM4mgmjyigs8Un7lLsL2PkjE++ckS4wd+OsBTKZOnWUabOsPtm9zs2a+8QFSBQrtArvhFD5C/Nq/piGfBq2J0Nofi8ATxjVKyrwXJDZpv5C6e7bnysTroU9cNtFhFLv12gC6bdVcxQW6DTngLhAwfXFyaalBu3DhxK9Ca/DFD+fOqZNPqvFf51vJy/GklpbPgk0+iCbYJLPcCMCEN4Uoz9PLvEyme9GiIbWtN6kcgRoSTJpFDFGnpjwjS+6+wK29uoOtz/vJ+FKnCwYBQ8CtbAzjKdcxC4UZTJbuTiwuxGltW1tX5fahzZsy8wOIRz/N+uwLfY3byzRCtkiHRRqBWpPYO0fCNHTcTkit3yvahuXRvcWU9nRafrW50bJ0RtbkqMTwvR7yWo2ZCaLA406wlFUPSdBIhOXD450LwTN2AENgyvjDWGzupW5iCwZc4q8uDgfwPXKgxzyPM4sUmWsxAFtfTr9W19VkJzfva609ik8bEcR/LTnq8BhNUkZuuCr/3KdghzydpnkMAkjxwZYpaSqBRs3wyOUorkF7xgHNfGtHZ9dyEl+HEj5W9BdBPAfbEd0GAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "There were **12,075** adverse-event reports for pacemakers (LWP) received in 2025.\n\nBy event type:\n- Injury: 6,942 (57.5%)\n- Malfunction: 5,027 (41.6%)\n- Death: 105 (0.9%)\n- Other: 1\n\nLimits:\n- These are report counts, not failure rates. The data has no count of pacemakers in use.\n- A report means a device may have been involved. It does not show that the device caused the event.\n- 2025 is recent, so some reports may still be arriving.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 304
+     },
+     "cache_creation_input_tokens": 304,
+     "cache_read_input_tokens": 5574,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 257,
+     "output_tokens_details": {
+      "thinking_tokens": 83
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.000974,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 108,
+   "cache_creation_input_tokens": 5574,
+   "cache_read_input_tokens": 0,
+   "usd": 0.00075115
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 257,
+   "cache_creation_input_tokens": 304,
+   "cache_read_input_tokens": 5574,
+   "usd": 0.00022244
+  }
+ ],
+ "id": "C01"
+}

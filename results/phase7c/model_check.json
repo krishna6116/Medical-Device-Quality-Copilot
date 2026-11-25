@@ -1,0 +1,172 @@
+{
+ "correct": "20/20",
+ "ci95": [
+  0.8388748398148705,
+  1.0
+ ],
+ "bar": 18,
+ "meets_bar": true,
+ "usd": 0.02559,
+ "rows": [
+  {
+   "id": "C01",
+   "category": "count",
+   "correct": true,
+   "why": "gold 12075 found",
+   "steps": 2,
+   "usd": 0.000974
+  },
+  {
+   "id": "C02",
+   "category": "count",
+   "correct": true,
+   "why": "gold 2446 found",
+   "steps": 2,
+   "usd": 0.001094
+  },
+  {
+   "id": "C03",
+   "category": "count",
+   "correct": true,
+   "why": "gold 3002 found",
+   "steps": 2,
+   "usd": 0.000958
+  },
+  {
+   "id": "C04",
+   "category": "count",
+   "correct": true,
+   "why": "gold 22444 found",
+   "steps": 2,
+   "usd": 0.000945
+  },
+  {
+   "id": "C05",
+   "category": "count",
+   "correct": true,
+   "why": "gold 105 found",
+   "steps": 2,
+   "usd": 0.000981
+  },
+  {
+   "id": "C06",
+   "category": "trend",
+   "correct": true,
+   "why": "percent ok, direction up (want up)",
+   "steps": 3,
+   "usd": 0.001181
+  },
+  {
+   "id": "C07",
+   "category": "trend",
+   "correct": true,
+   "why": "percent ok, direction down (want down)",
+   "steps": 3,
+   "usd": 0.001207
+  },
+  {
+   "id": "C08",
+   "category": "trend",
+   "correct": true,
+   "why": "percent ok, direction up (want up)",
+   "steps": 3,
+   "usd": 0.001206
+  },
+  {
+   "id": "C09",
+   "category": "mode",
+   "correct": true,
+   "why": "first mode: C_BATTERY",
+   "steps": 2,
+   "usd": 0.001179
+  },
+  {
+   "id": "C10",
+   "category": "mode",
+   "correct": true,
+   "why": "first mode: D_CANNULA_INSERTION",
+   "steps": 2,
+   "usd": 0.001173
+  },
+  {
+   "id": "C11",
+   "category": "mode",
+   "correct": true,
+   "why": "first mode: O_INSTABILITY",
+   "steps": 2,
+   "usd": 0.001246
+  },
+  {
+   "id": "C12",
+   "category": "recall",
+   "correct": true,
+   "why": "gold 29 found",
+   "steps": 2,
+   "usd": 0.001229
+  },
+  {
+   "id": "C13",
+   "category": "recall",
+   "correct": true,
+   "why": "gold 26 found",
+   "steps": 2,
+   "usd": 0.001239
+  },
+  {
+   "id": "C14",
+   "category": "report",
+   "correct": true,
+   "why": "all three",
+   "steps": 2,
+   "usd": 0.001207
+  },
+  {
+   "id": "C15",
+   "category": "paging",
+   "correct": true,
+   "why": "found",
+   "steps": 3,
+   "usd": 0.001632
+  },
+  {
+   "id": "C16",
+   "category": "paging",
+   "correct": true,
+   "why": "found",
+   "steps": 3,
+   "usd": 0.001837
+  },
+  {
+   "id": "C17",
+   "category": "narrative",
+   "correct": true,
+   "why": "found",
+   "steps": 3,
+   "usd": 0.002187
+  },
+  {
+   "id": "C18",
+   "category": "narrative",
+   "correct": true,
+   "why": "found",
+   "steps": 3,
+   "usd": 0.001932
+  },
+  {
+   "id": "C19",
+   "category": "scope",
+   "correct": true,
+   "why": "scope stated",
+   "steps": 1,
+   "usd": 0.000872
+  },
+  {
+   "id": "C20",
+   "category": "scope",
+   "correct": true,
+   "why": "scope stated",
+   "steps": 2,
+   "usd": 0.001311
+  }
+ ]
+}

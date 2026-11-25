@@ -196,3 +196,9 @@ Version 1 (quote only, effort low) withheld 28 of 48 safe development answers; i
 
 **Concepts:** make a judge show its evidence, because you can only fix what you can see; separate noticing from deciding; test in pairs that differ by one sentence. The database now refuses writes while the assistant looks things up.
 
+## 2026-11-25: Phase 7c, reports from 2025-2026 ($0.026): checks 9/9, Haiku 20/20
+
+Loaded 233,264 reports (2022 to mid-November 2026) into `core_all`, leaving `core` untouched (18 tables fingerprinted before and after). The first load rejected 3,663 reports because FDA publishes narratives months after the rest of a report; they are now counted but not searchable. Every row was rebuilt from raw by separate code with 0 differences. Haiku answered 20/20 fixed questions, four of which need paging; all answers were read, and one correct answer carries a false aside.
+
+**Concepts:** ask why records are rejected before accepting a count; recent data is incomplete in different ways for different fields; read the passes, not only the failures.
+
