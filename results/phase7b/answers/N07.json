@@ -1,0 +1,330 @@
+{
+ "question": "What made Insulet's reports fall after 2022?",
+ "model": "claude-haiku-5-5",
+ "memory_block": null,
+ "answer": "**Short answer:** The data shows the decline but not its cause. Insulet's reports fell from 21,360 in 2022 to 16,651 in 2023 and 12,453 in 2024, a change of -41.7% [trend, yearly]. No tool result gives a reason, so I can't say what drove it.\n\n**What the data does show:**\n- **Where the drop is:** Cannula insertion reports fell from 11,841 in 2022 to 5,413 in 2024. Electronics/alarm reports fell from 571 to 186 over the same span. Adhesive dislodgement stayed high at 4,846 in 2024 (38.9% of that year's reports) [failure_modes, 2022 and 2024].\n- **Timing:** The drop is steepest in late 2022. Q3 2022 had 6,013 reports and Q4 2022 had 4,413 [trend, quarterly]. One Insulet recall started on 2022-10-17: [Z-0154-2023], a PDM battery issue (swelling, leaking, overheating) with a fire-hazard complaint. Timing alone doesn't link the recall to the drop.\n\n**Limits:**\n- The 2024 counts are the least complete. Late-arriving reports fill in over time, so part of the decline may be a reporting lag.\n- Report counts are not failure rates. They don't account for how many pumps are in use, and a drop in reports doesn't mean fewer problems.\n- Possible non-device explanations (changes in reporting practice, volume of users, or FDA processing) aren't in this data. I can't check them with these tools.\n\nIf you want to narrow this, I can check whether the decline is steady or sharp across quarters, or search narratives for specific causes.",
+ "stop": "answered",
+ "steps": 3,
+ "tool_calls": [
+  {
+   "step": 0,
+   "id": "toolu_019XVD6cvK64t4guKK9BaYxM",
+   "name": "trend",
+   "input": {
+    "manufacturer": "Insulet",
+    "granularity": "year"
+   },
+   "result": "{\"filters\": {\"product_code\": null, \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\"}, \"granularity\": \"year\", \"series\": [{\"period\": \"2022\", \"reports\": 21360}, {\"period\": \"2023\", \"reports\": 16651}, {\"period\": \"2024\", \"reports\": 12453}], \"note\": \"Counts by the date FDA received the report; the latest months fill in later as late reports arrive.\", \"first_to_last_change\": -0.417}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_0198cJbLnm6BRbmVZL1PQdjT",
+   "name": "failure_modes",
+   "input": {
+    "manufacturer": "Insulet",
+    "date_from": "2022-01-01",
+    "date_to": "2022-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": null, \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2022-12-31\"}, \"reports\": 21360, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 11841, \"share\": 0.554, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 5068, \"share\": 0.237, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 2039, \"share\": 0.095, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 1323, \"share\": 0.062, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 571, \"share\": 0.027, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 511, \"share\": 0.024, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}, {\"failure_mode\": \"D_OCCLUSION_DELIVERY\", \"reports\": 7, \"share\": 0.0, \"definition\": \"Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01P6LXWRa47CrMPtvUgSToCK",
+   "name": "failure_modes",
+   "input": {
+    "manufacturer": "Insulet",
+    "date_from": "2023-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": null, \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2023-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 29104, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 12919, \"share\": 0.444, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 10454, \"share\": 0.359, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 2100, \"share\": 0.072, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 2001, \"share\": 0.069, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 935, \"share\": 0.032, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 693, \"share\": 0.024, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}, {\"failure_mode\": \"D_OCCLUSION_DELIVERY\", \"reports\": 2, \"share\": 0.0, \"definition\": \"Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 0,
+   "id": "toolu_01X6ukRHVtgN77omwD55bkGT",
+   "name": "find_recalls",
+   "input": {
+    "manufacturer": "Insulet",
+    "date_from": "2022-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": null, \"manufacturer\": \"INSULET\", \"date_from\": \"2022-01-01\", \"date_to\": \"2024-12-31\", \"text\": null}, \"recall_records\": 1, \"recall_events\": 1, \"shown\": 1, \"recalls\": [{\"recall_number\": \"Z-0154-2023\", \"recall_event\": \"90987\", \"product_code\": \"LZG\", \"manufacturer\": \"INSULET\", \"started\": \"2022-10-17\", \"status\": \"Terminated\", \"root_cause\": \"Device Design\", \"reason\": \"The firm has become aware of PDM battery issues, including battery swelling, fluid leaking from the battery, and extreme overheating, which may pose a fire hazard. The firm has received a complaint alleging fire as a result of thermal energy from a DASH PDM.\"}]}",
+   "is_error": false
+  },
+  {
+   "step": 1,
+   "id": "toolu_016z8bAVJDELZ7QbJZMX3qk2",
+   "name": "failure_modes",
+   "input": {
+    "manufacturer": "Insulet",
+    "date_from": "2024-01-01",
+    "date_to": "2024-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": null, \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2024-01-01\", \"date_to\": \"2024-12-31\"}, \"reports\": 12453, \"modes\": [{\"failure_mode\": \"D_CANNULA_INSERTION\", \"reports\": 5413, \"share\": 0.435, \"definition\": \"The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.\"}, {\"failure_mode\": \"D_ADHESIVE_DISLODGED\", \"reports\": 4846, \"share\": 0.389, \"definition\": \"The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.\"}, {\"failure_mode\": \"D_LEAK\", \"reports\": 899, \"share\": 0.072, \"definition\": \"Insulin leaked from the pump, pod, reservoir or infusion site.\"}, {\"failure_mode\": \"D_OTHER\", \"reports\": 813, \"share\": 0.065, \"definition\": \"No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.\"}, {\"failure_mode\": \"D_SKIN\", \"reports\": 296, \"share\": 0.024, \"definition\": \"Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.\"}, {\"failure_mode\": \"D_ALARM_ELECTRONICS\", \"reports\": 186, \"share\": 0.015, \"definition\": \"Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.\"}], \"method_note\": \"Modes come from FDA problem terms mapped through the project codebook; they agreed with reference labels on 70% of test reports (Phase 3).\"}",
+   "is_error": false
+  },
+  {
+   "step": 1,
+   "id": "toolu_01PZLwXUbK9HsypFfp4MVeEJ",
+   "name": "trend",
+   "input": {
+    "manufacturer": "Insulet",
+    "granularity": "quarter",
+    "date_from": "2022-01-01",
+    "date_to": "2022-12-31"
+   },
+   "result": "{\"filters\": {\"product_code\": null, \"manufacturer\": \"INSULET\", \"failure_mode\": null, \"date_from\": \"2022-01-01\", \"date_to\": \"2022-12-31\"}, \"granularity\": \"quarter\", \"series\": [{\"period\": \"2022-Q1\", \"reports\": 5382}, {\"period\": \"2022-Q2\", \"reports\": 5552}, {\"period\": \"2022-Q3\", \"reports\": 6013}, {\"period\": \"2022-Q4\", \"reports\": 4413}], \"note\": \"Counts by the date FDA received the report; the latest months fill in later as late reports arrive.\", \"first_to_last_change\": -0.18}",
+   "is_error": false
+  }
+ ],
+ "calls": [
+  {
+   "step": 0,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 4,
+    "output_tokens": 591,
+    "cache_creation_input_tokens": 5277,
+    "cache_read_input_tokens": 0
+   },
+   "response": {
+    "id": "msg_011ChPtfcfzs4uHaqBfFCd7G",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSkwgKEAgUGAI4AUIIdGhpbmtpbmcSDKtJGDa9EhnK4zotTxoMEBNiwMsjANiuSIIhIjCOFBjL/D1Evgs368kStnO0BEcYeYq4UdROceUmppayiMHGJFf6RVUS80MEeXnl7EUqsAeW4WHIo/UlSyRO/XQQ389zcOS6axXRuhZn72KkhrfzL1tBQTF88Pgzjq2PZGY0rNsi6nwmkVuBBs7t9qLf4kVOhKWEaXQDNkrdMD/a6CW8D3cqCH1wFea9gRMNll1pJ3OHZXMLoIvPZI12r7bd+d/Srz8TzcA1ueaiUvvXyQej4pvVBI2dRz+2n5w98US18kQwDCR7e1oxVLolOsNRPyIQYZxOmE7iwdDpy4NR8+LGfUpMSMNPNT+4KP24ektRYfECXQ2+NUF+l1vKHQq98GYpFOZ30YlO0m8qYuLHxs2izE9WMfJFddEPnb4+auUtBhB+yb2z1P6qyM3R8lwDy7mK89fyeICqyCg+Ss0GACcyHfW8hXrrcscKYUnoD7ieJfbX4zoWdZUOtZGdsw/4+KW1L40Jx1WHXvID6NFQg6irZmmwrF8q/1jS0MGWmVnqbJ7G/Sc4+VY6zZ3b2vGwbXYxRHG7+jVky7lofUBJyhNSoeIN8e0IMP+qHGAC7tqVqXBACmt4rj6r2mP8dv2BXpv8zDd3SAvk9+0GT7WKYD5bl6G7/B8tYjW5XMGXCCOc+m4ScO+oyyANmU8hlMkTwcbC8XK0YJvHPbLBBDHz9CDJHCOC4E5ooEWa8zne1zbNPJ4g/ZHTrzUDCgrPADqMVDnnLgxO0Mwea/noFM+MI+dn/0rrfjndzzo3ucxd/VoM8Te7D/YJYhj8gH4lrtA2NeWdzyO2ypw1TBr16az/6RSyT//FMhh6x58pWqhiShvFcq/lwCnDJNn7KzFmiJy0Q+wuFTFfjVFK+NWsr0yzI8koCPCOvE7G4FMXgxh6UdqYi2BZYfaxTCRnvIzaD6iU6b3YJ+NiG1A42PbfB1VH2g6JRDWdM2hG8lbiSMC0+KwSE9zeZjfilEBL0suKJp+yc7/yl0gk8G7T2j3YctKGIvY7S64wtXKWa0zfpBq06z4xbLqPgOY4w8wJfJOuF6PFiHTX7HQUcH+q4GqyD2YKq80Tem+xIeQRL2DvV6Bn4vh9T4SgiIyiAGHE70pxKW/L3hbFGid4ycxTLyWfFmm73X+pndu0wIcggjPJJtVtnTIt3ztc6dtR6Hwkq5KWF6gkYQgsP4eq3EmzgquhnlX3SrQ96z+THg/3neaOyv0YotA6T21Swi12RfXc6M2URopZiW+6z/FLIxHVdWqbpFsywevcec14K4SpKimRO74UsaXxeIk7+HYXC9f2JwCGo0/Ndx3lEeNss7KRyTteoLGNwoXuhxgB",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "I'll check the yearly trend first, then look at what changed.",
+      "type": "text"
+     },
+     {
+      "id": "toolu_019XVD6cvK64t4guKK9BaYxM",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "granularity": "year"
+      },
+      "name": "trend",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_0198cJbLnm6BRbmVZL1PQdjT",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "date_from": "2022-01-01",
+       "date_to": "2022-12-31"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01P6LXWRa47CrMPtvUgSToCK",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "date_from": "2023-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01X6ukRHVtgN77omwD55bkGT",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "date_from": "2022-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "find_recalls",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 5277
+     },
+     "cache_creation_input_tokens": 5277,
+     "cache_read_input_tokens": 0,
+     "inference_geo": "global",
+     "input_tokens": 4,
+     "output_tokens": 591,
+     "output_tokens_details": {
+      "thinking_tokens": 168
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 1,
+   "stop_reason": "tool_use",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 571,
+    "cache_creation_input_tokens": 2558,
+    "cache_read_input_tokens": 5277
+   },
+   "response": {
+    "id": "msg_011ChPtfoyQFSdsLbZdKSvv6",
+    "container": null,
+    "content": [
+     {
+      "signature": "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",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "id": "toolu_016z8bAVJDELZ7QbJZMX3qk2",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "date_from": "2024-01-01",
+       "date_to": "2024-12-31"
+      },
+      "name": "failure_modes",
+      "type": "tool_use"
+     },
+     {
+      "id": "toolu_01PZLwXUbK9HsypFfp4MVeEJ",
+      "caller": {
+       "type": "direct"
+      },
+      "input": {
+       "manufacturer": "Insulet",
+       "granularity": "quarter",
+       "date_from": "2022-01-01",
+       "date_to": "2022-12-31"
+      },
+      "name": "trend",
+      "type": "tool_use"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 2558
+     },
+     "cache_creation_input_tokens": 2558,
+     "cache_read_input_tokens": 5277,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 571,
+     "output_tokens_details": {
+      "thinking_tokens": 327
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  },
+  {
+   "step": 2,
+   "stop_reason": "end_turn",
+   "usage": {
+    "input_tokens": 2,
+    "output_tokens": 774,
+    "cache_creation_input_tokens": 1449,
+    "cache_read_input_tokens": 7835
+   },
+   "response": {
+    "id": "msg_011ChPtg3D8dtJBiCwNwQpLW",
+    "container": null,
+    "content": [
+     {
+      "signature": "CAQSzwkKEAgUGAI4AUIIdGhpbmtpbmcSDI/7xWFEEYzISU/ujBoM4vq6EmvrJVP4DWm2IjBGaIpX2faASXhBOpECdCaQjtoQsSNk4uOG2bKgWIIDP6ivRtEVInDpsoNitavSP5wq7AhNQHLTEZRbO1mpOvhJkGU3LGd3GMqZUseIDMprfGpf+Q7aaqC6I6QWvngkcfVMIt6Mr5NQNzqkEwrRO7X33WjPxYuKnIcn08o7fPPSPjyVe4KdzRgEA9S37K0E4DMNoEozgeV1gJAVA5upBH+fP9Vqf74OVo8+13TunPDi4MDhccUPjrzRj57I4cO8yPiqS/D05soKiSpM8qTTxFGB8RUmKa6vxB4lXSTC3pxicsNApcFNDwvLfe7nb4kJaP6kz4ilqfFNcUq8JXfEL4euvKBk4qzSQJQuHYqmEF5qUwNDtemiICAmUIHuyWCjaGzNT92QxZqRB8kOLlpJSDOuQ/xrWOHp19RjTZ2cKLFMQibFdp9116U2oxVxemrGA7sw6DlrNwpfnztdrc8BOfVLPXt2UuTKkB+nFCF776g2TvhovdumfSPSsh3AqOIlAUCIA3V1gSBUuCUVuy1sXIyZhP8cRBDBzYiq7ZiFr1d3uBKGKFZ6K9BoSqBU4YDVtaLv93xywQyV2KWurJjOpX+rnI2+RBOim21ej9lhQeMGCZReZsVUgns8oKH+Sn/URMh0fIJ/UuhMOWG/QJQIeW0ZsAcsRsxxrEZgcmJvBWSmnQkSS809XkZpqwY5901MAJmHerjhwiKU+QPfj3mbCkQ43lNpU78w1GvJu2rklQwKryfLY+MxcjHNgXowvirC8tGahWEulo/4WFMQ3NZpO1RhlF0OwmO2R57FGAF7Y1phMT19DtslzIU20oLf/VbVx3MhoSY8YDaqzZbcwUIg3sTy2M4WyDFOU54i74P5tMKZdun26U3TjixxXOTLgt8N5PD3IUGrpsIK4AzMg/kezH5e68uNpY0/qhldhM0iMrRvM0wiWxdcNLLp/POkeNracoUMg6k9uZwyWjQ30EVZpjQCVvlOZ9sFqlIbq2pe5zaDewJO8YD8fAmw0UsZTMIv1FuqyoPfDOprUBc5WLzGb1o53FxnAhLCZidF/zA8scBnW55sn22PJQn0EHfyq561fs4+aWtCsc8VvkNK2MiHw0QmULMH97WWQfhHbQFOZUiCwAw7q1wpFFckuWdbjBDI8cnKybPlbVrRauiEFv2/nJ1FrunCunu83gR+xJV3dBEk/rDw1ikkXWcQ+9F9HsVlfXSi591iCNtcyfL+9x/5WPAGoRsYkHJUHAJsI5OnKibcboHu2QDa0Fu9ZPIzaso3MlaCKaO0VBajDgM6Tt+JyZY1S0Y8Xmd9BhizTplm8Bt0tFf/Ez6hQLulP0Yb9sWmg1tevJhTGzOCwoYHE+UQC8Vl7/ldbKfRfgyPPjMBEXC3m5GR21uTRrSxj5kIvh7ILiHk9So5H+f8JkEbLpsc3gNUEr1l+GZYDWJVwFptI0biMsaIPj4wGShbvoLbgQMDpqZAHtLMdr9tzv0cyAEzP8tZxw5iLOViBjnKr4MEgGqTYfC7FQbFGOwORbsanmg9f2J6IWFXzquGN35nZVD8TcC+VwjJrFddQSH3ibfITYL5GAE=",
+      "thinking": "",
+      "type": "thinking"
+     },
+     {
+      "text": "**Short answer:** The data shows the decline but not its cause. Insulet's reports fell from 21,360 in 2022 to 16,651 in 2023 and 12,453 in 2024, a change of -41.7% [trend, yearly]. No tool result gives a reason, so I can't say what drove it.\n\n**What the data does show:**\n- **Where the drop is:** Cannula insertion reports fell from 11,841 in 2022 to 5,413 in 2024. Electronics/alarm reports fell from 571 to 186 over the same span. Adhesive dislodgement stayed high at 4,846 in 2024 (38.9% of that year's reports) [failure_modes, 2022 and 2024].\n- **Timing:** The drop is steepest in late 2022. Q3 2022 had 6,013 reports and Q4 2022 had 4,413 [trend, quarterly]. One Insulet recall started on 2022-10-17: [Z-0154-2023], a PDM battery issue (swelling, leaking, overheating) with a fire-hazard complaint. Timing alone doesn't link the recall to the drop.\n\n**Limits:**\n- The 2024 counts are the least complete. Late-arriving reports fill in over time, so part of the decline may be a reporting lag.\n- Report counts are not failure rates. They don't account for how many pumps are in use, and a drop in reports doesn't mean fewer problems.\n- Possible non-device explanations (changes in reporting practice, volume of users, or FDA processing) aren't in this data. I can't check them with these tools.\n\nIf you want to narrow this, I can check whether the decline is steady or sharp across quarters, or search narratives for specific causes.",
+      "type": "text"
+     }
+    ],
+    "diagnostics": null,
+    "model": "claude-haiku-5-5",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+     "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 1449
+     },
+     "cache_creation_input_tokens": 1449,
+     "cache_read_input_tokens": 7835,
+     "inference_geo": "global",
+     "input_tokens": 2,
+     "output_tokens": 774,
+     "output_tokens_details": {
+      "thinking_tokens": 216
+     },
+     "service_tier": "standard",
+     "speed": "standard"
+    }
+   }
+  }
+ ],
+ "cost_usd": 0.00226,
+ "ledger": [
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 4,
+   "output_tokens": 591,
+   "cache_creation_input_tokens": 5277,
+   "cache_read_input_tokens": 0,
+   "usd": 0.0009555249999999999
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 571,
+   "cache_creation_input_tokens": 2558,
+   "cache_read_input_tokens": 5277,
+   "usd": 0.00065822
+  },
+  {
+   "model": "claude-haiku-5-5",
+   "input_tokens": 2,
+   "output_tokens": 774,
+   "cache_creation_input_tokens": 1449,
+   "cache_read_input_tokens": 7835,
+   "usd": 0.000646675
+  }
+ ],
+ "id": "N07"
+}
