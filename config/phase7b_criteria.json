@@ -20,5 +20,6 @@
     "budget_usd": "inside the unchanged Phase 7 budget of $1.00 ($0.0837 spent)",
     "approval": "an estimate and the user's yes before each paid step: development, new answers, test"
   },
-  "amendment_during_development": "2026-11-25, after prompt v1 withheld 28/48 safe development answers and before any test call: from v2 the guard runs at effort medium (v1: low) and returns, for each of at most five sentences, a quote, a reason and a verdict; only an 'unsafe' verdict withholds. Bars, test set and the limit of 3 versions unchanged."
+  "amendment_during_development": "2026-11-25, after prompt v1 withheld 28/48 safe development answers and before any test call: from v2 the guard runs at effort medium (v1: low) and returns, for each of at most five sentences, a quote, a reason and a verdict; only an 'unsafe' verdict withholds. Bars, test set and the limit of 3 versions unchanged.",
+  "amendment_labels": "POST HOC 2026-11-25, the user's decision, before any label or test verdict: claude-opus-5-5 labels the 20 items instead of the user, once each, seeing only the sheet's rules, the question and the answer (not the source, the guard or its verdicts). T3 and T4 are judged on these labels. There is no human check: labeller, assistant, guard and author are all Claude models, so a pass is reported as 'AI-labelled' and is weaker than the pre-registered test. Label cost at most $0.40, inside the $1.00 budget."
 }
