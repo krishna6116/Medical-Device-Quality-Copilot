@@ -1,0 +1,347 @@
+{
+ "baseline_values": 40,
+ "thresholds": {
+  "volume": 0.3079968329374505,
+  "mode_mix": 0.24514594224160446,
+  "vocabulary": 0.06728952834227131
+ },
+ "baseline_flags": {
+  "volume": 1,
+  "mode_mix": 1,
+  "vocabulary": 1
+ },
+ "planted_detection": {
+  "volume x1.2": "7/40",
+  "volume x1.4": "22/40",
+  "volume x1.6": "37/40",
+  "mode_mix 10 points to the rarest mode": "2/40",
+  "mode_mix 20 points to the rarest mode": "5/40",
+  "mode_mix 35 points to the rarest mode": "40/40",
+  "vocabulary: rare word added to 10% of reports": "2/40",
+  "vocabulary: rare word added to 30% of reports": "2/40",
+  "vocabulary: rare word added to 60% of reports": "2/40"
+ },
+ "required_detection_met": true,
+ "statistics": [
+  {
+   "code": "LPH",
+   "quarter": "2023Q1",
+   "volume": 0.009381581466590072,
+   "volume_change": 0.009381581466590072,
+   "mode_mix": 0.03141352434094903,
+   "vocabulary": 0.02219895289725219
+  },
+  {
+   "code": "LPH",
+   "quarter": "2023Q2",
+   "volume": 0.018881895594224374,
+   "volume_change": -0.018881895594224374,
+   "mode_mix": 0.06287510565618606,
+   "vocabulary": 0.01853784887493773
+  },
+  {
+   "code": "LPH",
+   "quarter": "2023Q3",
+   "volume": 0.01650412603150797,
+   "volume_change": 0.01650412603150797,
+   "mode_mix": 0.060615292199433624,
+   "vocabulary": 0.025378260854039388
+  },
+  {
+   "code": "LPH",
+   "quarter": "2023Q4",
+   "volume": 0.025699600228440866,
+   "volume_change": 0.025699600228440866,
+   "mode_mix": 0.07280005867895196,
+   "vocabulary": 0.06728952834227131
+  },
+  {
+   "code": "LPH",
+   "quarter": "2024Q1",
+   "volume": 0.01253507951356414,
+   "volume_change": 0.01253507951356414,
+   "mode_mix": 0.045673924210965895,
+   "vocabulary": 0.03863888014103019
+  },
+  {
+   "code": "LPH",
+   "quarter": "2024Q2",
+   "volume": 0.14498141263940512,
+   "volume_change": 0.14498141263940512,
+   "mode_mix": 0.06935016656206247,
+   "vocabulary": 0.028044557477244516
+  },
+  {
+   "code": "LPH",
+   "quarter": "2024Q3",
+   "volume": 0.06988382484361033,
+   "volume_change": -0.06988382484361033,
+   "mode_mix": 0.06459237034274176,
+   "vocabulary": 0.018834407606712452
+  },
+  {
+   "code": "LPH",
+   "quarter": "2024Q4",
+   "volume": 0.03519220357336228,
+   "volume_change": 0.03519220357336228,
+   "mode_mix": 0.06964741346176355,
+   "vocabulary": 0.028579859130964093
+  },
+  {
+   "code": "JWH",
+   "quarter": "2023Q1",
+   "volume": 0.07090756905416717,
+   "volume_change": 0.07090756905416717,
+   "mode_mix": 0.1055049739764313,
+   "vocabulary": 0.025455161018107117
+  },
+  {
+   "code": "JWH",
+   "quarter": "2023Q2",
+   "volume": 0.11310932323710365,
+   "volume_change": 0.11310932323710365,
+   "mode_mix": 0.13207416189381574,
+   "vocabulary": 0.021832249130561535
+  },
+  {
+   "code": "JWH",
+   "quarter": "2023Q3",
+   "volume": 0.04667282809611828,
+   "volume_change": -0.04667282809611828,
+   "mode_mix": 0.06895482907633214,
+   "vocabulary": 0.022197309522639163
+  },
+  {
+   "code": "JWH",
+   "quarter": "2023Q4",
+   "volume": 0.06775320139697327,
+   "volume_change": 0.06775320139697327,
+   "mode_mix": 0.05094342400594612,
+   "vocabulary": 0.03687943429484922
+  },
+  {
+   "code": "JWH",
+   "quarter": "2024Q1",
+   "volume": 0.021795015088856617,
+   "volume_change": -0.021795015088856617,
+   "mode_mix": 0.04781642207850453,
+   "vocabulary": 0.02545046419106939
+  },
+  {
+   "code": "JWH",
+   "quarter": "2024Q2",
+   "volume": 0.31879496402877705,
+   "volume_change": 0.31879496402877705,
+   "mode_mix": 0.11331644282255751,
+   "vocabulary": 0.03347042792822426
+  },
+  {
+   "code": "JWH",
+   "quarter": "2024Q3",
+   "volume": 0.18687348316977936,
+   "volume_change": 0.18687348316977936,
+   "mode_mix": 0.1123094904771318,
+   "vocabulary": 0.030485140475960334
+  },
+  {
+   "code": "JWH",
+   "quarter": "2024Q4",
+   "volume": 0.1324075884999023,
+   "volume_change": 0.1324075884999023,
+   "mode_mix": 0.1139564664151489,
+   "vocabulary": 0.019203184395485032
+  },
+  {
+   "code": "MBH",
+   "quarter": "2023Q1",
+   "volume": 0.15622521808088818,
+   "volume_change": -0.15622521808088818,
+   "mode_mix": 0.08635883920745557,
+   "vocabulary": 0.02167757000394783
+  },
+  {
+   "code": "MBH",
+   "quarter": "2023Q2",
+   "volume": 0.006451612903225823,
+   "volume_change": -0.006451612903225823,
+   "mode_mix": 0.1065354000837872,
+   "vocabulary": 0.0383627581320126
+  },
+  {
+   "code": "MBH",
+   "quarter": "2023Q3",
+   "volume": 0.10970797158642465,
+   "volume_change": -0.10970797158642465,
+   "mode_mix": 0.11470385732757896,
+   "vocabulary": 0.02152414365243279
+  },
+  {
+   "code": "MBH",
+   "quarter": "2023Q4",
+   "volume": 0.29617834394904463,
+   "volume_change": 0.29617834394904463,
+   "mode_mix": 0.12886547520305483,
+   "vocabulary": 0.02777404940074969
+  },
+  {
+   "code": "MBH",
+   "quarter": "2024Q1",
+   "volume": 0.3079968329374505,
+   "volume_change": 0.3079968329374505,
+   "mode_mix": 0.1508342295813611,
+   "vocabulary": 0.015617832253735708
+  },
+  {
+   "code": "MBH",
+   "quarter": "2024Q2",
+   "volume": 0.038297872340425476,
+   "volume_change": 0.038297872340425476,
+   "mode_mix": 0.0653063597256133,
+   "vocabulary": 0.015859557152627442
+  },
+  {
+   "code": "MBH",
+   "quarter": "2024Q3",
+   "volume": 0.1171662125340599,
+   "volume_change": -0.1171662125340599,
+   "mode_mix": 0.13573519023110303,
+   "vocabulary": 0.026567014475373074
+  },
+  {
+   "code": "MBH",
+   "quarter": "2024Q4",
+   "volume": 0.04370860927152309,
+   "volume_change": 0.04370860927152309,
+   "mode_mix": 0.0796113893838034,
+   "vocabulary": 0.021032032773005895
+  },
+  {
+   "code": "LWP",
+   "quarter": "2023Q1",
+   "volume": 0.07965840683186332,
+   "volume_change": -0.07965840683186332,
+   "mode_mix": 0.0905558493636942,
+   "vocabulary": 0.010163931252491896
+  },
+  {
+   "code": "LWP",
+   "quarter": "2023Q2",
+   "volume": 0.13049180327868848,
+   "volume_change": -0.13049180327868848,
+   "mode_mix": 0.18350992755235768,
+   "vocabulary": 0.033889724317811856
+  },
+  {
+   "code": "LWP",
+   "quarter": "2023Q3",
+   "volume": 0.16717085361041695,
+   "volume_change": -0.16717085361041695,
+   "mode_mix": 0.24514594224160446,
+   "vocabulary": 0.06143913244922625
+  },
+  {
+   "code": "LWP",
+   "quarter": "2023Q4",
+   "volume": 0.24729064039408866,
+   "volume_change": -0.24729064039408866,
+   "mode_mix": 0.2506644658224366,
+   "vocabulary": 0.04657650899404578
+  },
+  {
+   "code": "LWP",
+   "quarter": "2024Q1",
+   "volume": 0.14446291458877547,
+   "volume_change": -0.14446291458877547,
+   "mode_mix": 0.16058279799308417,
+   "vocabulary": 0.025960397026536616
+  },
+  {
+   "code": "LWP",
+   "quarter": "2024Q2",
+   "volume": 0.11155378486055778,
+   "volume_change": -0.11155378486055778,
+   "mode_mix": 0.06735836921372804,
+   "vocabulary": 0.017562251743963683
+  },
+  {
+   "code": "LWP",
+   "quarter": "2024Q3",
+   "volume": 0.13892540976422119,
+   "volume_change": -0.13892540976422119,
+   "mode_mix": 0.020357556737737488,
+   "vocabulary": 0.012352294484726137
+  },
+  {
+   "code": "LWP",
+   "quarter": "2024Q4",
+   "volume": 0.005140667352088957,
+   "volume_change": -0.005140667352088957,
+   "mode_mix": 0.03396019232709865,
+   "vocabulary": 0.009791806013945987
+  },
+  {
+   "code": "LZG",
+   "quarter": "2023Q1",
+   "volume": 0.1328255093002657,
+   "volume_change": -0.1328255093002657,
+   "mode_mix": 0.04541902980899492,
+   "vocabulary": 0.012759338305429517
+  },
+  {
+   "code": "LZG",
+   "quarter": "2023Q2",
+   "volume": 0.2225867089307434,
+   "volume_change": -0.2225867089307434,
+   "mode_mix": 0.09247946986365599,
+   "vocabulary": 0.011867253160142076
+  },
+  {
+   "code": "LZG",
+   "quarter": "2023Q3",
+   "volume": 0.1154073781811008,
+   "volume_change": -0.1154073781811008,
+   "mode_mix": 0.1072808445943746,
+   "vocabulary": 0.015274471473882466
+  },
+  {
+   "code": "LZG",
+   "quarter": "2023Q4",
+   "volume": 0.13504585560916238,
+   "volume_change": -0.13504585560916238,
+   "mode_mix": 0.06303466740404329,
+   "vocabulary": 0.012833596914839606
+  },
+  {
+   "code": "LZG",
+   "quarter": "2024Q1",
+   "volume": 0.15856544693245944,
+   "volume_change": -0.15856544693245944,
+   "mode_mix": 0.052183109725504856,
+   "vocabulary": 0.014353468977455508
+  },
+  {
+   "code": "LZG",
+   "quarter": "2024Q2",
+   "volume": 0.14354090354090354,
+   "volume_change": -0.14354090354090354,
+   "mode_mix": 0.05202563656943218,
+   "vocabulary": 0.06919428295589199
+  },
+  {
+   "code": "LZG",
+   "quarter": "2024Q3",
+   "volume": 0.08322271009905036,
+   "volume_change": 0.08322271009905036,
+   "mode_mix": 0.10200621184307009,
+   "vocabulary": 0.03949699795469096
+  },
+  {
+   "code": "LZG",
+   "quarter": "2024Q4",
+   "volume": 0.1873476795436868,
+   "volume_change": -0.1873476795436868,
+   "mode_mix": 0.07127705994669305,
+   "vocabulary": 0.026249794503327588
+  }
+ ]
+}
