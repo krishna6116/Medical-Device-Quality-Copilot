@@ -129,7 +129,7 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def build(raw: Path) -> dict:
+def build(raw: Path, window_to: date = W_TO, text_required_until: date | None = None) -> dict:
     """Turn the raw files into row lists for every table, plus quarantine rows."""
     t = {k: [] for k in ("report", "device", "problem", "patient_problem", "text", "recall", "quarantine")}
     makers: set[str] = set()
@@ -148,13 +148,13 @@ def build(raw: Path) -> dict:
             rule = None
             if not key or key in seen:
                 rule, detail = "R1", "missing or duplicate mdr_report_key"
-            elif not received or not (W_FROM <= received <= W_TO):
+            elif not received or not (W_FROM <= received <= window_to):
                 rule, detail = "R2", f"date_received {rec.get('date_received')!r} invalid or outside the window"
             elif mine is None:
                 rule, detail = "R3", f"no device entry with product code {code}"
             elif et and et not in EVENT_TYPES:
                 rule, detail = "R4", f"unknown event_type {et!r}"
-            elif not any((x.get("text") or "").strip() for x in texts):
+            elif not any((x.get("text") or "").strip() for x in texts) and (text_required_until is None or received <= text_required_until):
                 rule, detail = "R5", "no narrative text"
             if key:
                 seen.add(key)
@@ -197,9 +197,9 @@ def build(raw: Path) -> dict:
                                     none_if_blank(d.get("manufacturer_d_name")), none_if_blank(d.get("model_number")),
                                     none_if_blank(d.get("catalog_number")), none_if_blank(d.get("lot_number")),
                                     none_if_blank(d.get("implant_flag"))))
-            for term in sorted(set(rec.get("product_problems") or [])):
+            for term in sorted({x for x in (rec.get("product_problems") or []) if x}):  # null terms (2025+) are skipped
                 t["problem"].append((key, term))
-            pterms = {p for pt in (rec.get("patient") or []) for p in (pt.get("patient_problems") or [])}
+            pterms = {p for pt in (rec.get("patient") or []) for p in (pt.get("patient_problems") or []) if p}
             for term in sorted(pterms):
                 t["patient_problem"].append((key, term))
             for i, x in enumerate(texts, 1):
@@ -312,11 +312,12 @@ def pipeline_stats(cur) -> dict:
 
 
 def load(raw: Path = ROOT / "data" / "raw", schema: str = "core", url: str | None = None,
-         write_summary: bool = True) -> dict:
+         write_summary: bool = True, window_to: date = W_TO,
+         text_required_until: date | None = None) -> dict:
     load_dotenv(ROOT / ".env")
     url = url or os.environ["DATABASE_URL"]
     started = datetime.now(timezone.utc)
-    t = build(raw)
+    t = build(raw, window_to, text_required_until)
     maker_id = {name: i for i, name in enumerate(t["makers"], 1)}
     ddl = (ROOT / "mdqc" / "schema.sql").read_text(encoding="utf-8").replace("{schema}", schema)
     with psycopg.connect(url) as con, con.cursor() as cur:

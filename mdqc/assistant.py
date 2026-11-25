@@ -43,6 +43,11 @@ Rules:
 6. If the data cannot answer the question (other devices, dates outside 2022-2024), say so plainly.
 7. Keep answers short: a direct answer first, then the key evidence as a few bullet points with citations."""
 
+# Phase 7c, scope "all": the same rules over 2022-2026
+SYSTEM_ALL = (SYSTEM.replace("MAUDE adverse-event reports received 2022-2024", "MAUDE adverse-event reports received from 2022 to mid-November 2026 (the last quarter of 2026 is incomplete)")
+              .replace("dates outside 2022-2024", "dates before 2022 or after mid-November 2026")
+              .replace("recent months fill in late.", "recent months fill in late; 2022-2024 reports come from a slightly older FDA snapshot and their failure modes are the ones that were validated."))
+
 MEMORY_RULES = """This session belongs to an open investigation. Its memory (saved in earlier sessions) is shown below.
 - Build on it: do not re-investigate what is ruled out unless the user asks; mention relevant saved items.
 - Save with the remember tool only what the user agrees or asks to keep (a ruled-out cause with why, a hypothesis, a decision, an open question). Evidence may only cite report keys and recall numbers from tool results.
@@ -112,18 +117,19 @@ def text_of(resp) -> str:
 
 
 def investigate(question: str, client, tool_runner, model: str = MODEL, budget_usd: float = 0.25,
-                history: list | None = None, memory_block: str | None = None, rules: str | None = None) -> dict:
+                history: list | None = None, memory_block: str | None = None, rules: str | None = None, scope: str = "core") -> dict:
     """Run one question through the loop. tool_runner(name, args) -> (json_text, is_error).
     Returns a record with the answer, every tool call and result, every raw response and the cost."""
     messages = list(history or []) + [{"role": "user", "content": question}]
     ledger, calls, tool_calls = Ledger(), [], []
     stop, answer = None, ""
-    from mdqc.tools import MEMORY_TOOL_DEFINITIONS, TOOL_DEFINITIONS
+    from mdqc.tools import MEMORY_TOOL_DEFINITIONS, TOOL_DEFINITIONS, TOOL_DEFINITIONS_ALL
     # Phase 5: with an open investigation, its memory is loaded into the system prompt and the memory tools are added
-    system = SYSTEM if memory_block is None else "\n\n".join([SYSTEM, MEMORY_RULES, memory_block])
+    base, lookups = (SYSTEM_ALL, TOOL_DEFINITIONS_ALL) if scope == "all" else (SYSTEM, TOOL_DEFINITIONS)
+    system = base if memory_block is None else "\n\n".join([base, MEMORY_RULES, memory_block])
     if rules:  # Phase 7 safety rules; without them the prompt is exactly the Phase 4-6 one
         system += "\n\n" + rules
-    tools = TOOL_DEFINITIONS if memory_block is None else TOOL_DEFINITIONS + MEMORY_TOOL_DEFINITIONS
+    tools = lookups if memory_block is None else lookups + MEMORY_TOOL_DEFINITIONS
     for step in range(MAX_STEPS):
         resp = client.create(model=model, max_tokens=MAX_TOKENS, system=system, tools=tools,
                              messages=messages, output_config={"effort": EFFORT}, cache_control={"type": "ephemeral"})

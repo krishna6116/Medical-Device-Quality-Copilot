@@ -11,7 +11,10 @@ with reference labels on the test set), stored in analytics.report_failure_mode.
 
 from __future__ import annotations
 
+import copy
 import json
+import re
+from contextvars import ContextVar
 from datetime import date
 from functools import lru_cache
 from pathlib import Path
@@ -25,6 +28,29 @@ CODES = {"LPH": "hip implant (uncemented)", "JWH": "knee implant (cemented)", "M
 MODES = {m: d["definition"] for f in CODEBOOK["families"].values() for m, d in f["modes"].items()}
 WINDOW = ("2022-01-01", "2024-12-31")
 MAX_ROWS = 10
+
+# Phase 7c: scope "all" runs the same SQL on core_all / analytics_all (2022-2026). The default scope is unchanged.
+WINDOW_ALL = ("2022-01-01", "2026-12-31")
+PART_CHARS, MAX_OFFSET = 3000, 100
+_SCOPE: ContextVar[str] = ContextVar("scope", default="core")
+
+
+def _all() -> bool:
+    return _SCOPE.get() == "all"
+
+
+def _window():
+    return WINDOW_ALL if _all() else WINDOW
+
+
+class ScopedCon:
+    """Sends the tools' fixed SQL to the _all schemas (the SQL text is the project's own, never the model's)."""
+
+    def __init__(self, con):
+        self.con = con
+
+    def execute(self, sql, params=None):
+        return self.con.execute(re.sub(r"\b(core|analytics)\.", r"\1_all.", sql), params)
 
 
 class ToolError(ValueError):
@@ -41,8 +67,9 @@ def _code(v, required=True):
     return v
 
 
-def _date(v, default, lo=WINDOW[0], hi=WINDOW[1]):
+def _date(v, default, lo=None, hi=None):
     """Parse YYYY-MM-DD and clamp it to [lo, hi] (reports: 2022-2024; recalls: any year 1976-2026)."""
+    lo, hi = lo or _window()[0], hi or _window()[1]
     v = str(v or default).strip()
     try:
         d = date.fromisoformat(v)
@@ -75,6 +102,16 @@ def _limit(v, default=5):
     return max(1, min(n, MAX_ROWS))
 
 
+def _offset(v):
+    try:
+        n = int(v or 0)
+    except (TypeError, ValueError) as exc:
+        raise ToolError(f"offset must be a whole number from 0 to {MAX_OFFSET}, got {v!r}") from exc
+    if not 0 <= n <= MAX_OFFSET:
+        raise ToolError(f"offset must be from 0 to {MAX_OFFSET}")
+    return n
+
+
 def _maker(con, v):
     """Resolve a free-text company name to exactly one parent company (case-insensitive substring)."""
     if v is None:
@@ -98,7 +135,7 @@ def _filters(con, args, alias="r"):
     code = _code(args.get("product_code"), required=False)
     maker = _maker(con, args.get("manufacturer"))
     mode = _mode(args.get("failure_mode"), code)
-    d0, d1 = _date(args.get("date_from"), WINDOW[0]), _date(args.get("date_to"), WINDOW[1])
+    d0, d1 = _date(args.get("date_from"), _window()[0]), _date(args.get("date_to"), _window()[1])
     if d0 > d1:
         raise ToolError("date_from is after date_to")
     where, params = [f"{alias}.date_received BETWEEN %s AND %s"], [d0, d1]
@@ -169,10 +206,11 @@ def failure_modes(con, args):
                            "reference labels on 70% of test reports (Phase 3)."}
 
 
-@lru_cache(maxsize=1)
-def _embeddings():
-    keys = (ROOT / "data" / "processed" / "embeddings_bge_small_keys.txt").read_text(encoding="utf-8").split()
-    emb = np.load(ROOT / "data" / "processed" / "embeddings_bge_small.npy").astype(np.float32)
+@lru_cache(maxsize=2)
+def _embeddings(scope="core"):
+    name, keys_name = ("embeddings_all.npy", "embeddings_all_keys.txt") if scope == "all" else ("embeddings_bge_small.npy", "embeddings_bge_small_keys.txt")
+    keys = (ROOT / "data" / "processed" / keys_name).read_text(encoding="utf-8").split()
+    emb = np.load(ROOT / "data" / "processed" / name).astype(np.float32)
     return {k: i for i, k in enumerate(keys)}, emb
 
 
@@ -188,11 +226,18 @@ def search_reports(con, args):
     if len(query) < 3:
         raise ToolError("query must describe what to look for")
     where, params, echo = _filters(con, args)
-    limit = _limit(args.get("limit"))
+    offset = _offset(args.get("offset"))
+    limit = _limit(args.get("limit")) + offset
     keys = [k for (k,) in con.execute(f"SELECT r.mdr_report_key FROM {FROM} WHERE {where}", params).fetchall()]
+    total, page = len(keys), {}
+    row = emb = None
+    if keys:
+        row, emb = _embeddings(_SCOPE.get())
+    if _all():
+        keys = [k for k in keys if k in row] if keys else []
+        page = {"offset": offset, "reports_without_published_narrative": total - len(keys)}
     if not keys:
-        return {"filters": echo, "query": query, "matches_considered": 0, "results": []}
-    row, emb = _embeddings()
+        return {"filters": echo, "query": query, "matches_considered": 0, **page, "results": []}
     from mdqc import embed
     qv = embed.encode(_model(), [query], query=True)[0]
     idx = np.array([row[k] for k in keys])
@@ -217,7 +262,7 @@ def search_reports(con, args):
         results.append({"mdr_report_key": k, "similarity": round(float(sims[int(i)]), 3), "date_received": str(meta[0]),
                         "manufacturer": meta[1], "event_type": meta[2], "failure_mode": meta[3], "product_code": meta[4],
                         "excerpt": text[:300], "identical_reports": 0})
-    return {"filters": echo, "query": query, "matches_considered": len(keys), "results": results,
+    return {"filters": echo, "query": query, "matches_considered": len(keys), **page, "results": results[offset:],
             "note": "identical_reports = further reports among the top matches with the same opening text (templates)."}
 
 
@@ -227,9 +272,24 @@ def get_report(con, args):
         r.event_type, m.parent_company, m.raw_name, r.brand_name, r.generic_name, r.model_number, r.pma_pmn_number, f.mode
         FROM {FROM} WHERE r.mdr_report_key = %s""", (key,)).fetchone()
     if not r:
-        raise ToolError(f"report {key!r} not found in the project data (LPH, JWH, MBH, LWP, LZG received 2022-2024)")
+        raise ToolError(f"report {key!r} not found in the project data (LPH, JWH, MBH, LWP, LZG received {_window()[0][:4]}-{_window()[1][:4]})")
     from mdqc.textprep import load_texts
-    text = load_texts(con, "core", [key])[key]
+    page = {}
+    if _all():
+        from mdqc.textprep import ORDER, normalise
+        rows = con.execute("SELECT text_seq, text_type, text FROM core.report_text WHERE mdr_report_key = %s", (key,)).fetchall()
+        full = " || ".join(x for x in (normalise(t) for _, _, t in sorted(rows, key=lambda z: (ORDER.get(z[1] or "", 2), z[0]))) if x)
+        parts = max(1, -(-len(full) // PART_CHARS))
+        try:
+            n = int(args.get("text_part") or 1)
+        except (TypeError, ValueError) as exc:
+            raise ToolError(f"text_part must be a whole number from 1 to {parts}") from exc
+        if not 1 <= n <= parts:
+            raise ToolError(f"text_part must be from 1 to {parts} for this report")
+        text = full[(n - 1) * PART_CHARS:n * PART_CHARS] or "(FDA has not published this report's narrative yet)"
+        page = {"narrative_part": n, "narrative_parts": parts}
+    else:
+        text = load_texts(con, "core", [key])[key]
     terms = [t for (t,) in con.execute("SELECT term FROM core.report_problem WHERE mdr_report_key = %s ORDER BY 1", (key,)).fetchall()]
     pterms = [t for (t,) in con.execute("SELECT term FROM core.report_patient_problem WHERE mdr_report_key = %s ORDER BY 1", (key,)).fetchall()]
     links = con.execute("""SELECT l.product_res_number, l.link_type, l.days_from_initiation, c.event_date_initiated,
@@ -240,7 +300,7 @@ def get_report(con, args):
             "date_received": str(r[3]), "date_of_event": str(r[4]) if r[4] else None, "event_type": r[5],
             "manufacturer": r[6], "manufacturer_as_reported": r[7], "brand_name": r[8], "generic_name": r[9],
             "model_number": r[10], "clearance_number": r[11], "failure_mode": r[12],
-            "fda_device_problem_terms": terms, "fda_patient_problem_terms": pterms, "narrative": text[:1500],
+            "fda_device_problem_terms": terms, "fda_patient_problem_terms": pterms, "narrative": text if _all() else text[:1500], **page,
             "recalls_within_a_year": [{"recall_number": a, "link": b, "days_from_recall_start": c, "recall_started": str(d),
                                        "root_cause": e, "reason": f} for a, b, c, d, e, f in links],
             "note": "A link means same clearance number, or same company and product code close in time; it is context, not proof."}
@@ -264,13 +324,14 @@ def find_recalls(con, args):
     if text:
         where.append("(c.reason_for_recall ILIKE %s OR c.product_description ILIKE %s)")
         params += [f"%{text}%", f"%{text}%"]
+    offset = _offset(args.get("offset"))
     w = " AND ".join(where)
     base = "core.fact_recall c JOIN core.dim_manufacturer m USING (manufacturer_id)"
     total = con.execute(f"SELECT count(*), count(DISTINCT c.res_event_number) FROM {base} WHERE {w}", params).fetchone()
     rows = con.execute(f"""SELECT c.product_res_number, c.res_event_number, c.product_code, m.parent_company,
         c.event_date_initiated, c.recall_status, c.root_cause, left(c.reason_for_recall, 300)
-        FROM {base} WHERE {w} ORDER BY c.event_date_initiated DESC, c.product_res_number LIMIT {MAX_ROWS}""", params).fetchall()
-    return {"filters": {"product_code": code, "manufacturer": maker, "date_from": d0, "date_to": d1, "text": text or None},
+        FROM {base} WHERE {w} ORDER BY c.event_date_initiated DESC, c.product_res_number LIMIT {MAX_ROWS} OFFSET {offset}""", params).fetchall()
+    return {**({"offset": offset} if _all() else {}), "filters": {"product_code": code, "manufacturer": maker, "date_from": d0, "date_to": d1, "text": text or None},
             "recall_records": total[0], "recall_events": total[1], "shown": len(rows),
             "recalls": [{"recall_number": a, "recall_event": b, "product_code": c_, "manufacturer": d, "started": str(e),
                          "status": f, "root_cause": g, "reason": h} for a, b, c_, d, e, f, g, h in rows]}
@@ -293,7 +354,7 @@ def signal_check(con, args):
     return {"filters": {"product_code": code, "manufacturer": maker, "failure_mode": mode}, "signals_total": total,
             "signals": [{"manufacturer": a, "failure_mode": b, "month": c, "reports": d, "expected": round(e, 1)} for a, b, c, d, e in rows],
             "rule": "A month is a signal if it has at least 5 reports and the chance of that many, given the previous 12 "
-                    "months' average, is below 0.1% (Poisson). Signals run 2023-01 to 2024-12.",
+                    "months' average, is below 0.1% (Poisson). Signals run 2023-01 to " + ("2026-09." if _all() else "2024-12."),
             "caution": "A signal is a prompt to look closer, not evidence of a defect. In a backtest, 15 of 38 recall events "
                        "had a prior signal versus a 14% base rate."}
 
@@ -336,32 +397,56 @@ TOOL_SPECS = [
     ("signal_check", signal_check, "Early-warning signals (months with unusually many reports) for a product code, optionally one company and failure mode.",
      _schema({k: _COMMON[k] for k in ("product_code", "manufacturer", "failure_mode")}, ["product_code"])),
 ]
+def _definitions_all():
+    """Scope 'all': dates to 2026, offsets and narrative pages."""
+    out = []
+    for n, _, d, s in TOOL_SPECS:
+        s = copy.deepcopy(s)
+        for k, p in s["properties"].items():
+            if k == "date_from" and n != "find_recalls":
+                p["description"] = "YYYY-MM-DD, report received on or after (data covers 2022-01-01 to mid-November 2026; 2026 is incomplete)"
+        if n in ("search_reports", "find_recalls"):
+            s["properties"]["offset"] = {"type": "integer", "minimum": 0, "maximum": MAX_OFFSET, "description": "Skip this many results, to see the next page"}
+        if n == "get_report":
+            s["properties"]["text_part"] = {"type": "integer", "minimum": 1, "description": "Which part of a long narrative (see narrative_parts)"}
+            d += " Long narratives come in parts: ask for text_part 2, 3, ... to read on."
+        out.append({"name": n, "description": d, "input_schema": s})
+    return out
+
+
 TOOLS = {name: fn for name, fn, _, _ in TOOL_SPECS}
 TOOL_DEFINITIONS = [{"name": n, "description": d, "input_schema": s} for n, _, d, s in TOOL_SPECS]
 SCHEMAS = {n: s for n, _, _, s in TOOL_SPECS}
+TOOL_DEFINITIONS_ALL = _definitions_all()
+SCHEMAS_ALL = {t["name"]: t["input_schema"] for t in TOOL_DEFINITIONS_ALL}
 
 
-def run_tool(con, name: str, args: dict) -> tuple[str, bool]:
+def run_tool(con, name: str, args: dict, scope: str = "core") -> tuple[str, bool]:
     """Execute a tool; returns (JSON text, is_error). Never raises: argument problems and unexpected failures
     come back as error results the model can read, and the database connection is reset after a failed query."""
     if name not in TOOLS:
         return json.dumps({"error": f"unknown tool {name!r}; tools: {sorted(TOOLS)}"}), True
     args = dict(args or {})
-    allowed = set(SCHEMAS[name]["properties"])
+    if scope not in ("core", "all"):
+        raise ValueError(scope)
+    allowed = set((SCHEMAS_ALL if scope == "all" else SCHEMAS)[name]["properties"])
     unknown = sorted(set(args) - allowed)
     if unknown:
         return json.dumps({"error": f"unknown argument(s) {unknown} for {name}; allowed: {sorted(allowed)}"}), True
+    token = _SCOPE.set(scope)
     try:
         # PostgreSQL itself refuses writes while a lookup runs; the setting ends with this inner transaction
         with con.transaction(force_rollback=True):
             con.execute("SET LOCAL transaction_read_only = on")
-            return json.dumps(TOOLS[name](con, args), default=str, ensure_ascii=False), False
+            return json.dumps(TOOLS[name](ScopedCon(con) if scope == "all" else con, args), default=str, ensure_ascii=False), False
     except ToolError as exc:
         con.rollback()
         return json.dumps({"error": str(exc)}), True
     except Exception as exc:  # noqa: BLE001 - a tool must never crash the investigation
         con.rollback()
         return json.dumps({"error": f"{name} failed ({type(exc).__name__}); check the arguments"}), True
+    finally:
+        _SCOPE.reset(token)
 
 
 # ---- Phase 5: memory tools (bound to one investigation and session) --------------------------------------

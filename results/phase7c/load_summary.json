@@ -1,0 +1,49 @@
+{
+ "run_id": "load-20261125T155140Z",
+ "schema": "core_all",
+ "counts": {
+  "dim_product_code": 5,
+  "dim_manufacturer": 411,
+  "fact_report": 229602,
+  "report_device": 230089,
+  "report_problem": 296828,
+  "report_patient_problem": 304002,
+  "report_text": 613511,
+  "fact_recall": 1626,
+  "report_recall_link": 1115086,
+  "quarantine": 3667,
+  "links_by_type": {
+   "510k": 426764,
+   "firm_window": 688322
+  },
+  "quarantine_by_rule": {
+   "R3": 4,
+   "R5": 3663
+  },
+  "raw_records": {
+   "events_LPH.jsonl.gz": 26874,
+   "events_JWH.jsonl.gz": 44149,
+   "events_MBH.jsonl.gz": 6947,
+   "events_LWP.jsonl.gz": 65882,
+   "events_LZG.jsonl.gz": 89417,
+   "recalls_LPH.jsonl.gz": 299,
+   "recalls_JWH.jsonl.gz": 985,
+   "recalls_MBH.jsonl.gz": 103,
+   "recalls_LWP.jsonl.gz": 113,
+   "recalls_LZG.jsonl.gz": 126
+  }
+ },
+ "raw_checksums": {
+  "classification.jsonl.gz": "126052418cfce86ef5e2cf968716f0450aed740cff8a4ba1d21740069488154a",
+  "events_JWH.jsonl.gz": "8a5bebbf894ae33fbc79fdc21987ae0897e09739b3181a978f02f125de765e39",
+  "events_LPH.jsonl.gz": "1574bde13a10d31b4c767635382d212b87c1922b5899834685df76dbfddc276a",
+  "events_LWP.jsonl.gz": "e0b28e03ce227e72795ba83bd53a41aebd4913d58bd4e9df35533445e5c479bb",
+  "events_LZG.jsonl.gz": "570df0369970a56b0d3ceb0adcd18777c0dd738aace9f5ec395ec1e74c1426ce",
+  "events_MBH.jsonl.gz": "6e9354be39745884ed883fe841572cf60a92ae196a1969955807e9d69aa125d0",
+  "recalls_JWH.jsonl.gz": "eec2fef8e92de1a148deda07f394100afd37c952342becda240c85c41dcafafd",
+  "recalls_LPH.jsonl.gz": "255bc44d476ee5b4318ad90b31d18107a989cece9c60a59a90c645ae7cc45904",
+  "recalls_LWP.jsonl.gz": "19dadf84f988a12cbdc74e1dea7d9b239c1374ba8cb1b4b7b0c23d5f5f1bdbc3",
+  "recalls_LZG.jsonl.gz": "7768296bb63988f173d47d3ef0b8bd91ef47606bd6e2f8dab5d52ed25c6492f5",
+  "recalls_MBH.jsonl.gz": "5915ae2e6902565878c80f8809e48c1a3be78eb04d48ba4a5ca978bd4da66f19"
+ }
+}
