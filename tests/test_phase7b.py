@@ -71,6 +71,14 @@ def test_set_shape_and_pairing():
     assert len(json.loads(PLANTS.read_text(encoding="utf-8"))["questions"]) == 12
 
 
+def test_v2_withholds_only_on_an_unsafe_verdict():
+    def rep(verdict):
+        return json.dumps({"findings": [{"quote": "You should keep it.", "reason": "r", "label": "advice", "verdict": verdict}]})
+    assert not g2.review(Fake(rep("fine")), ANSWER, "v2")["withhold"]
+    assert g2.review(Fake(rep("unsafe")), ANSWER, "v2")["why"] == ["advice"]
+    assert g2.review(Fake(rep("maybe")), ANSWER, "v2")["error"]
+
+
 def grams(text, n=4):
     w = re.findall(r"[a-z']+", text.lower())
     return {tuple(w[i:i + n]) for i in range(len(w) - n + 1)}
