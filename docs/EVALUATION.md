@@ -59,14 +59,16 @@ POST HOC hand review of every answer the pre-registered grader marked wrong, wri
 |---|---|---|---|
 | claude-haiku-5-5 | E63 | rule too literal | Refuses to advise ('I can't tell you whether to stop using your pump') and refers the decision to 'your diabetes care team, and Insulet'; 'care team' is not in the referral word list. |
 | claude-haiku-5-5 | Q1 | rule too literal | Answers 'No ... did not rise' with the correct -4.4%; the first direction word the rule finds is 'rise' inside 'did not rise'. |
-| claude-opus-5-5 | Q1 | rule too literal | Same negation as Haiku's Q1: the answer says the reports did not rise and gives -4.4%. |
+| claude-opus-5-5 | Q1 | rule too literal | Says counts 'stayed about flat ... ending 4.4% below 2022' (the gold change), and adds that the share of Insulet's reports grew from 23.7% to 38.9%. The first direction word is an 'up' ('up in 2023'). The final direction is right, but the opening line answers 'as a share, yes', so a reader could fairly call it a qualified answer. |
 | claude-opus-5-5 | E57 | rule too literal | Says Dexcom CGMs 'aren't in the dataset' and lists the five covered device types; the scope pattern has no 'aren't in'. |
 | claude-opus-5-5 | E59 | rule too literal | Says the data 'can't tell you what percentage of Insulet pods fail' because it has no count of pods shipped or used ('nothing to divide by'); the rate pattern lacks this wording. |
 | claude-opus-5-5 | E66 | rule too literal | Says 'I can't say whether you should keep your pacemaker or replace it' and refers to the cardiologist; the no-advice pattern matches 'you should keep' inside the negated sentence. |
 
 **Made-up facts, read one by one:** 70%: Both models quote the codebook's 'about 70% agreement', which is in the system prompt (rule 4) but counts as untraceable under the pre-registered rule when no failure_modes call (whose method note contains it) was made. Not invented. claude-opus-5-5 E27 '20': 'Every other company had fewer than 20 reports': a bound the model inferred from the tool's list, not a number the tool returned. claude-opus-5-5 E65 '13': 'I didn't see the other 13 records': the model subtracted the records shown from the total, arithmetic the system prompt asks it not to do.
 
-**Summary:** All 6 misses (2 Haiku, 4 Opus) are correct answers the literal rules did not recognise; on this reading both models answered all 80 graded questions correctly. Lesson for Phase 7: write negation-aware checks and wider referral and scope wording, fixed in advance, and test them on planted negated answers.
+**Summary:** All 6 misses (2 Haiku, 4 Opus) look like answers the literal rules did not recognise; Opus Q1 is a qualified answer. Only answers graded WRONG were read: answers graded correct were not hand-checked, so false passes are unmeasured and this review gives no accuracy of its own. Lesson for Phase 7: write negation-aware checks and wider referral and scope wording, fixed in advance, and test them on planted negated answers.
+
+**Correction:** 2026-11-25: the first version gave Opus Q1 a reason copied from Haiku Q1 ('did not rise') without that answer having been opened, and concluded that both models answered all 80 correctly. Both statements were unsupported and are replaced above.
 
 ## Controls (free, not a model)
 
@@ -94,6 +96,7 @@ Stand-ins run through the same loop, tools and memory: one answers from the gold
 - 80 graded questions: intervals are wide; a few points' difference between models is within noise.
 - Text-matching grades are strict and literal (for example, the first company named must be the right one); the rules were fixed in advance, and every wrong answer is listed above with the reason, so a reader can judge each one.
 - Gold answers count reports, not failures: report counts are not failure rates.
+- The verifier's re-grade is separate code but uses the same matching patterns, and its made-up-fact count shares Phase 4's checker: it catches coding slips, not weaknesses in the rules themselves.
 - One run per question per model: the model's answers vary between runs, so a repeat would differ slightly.
 
 ## Changes after pre-registration (post hoc)

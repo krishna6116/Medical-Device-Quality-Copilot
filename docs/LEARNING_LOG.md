@@ -144,3 +144,8 @@
 **What was checked:** every verifier in full (Phase 1 and 2 with the live openFDA cross-checks and a full database reload, Phase 3, Phase 4 scripted and live, Phase 5, Phase 6), all 101 tests, the six generated documents against their results, all six notebooks re-executed from scratch, secrets and personal data across the whole git history, and local versus GitHub and CI.
 
 **Result:** every check passes (Phase 1 9/9, Phase 2 10/10, Phase 3 8/8, Phase 4 5/5 scripted and 5/5 live, Phase 5 5/5, Phase 6 5/5; all scorecards 5/5), no secret or personal data in history, notebooks run with 0 errors. One gap fixed: notebook 04 still described the live answers as future work; it now shows them with the original Phase 4 scorecard.
+
+## 2026-11-25: corrections to the Phase 6 record
+
+- The Phase 6 hand review explained Opus's Q1 answer without that answer having been opened, and concluded both models got all 80 right. Only answers graded wrong were read, so that conclusion was unsupported. `results/phase6/hand_review.json` and `docs/EVALUATION.md` are corrected; no grade changed.
+- The 2026-11-22 audit said no personal data was in the git history, but its scan did not search for phone numbers. A fuller scan on 2026-11-25 (phones, emails, keys, database URLs) found only invented 555 test numbers, example.com addresses and a CI-only password.

@@ -165,7 +165,7 @@ def render(s: dict) -> str:
         L += ["## Hand review of the wrong answers (post hoc; grades unchanged)", "", h["_about"], "",
               table(["Model", "Question", "Verdict", "Why"], [[r["model"], r["id"], r["verdict"], r["why"]] for r in h["reviews"]]), "",
               "**Made-up facts, read one by one:** " + " ".join(f"{k}: {v}" for k, v in h["made_up_facts_review"].items()), "",
-              f"**Summary:** {h['summary']}", ""]
+              f"**Summary:** {h['summary']}", "", f"**Correction:** {h['correction']}", ""]
     L += ["## Controls (free, not a model)", "",
           "Stand-ins run through the same loop, tools and memory: one answers from the gold, one gives planted wrong answers. "
           "The grader must accept every gold answer and reject every wrong one.", "",
@@ -179,6 +179,8 @@ def render(s: dict) -> str:
           "- Text-matching grades are strict and literal (for example, the first company named must be the right one); the rules "
           "were fixed in advance, and every wrong answer is listed above with the reason, so a reader can judge each one.",
           "- Gold answers count reports, not failures: report counts are not failure rates.",
+          "- The verifier's re-grade is separate code but uses the same matching patterns, and its made-up-fact count shares "
+          "Phase 4's checker: it catches coding slips, not weaknesses in the rules themselves.",
           "- One run per question per model: the model's answers vary between runs, so a repeat would differ slightly.", "",
           "## Changes after pre-registration (post hoc)", "",
           "- Before any scored run, the grader's percentage rounding was set to ordinary half-up rounding (26.5 -> 27); Python's "
