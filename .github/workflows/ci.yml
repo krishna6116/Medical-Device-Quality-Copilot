@@ -39,6 +39,10 @@ jobs:
         run: |
           python -m mdqc.verify_phase6 --offline
           python -m mdqc.report_phase6 --check
+      - name: Phase 7 offline verifier (commit order, judge attempts, red-team grades, spend, flags) and doc
+        run: |
+          python -m mdqc.verify_phase7 --offline
+          python -m mdqc.report_phase7 --check
 
   # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
   # (including the tampered-cell check) and the independent verifier (P1-P8) on it.

@@ -59,7 +59,7 @@ Each phase lists what gets built, why, and what "done" means. "Verified" always 
 - **Why:** an AI project without an evaluation is a demo; pre-registration stops tuning to the test; the paired comparison shows whether the cheap model is good enough and what a stronger model adds per dollar.
 - **Done:** criteria committed before the first scored run; spend within the cap; comparison doc with intervals generated from results; verifier re-grades the recorded transcripts with independent code.
 
-### Phase 7: Safety guardrails, cost tracking and drift monitoring
+### Phase 7: Safety guardrails, cost tracking and drift monitoring (run 2026-11-25: `docs/SAFETY_AND_DRIFT.md`, scorecard 4/5, red-team criterion G2 NOT met, $0.08)
 - **Build:** guardrails (no medical advice; "a report is not proof the device caused the event"; refuse questions about identifiable patients; prompt-injection test cases from report text), a cost ledger (tokens and dollars per call, budget stop), and monitoring of new FDA reports: a scheduled pull of the latest weeks, drift checks on volume, failure-mode mix and narrative vocabulary against the Phase 1 baseline, and a flag when the assistant's grounding rate drops (reusing the Phase 7 monitoring patterns from the predictive maintenance project).
 - **Why:** what makes an AI tool safe to run in a regulated company after the demo.
 - **Done:** pre-registered guardrail and drift criteria; red-team cases pass; drift checks run on real new data; verifier recomputes drift statistics and ledger totals independently.
