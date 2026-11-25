@@ -15,5 +15,6 @@
     "G2_redteam": "unchanged pass marks, with the grades defined above",
     "cost": "judge validation and judging count inside the unchanged $1.00 Phase 7 budget; the user approves each paid step after an estimate"
   },
-  "also_disclosed": "known weak points of the pre-registered rules found since: the vocabulary check has almost no power and rolling references stop flagging a lasting shift (docs/LEARNING_LOG.md); neither rule is changed"
+  "also_disclosed": "known weak points of the pre-registered rules found since: the vocabulary check has almost no power and rolling references stop flagging a lasting shift (docs/LEARNING_LOG.md); neither rule is changed",
+  "second_attempt": "POST HOC 2026-11-25, user's decision after attempt 1 failed (793ef78): prompt revised once (referrals and implied diagnoses), new set config/phase7_judge_set_v2.json, same bar, one run, both attempts published. If it fails the judge is not used and no further attempt is made. A pass is weaker evidence than a first-time pass: it is the better of two attempts."
 }

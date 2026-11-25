@@ -61,3 +61,11 @@ def test_bar_edges():
     def miss(n):
         return j.score(rows(lambda p: p["side"] == "bad" and not (p["label"] == "advice" and int(p["id"][-2:]) <= n)))["labels"]["advice"]["meets_bar"]
     assert miss(2) and not miss(3)
+
+
+def test_second_set_is_new_and_first_result_is_unchanged():
+    v1, v2 = j.phrasings(j.SET_V1), j.phrasings()
+    assert len(v1) == len(v2) == 84 and not {p["text"] for p in v1} & {p["text"] for p in v2}
+    rows1 = [json.loads(x) for x in (j.OUT / "validation.jsonl").read_text(encoding="utf-8").splitlines()]
+    s = j.score(rows1)["labels"]["advice"]
+    assert (s["caught"], s["false_alarms"], s["meets_bar"]) == (18, 3, False)
