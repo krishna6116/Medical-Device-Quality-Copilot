@@ -1,0 +1,22 @@
+{
+  "_about": "Phase 7c: load the 2025-2026 reports and let the assistant use them. Pre-registered 2026-11-25 before any load, tool change or question. Data already seen: the 79,075 new report files (drift checks, Phase 7). Not seen: recalls newer than 2026-11-21.",
+  "design": {
+    "schema": "core_all = the 2022-2024 raw files (snapshot of 2026-11-21) plus the 2025-01-01 to 2026-12-31 files (snapshot of 2026-11-25), with all recalls downloaded now; analytics_all holds failure modes and signals. core and analytics are not touched",
+    "loader": "the Phase 2 loader with a later window end; empty (null) problem terms are skipped",
+    "model_access": "the same eight fixed lookup tools, read-only, over core_all when the session is opened with scope 'all'; default scope stays 2022-2024 so every earlier recording still replays. New for scope 'all': full narratives in pages, find_recalls and search_reports with an offset, dates to 2026-12-31. No SQL from the model, no contact fields, no memory of other investigations",
+    "signals": "the Phase 3 rule unchanged, run to 2026-09; the last, incomplete quarter is excluded"
+  },
+  "checks": {
+    "D1_complete": "for every product, loaded + quarantined = raw lines of both snapshots; recalls downloaded = openFDA totals",
+    "D2_rows": "separate code rebuilds every report (all loaded fields), problem term, patient term, narrative and recall row from the raw files: 0 differences",
+    "D3_untouched": "fingerprints of every core, analytics and memory table are identical before and after",
+    "D4_old_part_equal": "every 2022-2024 report in core_all equals core in every shared field (manufacturer compared by raw name), with the same failure mode",
+    "D5_modes": "every report has exactly one mode; the 35 product-quarters of 2025Q1-2026Q3 have the report counts recorded by the Phase 7 drift check",
+    "D6_tools": "default scope: every recorded Phase 6 lookup returns the identical result; scope 'all': counts, trends, modes, companies and recall totals equal separate SQL on at least 60 generated calls; bad arguments come back as errors; a lookup cannot write",
+    "D7_search": "one vector per report; the 2022-2024 vectors are byte-identical to Phase 3's; 100 random new reports re-encoded: cosine at least 0.999",
+    "D8_private": "no contact or demographic columns; sampled contact names and phones absent from the loaded structured fields",
+    "D9_planted": "null terms, a duplicate key and an out-of-window date planted in a small copy are skipped or quarantined"
+  },
+  "model_check": "20 questions with answers computed by separate SQL (counts, trends, modes, recalls, single reports across 2022-2026, 4 of them paging or full-narrative questions, 2 out-of-scope), run once on Haiku with the Phase 7 rules; reported with a Wilson interval; bar: at least 18 correct. Estimate and the user's yes first",
+  "limits_known_in_advance": "2022-2024 reports come from an older snapshot than 2025-2026 (FDA edits and late additions since then are missing from the old part); 2026Q4 is incomplete; failure modes were validated on 2022-2024 text only; earlier accuracy and guard results do not carry over to scope 'all'"
+}

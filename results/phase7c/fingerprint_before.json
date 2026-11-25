@@ -1,0 +1,74 @@
+{
+ "core.dim_date": [
+  18628,
+  "10785929584463020277179"
+ ],
+ "core.dim_manufacturer": [
+  305,
+  "166383586592925479049"
+ ],
+ "core.dim_product_code": [
+  5,
+  "3614915757477285340"
+ ],
+ "core.fact_recall": [
+  1626,
+  "950480858127600371117"
+ ],
+ "core.fact_report": [
+  154193,
+  "88937534198963565905860"
+ ],
+ "core.load_run": [
+  1,
+  "848108033195080549"
+ ],
+ "core.quarantine": [
+  1,
+  "333985924490127176"
+ ],
+ "core.report_device": [
+  154680,
+  "89169346307774508419976"
+ ],
+ "core.report_patient_problem": [
+  206357,
+  "119067693608094460104386"
+ ],
+ "core.report_problem": [
+  200993,
+  "115831830142426361360593"
+ ],
+ "core.report_recall_link": [
+  531554,
+  "306859438937211266778578"
+ ],
+ "core.report_text": [
+  410058,
+  "236793432597736424535371"
+ ],
+ "analytics.report_failure_mode": [
+  154193,
+  "88795783202202100496012"
+ ],
+ "analytics.signal_month": [
+  214,
+  "124733627030744471785"
+ ],
+ "memory.investigation": [
+  0,
+  "0"
+ ],
+ "memory.memory_event": [
+  0,
+  "0"
+ ],
+ "memory.memory_item": [
+  0,
+  "0"
+ ],
+ "memory.session": [
+  0,
+  "0"
+ ]
+}
