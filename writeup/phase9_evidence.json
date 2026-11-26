@@ -24,5 +24,20 @@
   "about_checksum": "5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df",
   "manifest_checksum": "5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df",
   "pass": true
+ },
+ "W10_release": {
+  "checked_utc": "2026-11-26",
+  "approved_by": "the author, in chat",
+  "tag": "v1.0.0",
+  "tag_commit": "c98fa7d72d91106bc16e413d49f8eb897699ba59",
+  "tag_commit_on_main": true,
+  "ci_on_tag_commit": "success (test, pipeline, app 3.12/3.13/3.14, writeup-repro)",
+  "release_url": "https://github.com/krishna6116/Medical-Device-Quality-Copilot/releases/tag/v1.0.0",
+  "release_body_equals_notes": true,
+  "description": true,
+  "homepage": true,
+  "topics": true,
+  "checklist_ticked": true,
+  "pass": true
  }
 }
