@@ -1,0 +1,65 @@
+{
+ "url": "https://medical-device-copilot.streamlit.app",
+ "checked_utc": "2026-11-26T02:30Z (approx.)",
+ "deployed_by": "the user's Chrome extension (Python 3.14, no secrets)",
+ "method": "each of the 8 pages opened in the Claude desktop browser pane; page text read; numbers and required sentences compared with the repository's snapshots",
+ "pages_loaded": [
+  "home",
+  "ask",
+  "trends",
+  "companies",
+  "drift",
+  "memory",
+  "evaluation",
+  "about"
+ ],
+ "required_sentences_seen_on_every_page": true,
+ "checks": {
+  "about: data checksum": {
+   "live": "99eb50f82135246545f352a5c82cfe2e2af5f3d5d517fd409d588d15db3c27e7",
+   "repository": "99eb50f82135246545f352a5c82cfe2e2af5f3d5d517fd409d588d15db3c27e7",
+   "equal": true
+  },
+  "home: reports": {
+   "live": "233,264",
+   "repository": "233,264",
+   "equal": true
+  },
+  "home: recalls": {
+   "live": "1,626",
+   "repository": "1,626",
+   "equal": true
+  },
+  "home: Haiku accuracy": {
+   "live": "78/80",
+   "repository": "78/80",
+   "equal": true
+  },
+  "trends: LWP failure modes 2025": {
+   "live": "12,075",
+   "repository": "12,075",
+   "equal": true
+  },
+  "companies: LWP reports 2022-2026": {
+   "live": "65,877",
+   "repository": "65,877",
+   "equal": true
+  },
+  "companies: LWP recalls": {
+   "live": "113 records in 30 recall events",
+   "repository": "113 records in 30 recall events",
+   "equal": true
+  },
+  "drift: checks / flags / quarters": {
+   "live": "105 / 5 / 4",
+   "repository": "105 / 5 / 4",
+   "equal": true
+  },
+  "evaluation: Opus / 7b / 7c": {
+   "live": "76/80 / 38/40 / 20/20",
+   "repository": "76/80 / 38/40 / 20/20",
+   "equal": true
+  }
+ },
+ "all_equal": true
+}
