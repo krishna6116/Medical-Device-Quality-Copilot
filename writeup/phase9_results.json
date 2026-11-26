@@ -1,0 +1,98 @@
+{
+ "checked_utc": "2026-11-26T14:54:57Z",
+ "checks": {
+  "W1": {
+   "pass": false,
+   "detail": {
+    "stale_generated": [
+     "README.md"
+    ],
+    "unexplained_numbers": {}
+   }
+  },
+  "W2": {
+   "pass": true,
+   "detail": {
+    "stale_patterns": {},
+    "readme_table_all_done": true,
+    "docs_index_done": true,
+    "claude_md_phases_done": "all"
+   }
+  },
+  "W3 code": {
+   "pass": true,
+   "detail": {
+    "broken_relative_links": []
+   }
+  },
+  "W4": {
+   "pass": true,
+   "detail": {
+    "one-line problem (<= 200 chars)": true,
+    "live app URL": true,
+    "assistant headline": true,
+    "early-warning headline": true,
+    "battery headline": true,
+    "technology line": true,
+    "image": true
+   }
+  },
+  "W5": {
+   "pass": true,
+   "detail": {
+    "per_doc": {
+     "README.md": true,
+     "docs/CASE_STUDY.md": true,
+     "docs/RESULTS.md": true
+    },
+    "readme_and_case_study_state_it": true
+   }
+  },
+  "W6": {
+   "pass": false,
+   "detail": {
+    "README.md": {
+     "phase7_score": true,
+     "withheld_n_of_48": true,
+     "ai_labels_no_human": true,
+     "limitations_missing": [
+      "the latest quarter is incomplete because reports keep arriving"
+     ]
+    },
+    "docs/CASE_STUDY.md": {
+     "phase7_score": true,
+     "withheld_n_of_48": true,
+     "ai_labels_no_human": true,
+     "limitations_missing": []
+    }
+   }
+  },
+  "W7 code": {
+   "pass": true,
+   "detail": {
+    "ci_equals_readme": true,
+    "readme_states_ci_python": true
+   }
+  },
+  "W9": {
+   "pass": true,
+   "detail": {
+    "index_missing": [],
+    "emails": [],
+    "phones": []
+   }
+  },
+  "W3_network": {
+   "pass": null,
+   "detail": "not run yet"
+  },
+  "W8_http": {
+   "pass": null,
+   "detail": "not run yet"
+  },
+  "W8_browser": {
+   "pass": null,
+   "detail": "not run yet"
+  }
+ }
+}

@@ -51,6 +51,10 @@ jobs:
         run: python -m mdqc.report_phase7c --check
       - name: Phase 8 data checks (snapshots vs manifest and results files, no API or database code, no contact details, planted bugs)
         run: python -m dashboards.verify_phase8
+      - name: Phase 9 write-up generated from the results files, and its independent checks
+        run: |
+          python -m writeup.report_phase9 --check
+          python -m writeup.verify_phase9
 
   # Phase 8: the Streamlit app from a clean environment with ONLY its exact pins (as Streamlit Community Cloud installs it)
   app:
@@ -98,3 +102,25 @@ jobs:
         run: python -m pytest tests/test_phase5.py -rs
       - name: Pipeline doc is generated from the committed results
         run: python -m mdqc.report_phase2 --check
+
+  # Phase 9: the README's 'Check it without the data' block, executed verbatim on a fresh runner (W7)
+  writeup-repro:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - name: README block, verbatim
+        run: |
+          pip install -r requirements.txt
+          pytest
+          python -m mdqc.verify_phase3 --offline
+          python -m mdqc.verify_phase6 --offline
+          python -m mdqc.verify_phase7 --offline
+          python -m mdqc.verify_phase7b
+          python -m dashboards.verify_phase8
+          python -m writeup.report_phase9 --check
+          python -m writeup.verify_phase9

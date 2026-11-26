@@ -1,73 +1,123 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phases 0-8 done; Phase 7 scored 4/5 with one criterion not met; Phase 9 write-up to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+An AI assistant that helps a medical device quality engineer investigate field failures from public FDA data, citing the exact reports.
+
+**Live app:** [medical-device-copilot.streamlit.app](https://medical-device-copilot.streamlit.app) · [Case study](docs/CASE_STUDY.md) · [Results](docs/RESULTS.md) · [Docs](docs/README.md)
+
+![Home page of the live app](docs/figures/v11/after_home_desktop.png)
+
+**Headline results**
+
+- **Cheap model, no significant loss:** on 80 pre-registered questions, Claude Haiku 5.5 answered 78 correctly for $0.10; Claude Opus 5.5 answered 76 for $4.01. The difference is not significant (McNemar p 0.625), so the cheap model stays.
+- **Early warning:** 15 of 38 recall events were preceded by an early-warning signal (39%), against a 14% base rate for any window.
+- **A real case:** in Boston Scientific pacemaker battery reports, the share from the recalled device families rose from 77.9% to 97.5% after the 2025 recall began. The data show timing, not cause.
+
+Report counts are not failure rates: there is no count of devices in use, and a report does not prove the device caused the event.
+
+**Built with:** Python · PostgreSQL · openFDA API · pandas · scikit-learn · BM25 + bge-small embeddings · Claude Haiku 5.5 (Anthropic SDK, own agent loop) · Streamlit · Power BI · GitHub Actions. Total recorded API spend for the whole project: $4.50.
 
 ## The problem
 
-When a device starts failing in the field, a quality engineer has to answer questions fast: Are complaints about this product rising? Which failure modes? Did a competitor's similar device get recalled, and why? What did we already rule out last week? The public evidence (FDA MAUDE adverse-event reports and recall records) is large, messy free text, and investigations run for weeks across many sessions.
+When a device starts failing in the field, a quality engineer has to answer questions fast: are complaints about this product rising, which failure modes, did a similar device get recalled and why, and what did we already rule out last week? The public evidence (FDA MAUDE adverse-event reports and recall records) is large, messy free text, and investigations run for weeks across many sessions.
 
-## What it will do
+## What it does
 
-- Answer investigation questions from openFDA device adverse-event reports and recalls, citing the exact report numbers.
-- Group reports into failure modes (non-LLM baselines first), show trends and statistical signals, and link them to recalls.
-- Remember each open investigation (product, hypotheses, what was ruled out and why, decisions), with a page to view and delete that memory.
-- Run on Claude Haiku 5.5 (a few dollars for the whole project) and be evaluated honestly against a pre-registered question set, compared with one run of a stronger Claude model; the live demo replays recorded answers at no cost.
+- Answers investigation questions from openFDA adverse-event reports and recalls, citing the exact report numbers.
+- Groups reports into failure modes, shows trends and statistical early-warning signals, and links them to recalls.
+- Remembers each open investigation (hypotheses, what was ruled out and why, decisions), with a page to view, export and delete that memory.
+- Watches new reports for drift and checks every answer with a safety guard before it is shown.
 
 ## Status
 
 | Phase | State |
 |---|---|
-| 0 Setup | done |
-| 1 Data + EDA | done: 154,194 reports + 1,626 recalls for 5 device types; [findings](docs/EDA_FINDINGS.md), [data card](docs/DATA_CARD.md), verifier 9/9 (8 without the live openFDA comparison) |
-| 2 Pipeline (PostgreSQL) | done: star schema, 1 record quarantined, 305 maker names -> 101 companies, report-recall links; [pipeline](docs/PIPELINE.md), verifier 10/10 |
-| 3 Failure modes | done: FDA terms mapped by a codebook beat text methods (70% on test); 214 early-warning signals, 15/38 recalls preceded by one; [failure modes](docs/FAILURE_MODES.md), scorecard 5/5 |
-| 4 Assistant | done: 8 read-only database tools, Claude Haiku 5.5 agent loop with cost ledger, budget stop and free replay; proven with a scripted stand-in (scorecard v2 5/5); live Haiku answers recorded in Phase 6 meet the original criteria (scorecard 5/5); [assistant](docs/ASSISTANT.md) |
-| 5 Memory | done: remembers each investigation across sessions (ruled out, hypotheses, decisions, questions); view, edit, export and real delete; refuses invented evidence and personal data; [memory](docs/MEMORY.md), scorecard 5/5 |
-| 6 Evaluation (paid run) | done: 85 pre-registered questions; Haiku 5.5 78/80 for $0.10 vs Opus 5.5 76/80 for $4.01, no significant difference, so the cheap model stays; every answer recorded and re-graded by separate code (same matching rules); [evaluation](docs/EVALUATION.md), scorecard 5/5 |
-| 7 Safety, cost, drift | done, scorecard 4/5: all 48 raw red-team answers labelled safe (by Claude, not independent), but the Haiku guard withheld 24 of them, so the red-team criterion is **not met**; drift checks on 79,075 new reports flag a pacemaker battery surge; [safety and drift](docs/SAFETY_AND_DRIFT.md) |
-| 7b New guard | done: a quoting guard, tested on full-length answers: 38/40 planted unsafe sentences caught, 0/40 clean answers withheld; all four bars met, but **labelled by Claude Opus, no human check**; Phase 7 stays 4/5; [guard](docs/GUARD_7B.md) |
-| 7c Reports 2025-2026 | done: 233,264 reports (2022-2026) in a second schema, rebuilt from raw with 0 differences, old data untouched (9/9 checks); Haiku 20/20 on questions over the larger data; the guard was not re-tested on it; [data](docs/DATA_2025_2026.md) |
-| 8 Streamlit + Power BI | done: app live at [medical-device-copilot.streamlit.app](https://medical-device-copilot.streamlit.app) (v1.1 design: guided investigation of a real 2025 pacemaker battery-report surge, How it works; recorded answers, no API or database; every number checked, 24 app tests, live check; scorecard 5/5); Power BI report, four pages, reads exported CSV files with no database login, 80 exported values checked against separate SQL (scorecard 5/5); [app](docs/APP.md), [Power BI](docs/POWERBI_GUIDE.md), [report pages](docs/figures/powerbi/) |
-| 9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
+| 0 Setup | Done: repository, CI on every push, pre-registration convention |
+| 1 Data | Done: 154,194 adverse-event reports (2022-2024) and 1,626 recalls for 5 device types, equal to openFDA's own counts; [findings](docs/EDA_FINDINGS.md) |
+| 2 Pipeline | Done: PostgreSQL star schema, personal fields never stored, 305 maker names merged into 101 companies; [pipeline](docs/PIPELINE.md) |
+| 3 Failure modes | Done: FDA problem terms mapped by a codebook (70% on test) beat text methods (embeddings 32%); 214 early-warning signals, 15 of 38 recall events preceded by one (39% vs a 14% base rate); [failure modes](docs/FAILURE_MODES.md) |
+| 4 Assistant | Done: Claude Haiku 5.5 with read-only database tools, its own agent loop, cost ledger and budget stop; citations traceable 23/23; [assistant](docs/ASSISTANT.md) |
+| 5 Memory | Done: remembers each investigation across sessions (hypotheses, ruled out, decisions), with view, edit, export and real delete; [memory](docs/MEMORY.md) |
+| 6 Evaluation | Done: 85 pre-registered questions; Haiku 78/80 for $0.10 vs Opus 5.5 76/80 for $4.01 (McNemar p 0.625): the cheap model stays; [evaluation](docs/EVALUATION.md) |
+| 7 Safety and drift | Done, scorecard 4/5: the guard withheld 24 of 48 safe red-team answers, so that criterion is **not met**; drift checks on 79,075 new reports raised 5 flags in 105 checks, led by a pacemaker battery surge; [safety and drift](docs/SAFETY_AND_DRIFT.md) |
+| 7b New guard | Done: a quoting guard caught 38/40 planted unsafe sentences and withheld 0/40 clean answers, but the labels came from an AI with no human check; [guard](docs/GUARD_7B.md) |
+| 7c 2025-2026 data | Done: 233,264 reports (2022-2026) rebuilt from raw in a second schema, checks 9/9; Haiku 20/20 on questions over the larger data; [data](docs/DATA_2025_2026.md) |
+| 8 App and Power BI | Done: [live app](https://medical-device-copilot.streamlit.app) replaying recorded answers, and a Power BI report on exported files, 80 exported values checked (scorecard 5/5); [app](docs/APP.md), [Power BI](docs/POWERBI_GUIDE.md) |
+| 9 Write-up | Done: this README, [case study](docs/CASE_STUDY.md), [results](docs/RESULTS.md), [architecture](docs/ARCHITECTURE.md), [decisions](docs/DECISIONS.md), all generated from the results files and checked |
 
-![Power BI report: battery investigation page](docs/figures/powerbi/page4.png)
+Every phase pre-registered its criteria in a commit before its results, and ends with an independent verifier that runs in CI.
 
-## Run locally
+## How it works
+
+openFDA downloads go through a validated pipeline into PostgreSQL. A codebook maps FDA problem terms to failure modes, and a Poisson rule flags unusual months. The assistant (Claude Haiku 5.5) answers only through read-only database tools and investigation memory, and a guard checks the answer. The app and the Power BI report read exported snapshots, so the public demo needs no API key or database. Details: [architecture](docs/ARCHITECTURE.md), [decisions](docs/DECISIONS.md).
+
+## Check it without the data
+
+CI runs this block verbatim on Python 3.14 (ubuntu-24.04): the tests and the offline verifiers re-check the published results from the committed files.
+
+```bash
+pip install -r requirements.txt
+pytest
+python -m mdqc.verify_phase3 --offline
+python -m mdqc.verify_phase6 --offline
+python -m mdqc.verify_phase7 --offline
+python -m mdqc.verify_phase7b
+python -m dashboards.verify_phase8
+python -m writeup.report_phase9 --check
+python -m writeup.verify_phase9
+```
+
+## Run the full pipeline
+
+Needs PostgreSQL 17 and a few hours (mostly the embeddings). The paid steps ask for a cost estimate and a yes first.
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\python -m pip install -r requirements.txt
-.venv\Scripts\python -m pytest
 .venv\Scripts\python -m mdqc.setup_env       # optional: free openFDA key, hidden prompt, saved to .env
-.venv\Scripts\python -m mdqc.download        # ~1 GB transfer, 68 MB stored, no key needed
-.venv\Scripts\python -m mdqc.eda
+.venv\Scripts\python -m mdqc.download        # about 1 GB transfer, 68 MB stored, no key needed
 .venv\Scripts\python -m mdqc.verify_phase1
 .venv\Scripts\python -m mdqc.db_setup        # once: PostgreSQL database + login (password into .env)
 .venv\Scripts\python -m mdqc.load
 .venv\Scripts\python -m mdqc.verify_phase2
 .venv\Scripts\python -m pip install -r requirements-embed.txt   # Phase 3 embedding model (CPU PyTorch first: see the file)
-.venv\Scripts\python -m mdqc.embed            # ~2.4 h on a laptop CPU, once
+.venv\Scripts\python -m mdqc.embed            # about 2.4 h on a laptop CPU, once
 .venv\Scripts\python -m mdqc.run_phase3
 .venv\Scripts\python -m mdqc.verify_phase3
 .venv\Scripts\python -m mdqc.run_phase4 --scripted   # free pipeline proof (no model)
-.venv\Scripts\python -m mdqc.verify_phase4
 .venv\Scripts\python -m mdqc.replay Q1             # replay a recorded investigation for free
 .venv\Scripts\python -m mdqc.run_phase5
-.venv\Scripts\python -m mdqc.verify_phase5
 .venv\Scripts\python -m mdqc.memory list           # investigation memory: list | show | export | delete-item | delete
-.venv\Scripts\python -m mdqc.run_phase6           # Phase 6 cost estimate (free); --control free stand-ins; --live is paid
+.venv\Scripts\python -m mdqc.run_phase6           # Phase 6 cost estimate (free); --live is the paid run
 .venv\Scripts\python -m mdqc.verify_phase6
-.venv\Scripts\python -m mdqc.drift --baseline      # Phase 7 drift: --download fetches 2025-2026 reports, --check runs the 105 checks
+.venv\Scripts\python -m mdqc.drift --baseline      # Phase 7 drift: --download fetches new reports, --check runs the checks
 .venv\Scripts\python -m mdqc.verify_phase7
-.venv\Scripts\python -m mdqc.verify_phase7b
-.venv\Scripts\python -m mdqc.load_all --raw --load --analytics --embed   # Phase 7c: 2022-2026 data beside core (about an hour)
+.venv\Scripts\python -m mdqc.load_all --raw --load --analytics --embed   # Phase 7c: 2022-2026 data beside core
 .venv\Scripts\python -m mdqc.verify_phase7c        # about 45 minutes
-.venv\Scripts\python -m dashboards.export_snapshots   # Phase 8: app snapshots; the app runs in its own env from app/requirements.txt
+.venv\Scripts\python -m dashboards.export_snapshots   # app snapshots (the app has its own env from app/requirements.txt)
 .venv\Scripts\python -m dashboards.verify_phase8 --local
-.venv\Scripts\python -m dashboards.powerbi_export     # Phase 8 Power BI: CSV files for the report (no database login)
+.venv\Scripts\python -m dashboards.powerbi_export     # CSV files for the Power BI report (no database login)
 .venv\Scripts\python -m dashboards.verify_powerbi
 ```
 
-## Data and limits
+## Limitations
 
-Data: [openFDA](https://open.fda.gov/) device endpoints (public domain). FDA's disclaimer applies: the data are unvalidated and must not be used for medical decisions. Adverse-event reports are signals, not proof that a device caused an event, and counts are not failure rates.
+- Report counts are not failure rates (no denominator of devices in use).
+- FDA data are unvalidated and reports do not prove a device caused an event.
+- The latest quarter is incomplete because reports keep arriving.
+- The failure-mode codebook agrees with hand labels about 70% of the time (61% to 79% on the test set), and those labels were made by Claude, not a domain expert.
+- Phase 7 red-team criterion not met (guard withheld safe answers): 24 of 48 safe answers were withheld, so Phase 7 scored 4/5.
+- Phase 7b labels came from an AI, with no human check (Claude Opus 5.5 labelled them; the user declined to label).
+- The 7b guard was not re-tested on the 2025-2026 data, and the 78/80 accuracy was measured on 2022-2024 data only.
+- The live app and the Power BI report are snapshots, not live data: they replay recorded answers and exported files.
+
+## Data and licence
+
+Data: [openFDA](https://open.fda.gov/) device endpoints (public domain). FDA's disclaimer applies: the data are unvalidated and must not be used for medical decisions. Personal and contact fields are dropped on load.
+
+## Author
+
+**Krishnakumar Balasundaram**, MS Business Analytics candidate at the Isenberg School of Management, UMass Amherst (expected May 2028). B.E. Mechanical Engineering, with industry experience in production, quality control and operations analytics in manufacturing.
+
+[LinkedIn](https://www.linkedin.com/in/krishnakumar-balasundaram-3a92b6422) · [GitHub](https://github.com/Krishna6116) · [Live app](https://medical-device-copilot.streamlit.app) · [Case study](docs/CASE_STUDY.md)
+
+Built with Claude Code as a coding assistant; every criterion, choice and published claim was reviewed by the author, and the verifiers re-check the numbers.
