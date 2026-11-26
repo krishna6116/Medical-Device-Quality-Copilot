@@ -14,9 +14,24 @@
       "ordinals in lists and headings, and numbers inside code blocks, file names, URLs and commit hashes"
     ]
   },
-  "stale_patterns": ["work in progress", "\\bplanned\\b", "not started", "\\bto go\\b", "\\bTODO\\b", "\\bTBD\\b", "coming soon", "power bi next", "phase 9 next", "will be added"],
+  "stale_patterns": [
+    "work in progress",
+    "\\bplanned\\b",
+    "not started",
+    "\\bto go\\b",
+    "\\bTODO\\b",
+    "\\bTBD\\b",
+    "coming soon",
+    "power bi next",
+    "phase 9 next",
+    "will be added"
+  ],
   "counts": {
-    "terms": ["reports", "report counts", "complaints"],
+    "terms": [
+      "reports",
+      "report counts",
+      "complaints"
+    ],
     "sentence": "report counts are not failure rates"
   },
   "honesty": {
@@ -31,17 +46,60 @@
       "the live app and the Power BI report are snapshots, not live data"
     ]
   },
-  "links": {"exceptions": [
-    {"pattern": "linkedin.com", "reason": "LinkedIn answers automated requests with HTTP 999", "rule": "accept 999 or 200"}
-  ]},
+  "links": {
+    "exceptions": [
+      {
+        "pattern": "linkedin.com",
+        "reason": "LinkedIn answers automated requests with HTTP 999",
+        "rule": "accept 999 or 200"
+      }
+    ]
+  },
   "privacy": {
-    "test_data": ["config/phase7_*.json", "mdqc/redteam_set.py", "mdqc/verify_phase5.py", "results/phase7/**", "results/phase7b/**", "tests/**"],
+    "test_data": [
+      "config/phase7_*.json",
+      "mdqc/redteam_set.py",
+      "mdqc/verify_phase5.py",
+      "results/phase7/**",
+      "results/phase7b/**",
+      "tests/**"
+    ],
     "note": "planted fake contact details used to test the privacy refusals; every email must be on a reserved test domain"
   },
   "release": {
     "tag": "v1.0.0",
     "description": "AI copilot for medical device quality investigations on public FDA data: failure-mode trends, early-warning signals, recalls, cited answers (Claude Haiku 5.5) and per-investigation memory. Honest evaluation, verified at every phase.",
     "homepage": "https://medical-device-copilot.streamlit.app",
-    "topics": ["medical-devices", "quality-engineering", "openfda", "maude", "fda-recalls", "postgresql", "claude", "llm-agents", "llm-evaluation", "streamlit", "power-bi", "python", "data-engineering", "signal-detection", "portfolio-project"]
-  }
+    "topics": [
+      "medical-devices",
+      "quality-engineering",
+      "openfda",
+      "maude",
+      "fda-recalls",
+      "postgresql",
+      "claude",
+      "llm-agents",
+      "llm-evaluation",
+      "streamlit",
+      "power-bi",
+      "python",
+      "data-engineering",
+      "signal-detection",
+      "portfolio-project"
+    ]
+  },
+  "post_hoc": [
+    {
+      "date": "2026-11-26",
+      "check": "W9",
+      "change": "phone numbers whose area code or exchange is 555 are allowed anywhere",
+      "reason": "the first verifier run found only fictional 555 numbers planted to test privacy refusals in Phases 5, 6, 7b and 8 (files outside privacy.test_data); 555 numbers are reserved for fiction. Any other phone number still fails."
+    },
+    {
+      "date": "2026-11-26",
+      "check": "W1",
+      "change": "the author's expected graduation year ('May 2028') is structural",
+      "reason": "the year rule (2018-2027) did not anticipate the author line; no result number is affected."
+    }
+  ]
 }
