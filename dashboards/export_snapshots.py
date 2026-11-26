@@ -13,6 +13,7 @@ import hashlib
 import io
 import json
 import os
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,6 +45,15 @@ def sha(p: Path) -> str:
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+PHONE = re.compile(r"(?<!\d)(\+?\d{1,3}[\s.-]?)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}\b")
+REMOVED = "[phone number removed]"
+
+
+def shown(text: str) -> str:
+    """Text as the app shows it: invented test phone numbers (Phase 6 memory refusal test) are not displayed."""
+    return PHONE.sub(REMOVED, text)
+
+
 def answers() -> list[dict]:
     """Recorded assistant answers the app replays: Phase 6 (Haiku, 2022-2024) and Phase 7c (Haiku, 2022-2026)."""
     out = []
@@ -51,13 +61,13 @@ def answers() -> list[dict]:
     for q in load("config/phase6_eval_set.json")["questions"]:
         r = load(f"results/phase6/claude-haiku-5-5/{q['id']}.json")
         g = g6[q["id"]]
-        out.append({"id": f"P6-{q['id']}", "set": "Phase 6 evaluation (2022-2024)", "category": q["category"], "question": q["text"], "answer": r["answer"],
+        out.append({"id": f"P6-{q['id']}", "set": "Phase 6 evaluation (2022-2024)", "category": q["category"], "question": shown(q["text"]), "answer": shown(r["answer"]),
                     "tools": [t["name"] for t in r["tool_calls"]], "model": r["model"], "cost_usd": r["cost_usd"], "steps": r["steps"],
                     "recorded_utc": r["recorded_utc"], "graded": g["graded"], "correct": g["correct"] if g["graded"] else None})
     m = {x["id"]: x for x in load("results/phase7c/model_check.json")["rows"]}
     for q in load("config/phase7c_questions.json")["questions"]:
         r = load(f"results/phase7c/answers/{q['id']}.json")
-        out.append({"id": f"P7c-{q['id']}", "set": "Phase 7c check (2022-2026)", "category": q["category"], "question": q["text"], "answer": r["answer"],
+        out.append({"id": f"P7c-{q['id']}", "set": "Phase 7c check (2022-2026)", "category": q["category"], "question": shown(q["text"]), "answer": shown(r["answer"]),
                     "tools": [t["name"] for t in r["tool_calls"]], "model": r["model"], "cost_usd": r["cost_usd"], "steps": r["steps"],
                     "recorded_utc": None, "graded": True, "correct": m[q["id"]]["correct"]})
     return out
@@ -94,7 +104,7 @@ def main() -> None:
     write_csv("makers.csv", ["product", "year", "company", "reports"],
               q(f"SELECT r.product_code, extract(year FROM date_received)::int, m.parent_company, count(*) FROM {R} JOIN core_all.dim_manufacturer m USING (manufacturer_id) GROUP BY 1, 2, 3 ORDER BY 1, 2, 3"))
     write_csv("signals.csv", ["product", "company", "mode", "month", "reports", "expected"],
-              q("SELECT product_code, parent_company, mode, month, count, round(expected::numeric, 1) FROM analytics_all.signal_month ORDER BY 1, 2, 3, 4"))
+              q("SELECT product_code, parent_company, mode, month, count, expected FROM analytics_all.signal_month ORDER BY 1, 2, 3, 4"))  # unrounded: SQL and Python round halves differently
     write_csv("recalls.csv", ["recall_number", "recall_event", "product", "company", "started", "status", "root_cause", "reason"],
               q(r"SELECT product_res_number, res_event_number, product_code, m.parent_company, event_date_initiated::text, recall_status, regexp_replace(root_cause, '\s+', ' ', 'g'), left(regexp_replace(reason_for_recall, '\s+', ' ', 'g'), 300) "
                 "FROM core_all.fact_recall JOIN core_all.dim_manufacturer m USING (manufacturer_id) ORDER BY 1"))
@@ -102,7 +112,7 @@ def main() -> None:
     d = load("results/phase7/drift_check.json")
     write_csv("drift.csv", ["product", "quarter", "reports", "volume_change", "mode_mix", "vocabulary", "flags", "largest_mode_move"],
               [[r["code"], r["quarter"], r["reports"], round(r["volume_change"], 4), round(r["mode_mix"], 4), round(r["vocabulary"], 4), ";".join(r["flags"]),
-                f"{r['largest_mode_moves'][0][0]} {r['largest_mode_moves'][0][1]:+.4f}"] for r in d["rows"]])
+                f"{r['largest_mode_moves'][0][0]} {r['largest_mode_moves'][0][1]:+.4f}"] for r in sorted(d["rows"], key=lambda r: (r["code"], r["quarter"]))])
     book = load("config/failure_modes.json")
     write_json("reference.json", {"products": PRODUCTS, "last_complete_quarter": LAST_COMPLETE, "drift_thresholds": {k: round(v, 4) for k, v in d["thresholds"].items()},
                                   "modes": {m: x["definition"] for f in book["families"].values() for m, x in f["modes"].items()}})

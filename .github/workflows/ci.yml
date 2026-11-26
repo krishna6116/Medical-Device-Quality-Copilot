@@ -49,6 +49,23 @@ jobs:
           python -m mdqc.report_phase7b --check
       - name: Phase 7c answers re-graded, and doc
         run: python -m mdqc.report_phase7c --check
+      - name: Phase 8 data checks (snapshots vs manifest and results files, no API or database code, no contact details, planted bugs)
+        run: python -m dashboards.verify_phase8
+
+  # Phase 8: the Streamlit app from a clean environment with ONLY its exact pins (as Streamlit Community Cloud installs it)
+  app:
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r app/requirements.txt pytest==9.0.1
+      - name: Every page, recorded answer and displayed number (AppTest)
+        run: python -m pytest tests/app -q -p no:cacheprovider -o addopts=""
 
   # Phase 2: a real PostgreSQL. Loads the committed fixture, runs the database test
   # (including the tampered-cell check) and the independent verifier (P1-P8) on it.

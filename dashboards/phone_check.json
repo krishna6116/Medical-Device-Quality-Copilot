@@ -1,0 +1,54 @@
+{
+ "checked": "2026-11-25, local app at http://localhost:8502 in the Claude desktop browser pane, viewport 375x812",
+ "method": "for each page: document.documentElement.scrollWidth and document.body.scrollWidth compared with innerWidth",
+ "pages": {
+  "/": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  },
+  "/ask": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  },
+  "/trends": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  },
+  "/companies": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  },
+  "/drift": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  },
+  "/memory": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  },
+  "/evaluation": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  },
+  "/about": {
+   "innerWidth": 375,
+   "scrollWidth": 375,
+   "bodyScrollWidth": 375,
+   "no_sideways_scroll": true
+  }
+ }
+}

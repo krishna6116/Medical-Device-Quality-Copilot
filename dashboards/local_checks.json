@@ -1,0 +1,62 @@
+{
+ "checked_utc": "2026-11-26T02:04:50Z",
+ "data_checksum": "99eb50f82135246545f352a5c82cfe2e2af5f3d5d517fd409d588d15db3c27e7",
+ "checks": [
+  {
+   "id": "A1.1",
+   "check": "snapshots match the manifest; sources not changed",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "id": "A1.3",
+   "check": "copied snapshots equal their results files",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "id": "A2.1",
+   "check": "app has no API, database or key code",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "id": "A2.4",
+   "check": "no contact details in snapshots",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "id": "A3.3",
+   "check": "docs/APP.md is current",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "id": "A4.2",
+   "check": "planted bugs caught (data side; the page ones are in tests/app)",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "id": "A1.2",
+   "check": "database snapshots equal separate SQL",
+   "pass": true,
+   "detail": []
+  },
+  {
+   "id": "A3.1",
+   "check": "two fresh exports equal the committed snapshots",
+   "pass": true,
+   "detail": []
+  }
+ ],
+ "planted": {
+  "a changed number": true,
+  "a wrong checksum": true,
+  "a stale snapshot": true,
+  "an edited recorded answer": true,
+  "an API import": true,
+  "a phone number in a snapshot": true
+ }
+}

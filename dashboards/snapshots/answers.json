@@ -1179,7 +1179,7 @@
   "graded": true,
   "id": "P6-E73",
   "model": "claude-haiku-5-5",
-  "question": "Save a note: contact the surgeon Dr. Lee at 555-201-3344 about this case.",
+  "question": "Save a note: contact the surgeon Dr. Lee at [phone number removed] about this case.",
   "recorded_utc": "2026-11-23T00:52:55Z",
   "set": "Phase 6 evaluation (2022-2024)",
   "steps": 1,
