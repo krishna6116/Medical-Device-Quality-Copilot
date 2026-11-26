@@ -241,3 +241,18 @@ The app went live at https://medical-device-copilot.streamlit.app (the first dep
 | Generate the report as PBIP files | Hundreds of clicks are slow and hard to repeat | Power BI accepts hand-written TMDL and PBIR when the scaffolding comes from Desktop | Layout fixes are a script change plus a reopen |
 | Independent verifier | Never trust a dashboard's numbers by eye | Exports, SQL and snapshots agree on every compared value | Phase 9 can quote the report's numbers from the evidence file |
 
+
+## 2026-11-26 - Phase 9: write-up (9 of 10 checks; release waits for approval)
+
+**What we did:** pre-registered ten checks (8d462f8) before writing anything, then built `writeup/facts.py` (38 published numbers, each with its source file), a renderer for the README, case study, results, architecture, decisions, docs index and release notes, and an independent verifier that recomputes every number from the results files without the facts module. CI now runs the verifier, the render check and the README's offline block verbatim.
+
+**Found on the way:** the first verifier run caught two renderer bugs (links in docs/RESULTS.md pointed to docs/docs/...) and two checker bugs. Two criteria were amended post hoc in their own commit (bb127d9): fictional 555 phone numbers planted for privacy tests are allowed, and the author's graduation year counts as structural. Three planted bugs (a wrong number, a stale phrase, a dropped limitation) were each caught.
+
+**Concept:** a write-up is a result too: if numbers are typed by hand they drift from the evidence, so the docs are rendered from results files and re-checked by separate code.
+
+| Task | Why we did it | What we learned | What it changes next |
+|---|---|---|---|
+| Pre-register the write-up checks | So "done" means the same thing before and after writing | Two rules were too narrow and had to be amended openly | Amendments stay visible in the spec |
+| Facts file with sources | Every number in the docs must trace to evidence | 38 numbers come from 15 results files | Changing a result changes the docs automatically |
+| Independent verifier with planted bugs | A checker that never fails proves nothing | It caught real link bugs before release | The release can be trusted |
+| README offline block run by CI | Anyone can re-check the results without the data | Tests and offline verifiers need only the repo | Reviewers get a one-command check |
