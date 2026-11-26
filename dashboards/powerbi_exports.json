@@ -1,0 +1,132 @@
+{
+ "how": "In Power BI Desktop, on the named page, visual: More options (...), Export data, Summarized data, .csv. Save under docs/figures/powerbi/exports/ with this file name. No slicer selection (all products).",
+ "exports": {
+  "reports_by_quarter.csv": {
+   "page": "Overview",
+   "visual": "column chart, Reports by quarter",
+   "key": [
+    "quarter"
+   ],
+   "values": {
+    "Reports": {
+     "2022Q1": 13112,
+     "2022Q2": 14242,
+     "2022Q3": 14946,
+     "2022Q4": 15058,
+     "2023Q1": 13229,
+     "2023Q2": 12573,
+     "2023Q3": 12471,
+     "2023Q4": 11887,
+     "2024Q1": 11278,
+     "2024Q2": 11899,
+     "2024Q3": 12197,
+     "2024Q4": 11301,
+     "2025Q1": 10167,
+     "2025Q2": 9804,
+     "2025Q3": 9884,
+     "2025Q4": 11624,
+     "2026Q1": 10741,
+     "2026Q2": 11920,
+     "2026Q3": 11402,
+     "2026Q4": 3529
+    }
+   }
+  },
+  "reports_by_failure_mode.csv": {
+   "page": "Trends and failure modes",
+   "visual": "bar chart, Reports by failure_mode",
+   "key": [
+    "failure_mode"
+   ],
+   "values": {
+    "Reports": {
+     "C_BATTERY": 19631,
+     "C_INFECTION_POCKET": 7225,
+     "C_LEAD_CAPTURE": 12235,
+     "C_OTHER": 14858,
+     "C_SENSING": 4622,
+     "C_TELEMETRY_SOFTWARE": 7306,
+     "D_ADHESIVE_DISLODGED": 20048,
+     "D_ALARM_ELECTRONICS": 9255,
+     "D_CANNULA_INSERTION": 30628,
+     "D_LEAK": 5516,
+     "D_OCCLUSION_DELIVERY": 5660,
+     "D_OTHER": 16807,
+     "D_SKIN": 1503,
+     "O_BONE_FRACTURE": 1585,
+     "O_DEVICE_FRACTURE": 8734,
+     "O_INFECTION": 12679,
+     "O_INSTABILITY": 16249,
+     "O_INTRAOP": 2805,
+     "O_LOOSENING": 7614,
+     "O_OTHER": 10970,
+     "O_PAIN_STIFFNESS": 9015,
+     "O_WEAR": 8319
+    }
+   }
+  },
+  "top_companies.csv": {
+   "page": "Companies and recalls",
+   "visual": "company table (top 10)",
+   "key": [
+    "company"
+   ],
+   "values": {
+    "Reports": {
+     "ABBOTT": 17900,
+     "BOSTON SCIENTIFIC": 44996,
+     "DEPUY SYNTHES (JOHNSON & JOHNSON)": 30294,
+     "EXACTECH": 8918,
+     "INSULET": 63823,
+     "MEDTRONIC": 20765,
+     "ROCHE": 3951,
+     "SMITH & NEPHEW": 4218,
+     "STRYKER": 5159,
+     "ZIMMER BIOMET": 21275
+    },
+    "Share of reports": {
+     "ABBOTT": 0.076737,
+     "BOSTON SCIENTIFIC": 0.192897,
+     "DEPUY SYNTHES (JOHNSON & JOHNSON)": 0.12987,
+     "EXACTECH": 0.038231,
+     "INSULET": 0.273608,
+     "MEDTRONIC": 0.089019,
+     "ROCHE": 0.016938,
+     "SMITH & NEPHEW": 0.018083,
+     "STRYKER": 0.022117,
+     "ZIMMER BIOMET": 0.091206
+    }
+   }
+  },
+  "battery_families.csv": {
+   "page": "Battery investigation",
+   "visual": "stacked bar, Battery family reports by family and period",
+   "key": [
+    "family",
+    "period"
+   ],
+   "values": {
+    "Battery family reports": {
+     "ACCOLADE|2025Q1-2025Q3": 499,
+     "ACCOLADE|2025Q4-2026Q3": 6894,
+     "ADVANTIO|2025Q1-2025Q3": 33,
+     "ADVANTIO|2025Q4-2026Q3": 35,
+     "ALTRUA|2025Q1-2025Q3": 10,
+     "ALTRUA|2025Q4-2026Q3": 14,
+     "ESSENTIO|2025Q1-2025Q3": 155,
+     "ESSENTIO|2025Q4-2026Q3": 1465,
+     "FORMIO|2025Q1-2025Q3": 6,
+     "FORMIO|2025Q4-2026Q3": 1,
+     "INGENIO|2025Q1-2025Q3": 85,
+     "INGENIO|2025Q4-2026Q3": 93,
+     "OTHER|2025Q1-2025Q3": 62,
+     "OTHER|2025Q4-2026Q3": 64,
+     "PROPONENT|2025Q1-2025Q3": 91,
+     "PROPONENT|2025Q4-2026Q3": 1124,
+     "VITALIO|2025Q1-2025Q3": 28,
+     "VITALIO|2025Q4-2026Q3": 46
+    }
+   }
+  }
+ }
+}

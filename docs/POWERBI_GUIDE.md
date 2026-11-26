@@ -1,6 +1,6 @@
 # Power BI report: step-by-step
 
-The report reads five views in the PostgreSQL schema `powerbi` (2022 to mid-November 2026) through a read-only login. The `.pbip`
+The report loads five CSV files exported from the PostgreSQL schema `powerbi` (2022 to mid-November 2026); it has no database connection. The `.pbip`
 file stays outside the repository: `C:\Users\krish\Documents\MedicalDeviceCopilot.pbip`. Checks: `dashboards/powerbi_scorecard.json`.
 
 ## 1. Data files (no database login)
@@ -54,4 +54,4 @@ Every page gets a small text box at the bottom: *"Report counts are not failure 
 2. **File, Export, Export to PDF**: `docs\figures\powerbi\MedicalDeviceCopilot.pdf`.
 3. A PNG of each page (Windows + Shift + S) as `docs\figures\powerbi\page1.png` to `page4.png`.
 
-Then: `.venv\Scripts\python -m dashboards.verify_powerbi`.
+Then: `.venv\Scripts\python -m dashboards.verify_powerbi` (writes `dashboards/powerbi_evidence.json`; items without report evidence show PENDING).

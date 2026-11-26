@@ -1,0 +1,59 @@
+{
+ "checked_utc": "2026-11-26T02:47:38Z",
+ "score": "1/5",
+ "items": {
+  "C1": {
+   "result": "PENDING",
+   "checks": {
+    "products.csv": true,
+    "reports.csv": true,
+    "failure_modes.csv": true,
+    "recalls.csv": true,
+    "battery_families.csv": true,
+    "report model files": "PENDING: MedicalDeviceCopilot.SemanticModel not found"
+   }
+  },
+  "C2": {
+   "result": "PASS",
+   "checks": {
+    "one row per report, same report keys as SQL": true,
+    "counts by product_code": true,
+    "counts by product_code, quarter, event_type": true,
+    "counts by failure_mode": true,
+    "counts by company": true,
+    "equals app snapshot quarterly.csv": true,
+    "recalls equal SQL (numbers, events, products, companies)": true,
+    "reasons are single-line and at most 300 characters": true,
+    "products equal SQL": true,
+    "failure modes equal the codebook": true,
+    "battery families equal the Python re-derivation": true,
+    "equals app snapshot battery_brands.csv": true
+   }
+  },
+  "C3": {
+   "result": "PENDING",
+   "checks": {
+    "status": "PENDING: no exports in docs/figures/powerbi/exports yet"
+   }
+  },
+  "C4": {
+   "result": "PENDING",
+   "checks": {
+    "status": "PENDING: MedicalDeviceCopilot.Report not found",
+    "PDF": false,
+    "PNGs": [
+     false,
+     false,
+     false,
+     false
+    ]
+   }
+  },
+  "C5": {
+   "result": "PENDING",
+   "checks": {
+    "status": "PENDING: MedicalDeviceCopilot.Report not found"
+   }
+  }
+ }
+}
