@@ -1,0 +1,47 @@
+{
+  "_about": "Parameters for writeup/phase9_scorecard.json, pre-registered with it on 2026-11-26.",
+  "headline": {
+    "assistant": "Claude Haiku 5.5 correct on N of 80 graded questions for $X, Claude Opus 5.5 on M of 80 for $Y; difference not significant (results/phase6/summary.json)",
+    "early_warning": "K of 38 recall events preceded by an early-warning signal vs a P% base rate (results/phase3/signals.json)",
+    "battery": "share of Boston Scientific pacemaker battery reports in the recalled device families before and after the 2025 recall (dashboards/snapshots/battery_brands.csv)"
+  },
+  "number_rules": {
+    "structural": [
+      "years 2018-2027, dates YYYY-MM-DD, quarters YYYYQn and months YYYY-MM",
+      "phase numbers and labels: Phase 0-9, 7b, 7c, Q1-Q4, W1-W10, C1-C5, G1-G5, T1-T4, E1-E9, D1-D9, M1-M5",
+      "model and version names (Haiku 5.5, Opus 5.5, Sonnet 5.5, Python 3.12/3.13/3.14, v1.0.0, PostgreSQL 17, bge-small-en-v1.5, 384 dimensions)",
+      "counts of things the docs enumerate: 5 device product codes, 4 Power BI pages, scorecard denominators (/5, /9, /10)",
+      "ordinals in lists and headings, and numbers inside code blocks, file names, URLs and commit hashes"
+    ]
+  },
+  "stale_patterns": ["work in progress", "\\bplanned\\b", "not started", "\\bto go\\b", "\\bTODO\\b", "\\bTBD\\b", "coming soon", "power bi next", "phase 9 next", "will be added"],
+  "counts": {
+    "terms": ["reports", "report counts", "complaints"],
+    "sentence": "report counts are not failure rates"
+  },
+  "honesty": {
+    "limitations": [
+      "report counts are not failure rates (no denominator of devices in use)",
+      "FDA data are unvalidated and reports do not prove a device caused an event",
+      "the latest quarter is incomplete because reports keep arriving",
+      "failure-mode codebook agrees with hand labels about 70% of the time",
+      "Phase 7 red-team criterion not met (guard withheld safe answers)",
+      "Phase 7b labels came from an AI, with no human check",
+      "the 7b guard was not re-tested on the 2025-2026 data",
+      "the live app and the Power BI report are snapshots, not live data"
+    ]
+  },
+  "links": {"exceptions": [
+    {"pattern": "linkedin.com", "reason": "LinkedIn answers automated requests with HTTP 999", "rule": "accept 999 or 200"}
+  ]},
+  "privacy": {
+    "test_data": ["config/phase7_*.json", "mdqc/redteam_set.py", "mdqc/verify_phase5.py", "results/phase7/**", "results/phase7b/**", "tests/**"],
+    "note": "planted fake contact details used to test the privacy refusals; every email must be on a reserved test domain"
+  },
+  "release": {
+    "tag": "v1.0.0",
+    "description": "AI copilot for medical device quality investigations on public FDA data: failure-mode trends, early-warning signals, recalls, cited answers (Claude Haiku 5.5) and per-investigation memory. Honest evaluation, verified at every phase.",
+    "homepage": "https://medical-device-copilot.streamlit.app",
+    "topics": ["medical-devices", "quality-engineering", "openfda", "maude", "fda-recalls", "postgresql", "claude", "llm-agents", "llm-evaluation", "streamlit", "power-bi", "python", "data-engineering", "signal-detection", "portfolio-project"]
+  }
+}
