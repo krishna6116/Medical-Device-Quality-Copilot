@@ -1,0 +1,29 @@
+{
+  "phase": "8 (part 1: the Streamlit app; Power BI is part 2, next session, with its own checks)",
+  "pre_registered": "2026-11-25, before any app code or snapshot. Choices made by the user: reports 2022-2026 with the incomplete period flagged; Streamlit Community Cloud from branch main; Power BI after the app.",
+  "scoring": "Each dimension scores 1 only if all its checks pass; score = passing dimensions (0-5). A failure is fixed at its cause or reported as a failure; criteria are not loosened after results are seen.",
+  "dimensions": [
+    {"id": "A1", "name": "Every number is right", "checks": [
+      "Every snapshot file matches the manifest (rows, sha256, unique sorted key) and the manifest's source checksums match the committed results files",
+      "Snapshots built from the database equal separate SQL run by the verifier, cell for cell (local, recorded in dashboards/local_checks.json)",
+      "Snapshots copied from results files equal those files, cell for cell",
+      "Every number the app shows, read from the rendered pages (Streamlit AppTest), equals the verifier's own value at the shown precision"]},
+    {"id": "A2", "name": "Honest and safe", "checks": [
+      "The app never calls the Claude API or a database: no anthropic or psycopg import, no key or connection string, and it runs with neither installed",
+      "Every page that shows assistant answers says they are recorded replays, with the model, date and cost of each",
+      "Pages state: late 2026 is incomplete; accuracy was measured on 2022-2024; Phase 7 scored 4/5; Phase 7b labels came from an AI, with no human check; report counts are not failure rates",
+      "No personal data: snapshot text passes the contact-detail check; the memory page refuses phone numbers and e-mail addresses and keeps memory per visitor only"]},
+    {"id": "A3", "name": "Reproducible", "checks": [
+      "python -m dashboards.export_snapshots run twice gives byte-identical files equal to the committed ones (local)",
+      "CI installs only app/requirements.txt (exact pins) on a clean Python 3.12, 3.13 and 3.14 and runs the app tests",
+      "Generated docs (docs/APP.md) are current"]},
+    {"id": "A4", "name": "Works and can fail", "checks": [
+      "Every page renders with no exception under AppTest, including every product, every recorded answer and the memory actions",
+      "The verifier catches at least 6 planted bugs (a changed number, a stale snapshot, a missing caption, a page error, an API import, a wrong checksum)",
+      "Phone width: no page needs sideways scrolling at 375 px (local browser check, screenshot)"]},
+    {"id": "A5", "name": "Live", "checks": [
+      "The deployed app on Streamlit Community Cloud loads every page, shows the manifest's data checksum, and passes the smoke check against its public URL (evidence committed)"]}
+  ],
+  "pages": ["Home", "Ask the copilot (recorded)", "Trends and failure modes", "Companies and recalls", "Drift monitoring", "Investigation memory (sandbox)", "Evaluation and safety", "About and limits"],
+  "not_in_scope": "no live model calls in the cloud; no database in the cloud; Power BI (part 2)"
+}

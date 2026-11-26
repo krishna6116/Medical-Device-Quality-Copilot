@@ -45,3 +45,6 @@ Thumbs.db
 
 # Study guide / personal documents
 docs/*.pdf
+
+# Separate environment for the Streamlit app (exact pins in app/requirements.txt)
+.venv-app/
