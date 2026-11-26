@@ -1,0 +1,40 @@
+{
+ "drift_thresholds": {
+  "mode_mix": 0.2451,
+  "vocabulary": 0.0673,
+  "volume": 0.308
+ },
+ "last_complete_quarter": "2026Q3",
+ "modes": {
+  "C_BATTERY": "Battery depleting early, reaching ERI/end of life early, or an unexpected battery or longevity reading.",
+  "C_INFECTION_POCKET": "Infection, pocket erosion, hematoma or sepsis related to the implant site.",
+  "C_LEAD_CAPTURE": "Pacing not reaching the heart: high or low impedance, loss of capture, high threshold, lead dislodgement or fracture, header or connection problem, no pacing.",
+  "C_OTHER": "No identifiable failure mode, insufficient information, or a reason outside this list.",
+  "C_PREVENTIVE": "Device explanted or replaced as a precaution because of an advisory, field safety notice or recall, with no malfunction observed in this device.",
+  "C_SENSING": "The device sensed the wrong signals: over-sensing, under-sensing, noise or artifact, leading to wrong pacing or inappropriate therapy.",
+  "C_TELEMETRY_SOFTWARE": "Communication, interrogation, telemetry, programming, software or firmware problem, unexpected reset or back-up mode, wrong data or display.",
+  "D_ADHESIVE_DISLODGED": "The pod or infusion set came off the body or was dislodged: adhesive failed, peeled, fell or was knocked off.",
+  "D_ALARM_ELECTRONICS": "Pump or pod electronics: fault or error alarm, battery, button, display, power, software or app, controller or communication, overheating, motor or drive problem, missing history.",
+  "D_CANNULA_INSERTION": "The needle or cannula did not deploy, deployed early, bent, kinked or was not inserted properly.",
+  "D_LEAK": "Insulin leaked from the pump, pod, reservoir or infusion site.",
+  "D_OCCLUSION_DELIVERY": "Insulin flow blocked or delivered wrongly: occlusion alarm, blockage, under- or over-delivery, delivery stopped.",
+  "D_OTHER": "No identifiable failure mode (e.g. high blood glucose with no device problem named), insufficient information, or a reason outside this list.",
+  "D_SKIN": "Skin reaction at the infusion site: irritation, rash, itching, redness, allergy or site infection.",
+  "O_BONE_FRACTURE": "The patient's bone around the implant fractured (periprosthetic fracture), e.g. femur, tibia, patella or acetabulum.",
+  "O_DEVICE_FRACTURE": "An implant component (stem, liner, insert, post, shell, tray, head) broke, cracked, fractured or dissociated from its mating part, in or out of the patient.",
+  "O_INFECTION": "Infection around the hip or knee implant (periprosthetic joint infection): revision, spacer, irrigation and debridement, or antibiotics because of infection.",
+  "O_INSTABILITY": "The joint dislocated, subluxed or was unstable or lax; includes malposition or malalignment causing instability.",
+  "O_INTRAOP": "A problem during surgery or handling before implantation: component would not seat or lock, difficult insertion, wrong size, packaging or sterility problem, trial or instrument issue.",
+  "O_LOOSENING": "The implant came loose from bone or failed to grow into or fix to bone (aseptic loosening, lack of osseointegration, subsidence, migration).",
+  "O_OTHER": "No identifiable failure mode, insufficient information, revision for an unknown reason, or a reason outside this list (e.g. blood clots, literature summaries).",
+  "O_PAIN_STIFFNESS": "Pain, stiffness, arthrofibrosis or reduced range of motion with no more specific cause named.",
+  "O_WEAR": "Wear of bearing surfaces or a reaction to wear debris or metal: polyethylene wear, osteolysis, metallosis, adverse local tissue reaction, corrosion, elevated metal ions."
+ },
+ "products": {
+  "JWH": "Knee implant, cemented",
+  "LPH": "Hip implant, uncemented",
+  "LWP": "Pacemaker",
+  "LZG": "Insulin pump",
+  "MBH": "Knee implant, uncemented"
+ }
+}

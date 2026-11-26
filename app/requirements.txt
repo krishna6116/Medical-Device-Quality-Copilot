@@ -1,6 +1,5 @@
 # Streamlit app (Phase 8): exact pins, the same set that runs the predictive maintenance app on Streamlit Community Cloud (Python 3.14).
 # Used by Streamlit Community Cloud and by the CI job that tests the app from a clean environment. The app needs no API key and no database.
-# Used by Streamlit Community Cloud and by the CI job that runs the app checks from a clean environment.
 altair==6.3.0
 anyio==4.15.1
 attrs==26.1.0

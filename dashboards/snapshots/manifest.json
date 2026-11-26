@@ -1,0 +1,53 @@
+{
+ "data_checksum": "e6be4f3a46f48e912a5740c9d8c763992e7f8c7ae722f673f45c74da9951f3ee",
+ "files": {
+  "answers.json": {
+   "rows": 105,
+   "sha256": "87468fab97d01c0de49e75a2b8cdea1ea748ad6e9b7cf6efc2d8d00fe3cc8fa9"
+  },
+  "drift.csv": {
+   "rows": 35,
+   "sha256": "53ed4fad81e0b96fc9fcad482184753020ec230865976c166be786d44db7570f"
+  },
+  "makers.csv": {
+   "rows": 412,
+   "sha256": "ce5ce885d38eac7242436e99ba8fbfcd6f5fc084e8c6d417f3e54e524e4bb053"
+  },
+  "quarterly.csv": {
+   "rows": 282,
+   "sha256": "657326994cefd98d87a0b9ca76c0d7fa4ad29925393176fe701e7e9356a646f3"
+  },
+  "quarterly_modes.csv": {
+   "rows": 799,
+   "sha256": "bbf8b700e7793788ff9773ca75a1d6757ccac03345581a5a0ed0c03c023989db"
+  },
+  "recalls.csv": {
+   "rows": 1626,
+   "sha256": "4c096d5f5566e54c15ff1555dd8da2864d4f335b1cd901db6cff8ad4acd1f876"
+  },
+  "reference.json": {
+   "rows": 4,
+   "sha256": "095f37ba39fbf2a34ed49a6587bd9e1c1a1317dc8ac592c0284776161d0418bd"
+  },
+  "results.json": {
+   "rows": 4,
+   "sha256": "dd7249d8dbd3f7e968cfdc943e2fe959dfc46f820ecf0b6c75ff8974dd3ff7e2"
+  },
+  "signals.csv": {
+   "rows": 398,
+   "sha256": "b4ff7f24a1af3e49617c310282e916e1aaa8712cf815855c3ccff9b3aadda56a"
+  }
+ },
+ "sources": {
+  "config/failure_modes.json": "d0700d043f5a90a11263c512dd3fa381d3f7d4433ccd03d0c8ba801e6c107278",
+  "config/phase6_eval_set.json": "1765a52b4e6161c913f3556f441ace6fa944af8241f995cfa8a83a4aa2d989a9",
+  "config/phase7c_questions.json": "22ed1bde53086887b4c0e84418bace1a966cba11dfb1e29407e19fb0473a253e",
+  "results/phase6/summary.json": "b5765ee432627b837f6f1fde07d24643ece2f9bdbcc051ff22c8876ece974d8a",
+  "results/phase7/drift_check.json": "417db7e913646ebceced914104d813b079f3ac4dacaebb35e9d575adea71e714",
+  "results/phase7/redteam_grades.json": "971b39dbef505caecd7190248231ed2592c3303178eed8eb973f45d2a42f61ae",
+  "results/phase7/verify_phase7.json": "086ad0cd59d71881f787c96c1b4a80a267374cc1b0c451c3fa3caf4daff6893c",
+  "results/phase7b/test_grades.json": "4ccc72327de177b832fb8f924543483175aaac6168bdc52968314476cccbe91b",
+  "results/phase7c/model_check.json": "76ef60022ff36fd60be5cd7eb5703171c3cacd5fd1cc2e627095898d42671fdf",
+  "results/phase7c/verify_phase7c.json": "4b2379a3d3a3dc9ef31fabbf237712f143ecf55dce740d81d88a43ae4fd9366b"
+ }
+}
