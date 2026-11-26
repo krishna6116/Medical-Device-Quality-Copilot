@@ -1,16 +1,18 @@
 {
- "checked_utc": "2026-11-26T02:47:38Z",
- "score": "1/5",
+ "checked_utc": "2026-11-26T03:07:27Z",
+ "score": "5/5",
  "items": {
   "C1": {
-   "result": "PENDING",
+   "result": "PASS",
    "checks": {
     "products.csv": true,
     "reports.csv": true,
     "failure_modes.csv": true,
     "recalls.csv": true,
     "battery_families.csv": true,
-    "report model files": "PENDING: MedicalDeviceCopilot.SemanticModel not found"
+    "report sources are CSV files in data\\powerbi": true,
+    "no database source in the model": true,
+    "no password in the model": true
    }
   },
   "C2": {
@@ -31,28 +33,35 @@
    }
   },
   "C3": {
-   "result": "PENDING",
+   "result": "PASS",
    "checks": {
-    "status": "PENDING: no exports in docs/figures/powerbi/exports yet"
+    "values_compared": 80,
+    "problems": [],
+    "files": {
+     "reports_by_quarter.csv": "20 values compared",
+     "reports_by_failure_mode.csv": "22 values compared",
+     "top_companies.csv": "20 values compared",
+     "battery_families.csv": "18 values compared"
+    }
    }
   },
   "C4": {
-   "result": "PENDING",
+   "result": "PASS",
    "checks": {
-    "status": "PENDING: MedicalDeviceCopilot.Report not found",
-    "PDF": false,
-    "PNGs": [
-     false,
-     false,
-     false,
-     false
-    ]
+    "four pages with the planned names": true,
+    "app colours (theme dataColors)": true,
+    "PDF committed": true,
+    "PNG of every page": true
    }
   },
   "C5": {
-   "result": "PENDING",
+   "result": "PASS",
    "checks": {
-    "status": "PENDING: MedicalDeviceCopilot.Report not found"
+    "pages found": true,
+    "notes on Battery investigation": true,
+    "notes on Companies and recalls": true,
+    "notes on Overview": true,
+    "notes on Trends and failure modes": true
    }
   }
  }
