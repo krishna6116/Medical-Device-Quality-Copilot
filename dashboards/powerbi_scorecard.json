@@ -3,19 +3,44 @@
   "pre_registered": "2026-11-26, before any view, login or report existed. The report file lives outside the repository (C:/Users/krish/Documents/MedicalDeviceCopilot.pbip); evidence (exports, PDF, screenshots) is committed under docs/figures/powerbi/.",
   "scoring": "Each item passes only if all its checks pass; score = passing items (0-5). Not loosened after results.",
   "items": [
-    {"id": "C1", "name": "Read-only login", "checks": [
-      "Login mdqc_powerbi_ro can read the powerbi schema and nothing else (core, core_all, analytics, analytics_all, memory refuse a SELECT)",
-      "It cannot write anything: INSERT, UPDATE, DELETE, CREATE and a session that turns read-only off are all refused",
-      "Its password is typed by the user at a hidden prompt; it is never printed, logged or committed"]},
-    {"id": "C2", "name": "Report views are right", "checks": [
-      "Every view in schema powerbi equals separate SQL on core_all and analytics_all (counts by product, quarter, event type, failure mode, company; recalls; battery families)",
-      "The views agree with the app's snapshot files where they overlap"]},
-    {"id": "C3", "name": "Numbers in the report are right", "checks": [
-      "At least 12 values exported from report visuals (CSV via Export data) equal the verifier's own values"]},
-    {"id": "C4", "name": "A complete report", "checks": [
-      "Four pages: Overview, Trends and failure modes, Companies and recalls, Battery investigation; same colours as the app",
-      "PDF export and a PNG of every page committed"]},
-    {"id": "C5", "name": "Honest", "checks": [
-      "Every page carries the notes that report counts are not failure rates and that the latest quarter is incomplete; the battery page says the data cannot show cause"]}
-  ]
+    {
+      "id": "C1",
+      "name": "No database access from the report (amended)",
+      "checks": [
+        "The report's data sources are only the exported CSV files: no database connection and no credential in the .pbip (checked in its model files)",
+        "The exported files match the manifest (rows, sha256), and two exports in a row are byte-identical"
+      ]
+    },
+    {
+      "id": "C2",
+      "name": "Report views are right",
+      "checks": [
+        "Every view in schema powerbi equals separate SQL on core_all and analytics_all (counts by product, quarter, event type, failure mode, company; recalls; battery families)",
+        "The views agree with the app's snapshot files where they overlap"
+      ]
+    },
+    {
+      "id": "C3",
+      "name": "Numbers in the report are right",
+      "checks": [
+        "At least 12 values exported from report visuals (CSV via Export data) equal the verifier's own values"
+      ]
+    },
+    {
+      "id": "C4",
+      "name": "A complete report",
+      "checks": [
+        "Four pages: Overview, Trends and failure modes, Companies and recalls, Battery investigation; same colours as the app",
+        "PDF export and a PNG of every page committed"
+      ]
+    },
+    {
+      "id": "C5",
+      "name": "Honest",
+      "checks": [
+        "Every page carries the notes that report counts are not failure rates and that the latest quarter is incomplete; the battery page says the data cannot show cause"
+      ]
+    }
+  ],
+  "amendment": "POST HOC 2026-11-26, the user's decision (option 2), before any report existed: no database login. The five powerbi views are exported to CSV files (data/powerbi/, git-ignored, sha256 and row counts in dashboards/powerbi_export_manifest.json) and Power BI loads those files. C1 is replaced; C2-C5 unchanged. Trade-off: the report is a snapshot, refreshed only by re-running the export. The read-only login was never created."
 }

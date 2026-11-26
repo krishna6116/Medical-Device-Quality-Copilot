@@ -1,0 +1,27 @@
+{
+ "products.csv": {
+  "rows": 5,
+  "sha256": "fd1f0bd471f18be6cb4f4c7bd2692194e2ffe35b7bd65a027e8351e29373e402",
+  "key": "product_code"
+ },
+ "reports.csv": {
+  "rows": 233264,
+  "sha256": "a0bebd1e8eda3062ea6519bf36261dee908300d13d4368fa6e54a6dde56feeed",
+  "key": "mdr_report_key"
+ },
+ "failure_modes.csv": {
+  "rows": 23,
+  "sha256": "e610719784cef3595b8e230421216fc47f132750b81db0d48f335fa09661ae32",
+  "key": "failure_mode"
+ },
+ "recalls.csv": {
+  "rows": 1626,
+  "sha256": "ab841fc38f4e6ad147b008a25abf6fbaf69160642fe6c89368f5aed4ebc296f7",
+  "key": "recall_number"
+ },
+ "battery_families.csv": {
+  "rows": 10705,
+  "sha256": "2ce38eb433e3612a849520ff53473ebecea20921df608196e486b70184d1844f",
+  "key": "mdr_report_key"
+ }
+}

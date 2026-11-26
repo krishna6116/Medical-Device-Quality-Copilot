@@ -3,19 +3,21 @@
 The report reads five views in the PostgreSQL schema `powerbi` (2022 to mid-November 2026) through a read-only login. The `.pbip`
 file stays outside the repository: `C:\Users\krish\Documents\MedicalDeviceCopilot.pbip`. Checks: `dashboards/powerbi_scorecard.json`.
 
-## 1. Read-only login (once)
+## 1. Data files (no database login)
 
-In a terminal in the project folder: `.venv\Scripts\python -m dashboards.powerbi_setup --login`. It asks for the PostgreSQL admin login
-(usually `postgres`) and its password, then a new password for `mdqc_powerbi_ro`, all hidden. It tests the login and prints PASS lines.
+The report loads five CSV files exported from the `powerbi` views: `.venv\Scripts\python -m dashboards.powerbi_export`. They are written to
+`data\powerbi\` (git-ignored); their row counts and sha256 are in `dashboards/powerbi_export_manifest.json`. The report cannot reach the database
+at all; it is a snapshot, refreshed by re-running the export and then **Refresh** in Power BI. (A read-only database login was the first plan; the
+user chose files instead, recorded as an amendment in `dashboards/powerbi_scorecard.json`.)
 
 ## 2. Connect
 
 1. Power BI Desktop: **File, Options and settings, Options, Preview features**: tick **Power BI Project (.pbip) save option**. Restart if asked.
-2. **Home, Get data, PostgreSQL database**. Server `localhost`, Database `mdqc`, mode **Import**.
-3. Credentials: **Database** tab, user `mdqc_powerbi_ro`, the password you just chose.
-4. Tick the five views under `powerbi`: `products`, `reports`, `failure_modes`, `recalls`, `battery_families`. **Load**.
-5. **View, Themes, Browse for themes**: `dashboards\powerbi_theme.json`.
-6. **File, Save as**, type **Power BI project (.pbip)**: `C:\Users\krish\Documents\MedicalDeviceCopilot.pbip`.
+2. **Home, Get data, Text/CSV**, open `C:\Users\krish\Documents\Medical-Device-Quality-Copilot\data\powerbi\reports.csv`, **Load**. Repeat for
+   `products.csv`, `failure_modes.csv`, `recalls.csv` and `battery_families.csv`.
+3. Check the column types in **Transform data** if needed: `date_received`, `quarter_start` and `started` as Date; everything else as Text.
+4. **View, Themes, Browse for themes**: `dashboards\powerbi_theme.json`.
+5. **File, Save as**, type **Power BI project (.pbip)**: `C:\Users\krish\Documents\MedicalDeviceCopilot.pbip`.
 
 ## 3. Model
 
