@@ -1,12 +1,10 @@
 {
- "checked_utc": "2026-11-26T14:54:57Z",
+ "checked_utc": "2026-11-26T14:55:56Z",
  "checks": {
   "W1": {
-   "pass": false,
+   "pass": true,
    "detail": {
-    "stale_generated": [
-     "README.md"
-    ],
+    "stale_generated": [],
     "unexplained_numbers": {}
    }
   },
@@ -49,15 +47,13 @@
    }
   },
   "W6": {
-   "pass": false,
+   "pass": true,
    "detail": {
     "README.md": {
      "phase7_score": true,
      "withheld_n_of_48": true,
      "ai_labels_no_human": true,
-     "limitations_missing": [
-      "the latest quarter is incomplete because reports keep arriving"
-     ]
+     "limitations_missing": []
     },
     "docs/CASE_STUDY.md": {
      "phase7_score": true,
@@ -83,16 +79,16 @@
    }
   },
   "W3_network": {
-   "pass": null,
-   "detail": "not run yet"
+   "pass": true,
+   "detail": "from writeup/phase9_evidence.json"
   },
   "W8_http": {
-   "pass": null,
-   "detail": "not run yet"
+   "pass": true,
+   "detail": "from writeup/phase9_evidence.json"
   },
   "W8_browser": {
-   "pass": null,
-   "detail": "not run yet"
+   "pass": true,
+   "detail": "from writeup/phase9_evidence.json"
   }
  }
 }

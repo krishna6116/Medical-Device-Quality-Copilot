@@ -1,0 +1,28 @@
+{
+ "W3_network": {
+  "checked_utc": "2026-11-26T14:55:14Z",
+  "links": {
+   "https://github.com/Krishna6116": 200,
+   "https://github.com/krishna6116/Medical-Device-Quality-Copilot/blob/main/docs/CASE_STUDY.md": 200,
+   "https://github.com/krishna6116/Medical-Device-Quality-Copilot/blob/main/docs/RESULTS.md": 200,
+   "https://medical-device-copilot.streamlit.app": 200,
+   "https://open.fda.gov/": 200,
+   "https://www.linkedin.com/in/krishnakumar-balasundaram-3a92b6422": 999
+  },
+  "failing": {},
+  "pass": true
+ },
+ "W8_http": {
+  "checked_utc": "2026-11-26T14:55:15Z",
+  "url": "https://medical-device-copilot.streamlit.app",
+  "status": 200,
+  "pass": true
+ },
+ "W8_browser": {
+  "checked_utc": "2026-11-26T14:55:55Z",
+  "method": "Claude desktop browser pane: Home and About pages opened on the public app",
+  "about_checksum": "5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df",
+  "manifest_checksum": "5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df",
+  "pass": true
+ }
+}
