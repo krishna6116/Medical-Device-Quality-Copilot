@@ -1,6 +1,6 @@
 # Medical Device Quality Copilot
 
-> Work in progress (Phases 0-7c run; Phase 7 has one criterion not met; Phases 8 and 9 to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
+> Work in progress (Phases 0-8 done; Phase 7 scored 4/5 with one criterion not met; Phase 9 write-up to go). An AI assistant that helps a medical device quality engineer investigate field failures using public FDA data, and remembers each open investigation across sessions.
 
 ## The problem
 
@@ -24,11 +24,13 @@ When a device starts failing in the field, a quality engineer has to answer ques
 | 4 Assistant | done: 8 read-only database tools, Claude Haiku 5.5 agent loop with cost ledger, budget stop and free replay; proven with a scripted stand-in (scorecard v2 5/5); live Haiku answers recorded in Phase 6 meet the original criteria (scorecard 5/5); [assistant](docs/ASSISTANT.md) |
 | 5 Memory | done: remembers each investigation across sessions (ruled out, hypotheses, decisions, questions); view, edit, export and real delete; refuses invented evidence and personal data; [memory](docs/MEMORY.md), scorecard 5/5 |
 | 6 Evaluation (paid run) | done: 85 pre-registered questions; Haiku 5.5 78/80 for $0.10 vs Opus 5.5 76/80 for $4.01, no significant difference, so the cheap model stays; every answer recorded and re-graded by separate code (same matching rules); [evaluation](docs/EVALUATION.md), scorecard 5/5 |
-| 7 Safety, cost, drift | run, scorecard 4/5: all 48 raw red-team answers labelled safe (by Claude, not independent), but the Haiku guard withheld 24 of them, so the red-team criterion is **not met**; drift checks on 79,075 new reports flag a pacemaker battery surge; [safety and drift](docs/SAFETY_AND_DRIFT.md) |
-| 7b New guard | a quoting guard, tested on full-length answers: 38/40 planted unsafe sentences caught, 0/40 clean answers withheld; all four bars met, but **labelled by Claude Opus, no human check**; Phase 7 stays 4/5; [guard](docs/GUARD_7B.md) |
-| 7c Reports 2025-2026 | 233,264 reports (2022-2026) in a second schema, rebuilt from raw with 0 differences, old data untouched (9/9 checks); Haiku 20/20 on questions over the larger data; the guard was not re-tested on it; [data](docs/DATA_2025_2026.md) |
-| 8 Streamlit + Power BI | app live at [medical-device-copilot.streamlit.app](https://medical-device-copilot.streamlit.app) (v1.1 design: guided investigation of a real 2025 pacemaker battery-report surge, How it works; recorded answers, no API or database; every number checked, 24 app tests, live check); Power BI next; [app](docs/APP.md) |
+| 7 Safety, cost, drift | done, scorecard 4/5: all 48 raw red-team answers labelled safe (by Claude, not independent), but the Haiku guard withheld 24 of them, so the red-team criterion is **not met**; drift checks on 79,075 new reports flag a pacemaker battery surge; [safety and drift](docs/SAFETY_AND_DRIFT.md) |
+| 7b New guard | done: a quoting guard, tested on full-length answers: 38/40 planted unsafe sentences caught, 0/40 clean answers withheld; all four bars met, but **labelled by Claude Opus, no human check**; Phase 7 stays 4/5; [guard](docs/GUARD_7B.md) |
+| 7c Reports 2025-2026 | done: 233,264 reports (2022-2026) in a second schema, rebuilt from raw with 0 differences, old data untouched (9/9 checks); Haiku 20/20 on questions over the larger data; the guard was not re-tested on it; [data](docs/DATA_2025_2026.md) |
+| 8 Streamlit + Power BI | done: app live at [medical-device-copilot.streamlit.app](https://medical-device-copilot.streamlit.app) (v1.1 design: guided investigation of a real 2025 pacemaker battery-report surge, How it works; recorded answers, no API or database; every number checked, 24 app tests, live check; scorecard 5/5); Power BI report, four pages, reads exported CSV files with no database login, 80 exported values checked against separate SQL (scorecard 5/5); [app](docs/APP.md), [Power BI](docs/POWERBI_GUIDE.md), [report pages](docs/figures/powerbi/) |
 | 9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
+
+![Power BI report: battery investigation page](docs/figures/powerbi/page4.png)
 
 ## Run locally
 
@@ -60,6 +62,10 @@ python -m venv .venv
 .venv\Scripts\python -m mdqc.verify_phase7b
 .venv\Scripts\python -m mdqc.load_all --raw --load --analytics --embed   # Phase 7c: 2022-2026 data beside core (about an hour)
 .venv\Scripts\python -m mdqc.verify_phase7c        # about 45 minutes
+.venv\Scripts\python -m dashboards.export_snapshots   # Phase 8: app snapshots; the app runs in its own env from app/requirements.txt
+.venv\Scripts\python -m dashboards.verify_phase8 --local
+.venv\Scripts\python -m dashboards.powerbi_export     # Phase 8 Power BI: CSV files for the report (no database login)
+.venv\Scripts\python -m dashboards.verify_powerbi
 ```
 
 ## Data and limits
