@@ -4,5 +4,6 @@
  "B2": "test_investigation_numbers recomputes every number on the page from battery.csv, battery_brands.csv and recalls.csv; page states the data cannot show the recall caused the reports (required sentence)",
  "B3": "after_home_desktop.png: hero, four verified cards and the investigation link visible at 1280x800 without scrolling; before/after images in docs/figures/v11/",
  "B4": "dashboards/phone_check.json: 10 pages at 375 px, scrollWidth 375, 0 exceptions (a first v1.1 home overflow was found and fixed)",
- "B5": "pending: after the user's agreement and the merge"
+ "B5": "met: all 10 pages live with no errors and the repository's data checksum (dashboards/live_check.json)",
+ "score": "5/5"
 }

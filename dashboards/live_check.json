@@ -1,65 +1,66 @@
 {
  "url": "https://medical-device-copilot.streamlit.app",
- "checked_utc": "2026-11-26T02:30Z (approx.)",
- "deployed_by": "the user's Chrome extension (Python 3.14, no secrets)",
- "method": "each of the 8 pages opened in the Claude desktop browser pane; page text read; numbers and required sentences compared with the repository's snapshots",
- "pages_loaded": [
-  "home",
-  "ask",
-  "trends",
-  "companies",
-  "drift",
-  "memory",
-  "evaluation",
-  "about"
- ],
- "required_sentences_seen_on_every_page": true,
- "checks": {
-  "about: data checksum": {
-   "live": "99eb50f82135246545f352a5c82cfe2e2af5f3d5d517fd409d588d15db3c27e7",
-   "repository": "99eb50f82135246545f352a5c82cfe2e2af5f3d5d517fd409d588d15db3c27e7",
-   "equal": true
+ "version": "v1.1 design, merge commit 08b2ff9 (PR #1)",
+ "checked": "2026-11-26, Claude desktop browser pane",
+ "method": "each page opened on the public site: title, Streamlit error boxes and the footer snapshot id read from the page; home, investigation, how and about read in full",
+ "pages": {
+  "home": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "home: reports": {
-   "live": "233,264",
-   "repository": "233,264",
-   "equal": true
+  "investigation": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "home: recalls": {
-   "live": "1,626",
-   "repository": "1,626",
-   "equal": true
+  "how": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "home: Haiku accuracy": {
-   "live": "78/80",
-   "repository": "78/80",
-   "equal": true
+  "ask": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "trends: LWP failure modes 2025": {
-   "live": "12,075",
-   "repository": "12,075",
-   "equal": true
+  "trends": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "companies: LWP reports 2022-2026": {
-   "live": "65,877",
-   "repository": "65,877",
-   "equal": true
+  "companies": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "companies: LWP recalls": {
-   "live": "113 records in 30 recall events",
-   "repository": "113 records in 30 recall events",
-   "equal": true
+  "drift": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "drift: checks / flags / quarters": {
-   "live": "105 / 5 / 4",
-   "repository": "105 / 5 / 4",
-   "equal": true
+  "memory": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   },
-  "evaluation: Opus / 7b / 7c": {
-   "live": "76/80 / 38/40 / 20/20",
-   "repository": "76/80 / 38/40 / 20/20",
-   "equal": true
+  "evaluation": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
+  },
+  "about": {
+   "loaded": true,
+   "errors": 0,
+   "snapshot_id_matches": true
   }
  },
- "all_equal": true
+ "about_page_checksum": "5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df",
+ "repository_checksum": "5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df",
+ "numbers_seen": {
+  "home cards": "78/80, 233,264, 9/9, 5.9x (325 to 1,904)",
+  "investigation": "325, 1,904, 103 -> 82, 97.5% (9,497 of 9,736), 77.9% (755 of 969), Z-0079-2026 + 20, event 97467",
+  "evaluation": "corrected wording present: 'one was a qualified answer'"
+ },
+ "all_match": true
 }

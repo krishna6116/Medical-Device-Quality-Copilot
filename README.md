@@ -27,7 +27,7 @@ When a device starts failing in the field, a quality engineer has to answer ques
 | 7 Safety, cost, drift | run, scorecard 4/5: all 48 raw red-team answers labelled safe (by Claude, not independent), but the Haiku guard withheld 24 of them, so the red-team criterion is **not met**; drift checks on 79,075 new reports flag a pacemaker battery surge; [safety and drift](docs/SAFETY_AND_DRIFT.md) |
 | 7b New guard | a quoting guard, tested on full-length answers: 38/40 planted unsafe sentences caught, 0/40 clean answers withheld; all four bars met, but **labelled by Claude Opus, no human check**; Phase 7 stays 4/5; [guard](docs/GUARD_7B.md) |
 | 7c Reports 2025-2026 | 233,264 reports (2022-2026) in a second schema, rebuilt from raw with 0 differences, old data untouched (9/9 checks); Haiku 20/20 on questions over the larger data; the guard was not re-tested on it; [data](docs/DATA_2025_2026.md) |
-| 8 Streamlit + Power BI | app live at [medical-device-copilot.streamlit.app](https://medical-device-copilot.streamlit.app) (recorded answers, no API or database; every number checked, 21 app tests, live check); Power BI next; [app](docs/APP.md) |
+| 8 Streamlit + Power BI | app live at [medical-device-copilot.streamlit.app](https://medical-device-copilot.streamlit.app) (v1.1 design: guided investigation of a real 2025 pacemaker battery-report surge, How it works; recorded answers, no API or database; every number checked, 24 app tests, live check); Power BI next; [app](docs/APP.md) |
 | 9 | planned: see [docs/PLAN.md](docs/PLAN.md) |
 
 ## Run locally

@@ -219,3 +219,9 @@ Loaded 233,264 reports (2022 to mid-November 2026) into `core_all`, leaving `cor
 
 **Concept:** "it runs without errors" and "it shows the current results" are different checks; compare outputs, not just exit codes.
 
+## 2026-11-26: Phase 8 app live, and the v1.1 design for recruiters ($0)
+
+The app went live at https://medical-device-copilot.streamlit.app (the first deploy click had not gone through; the Chrome extension deployed it). The redesign adds a hero with four verified result cards, a guided investigation and a How it works page. The investigation turned a drift flag into a story the data supports: Boston Scientific's pacemaker battery reports went from 325 to 1,904 in one quarter, 97.5% of them in the four device families named in a recall that started six weeks earlier, while Abbott stayed flat; the page says the data cannot show cause.
+
+**Found before publishing:** the home page overflowed sideways on phones, the banner was hidden under the header, and a screenshot had captured a loading page. **Concept:** a polished page is still a claim; every number on it is recomputed by a test.
+
