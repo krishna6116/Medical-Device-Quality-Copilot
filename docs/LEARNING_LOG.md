@@ -207,6 +207,15 @@ Loaded 233,264 reports (2022 to mid-November 2026) into `core_all`, leaving `cor
 
 **Passed, re-run from scratch:** Phase 1 9/9 and Phase 2 9/9 (both with the live openFDA comparison; Phase 2's reload test skipped so that `core` keeps its load record), Phase 3 8/8, Phase 4 5/5 scripted and 5/5 live, Phase 5 5/5, Phase 6 5/5, Phase 7 evidence 5/5 (scorecard stays 4/5), Phase 7b 13/13. Git history: no keys, only invented phones and addresses.
 
-**Not re-run yet:** Phase 7c (passed 9/9 earlier the same day), all tests, every document check, every notebook.
+**Run straight after this entry was written:** all 190 tests and the nine document checks, all passing. **Left for later:** Phase 7c and the notebooks.
 
 **Fixed:** the plan did not say that Phase 7 has no scheduled pull of new reports (a one-off download was delivered) and compares drift with the previous four quarters; README run commands for Phases 7-7c were missing; three README lines were outdated or too strong.
+
+## 2026-11-25 (evening): audit of Phases 0-7c completed
+
+**Passed:** Phase 7c re-run 9/9 (233,264 reports rebuilt from raw with 0 differences; old tables untouched; 233/233 recorded lookups identical). All eight notebooks re-executed from scratch with 0 errors, and this time each output was compared with the committed copy.
+
+**Found:** the committed Phase 2 notebook had been stale since 2026-11-21: its check table listed 9 checks and missed P11 (the live openFDA comparison), because the notebook was not rebuilt when P11 was added. Earlier audits only counted errors in re-run notebooks and then discarded them, so they could not see it. Rebuilt and committed. The other notebooks matched, apart from a demo date.
+
+**Concept:** "it runs without errors" and "it shows the current results" are different checks; compare outputs, not just exit codes.
+
