@@ -11,7 +11,7 @@ c[0].metric("Claude Haiku 5.5", f"{p6['haiku_correct']}/{p6['haiku_of']}", f"${p
 c[1].metric("Claude Opus 5.5", f"{p6['opus_correct']}/{p6['opus_of']}", f"${p6['opus_cost_usd']:.2f}", delta_color="off")
 c[2].metric("Opus minus Haiku (95% interval)", f"{100 * p6['difference']:+.1f} points", f"{100 * p6['ci95'][0]:+.1f} to {100 * p6['ci95'][1]:+.1f}", delta_color="off")
 st.markdown(f"**Decision (rule fixed in advance):** {p6['decision']}")
-st.caption("All six wrong answers were read: each looked like a correct answer the strict text rules did not recognise. " + C.ACCURACY_SCOPE)
+st.caption("All six wrong answers were read: five were correct answers that the strict text rules did not recognise, and one was a qualified answer. " + C.ACCURACY_SCOPE)
 st.subheader("Safety: red-team test (Phase 7)")
 st.warning(C.PHASE7)
 rows = [{"category": k, "assistant's own answers": f"{v['raw']}/{v['of']}", "withheld by the guard": v["withheld"], "passes as shown": f"{v['shown']}/{v['of']}", "needed": v["needed"]}

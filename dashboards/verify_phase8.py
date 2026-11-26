@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SNAP, APP = ROOT / "dashboards" / "snapshots", ROOT / "app"
-KEYS = {"quarterly.csv": 3, "quarterly_modes.csv": 3, "makers.csv": 3, "signals.csv": 4, "recalls.csv": 1, "drift.csv": 2}
+KEYS = {"battery.csv": 2, "battery_brands.csv": 2, "quarterly.csv": 3, "quarterly_modes.csv": 3, "makers.csv": 3, "signals.csv": 4, "recalls.csv": 1, "drift.csv": 2}
 FORBIDDEN = re.compile(r"^\s*(import|from)\s+(anthropic|psycopg|sqlalchemy|mdqc)\b|sk-ant-|postgresql://|DATABASE_URL|ANTHROPIC_API_KEY", re.M)
 
 
@@ -137,6 +137,17 @@ def db_ok() -> list[str]:
         snap = {tuple(r[:4]): (r[4], float(r[5])) for r in rows(SNAP / "signals.csv")[1:]}
         if snap != sig:
             bad.append("signals.csv differs")
+        bat, fam = Counter(), Counter()
+        words = ("ACCOLADE", "PROPONENT", "ESSENTIO", "ALTRUA", "VITALIO", "INGENIO", "FORMIO", "ADVANTIO")
+        for d, m, brand in con.execute("""SELECT r.date_received, d.parent_company, r.brand_name FROM core_all.fact_report r, core_all.dim_manufacturer d, analytics_all.report_failure_mode f
+                WHERE r.manufacturer_id = d.manufacturer_id AND f.mdr_report_key = r.mdr_report_key AND r.product_code = 'LWP' AND f.mode = 'C_BATTERY'""").fetchall():
+            bat[(qtr(d), m)] += 1
+            if m == "BOSTON SCIENTIFIC" and "2025-01-01" <= str(d) <= "2026-09-30":
+                family = next((w for w in re.findall(r"[A-Z]+", (brand or "").upper()) if w in words), "OTHER")
+                fam[("2025Q1-2025Q3" if qtr(d) <= "2025Q3" else "2025Q4-2026Q3", family)] += 1
+        for name, cnt in (("battery.csv", bat), ("battery_brands.csv", fam)):
+            if {tuple(r[:2]): int(r[2]) for r in rows(SNAP / name)[1:]} != dict(cnt):
+                bad.append(f"{name} differs")
         rc = {}
         for a, b, c, d, e, f, g, h in con.execute("""SELECT c.product_res_number, c.res_event_number, c.product_code, m.parent_company, c.event_date_initiated, c.recall_status,
                 coalesce(c.root_cause, ''), coalesce(c.reason_for_recall, '') FROM core_all.fact_recall c, core_all.dim_manufacturer m WHERE c.manufacturer_id = m.manufacturer_id""").fetchall():

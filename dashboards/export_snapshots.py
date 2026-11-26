@@ -9,6 +9,7 @@ file's rows and sha256 plus the sha256 of every results file they were built fro
 from __future__ import annotations
 
 import csv
+from collections import Counter
 import hashlib
 import io
 import json
@@ -52,6 +53,15 @@ REMOVED = "[phone number removed]"
 def shown(text: str) -> str:
     """Text as the app shows it: invented test phone numbers (Phase 6 memory refusal test) are not displayed."""
     return PHONE.sub(REMOVED, text)
+
+
+FAMILIES = ("ACCOLADE", "PROPONENT", "ESSENTIO", "ALTRUA", "VITALIO", "INGENIO", "FORMIO", "ADVANTIO")
+
+
+def brand_family(brand: str) -> str:
+    """A pacemaker brand as FDA recorded it ('ACCOLADE? MRI EL DR', 'ACCOLADE MRI DR') -> its family name, or OTHER."""
+    words = re.sub(r"[^A-Z ]", " ", brand.upper()).split()
+    return next((w for w in words if w in FAMILIES), "OTHER")
 
 
 def answers() -> list[dict]:
@@ -108,6 +118,16 @@ def main() -> None:
     write_csv("recalls.csv", ["recall_number", "recall_event", "product", "company", "started", "status", "root_cause", "reason"],
               q(r"SELECT product_res_number, res_event_number, product_code, m.parent_company, event_date_initiated::text, recall_status, regexp_replace(root_cause, '\s+', ' ', 'g'), left(regexp_replace(reason_for_recall, '\s+', ' ', 'g'), 300) "
                 "FROM core_all.fact_recall JOIN core_all.dim_manufacturer m USING (manufacturer_id) ORDER BY 1"))
+    # v1.1 guided investigation: pacemaker battery reports by company, and Boston Scientific's by device brand, before and after 2025Q4
+    write_csv("battery.csv", ["quarter", "company", "reports"],
+              q(f"SELECT to_char(date_received, 'YYYY\"Q\"Q'), m.parent_company, count(*) FROM {R} JOIN core_all.dim_manufacturer m USING (manufacturer_id) "
+                "JOIN analytics_all.report_failure_mode f USING (mdr_report_key) WHERE r.product_code = 'LWP' AND f.mode = 'C_BATTERY' GROUP BY 1, 2 ORDER BY 1, 2"))
+    brands = Counter()
+    for quarter, brand in q(f"SELECT to_char(date_received, 'YYYY\"Q\"Q'), coalesce(brand_name, '') FROM {R} JOIN core_all.dim_manufacturer m USING (manufacturer_id) "
+                            "JOIN analytics_all.report_failure_mode f USING (mdr_report_key) WHERE r.product_code = 'LWP' AND f.mode = 'C_BATTERY' "
+                            "AND m.parent_company = 'BOSTON SCIENTIFIC' AND date_received BETWEEN '2025-01-01' AND '2026-09-30'"):
+            brands[("2025Q1-2025Q3" if quarter <= "2025Q3" else "2025Q4-2026Q3", brand_family(brand))] += 1
+    write_csv("battery_brands.csv", ["period", "family", "reports"], sorted([p, f, n] for (p, f), n in brands.items()))
     con.close()
     d = load("results/phase7/drift_check.json")
     write_csv("drift.csv", ["product", "quarter", "reports", "volume_change", "mode_mix", "vocabulary", "flags", "largest_mode_move"],

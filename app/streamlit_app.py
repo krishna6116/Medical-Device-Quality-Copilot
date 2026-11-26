@@ -1,4 +1,4 @@
-"""Medical Device Quality Copilot: Phase 8 app (Streamlit). Reads only dashboards/snapshots/.
+"""Medical Device Quality Copilot: the app (Streamlit). Reads only dashboards/snapshots/.
 
 Run locally:  .venv-app\\Scripts\\streamlit run app/streamlit_app.py
 """
@@ -11,33 +11,32 @@ import streamlit as st
 APP = Path(__file__).resolve().parent
 if str(APP) not in sys.path:
     sys.path.insert(0, str(APP))
-_mod = sys.modules.get("common")  # a running app keeps old modules; reload ours, drop a same-named one from elsewhere
-if _mod is not None:
-    if Path(getattr(_mod, "__file__", "") or "").resolve().parent == APP:
-        importlib.reload(_mod)
-    else:
-        del sys.modules["common"]
+for _name in ("common", "style"):  # a running app keeps old modules; reload ours, drop same-named ones from elsewhere
+    _mod = sys.modules.get(_name)
+    if _mod is not None:
+        if Path(getattr(_mod, "__file__", "") or "").resolve().parent == APP:
+            importlib.reload(_mod)
+        else:
+            del sys.modules[_name]
 
 import common as C  # noqa: E402
+import style as S  # noqa: E402
 
-st.set_page_config(page_title="Medical Device Quality Copilot", layout="wide")
-st.html("""<style>
-[data-testid="stMetricLabel"], [data-testid="stMetricLabel"] * { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; }
-[data-testid="stHorizontalBlock"]:has(> [data-testid="stColumn"] [data-testid="stMetric"]) { align-items: flex-end; }
-@media (max-width: 640px) { [data-testid="stTable"] table { font-size: 0.78rem; } }
-</style>""")
+st.set_page_config(page_title="Medical Device Quality Copilot", page_icon=":material/medical_services:", layout="wide")
+S.css()
 
-pages = [st.Page("views/home.py", title="Home", default=True),
-         st.Page("views/ask.py", title="Ask the copilot (recorded)"),
-         st.Page("views/trends.py", title="Trends and failure modes"),
-         st.Page("views/companies.py", title="Companies and recalls"),
-         st.Page("views/drift.py", title="Drift monitoring"),
-         st.Page("views/memory.py", title="Investigation memory (sandbox)"),
-         st.Page("views/evaluation.py", title="Evaluation and safety"),
-         st.Page("views/about.py", title="About and limits")]
+pages = {"Overview": [st.Page("views/home.py", title="Home", icon=":material/home:", default=True),
+                      st.Page("views/investigation.py", title="A real investigation", icon=":material/search_insights:"),
+                      st.Page("views/how.py", title="How it works", icon=":material/account_tree:")],
+         "Explore": [st.Page("views/ask.py", title="Ask the copilot (recorded)", icon=":material/forum:"),
+                     st.Page("views/trends.py", title="Trends and failure modes", icon=":material/monitoring:"),
+                     st.Page("views/companies.py", title="Companies and recalls", icon=":material/factory:"),
+                     st.Page("views/drift.py", title="Drift monitoring", icon=":material/notifications_active:"),
+                     st.Page("views/memory.py", title="Investigation memory (sandbox)", icon=":material/bookmarks:")],
+         "Trust": [st.Page("views/evaluation.py", title="Evaluation and safety", icon=":material/verified:"),
+                   st.Page("views/about.py", title="About and limits", icon=":material/info:")]}
 nav = st.navigation(pages)
 with st.sidebar:
-    st.divider()
-    st.caption(f"Built by {C.AUTHOR} · [LinkedIn]({C.LINKEDIN}) · [GitHub]({C.REPO})")
+    st.caption(f"Built by **{C.AUTHOR}**  \n[LinkedIn]({C.LINKEDIN}) · [GitHub]({C.REPO})")
     st.caption("Public FDA data (openFDA). Not medical advice.")
 nav.run()

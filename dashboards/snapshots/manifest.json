@@ -1,9 +1,17 @@
 {
- "data_checksum": "99eb50f82135246545f352a5c82cfe2e2af5f3d5d517fd409d588d15db3c27e7",
+ "data_checksum": "5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df",
  "files": {
   "answers.json": {
    "rows": 105,
    "sha256": "7d4d37d23d353ce4e0dbfcfd3a45caa45f54b20b1e94dc4949b8cd94146e94cb"
+  },
+  "battery.csv": {
+   "rows": 84,
+   "sha256": "61bddf5bc324deaae172f2cf659804c18b48b29a8311d43819843fb58cbe27e3"
+  },
+  "battery_brands.csv": {
+   "rows": 18,
+   "sha256": "3251f97af9e7d1e9b5220bc8fa811140d4094982f5337aa873ab293c25b42e3d"
   },
   "drift.csv": {
    "rows": 35,
