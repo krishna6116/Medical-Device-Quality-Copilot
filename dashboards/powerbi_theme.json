@@ -1,0 +1,15 @@
+{
+  "name": "Medical Device Copilot",
+  "dataColors": ["#0E6E8C", "#B7791F", "#9AA7B4", "#1E8E5A", "#16212E", "#5FA8C4", "#C0392B", "#7E57C2"],
+  "background": "#FFFFFF",
+  "foreground": "#16212E",
+  "tableAccent": "#0E6E8C",
+  "good": "#1E8E5A",
+  "neutral": "#B7791F",
+  "bad": "#C0392B",
+  "textClasses": {
+    "title": {"fontFace": "Segoe UI Semibold", "fontSize": 14, "color": "#16212E"},
+    "label": {"fontFace": "Segoe UI", "fontSize": 10, "color": "#5B6B7C"},
+    "callout": {"fontFace": "Segoe UI Semibold", "fontSize": 28, "color": "#16212E"}
+  }
+}
