@@ -22,6 +22,8 @@ The app shows the project to someone who will not install anything. It reads onl
 | File | Rows | sha256 (first 12) |
 |---|---|---|
 | answers.json | 105 | `7d4d37d23d35` |
+| battery.csv | 84 | `61bddf5bc324` |
+| battery_brands.csv | 18 | `3251f97af9e7` |
 | drift.csv | 35 | `c73843fdd035` |
 | makers.csv | 412 | `ce5ce885d38e` |
 | quarterly.csv | 282 | `657326994cef` |
@@ -31,7 +33,7 @@ The app shows the project to someone who will not install anything. It reads onl
 | results.json | 4 | `dd7249d8dbd3` |
 | signals.csv | 398 | `82a12cff0d99` |
 
-Data checksum: `99eb50f82135246545f352a5c82cfe2e2af5f3d5d517fd409d588d15db3c27e7` (also shown on the app's About page). Made by `python -m dashboards.export_snapshots` from the local database and these results files: `config/failure_modes.json`, `config/phase6_eval_set.json`, `config/phase7c_questions.json`, `results/phase6/summary.json`, `results/phase7/drift_check.json`, `results/phase7/redteam_grades.json`, `results/phase7/verify_phase7.json`, `results/phase7b/test_grades.json`, `results/phase7c/model_check.json`, `results/phase7c/verify_phase7c.json`.
+Data checksum: `5415b0296c3170440f1d35d8320d00c863840d989bd6b0fcb84a339dee4724df` (also shown on the app's About page). Made by `python -m dashboards.export_snapshots` from the local database and these results files: `config/failure_modes.json`, `config/phase6_eval_set.json`, `config/phase7c_questions.json`, `results/phase6/summary.json`, `results/phase7/drift_check.json`, `results/phase7/redteam_grades.json`, `results/phase7/verify_phase7.json`, `results/phase7b/test_grades.json`, `results/phase7c/model_check.json`, `results/phase7c/verify_phase7c.json`.
 
 ## Checks
 

@@ -1,7 +1,11 @@
-# Charts draw labels and reference lines in Okabe-Ito black, so they need a light background:
-# without this the app follows the viewer's system theme and those marks vanish in dark mode (found in D5.5).
+# Light theme pinned: charts draw dark labels, so the app must not follow a viewer's dark system theme.
+# Colours (v1.1): deep teal accent, cool grey surfaces.
 [theme]
 base = "light"
+primaryColor = "#0E6E8C"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F2F6F9"
+textColor = "#16212E"
 
 # Visitors see the viewer toolbar only (no developer "Deploy" button, also when run locally)
 [client]

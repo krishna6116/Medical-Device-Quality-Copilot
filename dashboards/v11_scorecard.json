@@ -1,0 +1,18 @@
+{
+  "version": "app v1.1, design for recruiters (branch design-v1.1)",
+  "pre_registered": "2026-11-26, before any design code. The user asked for an app that looks outstanding to recruiters; nothing goes live (main) until the user has seen screenshots and agrees.",
+  "scoring": "Each item passes only if all its checks pass; score = passing items (0-5). Not loosened after results.",
+  "items": [
+    {"id": "B1", "name": "Nothing verified is lost", "checks": ["Every Phase 8 check still passes: dashboards.verify_phase8 --local and all app tests, extended to the new pages"]},
+    {"id": "B2", "name": "The guided investigation is true", "checks": [
+      "Every number on the investigation page equals a value the tests recompute from the snapshot files",
+      "Every statement links to evidence shown on the page (a chart, a recall record or a recorded answer)",
+      "The page says the data cannot show that the recall caused the reports"]},
+    {"id": "B3", "name": "Strong first screen", "checks": [
+      "At 1280x800 the first screen shows, without scrolling: what the project does in one line, four result cards with verified numbers, and a link to the guided investigation",
+      "Before and after screenshots committed under docs/figures/v11/"]},
+    {"id": "B4", "name": "Works everywhere", "checks": ["No page needs sideways scrolling at 375 px; every page renders without an error"]},
+    {"id": "B5", "name": "Live", "checks": ["After the user agrees and the branch is merged, every page of the public app loads and shows the repository's data checksum (evidence committed)"]}
+  ],
+  "honesty_rules": "Phase 7 stays shown as 4/5; AI labels in 7b stay labelled; the Phase 6 wrong-answer note is corrected (one of six answers was a qualified answer, not a plainly correct one)"
+}
