@@ -50,8 +50,15 @@ Every page gets a small text box at the bottom: *"Report counts are not failure 
 
 ## 5. Evidence
 
-1. For each visual listed in `dashboards/powerbi_exports.json` (written by `python -m dashboards.verify_powerbi --list`): **More options (...), Export data, Summarized data, .csv**, saved under `docs\figures\powerbi\exports\` with the given file name.
-2. **File, Export, Export to PDF**: `docs\figures\powerbi\MedicalDeviceCopilot.pdf`.
-3. A PNG of each page (Windows + Shift + S) as `docs\figures\powerbi\page1.png` to `page4.png`.
+1. For each visual listed in `dashboards/powerbi_exports.json` (written by `python -m dashboards.verify_powerbi --list`): **More options (...), Export data**, .csv, saved under `docs\figures\powerbi\exports\` with the given file name. No slicer or bar selection.
+2. **File, Export, Export to PDF**; Power BI opens it from `%TEMP%\Power BI Desktop\print-job-*`; copy it to `docs\figures\powerbi\MedicalDeviceCopilot.pdf`.
+3. One PNG per page, rendered from that PDF at 2x (pypdfium2, installed in a scratch folder, not a project dependency): `docs\figures\powerbi\page1.png` to `page4.png`.
 
 Then: `.venv\Scripts\python -m dashboards.verify_powerbi` (writes `dashboards/powerbi_evidence.json`; items without report evidence show PENDING).
+
+## How it was actually built (2026-11-25)
+
+Sections 2-4 are the manual route. The report was instead written as project files: Power BI Desktop saved an empty `.pbip`
+(base theme and file versions), then `python -m dashboards.build_pbip` (Desktop closed) wrote the five CSV tables, three relationships,
+eight measures, the app theme and the four pages; Desktop reopened it and **Refresh** loaded the data. `--report-only` rewrites only the pages.
+Note: the exported `Share of reports` values carry the 0.0% format, so the check compares them to one decimal (tolerance 0.0005).

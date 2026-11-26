@@ -225,3 +225,19 @@ The app went live at https://medical-device-copilot.streamlit.app (the first dep
 
 **Found before publishing:** the home page overflowed sideways on phones, the banner was hidden under the header, and a screenshot had captured a loading page. **Concept:** a polished page is still a claim; every number on it is recomputed by a test.
 
+## 2026-11-25 - Phase 8 part 2: Power BI report (5/5)
+
+**What we did:** the user chose CSV exports over a read-only database login (recorded as a post-hoc amendment to C1 before any report existed). The five `powerbi` views are exported to CSV with a checksum manifest; two exports in a row are byte-identical. The report was built as Power BI project files (TMDL model, PBIR pages) by `dashboards/build_pbip.py`, opened in Power BI Desktop and refreshed: four pages in the app's colours, with the honesty notes on every page.
+
+**Checks:** `verify_powerbi` compares the exported files with SQL written separately on the base tables and with the app's snapshots (C2), and 80 values exported from four report visuals with its own values (C3); all equal. The battery shares (77.9% and 97.5%) match the app.
+
+**Found on the way:** the Power BI connector failed because the VS Code extension had updated from 1.0.0 to 1.0.1 and the configured path no longer existed (fixed locally; the session still did not load it, so the report was built from files instead). Exported percentages carry the visual's format, so that comparison is only to one decimal.
+
+**Concept:** a report saved as text files (PBIP) can be generated, diffed and rebuilt, instead of clicked together by hand.
+
+| Task | Why we did it | What we learned | What it changes next |
+|---|---|---|---|
+| CSV exports instead of a login | No database passwords to type; files need no credentials | A snapshot report is simpler and safer, but refreshes only when the export is re-run | The write-up must say the Power BI report is a snapshot |
+| Generate the report as PBIP files | Hundreds of clicks are slow and hard to repeat | Power BI accepts hand-written TMDL and PBIR when the scaffolding comes from Desktop | Layout fixes are a script change plus a reopen |
+| Independent verifier | Never trust a dashboard's numbers by eye | Exports, SQL and snapshots agree on every compared value | Phase 9 can quote the report's numbers from the evidence file |
+
