@@ -1,19 +1,36 @@
 {
  "W3_network": {
-  "checked_utc": "2026-11-26T14:55:14Z",
+  "checked_utc": "2026-11-26T15:16:45Z",
   "links": {
    "https://github.com/Krishna6116": 200,
+   "https://github.com/krishna6116/Medical-Device-Quality-Copilot/actions/workflows/ci.yml/badge.svg": 200,
    "https://github.com/krishna6116/Medical-Device-Quality-Copilot/blob/main/docs/CASE_STUDY.md": 200,
    "https://github.com/krishna6116/Medical-Device-Quality-Copilot/blob/main/docs/RESULTS.md": 200,
+   "https://img.shields.io/badge/BM25%20%2B%20embeddings-semantic%20search-6E56CF": 200,
+   "https://img.shields.io/badge/Claude-Haiku%20agent%20%2B%20tools-D97757?logo=anthropic&logoColor=white": 200,
+   "https://img.shields.io/badge/GitHub%20Actions-CI-2088FF?logo=githubactions&logoColor=white": 200,
+   "https://img.shields.io/badge/Jupyter-notebooks-F37626?logo=jupyter&logoColor=white": 200,
+   "https://img.shields.io/badge/PostgreSQL-star%20schema-4169E1?logo=postgresql&logoColor=white": 200,
+   "https://img.shields.io/badge/Power%20BI-report-F2C811": 200,
+   "https://img.shields.io/badge/SciPy-signal%20statistics-8CAAE6?logo=scipy&logoColor=white": 200,
+   "https://img.shields.io/badge/Streamlit-live%20app-FF4B4B?logo=streamlit&logoColor=white": 200,
+   "https://img.shields.io/badge/license-MIT-green": 200,
+   "https://img.shields.io/badge/openFDA-MAUDE%20%2B%20recalls-0071BC": 200,
+   "https://img.shields.io/badge/pandas-data%20wrangling-150458?logo=pandas&logoColor=white": 200,
+   "https://img.shields.io/badge/pytest-tested-0A9EDC?logo=pytest&logoColor=white": 200,
+   "https://img.shields.io/badge/python-3.14-blue": 200,
+   "https://img.shields.io/badge/release-v1.0.0-0E6E8C": 200,
+   "https://img.shields.io/badge/scikit--learn-text%20baselines-F7931E?logo=scikitlearn&logoColor=white": 200,
    "https://medical-device-copilot.streamlit.app": 200,
    "https://open.fda.gov/": 200,
+   "https://static.streamlit.io/badges/streamlit_badge_black_white.svg": 200,
    "https://www.linkedin.com/in/krishnakumar-balasundaram-3a92b6422": 999
   },
   "failing": {},
   "pass": true
  },
  "W8_http": {
-  "checked_utc": "2026-11-26T14:55:15Z",
+  "checked_utc": "2026-11-26T15:16:45Z",
   "url": "https://medical-device-copilot.streamlit.app",
   "status": 200,
   "pass": true
