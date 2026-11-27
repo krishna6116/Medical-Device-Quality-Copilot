@@ -9,6 +9,7 @@ Start with the [README](../README.md) and the [case study](CASE_STUDY.md).
 - [ASSISTANT.md](ASSISTANT.md): The tool-using assistant, its tools and live checks
 - [CASE_STUDY.md](CASE_STUDY.md): The whole project as a short story with results
 - [DATA_2025_2026.md](DATA_2025_2026.md): Adding 2025-2026 reports in a second schema
+- [DATA_ARCHIVE.md](DATA_ARCHIVE.md): Where the downloaded data snapshot is archived and how to restore it
 - [DATA_CARD.md](DATA_CARD.md): What the openFDA data contain and their limits
 - [DECISIONS.md](DECISIONS.md): The main choices, why they were made, and evidence
 - [EDA_FINDINGS.md](EDA_FINDINGS.md): First look at the reports and recalls data
