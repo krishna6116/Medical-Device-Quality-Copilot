@@ -13,7 +13,7 @@ pick = st.selectbox("Question", [a["id"] for a in items], format_func=lambda i: 
 a = next(x for x in items if x["id"] == pick)
 st.markdown(f"**Question:** {a['question']}")
 c = st.columns(4)
-c[0].metric("Model", a["model"])
+c[0].container(key="model_tile").metric("Model", a["model"])  # long model name: smaller, wrapping value (CSS in style.py)
 c[1].metric("Cost of this answer", f"${a['cost_usd']:.4f}")
 c[2].metric("Model calls", a["steps"])
 c[3].metric("Graded", "not graded" if not a["graded"] else ("correct" if a["correct"] else "wrong"))

@@ -12,6 +12,8 @@ TEAL, NAVY, GREEN, AMBER, RED, GREY = "#0E6E8C", "#16212E", "#1E8E5A", "#B7791F"
 CSS = f"""<style>
 .block-container {{ padding-top: 4.2rem; max-width: 1180px; }}
 [data-testid="stMetricLabel"], [data-testid="stMetricLabel"] * {{ white-space: normal !important; overflow: visible !important; text-overflow: clip !important; }}
+.st-key-model_tile [data-testid="stMetricValue"] {{ padding-top: 0.6rem; }}
+.st-key-model_tile [data-testid="stMetricValue"], .st-key-model_tile [data-testid="stMetricValue"] * {{ font-size: 1.3rem !important; line-height: 1.35 !important; white-space: normal !important; overflow: visible !important; text-overflow: clip !important; overflow-wrap: anywhere; }}
 .hero, .cards, .score, .card {{ box-sizing: border-box; min-width: 0; }}
 .hero {{ overflow-wrap: anywhere; background: linear-gradient(135deg, {NAVY} 0%, {TEAL} 100%); color: #fff; border-radius: 18px; padding: 30px 34px 26px; margin-bottom: 18px; }}
 .hero h1 {{ color: #fff; font-size: 2.15rem; line-height: 1.15; margin: 0 0 8px; padding: 0; }}
